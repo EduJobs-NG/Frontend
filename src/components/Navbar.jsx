@@ -9,11 +9,16 @@ export const Navbar = () => {
         <div className="container mx-auto">
           <div className="hidden lg:flex uppercase py-[2rem] items-center flex-row justify-between">
             <ul className="flex gap-x-[3rem] text-white flex-row">
-             <li className='title'>{logo}</li> 
+             <li className='title'>
+              <NavLink to="/">{logo}</NavLink>
+              </li> 
               
               {navigation.leftNav.map((nav, index) =>{
                 return (
-                  <li key={index}>{nav.name}</li>
+                  <li key={index}>
+                     <NavLink to="#"> {nav.name}</NavLink>
+                  </li>
+                 
                 )
               })}
             </ul>
