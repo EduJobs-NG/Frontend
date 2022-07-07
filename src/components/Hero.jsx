@@ -1,7 +1,8 @@
-import React from 'react'
+import React from 'react';
 
 export const Hero = () => {
   return (
+    <>
     <section className='relative bg-hero h-full py-[150px] lg:py-[200px] max-h-[700px] bg-top bg-cover bg-no-repeat'>
       <div className='container mx-auto flex flex-col justify-center '>
         <h2 className='title text-[35px] font-heading lg:text-[66px] z-[999] font-[700] text-white max-w-[600px]'>Have Great Jobs
@@ -15,5 +16,8 @@ export const Hero = () => {
       </div>
 
     </section>
+    
+    </>
+
   )
 }
