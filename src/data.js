@@ -3,10 +3,11 @@ import Feature2 from './assets/features2.png';
 import Feature3 from './assets/features3.png';
 
 
-export const navigation = [
-    {
-        leftNav: [
-            {
+export const navigation = {
+    
+    logo:'EdujobsNG',
+    leftNav: [
+           {
                 name: 'About us',
                 href: "#"
             },
@@ -23,9 +24,9 @@ export const navigation = [
                 href: "#"
             },
         ]
-    },
+    ,
 
-    {
+    
         rightNav: [
             {
                 name:'job seekers',
@@ -42,9 +43,9 @@ export const navigation = [
 
 
         ]
-    }
+    
 
-]
+}
 
 
 export const features = [
