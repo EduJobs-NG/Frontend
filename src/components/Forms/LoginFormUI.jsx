@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormInputBox } from './FormInputBox';
 
-export const LoginForm = () => {
+export const LoginFormUI = () => {
   return (
     <FormInputBox label="First Name" />
   )

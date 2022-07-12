@@ -1,18 +1,16 @@
-import React, {useState} from 'react';
+// import React, {useState} from 'react';
 
 
 export const FormInputBox = (props) => {
-  const {label, placeholder,className, type} = props;
-  const [value, setValue] = useState("");
-  const changeHandler = (e) =>{
-    setValue(e.target.value)
-  }
+  const {label, placeholder, className, value, onChange, name,id, type} = props;
+  // const [inputValue, setInputValue] = useState("");
   return (
     <div>
       <label>{label}</label>
+     
       <input type={type}
        placeholder={placeholder}
-       className={className} value={value} onChange={changeHandler} />
+       className={className} value={value} name={name} id={id} onChange={onChange} />
 
     </div>
   )

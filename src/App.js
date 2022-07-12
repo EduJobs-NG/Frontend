@@ -1,7 +1,7 @@
 import { Home } from './components/Home';
 import {Navbar} from './components/Navbar';
-import {RegisterForm} from './components/Forms/RegisterForm';
-import {LoginForm} from './components/Forms/LoginForm';
+import {RegisterFormUI} from './components/Forms/RegisterFormUI';
+import {LoginFormUI} from './components/Forms/LoginFormUI';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -12,8 +12,8 @@ function App() {
       <Navbar />
       <Routes>
       <Route path="/" exact  element={<Home />} />
-      <Route path="/login" element={<LoginForm />}/>
-      <Route path="/register" element={<RegisterForm />}/>
+      <Route path="/login" element={<LoginFormUI />}/>
+      <Route path="/register" element={<RegisterFormUI />}/>
       
 
       </Routes>
