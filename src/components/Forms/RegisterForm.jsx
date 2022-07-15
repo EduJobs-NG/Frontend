@@ -23,9 +23,13 @@ export const RegisterForm = () => {
         .post("http://edujobsng.herokuapp.com/api/v1/auth/users/", values)
         .catch(err =>{
             if(err && err.response){
-                console.log(err.response.data.email)
-                setError("There was an error")
+              if (err.message === 'Request failed with status code 400'){
+                setError("User with this email already exists")
                 setSuccess('')
+              }else{
+                setError("An error occured. Try again")
+                console.log(err)
+              }
             }
         });
 
