@@ -23,7 +23,7 @@ export const RegisterForm = () => {
         .post("http://edujobsng.herokuapp.com/api/v1/auth/users/", values)
         .catch(err =>{
             if(err && err.response){
-                console.log(err.response.request.responseText)
+                console.log(err.response.data.email)
                 setError("There was an error")
                 setSuccess('')
             }
@@ -34,6 +34,7 @@ export const RegisterForm = () => {
                 console.log(response)
                 setSuccess("Account created successfully")
                 setError('')
+                formik.resetForm()
 
             }
         
