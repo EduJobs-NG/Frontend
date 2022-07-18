@@ -20,7 +20,7 @@ export const RegisterForm = () => {
     
     const onSubmit = async (values) =>{
         const response = await axios
-        .post("http://edujobsng.herokuapp.com/api/v1/auth/users/", values)
+        .post("https://edujobsng.herokuapp.com/api/v1/auth/users/", values)
         .catch(err =>{
             if(err && err.response){
               if (err.message === 'Request failed with status code 400'){
