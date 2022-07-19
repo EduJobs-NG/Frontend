@@ -6,7 +6,7 @@ import axios from 'axios';
 import {FaUserPlus, FaUserCircle, FaEnvelope} from 'react-icons/fa';
 import {ThreeDots} from 'react-loader-spinner';
 import { Formik, Form } from 'formik';
-import {  Link } from 'react-router-dom';
+import {  Link, useNavigate } from 'react-router-dom';
 
 const validationSchema = Yup.object({
     first_name: Yup.string().max(15, "Must be 15 characters or less").required('Required'),
@@ -29,6 +29,7 @@ export const RegisterForm = () => {
         
     }
   
+    const navigate = useNavigate();
     
     const onSubmit = async (values, {setSubmitting, isSubmitting}) =>{
         const response = await axios
@@ -57,6 +58,10 @@ export const RegisterForm = () => {
                 setSuccess("Account created successfully")
                 setError('')
                 formik.resetForm()
+                setTimeout(() =>{
+                    navigate('/login');
+
+                }, 2000)
 
             }
         
@@ -81,7 +86,7 @@ export const RegisterForm = () => {
  console.log(formik.isSubmitting)
    
     return (
-        <div className='border bg-white p-2 py-[2rem] px-[42px]  rounded-[50px] max-w-[700px]'>
+        <div className='border bg-white p-2 py-[2rem] px-[42px]  rounded-[50px] max-w-[500px]'>
             <div className='flex my-4 gap-x-[1rem] justify-center '>
              <FaUserPlus className='text-[2rem] text-blue' />
              <div className='h-[2.5rem] w-[3px] bg-black'></div>
