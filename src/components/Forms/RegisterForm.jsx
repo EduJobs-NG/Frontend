@@ -55,12 +55,11 @@ export const RegisterForm = () => {
         if(response && response.data){
 
                 console.log(response)
-                setSuccess("Account created successfully")
+                setSuccess("Account created successfully. Proceeding to login")
                 setError('')
                 formik.resetForm()
                 setTimeout(() =>{
                     navigate('/login');
-
                 }, 2000)
 
             }
@@ -83,7 +82,7 @@ export const RegisterForm = () => {
         
     })
 
- console.log(formik.isSubmitting)
+//  console.log(formik.isSubmitting)
    
     return (
         <div className='border bg-white p-2 py-[2rem] px-[42px]  rounded-[50px] max-w-[500px]'>
