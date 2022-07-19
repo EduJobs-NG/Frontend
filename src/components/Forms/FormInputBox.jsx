@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {FaEye, FaEyeSlash} from 'react-icons/fa'
 
 export const FormInputBox = (props) => {
   const {label, placeholder, icon, className, value, onChange, name,id, type} = props;
@@ -11,13 +12,31 @@ export const FormInputBox = (props) => {
     <div className='relative'>
       <label>{label}</label>
       
-     
+     {props.type!=='password' && (
+      <>
       <input type={type}
-       placeholder={placeholder}
-       className={className} value={value} name={name} id={id} onChange={onChange} />
-       {/* {show ? `${icon='fa-solid fa-eye-slash'}`:`${icon='fa-solid fa-eye'}`} */}
-       <i onClick={handleClick} className={` ${icon} i_absolute`}></i>
-       {/* <StyledIcon className="i_absolute">{icon}</StyledIcon> */}
+      placeholder={placeholder}
+      className={className} value={value} name={name} id={id} onChange={onChange} />
+      <span className='i_absolute' >{icon}</span>
+    </>
+     )}
+
+       {
+        props.type === 'password' && (
+          <>
+          <input type={show?'text':'password'}
+          placeholder={placeholder}
+          className={className} value={value} name={name} id={id} onChange={onChange} />
+          <span className='i_absolute' >{icon}</span>
+          </>
+        )
+       }
+    {props.type === 'password' && 
+    <span onClick={handleClick} className="i_absolute">
+      {show ? <FaEyeSlash />:<FaEye /> }
+    </span>
+    }
+      
     </div>
   )
 }
