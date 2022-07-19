@@ -25,3 +25,14 @@ body{
 .heading{
   font-family: 'Inter', sans-serif;
 }
+
+.form-relative{
+  position:relative;
+}
+
+.i_absolute{
+  color:#808080 !important;
+  position:absolute;
+  bottom:0.75rem;
+    right:0.75rem;
+}
