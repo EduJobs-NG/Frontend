@@ -5,6 +5,9 @@ import {LoginFormUI} from './components/Forms/LoginFormUI';
 import {VerifyAccount} from './components/Forms/VerifyAccount';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
+// loader css
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+
 function App() {
   return (
     <Router>
@@ -15,7 +18,7 @@ function App() {
       <Route path="/" exact  element={<Home />} />
       <Route path="/login" element={<LoginFormUI />}/>
       <Route path="/register" element={<RegisterFormUI />}/>
-      <Route path="/activate/:NQ/:token" element={<VerifyAccount />}/>
+      <Route path="/activate/:uid/:token" element={<VerifyAccount />}/>
       
 
       </Routes>
