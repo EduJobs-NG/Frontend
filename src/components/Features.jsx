@@ -26,18 +26,18 @@ export const Features = () => {
 
             </div>
 
-            <div className='flex flex-col gap-y-[1rem] justify-center md:flex-row md:gap-x-[30px]'>
-                <div className=''>
-                <a className='bg-blue p-[0.4rem] font-[600] px-[2.5rem] rounded-lg text-white' href="#">
+            <div className='flex flex-col justify-center items-center'>
+                <div className='max-w-[500px]'>
+                <div className='bg-blue p-[0.4rem] mb-[1rem] font-[600] px-[2.5rem] text-center w-full rounded-lg text-white transition'>
+                <a className='' href="#">
                     Join Now
                 </a>
                 </div>
-               
-                <p className='text-black'>OR</p>
+            
                 
-                <div>
-                <a className='text-blue p-[0.3rem] px-[1.5rem] font-[600] rounded-sm border border-[#02378B]'
-                href="#" >Take A QUICK TOUR</a>
+                <div className='text-blue p-[0.3rem] px-[1.5rem] text-center w-full font-[600] rounded-lg border border-[#F0F0F0]'>
+                <a href="#" >Take A QUICK TOUR</a>
+                </div>
                 </div>
 
             </div>

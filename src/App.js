@@ -20,6 +20,7 @@ function App() {
       <Route path="/register" element={<RegisterFormUI />}/>
       <Route path="/activate/:uid/:token" element={<VerifyAccount />}/>
       
+      
 
       </Routes>
 
