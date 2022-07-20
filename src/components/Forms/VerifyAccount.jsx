@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useParams} from 'react-router-dom';
+import {useParams, useNavigate} from 'react-router-dom';
 import axios from 'axios'
 
 
@@ -22,6 +22,7 @@ export const VerifyAccount = () => {
             setError('Stale token for given user. Try again ')
 
           }
+        
          console.log(err)
         }
     });
@@ -37,9 +38,8 @@ export const VerifyAccount = () => {
 
 }
   return (
-    <section className='overflow-x-hidden'>
+    <section className='overflow-x-hidden px-6'>
 
-                 
 
     <div className='flex flex-col items-center border-solid  border-[#808080] mt-[100px] gap-y-[2rem] text-center justify-center my-4 w-full mx-3 '>
       <div className='max-w-[500px]'>

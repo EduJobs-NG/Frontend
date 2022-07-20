@@ -32,8 +32,8 @@ export const FormInputBox = (props) => {
         )
        }
     {props.type === 'password' && 
-    <span onClick={handleClick} className="i_absolute">
-      {show ? <FaEyeSlash />:<FaEye /> }
+    <span onClick={handleClick} className="i_absolute cursor-pointer">
+      {show ? <FaEye />:<FaEyeSlash /> }
     </span>
     }
       

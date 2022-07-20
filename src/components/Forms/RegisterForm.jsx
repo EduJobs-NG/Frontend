@@ -24,6 +24,7 @@ export const RegisterForm = () => {
     const [success, setSuccess] = useState("");
     const [error, setError] = useState('');
     const [agree, setAgree] = useState(false)
+    const [isLoading, setIsLoading] = useState(false);
     const agreeHandler = () =>{
         setAgree(!agree);
         
@@ -32,35 +33,36 @@ export const RegisterForm = () => {
     const navigate = useNavigate();
     
     const onSubmit = async (values, {setSubmitting, isSubmitting}) =>{
+        setIsLoading(true)
         const response = await axios
         .post("https://edujobsng.herokuapp.com/api/v1/auth/users/", values)
         .catch(err =>{
             if(err && err.response){
               if (err.message === 'Request failed with status code 400'){
+                setIsLoading(false)
                 setError("User with this email already exists")
                 setSuccess('')
                 setTimeout(() =>{
                     setError('')
-                }, 3500)
+                }, 2000)
               }else{
+                setIsLoading(false)
                 setError("An error occured. Try again")
                 setTimeout(() =>{
                     setError('')
-                }, 3500)
+                }, 2000)
                 console.log(err)
               }
             }
         });
 
         if(response && response.data){
-
                 console.log(response)
-                setSuccess("Account created successfully. Proceeding to login")
+                setSuccess("Account created successfully. Check your email to activate your account")
                 setError('')
-                formik.resetForm()
                 setTimeout(() =>{
                     navigate('/login');
-                }, 2000)
+                }, 5500)
 
             }
         
@@ -85,7 +87,7 @@ export const RegisterForm = () => {
 //  console.log(formik.isSubmitting)
    
     return (
-        <div className='border bg-white p-2 py-[2rem] px-[42px]  rounded-[50px] max-w-[500px]'>
+        <div className='border bg-white p-2 py-[2rem] px-[42px] rounded-[50px] max-w-[500px]'>
             <div className='flex my-4 gap-x-[1rem] justify-center '>
              <FaUserPlus className='text-[2rem] text-blue' />
              <div className='h-[2.5rem] w-[3px] bg-black'></div>
@@ -110,9 +112,9 @@ export const RegisterForm = () => {
     {({isSubmitting}) =>(
     
      <Form onSubmit={formik.handleSubmit}>
-     <div className='flex flex-row w-full block gap-x-[0.4rem]'>
+     <div className='flex flex-row w-full  gap-x-[0.4rem]'>
        <div>
-       <FormInputBox type="text" className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
+       <FormInputBox type="text" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
                  placeholder="First Name" icon={<FaUserCircle />} id="first_name" name="first_name" onChange={formik.handleChange} value={formik.values.first_name} onBlur={formik.handleBlur} />
                 
              {formik.touched.first_name && formik.errors.first_name ? (<small className="text-red-600">{formik.errors.first_name}</small>) : null}
@@ -150,8 +152,8 @@ export const RegisterForm = () => {
      <input type="checkbox" value={agree} onChange={agreeHandler}  /> By signing up on this platform, you agree to EduJobs NG’s Terms & conditions.
 </div>
      
-     {!isSubmitting && <button disabled={!formik.isValid } className={!formik.isValid ? 'bg-blue block w-full text-white opacity-25 rounded-sm p-2':'bg-blue opacity-100 block w-full text-white rounded-sm p-2' } type="submit">SIGN UP</button>}
-     {isSubmitting && (
+      {!isLoading && <button disabled={!formik.isValid } className={!formik.isValid ? 'bg-blue block w-full text-white opacity-25 rounded-sm p-2':'bg-blue opacity-100 block w-full text-white rounded-sm p-2' } type="submit">SIGN UP</button>}
+     {isLoading && (
         <div className='flex justify-center'>
         <ThreeDots type="ThreeDots"
         width={100} height={20} color="blue"
