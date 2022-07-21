@@ -29,7 +29,7 @@ export const VerifyAccount = () => {
 
     if(response){
             console.log(response)
-            if (response.status === 204){
+            if (response.status_code === 204){
               setSuccess('Account activation successful. Proceeding to Login')
             //    setTimeout(() =>{
             //   setSuccess('Account activation successful. Proceeding to Login')
