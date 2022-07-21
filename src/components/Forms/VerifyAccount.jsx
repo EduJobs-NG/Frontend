@@ -29,9 +29,9 @@ export const VerifyAccount = () => {
          console.log(err)
         }
     });
-    if(response && response.data){
+    if(response){
       console.log(response)
-      setSuccess("Account created successfully. Check your email to activate your account")
+      setSuccess("Account activated successfully")
       setError('')
       setTimeout(() =>{
           navigate('/login');
