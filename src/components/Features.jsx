@@ -15,7 +15,7 @@ export const Features = () => {
              lg:flex-row'>
                 {features.map((item, index) =>{
                     return(
-                    <div key={index} className="mx-auto md:mx-0 drop-shadow-lg max-w-[320px] p-3 rounded-[24px]  bg-white border border-solid ">
+                    <div key={index} className="mx-auto md:mx-0 drop-shadow-lg max-w-[320px] p-3 mb-[1rem] rounded-[24px]   bg-white border border-solid ">
                        <img className='min-h-[200px]' src={item.img.type} alt="" /> 
                        <h2 className='title mt-2 text-center text-blue'>{item.title}</h2> 
                        <p className='subtitle text-center'>{item.subtitle}</p> 
