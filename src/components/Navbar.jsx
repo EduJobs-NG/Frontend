@@ -49,16 +49,22 @@ export const Navbar = () => {
             </div>
           </div>
 
-          {/* Mobile Menu */}
-          <div className='xl:hidden'>
-            <div className='absolute bg-white flex flex-col gap-y-6'>
+          
+
+        </div>
+{/* Mobile Menu */}
+<div className='absolute top-0 w-full  xl:hidden'>
+            <div className=''>
+              <ul className='bg-white flex flex-col justify-center align-items gap-y-6'>
+                <NavLink to="#">JOBS</NavLink>
+                <NavLink to="#">ABOUT US</NavLink>
+                <NavLink to="#">TRENDING</NavLink>
+                <NavLink to="#">PRICING</NavLink>
+              </ul>
 
             </div>
 
           </div>
-
-        </div>
-
     </section>
   )
 }

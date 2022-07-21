@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useParams, useNavigate} from 'react-router-dom';
+import {useParams, useNavigate, Navigate} from 'react-router-dom';
 import axios from 'axios'
 
 
@@ -8,8 +8,7 @@ export const VerifyAccount = () => {
   const [error, setError] = useState('');
   const {uid, token} = useParams();
   const values = {uid, token}
- 
-
+  const navigate = useNavigate()
   const handleSubmit = async (props) =>{
     const response = await axios
     .post("https://edujobsng.herokuapp.com/api/v1/auth/users/activation/", values)
@@ -20,22 +19,23 @@ export const VerifyAccount = () => {
           }
           else if(err.response.status === 403){
             setSuccess('Your account has been activated.')
+            setTimeout(() =>{
+              setSuccess('Account activation successful. Proceeding to Login')
+              navigate('/login')
+            }, 2000)
 
           }
         
          console.log(err)
         }
     });
-
-    if(response){
-            console.log(response)
-            if (response.status_code === 204){
-              setSuccess('Account activation successful. Proceeding to Login')
-            //    setTimeout(() =>{
-            //   setSuccess('Account activation successful. Proceeding to Login')
-
-            // }, 2000)
-            }
+    if(response && response.data){
+      console.log(response)
+      setSuccess("Account created successfully. Check your email to activate your account")
+      setError('')
+      setTimeout(() =>{
+          navigate('/login');
+      }, 2000)
            
         }
     
