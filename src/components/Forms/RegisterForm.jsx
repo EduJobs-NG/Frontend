@@ -23,7 +23,7 @@ const validationSchema = Yup.object({
 export const RegisterForm = () => {
     const [success, setSuccess] = useState("");
     const [error, setError] = useState('');
-    const [agree, setAgree] = useState(false)
+    const [agree, setAgree] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const agreeHandler = () =>{
         setAgree(!agree);

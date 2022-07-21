@@ -15,24 +15,28 @@ export const VerifyAccount = () => {
     .post("https://edujobsng.herokuapp.com/api/v1/auth/users/activation/", values)
     .catch(err =>{
         if(err && err.response){
-          // if (err.response.status === 400){
-          //   setError("User does not exist. Kindly register.")
-          // }
-          // else if(err.response.status === 403){
-          //   setError('Stale token for given user. Try again')
+          if (err.response.status === 400){
+            setError("User does not exist. Kindly register.")
+          }
+          else if(err.response.status === 403){
+            setError('Your account has been activated.')
 
-          // }
+          }
         
          console.log(err)
         }
     });
 
-    if(response && response.data){
+    if(response){
             console.log(response)
-            // setTimeout(() =>{
+            if (response.status === 204){
+              setSuccess('Account activation successful. Proceeding to Login')
+            //    setTimeout(() =>{
             //   setSuccess('Account activation successful. Proceeding to Login')
 
             // }, 2000)
+            }
+           
         }
     
 
