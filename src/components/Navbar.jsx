@@ -6,12 +6,14 @@ import {FaBars, FaTimes} from 'react-icons/fa'
 export const Navbar = () => {
   const {logo} = navigation;
   const [menu, setMenu] = useState(false);
+  const [active, setActive] = useState(false);
   const handleClick = () =>{
     setMenu(!menu);
+    setActive(!active);
 
   }
   return (
-    <section className='bg-[#02378B]'>
+    <section className='bg-[#02378B] z-[999]'>
         <div className="container mx-auto">
           <div className="flex uppercase py-[2rem] items-center flex-row justify-between">
             <ul className="flex gap-x-[3rem] text-white flex-row">
@@ -53,9 +55,10 @@ export const Navbar = () => {
 
         </div>
 {/* Mobile Menu */}
-<div className='absolute top-0 w-full  xl:hidden'>
+{active && (
+<div className='absolute w-full  z-[999]  xl:hidden'>
             <div className=''>
-              <ul className='bg-white flex flex-col justify-center align-items gap-y-6'>
+              <ul className='bg-white h-screen rounded py-[2rem] flex flex-col justify-center text-center align-items gap-y-6'>
                 <NavLink to="#">JOBS</NavLink>
                 <NavLink to="#">ABOUT US</NavLink>
                 <NavLink to="#">TRENDING</NavLink>
@@ -63,8 +66,9 @@ export const Navbar = () => {
               </ul>
 
             </div>
-
           </div>
+)
+}
     </section>
   )
 }
