@@ -15,7 +15,7 @@ export const Navbar = () => {
   return (
     <section className='bg-[#02378B] z-[999]'>
         <div className="container mx-auto">
-          <div className="flex uppercase py-[2rem] items-center flex-row justify-between">
+          <div className="flex uppercase py-[1.5rem] items-center flex-row justify-between">
             <ul className="flex gap-x-[3rem] text-white flex-row">
              <li className='title'>
               <NavLink to="/">{logo}</NavLink>
@@ -56,15 +56,26 @@ export const Navbar = () => {
         </div>
 {/* Mobile Menu */}
 {active && (
-<div className='absolute w-full  z-[999]  xl:hidden'>
-            <div className=''>
-              <ul className='bg-white h-screen rounded py-[2rem] flex flex-col justify-center text-center align-items gap-y-6'>
-                <NavLink to="#">JOBS</NavLink>
-                <NavLink to="#">ABOUT US</NavLink>
-                <NavLink to="#">TRENDING</NavLink>
-                <NavLink to="#">PRICING</NavLink>
+<div className='absolute w-full z-[999] xl:hidden'>
+            <div className='bg-white transition-all h-screen flex flex-col justify-center text-center align-items'>
+              <ul className='py-[2rem] flex flex-col gap-y-6'>
+                <NavLink className="text-[1rem] font-[700]"  to="#">JOBS</NavLink>
+                <NavLink className="text-[1rem] font-[700]" to="#">ABOUT US</NavLink>
+                <NavLink className="text-[1rem] font-[700]" to="#">TRENDING</NavLink>
+                <NavLink className="text-[1rem] font-[700]" to="#">PRICING</NavLink>
               </ul>
+              <div className='container mx-auto'>
+                <hr className=' text-[#808080] ' />
+              </div>
 
+              <ul className='py-[2rem] flex flex-col gap-y-6'>
+                <NavLink className="text-blue text-[1rem] font-[700]" to="#">I'm a job seeker</NavLink>
+                <NavLink className="text-blue text-[1rem] font-[700]" to="#">I'm an employer</NavLink>
+    
+              </ul>
+            </div>
+
+            <div>
             </div>
           </div>
 )
