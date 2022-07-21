@@ -51,7 +51,7 @@ export const Navbar = () => {
 
           {/* Mobile Menu */}
           <div className='xl:hidden'>
-            <div className='flex flex-col gap-y-6'>
+            <div className='absolute bg-white flex flex-col gap-y-6'>
 
             </div>
 

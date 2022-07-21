@@ -19,7 +19,7 @@ export const VerifyAccount = () => {
             setError("User does not exist. Kindly register.")
           }
           else if(err.response.status === 403){
-            setError('Your account has been activated.')
+            setSuccess('Your account has been activated.')
 
           }
         
