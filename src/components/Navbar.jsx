@@ -65,7 +65,7 @@ export const Navbar = () => {
                 <NavLink className="text-[1.2rem] font-[700]" to="#">PRICING</NavLink>
               </ul>
               <div className='container mx-auto'>
-                <hr className=' text-[#808080] ' />
+                <hr className=' text-[#808080]' />
               </div>
 
               <ul className='py-[2rem] flex flex-col gap-y-6'>
@@ -73,7 +73,10 @@ export const Navbar = () => {
                 <NavLink className="text-blue text-[1.2rem] font-[700]" to="#">I'm an employer</NavLink>
     
               </ul>
-              <NavLink to="/login" className="bg-blue text-white">Login</NavLink>
+              <div className=''>
+              <NavLink to="/login" className="bg-blue px-6 text-white ">Login</NavLink>
+
+              </div>
             </div>
 
             <div>
