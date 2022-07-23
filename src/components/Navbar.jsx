@@ -56,21 +56,21 @@ export const Navbar = () => {
         </div>
 {/* Mobile Menu */}
 {active && (
-<div className='absolute w-full z-[999] xl:hidden'>
+<div className='absolute w-full z-[9999] xl:hidden'>
             <div className='bg-white transition duration-1000 ease-in-out h-screen flex flex-col justify-center text-center align-items'>
               <ul className='py-[2rem] flex flex-col gap-y-6'>
-                <NavLink className="text-[1rem] font-[700]"  to="#">JOBS</NavLink>
-                <NavLink className="text-[1rem] font-[700]" to="#">ABOUT US</NavLink>
-                <NavLink className="text-[1rem] font-[700]" to="#">TRENDING</NavLink>
-                <NavLink className="text-[1rem] font-[700]" to="#">PRICING</NavLink>
+                <NavLink className="text-[1.5rem] font-[700]"  to="#">JOBS</NavLink>
+                <NavLink className="text-[1.5rem] font-[700]" to="#">ABOUT US</NavLink>
+                <NavLink className="text-[1.5rem] font-[700]" to="#">TRENDING</NavLink>
+                <NavLink className="text-[1.5rem] font-[700]" to="#">PRICING</NavLink>
               </ul>
               <div className='container mx-auto'>
                 <hr className=' text-[#808080] ' />
               </div>
 
               <ul className='py-[2rem] flex flex-col gap-y-6'>
-                <NavLink className="text-blue text-[1rem] font-[700]" to="#">I'm a job seeker</NavLink>
-                <NavLink className="text-blue text-[1rem] font-[700]" to="#">I'm an employer</NavLink>
+                <NavLink className="text-blue text-[1.5rem] font-[700]" to="#">I'm a job seeker</NavLink>
+                <NavLink className="text-blue text-[1.5rem] font-[700]" to="#">I'm an employer</NavLink>
     
               </ul>
               <NavLink to="/login" className="bg-blue text-white">Login</NavLink>
