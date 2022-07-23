@@ -59,19 +59,19 @@ export const Navbar = () => {
 <div className='absolute top-0 w-full z-[9999] xl:hidden'>
             <div className='bg-white  transition duration-1000 ease-in-out h-screen flex flex-col align-items justify-center  text-center '>
               <FaTimes onClick={handleClick} className='text-blue text-[1.3rem] mt-3 cursor-pointer absolute right-5 top-5' />
-              <ul className='py-[2rem] flex flex-col gap-y-12'>
-                <NavLink className="text-[1rem] font-[700] mb-[1rem]"  to="#">JOBS</NavLink>
-                <NavLink className="text-[1rem] font-[700] mb-[1rem]" to="#">ABOUT US</NavLink>
-                <NavLink className="text-[1rem] font-[700] mb-[1rem]" to="#">TRENDING</NavLink>
-                <NavLink className="text-[1rem] font-[700] mb-[1rem]" to="#">PRICING</NavLink>
+              <ul className='py-[2rem] flex flex-col '>
+                <NavLink className="text-[1rem] font-[700] mb-[33px]"  to="#">JOBS</NavLink>
+                <NavLink className="text-[1rem] font-[700] mb-[33px]" to="#">ABOUT US</NavLink>
+                <NavLink className="text-[1rem] font-[700] mb-[33px]" to="#">TRENDING</NavLink>
+                <NavLink className="text-[1rem] font-[700] mb-[33px]" to="#">PRICING</NavLink>
               </ul>
               <div className='container mx-auto'>
                 <hr className=' text-[#808080]' />
               </div>
 
-              <ul className='py-[2rem] flex flex-col gap-y-6'>
-                <NavLink className="text-blue text-[1.2rem] font-[700]" to="#">I'm a job seeker</NavLink>
-                <NavLink className="text-blue text-[1.2rem] font-[700]" to="#">I'm an employer</NavLink>
+              <ul className='py-[2rem] flex flex-col'>
+                <NavLink className="text-blue text-[1.2rem] mb-[33px] font-[700]" to="#">I'm a job seeker</NavLink>
+                <NavLink className="text-blue text-[1.2rem] mb-[45px] font-[700]" to="#">I'm an employer</NavLink>
     
               </ul>
               <div className=''>
