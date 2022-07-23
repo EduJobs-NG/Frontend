@@ -47,7 +47,7 @@ export const Navbar = () => {
             </ul>
             <div className='xl:hidden'>
             <span onClick={handleClick}>
-               {menu ? <FaTimes className='text-white text-[1.3rem] cursor-pointer' />: <FaBars className='text-white text-[1.3rem] cursor-pointer' />} </span>
+               <FaBars className='text-white text-[1.3rem] cursor-pointer' /></span>
             </div>
           </div>
 
@@ -56,13 +56,14 @@ export const Navbar = () => {
         </div>
 {/* Mobile Menu */}
 {active && (
-<div className='absolute w-full z-[9999] xl:hidden'>
-            <div className='bg-white transition duration-1000 ease-in-out h-screen flex flex-col justify-center text-center align-items'>
+<div className='absolute top-0 w-full z-[9999] xl:hidden'>
+            <div className='bg-white  transition duration-1000 ease-in-out h-screen flex flex-col align-items justify-center  text-center '>
+              <FaTimes onClick={handleClick} className='text-blue text-[1.3rem] mt-3 cursor-pointer absolute right-5 top-5' />
               <ul className='py-[2rem] flex flex-col gap-y-12'>
-                <NavLink className="text-[1.2rem] font-[700]"  to="#">JOBS</NavLink>
-                <NavLink className="text-[1.2rem] font-[700]" to="#">ABOUT US</NavLink>
-                <NavLink className="text-[1.2rem] font-[700]" to="#">TRENDING</NavLink>
-                <NavLink className="text-[1.2rem] font-[700]" to="#">PRICING</NavLink>
+                <NavLink className="text-[1rem] font-[700]"  to="#">JOBS</NavLink>
+                <NavLink className="text-[1rem] font-[700]" to="#">ABOUT US</NavLink>
+                <NavLink className="text-[1rem] font-[700]" to="#">TRENDING</NavLink>
+                <NavLink className="text-[1rem] font-[700]" to="#">PRICING</NavLink>
               </ul>
               <div className='container mx-auto'>
                 <hr className=' text-[#808080]' />
