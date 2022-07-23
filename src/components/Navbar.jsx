@@ -60,10 +60,10 @@ export const Navbar = () => {
             <div className='bg-white  transition duration-1000 ease-in-out h-screen flex flex-col align-items justify-center  text-center '>
               <FaTimes onClick={handleClick} className='text-blue text-[1.3rem] mt-3 cursor-pointer absolute right-5 top-5' />
               <ul className='py-[2rem] flex flex-col gap-y-12'>
-                <NavLink className="text-[1rem] font-[700]"  to="#">JOBS</NavLink>
-                <NavLink className="text-[1rem] font-[700]" to="#">ABOUT US</NavLink>
-                <NavLink className="text-[1rem] font-[700]" to="#">TRENDING</NavLink>
-                <NavLink className="text-[1rem] font-[700]" to="#">PRICING</NavLink>
+                <NavLink className="text-[1rem] font-[700] mb-[1rem]"  to="#">JOBS</NavLink>
+                <NavLink className="text-[1rem] font-[700] mb-[1rem]" to="#">ABOUT US</NavLink>
+                <NavLink className="text-[1rem] font-[700] mb-[1rem]" to="#">TRENDING</NavLink>
+                <NavLink className="text-[1rem] font-[700] mb-[1rem]" to="#">PRICING</NavLink>
               </ul>
               <div className='container mx-auto'>
                 <hr className=' text-[#808080]' />
