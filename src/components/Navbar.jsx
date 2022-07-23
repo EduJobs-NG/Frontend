@@ -1,9 +1,15 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {navigation} from '../data';
 import {NavLink} from 'react-router-dom';
 import {FaBars, FaTimes} from 'react-icons/fa'
+import Aos from 'aos';
+import "aos/dist/aos.css";
 
 export const Navbar = () => {
+  useEffect(() => {
+    Aos.init();
+    Aos.refresh();
+  }, []);
   const {logo} = navigation;
   const [menu, setMenu] = useState(false);
   const [active, setActive] = useState(false);
@@ -57,25 +63,25 @@ export const Navbar = () => {
 {/* Mobile Menu */}
 {active && (
 <div className='absolute top-0 w-full z-[9999] xl:hidden'>
-            <div className='bg-white  transition duration-1000 ease-in-out h-screen flex flex-col align-items justify-center  text-center '>
+            <div data-aos="fade-up" className='bg-white  transition duration-1000 ease-in-out h-screen flex flex-col align-items justify-center  text-center '>
               <FaTimes onClick={handleClick} className='text-blue text-[1.3rem] mt-3 cursor-pointer absolute right-5 top-5' />
               <ul className='py-[2rem] flex flex-col '>
-                <NavLink className="text-[1rem] font-[700] mb-[33px]"  to="#">JOBS</NavLink>
-                <NavLink className="text-[1rem] font-[700] mb-[33px]" to="#">ABOUT US</NavLink>
-                <NavLink className="text-[1rem] font-[700] mb-[33px]" to="#">TRENDING</NavLink>
-                <NavLink className="text-[1rem] font-[700] mb-[33px]" to="#">PRICING</NavLink>
+                <NavLink data-aos-delay="300" data-aos="fade-left"  className="text-[1rem] font-[700] mb-[33px]"  to="#">JOBS</NavLink>
+                <NavLink data-aos-delay="300" data-aos="fade-left" className="text-[1rem] font-[700] mb-[33px]" to="#">ABOUT US</NavLink>
+                <NavLink data-aos-delay="300" data-aos="fade-left" className="text-[1rem] font-[700] mb-[33px]" to="#">TRENDING</NavLink>
+                <NavLink data-aos-delay="300" data-aos="fade-left" className="text-[1rem] font-[700] mb-[33px]" to="#">PRICING</NavLink>
               </ul>
               <div className='container mx-auto'>
                 <hr className=' text-[#808080]' />
               </div>
 
               <ul className='py-[2rem] flex flex-col'>
-                <NavLink className="text-blue text-[1.2rem] mb-[33px] font-[700]" to="#">I'm a job seeker</NavLink>
-                <NavLink className="text-blue text-[1.2rem] mb-[45px] font-[700]" to="#">I'm an employer</NavLink>
+                <NavLink data-aos-delay="300" data-aos="fade-left" className="text-blue text-[1.2rem] mb-[33px] font-[700]" to="#">I'm a job seeker</NavLink>
+                <NavLink data-aos-delay="300" data-aos="fade-left" className="text-blue text-[1.2rem] mb-[45px] font-[700]" to="#">I'm an employer</NavLink>
     
               </ul>
               <div className=''>
-              <NavLink to="/login" className="bg-blue px-6 text-white ">Login</NavLink>
+              <NavLink data-aos-delay="300" data-aos="fade-left" to="/login" className="bg-blue rounded-sm px-[3rem] py-[0.5rem] text-white ">Login</NavLink>
 
               </div>
             </div>
