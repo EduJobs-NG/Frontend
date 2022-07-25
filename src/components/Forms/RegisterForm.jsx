@@ -32,7 +32,7 @@ export const RegisterForm = () => {
   
     const navigate = useNavigate();
     
-    const onSubmit = async (values, {setSubmitting, isSubmitting}) =>{
+    const onSubmit = async (values) =>{
         setIsLoading(true)
         const response = await axios
         .post("https://edujobsng.herokuapp.com/api/v1/auth/users/", values)

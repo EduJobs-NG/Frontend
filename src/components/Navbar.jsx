@@ -60,6 +60,7 @@ export const Navbar = () => {
           
 
         </div>
+        
 {/* Mobile Menu */}
 {active && (
 <div className='absolute top-0 w-full z-[9999] xl:hidden'>
@@ -81,7 +82,7 @@ export const Navbar = () => {
     
               </ul>
               <div className=''>
-              <NavLink data-aos-delay="300" data-aos="fade-left" to="/login" className="bg-blue rounded-sm px-[3rem] py-[0.5rem] text-white ">Login</NavLink>
+              <NavLink to="/login" className="bg-blue rounded-sm px-[3rem] py-[0.5rem] text-white ">Login</NavLink>
 
               </div>
             </div>
