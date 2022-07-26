@@ -152,7 +152,7 @@ export const RegisterForm = () => {
      <input type="checkbox" value={agree} onChange={agreeHandler}  /> By signing up on this platform, you agree to EduJobs NG’s Terms & conditions.
 </div>
      
-      {!isLoading && <button disabled={!formik.isValid } className={!formik.isValid ? 'bg-blue block w-full text-white opacity-25 rounded-sm p-2':'bg-blue opacity-100 block w-full text-white rounded-sm p-2' } type="submit">SIGN UP</button>}
+      {!isLoading && <button disabled={!formik.isValid || (agree === false) } className={!formik.isValid || (agree===false) ? 'bg-blue block w-full text-white opacity-25 rounded-sm p-2':'bg-blue opacity-100 block w-full text-white rounded-sm p-2' } type="submit">SIGN UP</button>}
      {isLoading && (
         <div className='flex justify-center'>
         <ThreeDots type="ThreeDots"

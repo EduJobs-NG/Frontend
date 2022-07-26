@@ -9,6 +9,7 @@ import { Dashboard } from './components/Dashboard';
 
 // loader css
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import { PageNotFound } from './components/PageNotFound';
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
       <Route path="/login" element={<LoginFormUI />}/>
       <Route path="/register" element={<RegisterFormUI />}/>
       <Route path="/activate/:uid/:token" element={<VerifyAccount />}/>
-      <Route path="*" element={<p>There's nothing here: 404!</p>} />
+      <Route path="*" element={<PageNotFound />} />
       </Routes>
 
      
