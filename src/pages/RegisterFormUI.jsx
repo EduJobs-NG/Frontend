@@ -1,6 +1,6 @@
 import React from "react";
-import { Footer } from "../Footer";
-import { RegisterForm } from "./RegisterForm";
+import { Footer } from "../components/Footer";
+import { RegisterForm } from "../components/Forms/RegisterForm";
 
 
 export const RegisterFormUI = () => {

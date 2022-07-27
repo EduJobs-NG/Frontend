@@ -14,9 +14,9 @@ export const Footer = () => {
             <div>
                 <h4 className='text-2xl font-[700] text-white mb-3'>{logo}</h4>
                 <div className='flex flex-row gap-x-5'>
-                {socials.map((social) =>{
+                {socials.map((social, index) =>{
                     return(
-                    <a className='bg-white rounded-full text-blue p-1 cursor-pointer' href={social.href}>{social.name}</a>
+                    <a key={index} className='bg-white rounded-full text-blue p-1 cursor-pointer' href={social.href}>{social.name}</a>
                     )     
                 })}
                 </div>
@@ -27,9 +27,9 @@ export const Footer = () => {
                 <h4 className='font-[700] mb-[0.5rem]'>CANDIDATES</h4>
                 <ul>
 
-                {candidates.map((item) =>{
+                {candidates.map((item, index) =>{
                     return (
-                        <li className='mb-[0.5rem]'>
+                        <li key={index} className='mb-[0.5rem]'>
                            <a href={item.href}>{item.name}</a> 
                             </li>
 
@@ -44,9 +44,9 @@ export const Footer = () => {
                 <h4 className='font-[700] mb-[0.5rem]'>EMPLOYEES</h4>
                 <ul>
 
-                {employees.map((item) =>{
+                {employees.map((item,index) =>{
                     return (
-                        <li className='mb-[0.5rem]'>
+                        <li key={index} className='mb-[0.5rem]'>
                            <a href={item.href}>{item.name}</a> 
                             </li>
 
@@ -60,9 +60,9 @@ export const Footer = () => {
                 <h4 className='font-[700] mb-[0.5rem]'>SUPPORT</h4>
                 <ul>
 
-                {support.map((item) =>{
+                {support.map((item, index) =>{
                     return (
-                        <li className='mb-[0.5rem]'>
+                        <li key={index} className='mb-[0.5rem]'>
                         <a href={item.href}>{item.name}</a> 
                          </li>
 
@@ -76,9 +76,9 @@ export const Footer = () => {
                 <h4 className='font-[700] mb-[0.5rem]'>COMPANY</h4>
                 <ul>
 
-                {company.map((item) =>{
+                {company.map((item, index) =>{
                     return (
-                        <li className='mb-[0.5rem]'>
+                        <li key={index} className='mb-[0.5rem]'>
                         <a href={item.href}>{item.name}</a> 
                          </li>
 

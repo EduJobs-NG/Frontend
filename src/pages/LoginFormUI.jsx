@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
-import { Footer } from '../Footer';
-import { LoginForm } from './LoginForm';
+import React from 'react';
+import { Footer } from '../components/Footer';
+import { LoginForm } from '../components/Forms/LoginForm';
 
 
 
 export const LoginFormUI = () => {
-  
+
   return (
     <>
     <section className='relative bg-hero mb-[2rem] h-screen py-[40px] lg:pt-[20px] lg:pb-[30px] max-h-[600px] bg-center lg:bg-left bg-cover bg-no-repeat'>

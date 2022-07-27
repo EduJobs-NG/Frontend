@@ -1,15 +1,16 @@
-import { Home } from './components/Home';
+import { Home } from './pages/Home';
 import {Navbar} from './components/Navbar';
-import {RegisterFormUI} from './components/Forms/RegisterFormUI';
-import {LoginFormUI} from './components/Forms/LoginFormUI';
-import {VerifyAccount} from './components/Forms/VerifyAccount';
+import {RegisterFormUI} from './pages/RegisterFormUI';
+import {LoginFormUI} from './pages/LoginFormUI';
+import {VerifyAccount} from './pages/VerifyAccount';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PrivateRoute from './utils/PrivateRoute';
-import { Dashboard } from './components/Dashboard';
+import { Dashboard } from './pages/Dashboard';
+import { PageNotFound } from './pages/PageNotFound';
+import { AuthProvider } from './context/AuthContext';
 
 // loader css
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import { PageNotFound } from './components/PageNotFound';
 
 function App() {
   return (
@@ -17,18 +18,20 @@ function App() {
 
     <div className="w-full max-w-[1440px] mx-auto">
       <Navbar />
+      <AuthProvider>
       <Routes>
       <Route path="/" exact  element={<Home />} />
       <Route element={<PrivateRoute />}>
-      
         <Route path="/dashboard" exact element={<Dashboard />} />
-    
       </Route>
+
       <Route path="/login" element={<LoginFormUI />}/>
       <Route path="/register" element={<RegisterFormUI />}/>
       <Route path="/activate/:uid/:token" element={<VerifyAccount />}/>
       <Route path="*" element={<PageNotFound />} />
       </Routes>
+      </AuthProvider>
+
 
      
       
