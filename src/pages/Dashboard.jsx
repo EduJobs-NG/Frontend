@@ -4,7 +4,8 @@ import AuthContext from '../context/AuthContext';
 export const Dashboard = () => {
   const {name} = useContext(AuthContext)
   return (
-    <div>Dashboard
+    <div>
+      Welcome User
       
     </div>
   )

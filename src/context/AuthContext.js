@@ -18,24 +18,36 @@ export const AuthProvider = ({children}) => {
     })
     const [user, setUser] = useState(null)
     const [authTokens, setAuthTokens] = useState(null)
-    const LOGIN_URL = 'https://edujobsng.herokuapp.com/api/v1/auth/users/token/login/';
+    
+
+    const LOGIN_URL = 'https://edujobsng.herokuapp.com/api/v1/auth/token/login/';
     const loginUser = async (e) =>{
         e.preventDefault()
        
         console.log('form submitted')
         console.log(e.target.email.value)
         console.log(e.target.password.value)
+        if (e.target.email.value.trim().length && e.target.password.value.trim().length === ""){
+            alert("Fields can't be empty")
+        }
         const values = {'email':e.target.email.value, 'password': e.target.password.value}
         const response = await axios
-        .post("https://edujobsng.herokuapp.com/api/v1/auth/users/token/login/", values)
+        .post("https://edujobsng.herokuapp.com/api/v1/auth/token/login/", values)
         .catch(err =>{
-            if(err && err.response){
+            if(err){
               console.log(err)
+              if(err.response.status === 400){
+                alert('Cannot login with provided credentials')
+              }
+              else{
+                alert('Something went wrong')
+              }
             }
         });
 
         if(response && response.data){
-            console.log(response)
+            console.log(response.data)
+            setAuthTokens(response.data)
         }
     }
     const contextData = {

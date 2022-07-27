@@ -1,10 +1,15 @@
-import React, { useRef, useContext } from 'react'
+import React, { useRef, useContext, useState } from 'react'
 import { FormInputBox } from './FormInputBox';
 import { FaSignInAlt, FaEnvelope, FaLinkedin, FaGoogle } from 'react-icons/fa';
 import * as Yup from 'yup';
 import { useFormik, Formik, Form } from 'formik';
 import { Link } from 'react-router-dom';
 import AuthContext from '../../context/AuthContext';
+import axios from 'axios';
+import {ThreeDots} from 'react-loader-spinner';
+import { useNavigate } from 'react-router-dom';
+
+
 
 const validationSchema = Yup.object({
     email: Yup.string().email("Invalid email address").required('Required'),
@@ -15,7 +20,45 @@ const validationSchema = Yup.object({
 
 
 export const LoginForm = () => {
-    const { loginUser } = useContext(AuthContext);
+    // const { loginUser } = useContext(AuthContext);
+    const [error, setError] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
+    const onSubmit = async (values) =>{
+        setIsLoading(true)
+        const response = await axios
+        .post("https://edujobsng.herokuapp.com/api/v1/auth/token/login/", values)
+        .catch(err =>{
+            if(err){
+              console.log(err)
+              if(err.response.status === 400){
+                setError('Cannot login with provided credentials')
+                setIsLoading(false)
+                setTimeout(() =>{
+                setError('')
+
+                }, 1500)
+              }
+              else{
+                setError('Something went wrong')
+                setIsLoading(false)
+                setTimeout(() =>{
+                    setError('')
+    
+                    }, 1500)
+
+              }
+            }
+        });
+
+        if(response && response.data){
+            console.log(response.data)
+            navigate('/dashboard')
+            setIsLoading(false)
+
+            // setAuthTokens(response.data)
+        }
+    }
 
     const formik = useFormik({
         initialValues: {
@@ -24,7 +67,7 @@ export const LoginForm = () => {
 
         },
         validateOnBlur: true,
-        onSubmit: loginUser,
+        onSubmit,
         validationSchema: validationSchema,
 
     })
@@ -33,16 +76,23 @@ export const LoginForm = () => {
 
         <section>
             <div className='border bg-white p-2 py-[2rem] px-[42px]  rounded-[50px] lg:w-[500px]'>
-                <div className='flex my-4 gap-x-[1rem] justify-center '>
+          <div className='flex my-4 gap-x-[1rem] justify-center '>
                     <FaSignInAlt className='text-[2rem] text-blue' />
                     <div className='h-[2.5rem] w-[3px] bg-black'></div>
                     <h2 className="title text-blue  text-[24px] font-[700]">LOG IN</h2>
                 </div>
 
+                {error && (
+
+<div className="p-3 my-4 text-center">
+  <p className="bg-red-600 text-white p-2 rounded-md">{error}</p>
+</div>
+)}
+      
                 <Formik>
                     {() => (
 
-                        <Form onSubmit={loginUser}>
+                        <Form onSubmit={formik.handleSubmit}>
                             <FormInputBox type="text" name="email" id="email" className="border p-2.5 block my-[1.6rem]  w-full  border-solid border-[#808080] rounded-lg outline-none" icon={<FaEnvelope />}
                                 onChange={formik.handleChange} value={formik.values.email} onBlur={formik.handleBlur} placeholder="Email Address" />
                             {formik.touched.email && formik.errors.email ? (<small className="text-red-600">{formik.errors.email}</small>) : null}
@@ -56,7 +106,15 @@ export const LoginForm = () => {
 
 
                             <div>
-                                <button disabled={!formik.isValid} type="submit" className={!formik.isValid ? 'bg-blue block w-full text-white opacity-25 rounded-sm p-2' : 'bg-blue opacity-100 block w-full text-white rounded-sm p-2'}>LOG IN</button>
+                            {!isLoading && <button disabled={!formik.isValid } className={!formik.isValid  ? 'bg-blue block w-full text-white opacity-25 rounded-sm p-2':'bg-blue opacity-100 block w-full text-white rounded-sm p-2' } type="submit">LOGIN</button>}
+     {isLoading && (
+        <div className='flex justify-center'>
+        <ThreeDots type="ThreeDots"
+        width={100} height={20} color="blue"
+        />
+        </div>
+        
+     )}
                             </div>
                             <div className='flex justify-between mt-[1rem] mb-[1.2rem] '>
                                 <small><a className='text-blue underline' href="#">Forgot Password?</a></small>
