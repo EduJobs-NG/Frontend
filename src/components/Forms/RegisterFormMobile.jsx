@@ -53,13 +53,13 @@ export const RegisterFormMobile = () => {
                 setTimeout(() =>{
                     setError('')
                 }, 2000)
-                console.log(err)
+                // console.log(err)
               }
             }
         });
 
         if(response && response.data){
-                console.log(response)
+                // console.log(response)
                 setSuccess("Account created successfully.")
                 setError('')
                 setTimeout(() =>{
@@ -88,7 +88,7 @@ export const RegisterFormMobile = () => {
 //  console.log(formik.isSubmitting)
    
     return (
-        <div className=' bg-white p-2 py-[2rem] px-[42px]  max-w-[500px]'>
+        <div className=' bg-white p-2 py-[2rem] px-[30px]  max-w-[500px]'>
             <div className='flex my-4 gap-x-[1rem] justify-center '>
              <FaUserPlus className='text-[2rem] text-blue' />
              <div className='h-[2.5rem] w-[3px] bg-black'></div>

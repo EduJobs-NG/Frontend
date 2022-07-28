@@ -53,13 +53,13 @@ export const RegisterForm = () => {
                 setTimeout(() =>{
                     setError('')
                 }, 2000)
-                console.log(err)
+                // console.log(err)
               }
             }
         });
 
         if(response && response.data){
-                console.log(response)
+                // console.log(response)
                 setSuccess("Account created successfully.")
                 setError('')
                 setTimeout(() =>{

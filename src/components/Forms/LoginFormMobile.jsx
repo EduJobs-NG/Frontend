@@ -33,7 +33,7 @@ export const LoginFormMobile = () => {
         .post("https://edujobsng.herokuapp.com/api/v1/auth/token/login/", values)
         .catch(err =>{
             if(err){
-              console.log(err)
+            //   console.log(err)
               if(err.response.status === 400){
                 setError('Password or email incorrect')
                 setIsLoading(false)
@@ -88,7 +88,7 @@ export const LoginFormMobile = () => {
     return (
 
         
-            <div className='bg-white p-2 py-[2rem] max-w-[500px] px-[42px]'>
+            <div className='bg-white p-2 py-[2rem] px-[30px]  max-w-[400px] '>
           <div className='flex my-4 gap-x-[1rem] justify-center '>
                     <FaSignInAlt className='text-[2rem] text-blue' />
                     <div className='h-[2.5rem] w-[3px] bg-black'></div>
@@ -129,7 +129,13 @@ export const LoginFormMobile = () => {
         
      )}
                             </div>
-                            <div className='flex flex-col text-center gap-y-[1rem] justify-between mt-[1rem] mb-[1.2rem] '>
+    
+                        </Form>
+                    )}
+                 
+
+                </Formik>
+                <div className='flex flex-col text-center gap-y-[1rem] justify-between mt-[1rem] mb-[1.2rem] '>
                             <small>Don't have an account?<Link className="text-blue underline" to="/register">Sign up</Link></small>
                             <small><a className='text-blue underline' href="#">Forgot Password?</a></small>
                             </div>
@@ -151,12 +157,6 @@ export const LoginFormMobile = () => {
                        <h1 className="text-blue font-[700]">EduJobsNg</h1> 
                        <p>All Rights Reserved</p>
                     </div>
-                        </Form>
-                    )}
-                 
-
-                </Formik>
-
 
             </div>
         

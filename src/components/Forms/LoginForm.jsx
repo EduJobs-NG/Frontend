@@ -33,7 +33,7 @@ export const LoginForm = () => {
         .post("https://edujobsng.herokuapp.com/api/v1/auth/token/login/", values)
         .catch(err =>{
             if(err){
-              console.log(err)
+            //   console.log(err)
               if(err.response.status === 400){
                 setError('Password or email incorrect')
                 setIsLoading(false)
