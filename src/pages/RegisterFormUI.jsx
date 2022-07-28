@@ -10,7 +10,7 @@ export const RegisterFormUI = () => {
   return (
     <>
 
-    <section className="container mx-auto lg:hidden">
+    <section className="container mx-auto flex flex-col justify-center items-center lg:hidden">
       <RegisterFormMobile />
     </section>
 
