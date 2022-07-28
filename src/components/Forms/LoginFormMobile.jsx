@@ -87,8 +87,8 @@ export const LoginFormMobile = () => {
 
     return (
 
-        <section>
-            <div className='bg-white p-2 py-[2rem]  px-[42px]'>
+        
+            <div className='bg-white p-2 py-[2rem] max-w-[500px] px-[42px]'>
           <div className='flex my-4 gap-x-[1rem] justify-center '>
                     <FaSignInAlt className='text-[2rem] text-blue' />
                     <div className='h-[2.5rem] w-[3px] bg-black'></div>
@@ -159,6 +159,6 @@ export const LoginFormMobile = () => {
 
 
             </div>
-        </section>
+        
     )
 }

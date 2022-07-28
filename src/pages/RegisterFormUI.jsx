@@ -10,8 +10,11 @@ export const RegisterFormUI = () => {
   return (
     <>
 
-    <section className="lg:hidden">
+    <section className="flex justify-center items-center lg:hidden">
+      <div className="max-w-[500px]">
       <RegisterFormMobile />
+
+      </div>
     </section>
 
 
