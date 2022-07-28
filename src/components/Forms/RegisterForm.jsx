@@ -7,6 +7,8 @@ import {FaUserPlus, FaUserCircle, FaEnvelope} from 'react-icons/fa';
 import {ThreeDots} from 'react-loader-spinner';
 import { Formik, Form } from 'formik';
 import {  Link, useNavigate } from 'react-router-dom';
+import google from '../../assets/google.png'
+import linkedin from '../../assets/linkedin.png'
 
 const validationSchema = Yup.object({
     first_name: Yup.string().max(15, "Must be 15 characters or less").required('Required'),
@@ -86,7 +88,7 @@ export const RegisterForm = () => {
 //  console.log(formik.isSubmitting)
    
     return (
-        <div className='hidden md:block border bg-white p-2 py-[2rem] px-[42px] rounded-[50px] max-w-[500px]'>
+        <div className=' border bg-white p-2 py-[2rem] px-[42px] rounded-[50px] max-w-[500px]'>
             <div className='flex my-4 gap-x-[1rem] justify-center '>
              <FaUserPlus className='text-[2rem] text-blue' />
              <div className='h-[2.5rem] w-[3px] bg-black'></div>
@@ -169,6 +171,17 @@ export const RegisterForm = () => {
    <p> Already have an account? 
     <Link className='underline text-blue' to="/login"> Login</Link>
     </p> 
+</div>
+
+<div className='flex justify-between gap-x-5 items-baseline'>
+    <hr className='bg-blue border-[0.9px] w-[50%] h-1' />
+    <span>OR</span>
+    <hr className='bg-blue border-[0.9px]  w-[50%] h-1' />
+</div>
+
+<div className='mt-4 flex justify-center flex-row gap-x-[1rem]'>
+<img className='border rounded-full p-[0.3rem]  border-[#808080]' src={google} alt="" />
+<img  className='border p-[0.4rem] rounded-full border-[#808080]' src={linkedin} alt="" />
 </div>
         </div>
     )

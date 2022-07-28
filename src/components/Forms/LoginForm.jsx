@@ -20,7 +20,7 @@ const validationSchema = Yup.object({
 
 
 export const LoginForm = () => {
-    // const { loginUser } = useContext(AuthContext);
+    const { setUser, setAuthTokens } = useContext(AuthContext);
     const [error, setError] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
@@ -53,6 +53,8 @@ export const LoginForm = () => {
 
         if(response && response.data){
             console.log(response.data)
+            setAuthTokens(response.data)
+            setUser()
             navigate('/dashboard')
             setIsLoading(false)
 
