@@ -8,6 +8,8 @@ import AuthContext from '../../context/AuthContext';
 import axios from 'axios';
 import {ThreeDots} from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
+import google from '../../assets/google.png'
+import linkedin from '../../assets/linkedin.png'
 
 
 
@@ -123,11 +125,26 @@ export const LoginForm = () => {
                                 <small>Don't have an account?<Link className="text-blue underline" to="/register">Sign up</Link></small>
                             </div>
 
-                            <div>
-                                {/* <p className='text-center'>OR</p> */}
-                            </div>
+                            
+<div className='flex justify-between gap-x-5 items-baseline'>
+    <hr className='bg-blue border-[0.9px] w-[50%] h-1' />
+    <span>OR</span>
+    <hr className='bg-blue border-[0.9px]  w-[50%] h-1' />
+</div>
+
+<div className='mt-4 flex justify-center flex-row gap-x-[1rem]'>
+<img className='border rounded-full p-[0.3rem]  border-[#808080]' src={google} alt="" />
+<img  className='border p-[0.4rem] rounded-full border-[#808080]' src={linkedin} alt="" />
+
+</div>
+
+<div className="text-center mt-5">
+                       <h1 className="text-blue font-[700]">EduJobsNg</h1> 
+                       <p>All Rights Reserved</p>
+                    </div>
                         </Form>
                     )}
+                 
 
                 </Formik>
 

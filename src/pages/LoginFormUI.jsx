@@ -8,7 +8,7 @@ export const LoginFormUI = () => {
 
   return (
     <>
-    <section className='hidden lg:block relative bg-hero lg:pt-[70px] lg:pb-[70px]  h-screen bg-center  bg-cover bg-no-repeat'>
+    <section className='hidden lg:block relative bg-hero lg:pt-[70px] lg:pb-[70px]  h-full bg-center  bg-cover bg-no-repeat'>
     {/* <div className="absolute top-0 left-0 right-0 bottom-0 bg-[#02378B] opacity-40 z-[100] ">
   </div> */}
   <div className='container mx-auto flex flex-col lg:flex-row lg:gap-x-[100px] z-[999]'>

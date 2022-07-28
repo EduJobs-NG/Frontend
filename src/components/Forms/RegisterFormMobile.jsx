@@ -60,11 +60,11 @@ export const RegisterFormMobile = () => {
 
         if(response && response.data){
                 console.log(response)
-                setSuccess("Account created successfully. Check your email to activate your account")
+                setSuccess("Account created successfully.")
                 setError('')
                 setTimeout(() =>{
-                    navigate('/login');
-                }, 5500)
+                    navigate('/verify');
+                }, 1500)
 
             }
         
@@ -183,6 +183,11 @@ export const RegisterFormMobile = () => {
 <img className='border rounded-full p-[0.3rem]  border-[#808080]' src={google} alt="" />
 <img  className='border p-[0.4rem] rounded-full border-[#808080]' src={linkedin} alt="" />
 </div>
+<div className="text-center mt-5">
+                       <h1 className="text-blue font-[700]">EduJobsNg</h1> 
+                       <p>All Rights Reserved</p>
+                    </div>
+        
         </div>
     )
 }

@@ -8,6 +8,7 @@ import PrivateRoute from './utils/PrivateRoute';
 import { Dashboard } from './pages/Dashboard';
 import { PageNotFound } from './pages/PageNotFound';
 import { AuthProvider } from './context/AuthContext';
+import { VerifyAccountUI } from './pages/VerifyAccountUI';
 
 // loader css
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
@@ -28,6 +29,7 @@ function App() {
       <Route path="/login" element={<LoginFormUI />}/>
       <Route path="/register" element={<RegisterFormUI />}/>
       <Route path="/activate/:uid/:token" element={<VerifyAccount />}/>
+      <Route path="/verify" element={<VerifyAccountUI />}/>
       <Route path="*" element={<PageNotFound />} />
       </Routes>
       </AuthProvider>
