@@ -174,9 +174,9 @@ export const RegisterFormMobile = () => {
 </div>
 
 <div className='flex justify-between gap-x-5 items-baseline'>
-    <hr className='bg-blue border-[0.9px] w-[50%] h-1' />
+    <hr className='bg-blue border-[0.9px] w-[35%] h-1' />
     <span>OR</span>
-    <hr className='bg-blue border-[0.9px]  w-[50%] h-1' />
+    <hr className='bg-blue border-[0.9px]  w-[35%] h-1' />
 </div>
 
 <div className='mt-4 flex justify-center flex-row gap-x-[1rem]'>
