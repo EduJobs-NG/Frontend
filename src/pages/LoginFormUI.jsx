@@ -1,6 +1,7 @@
 import React from 'react';
 import { Footer } from '../components/Footer';
 import { LoginForm } from '../components/Forms/LoginForm';
+import { LoginFormMobile } from '../components/Forms/LoginFormMobile';
 
 
 
@@ -8,6 +9,11 @@ export const LoginFormUI = () => {
 
   return (
     <>
+    <section className='lg:hidden'>
+      <LoginFormMobile />
+    </section>
+
+
     <section className='hidden lg:block relative bg-hero lg:pt-[70px] lg:pb-[70px]  h-full bg-center  bg-cover bg-no-repeat'>
     {/* <div className="absolute top-0 left-0 right-0 bottom-0 bg-[#02378B] opacity-40 z-[100] ">
   </div> */}

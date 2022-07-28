@@ -106,7 +106,7 @@ export const LoginForm = () => {
                     {() => (
 
                         <Form onSubmit={formik.handleSubmit}>
-                            <FormInputBox type="text" name="email" id="email" className="border p-2.5 block   w-full  border-solid border-[#808080] rounded-lg outline-none" icon={<FaEnvelope />}
+                            <FormInputBox type="text" name="email" id="email" className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none" icon={<FaEnvelope />}
                                 onChange={formik.handleChange} value={formik.values.email} onBlur={formik.handleBlur} placeholder="Email Address" />
                             {formik.touched.email && formik.errors.email ? (<small className="text-red-600">{formik.errors.email}</small>) : null}
 
@@ -126,10 +126,10 @@ export const LoginForm = () => {
         width={100} height={20} color="blue"
         />
         </div>
-        
      )}
                             </div>
-                            <div className='flex justify-between mt-[1rem] mb-[1.2rem] '>
+
+                            <div className='flex flex-row justify-between mt-[1rem] mb-[1.2rem] '>
                                 <small><a className='text-blue underline' href="#">Forgot Password?</a></small>
                                 <small>Don't have an account?<Link className="text-blue underline" to="/register">Sign up</Link></small>
                             </div>
