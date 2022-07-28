@@ -5,7 +5,7 @@ import {LoginFormUI} from './pages/LoginFormUI';
 import {VerifyAccount} from './pages/VerifyAccount';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PrivateRoute from './utils/PrivateRoute';
-import { Dashboard } from './pages/Dashboard';
+import { Dashboard } from './pages/JobSeekers/Dashboard';
 import { PageNotFound } from './pages/PageNotFound';
 import { AuthProvider } from './context/AuthContext';
 import { VerifyAccountUI } from './pages/VerifyAccountUI';
@@ -18,7 +18,6 @@ function App() {
     <Router>
 
     <div className="w-full max-w-[1440px] mx-auto">
-      <Navbar />
       <AuthProvider>
       <Routes>
       <Route path="/" exact  element={<Home />} />

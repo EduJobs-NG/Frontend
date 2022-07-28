@@ -9,7 +9,8 @@ import axios from 'axios';
 import {ThreeDots} from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
 import google from '../../assets/google.png'
-import linkedin from '../../assets/linkedin.png'
+import linkedin from '../../assets/linkedin.png';
+import jwt_decode from 'jwt-decode';
 
 
 
@@ -22,7 +23,7 @@ const validationSchema = Yup.object({
 
 
 export const LoginForm = () => {
-    const { setUser, setAuthTokens } = useContext(AuthContext);
+    const { setUser, setAuthTokens} = useContext(AuthContext);
     const [error, setError] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
@@ -34,7 +35,15 @@ export const LoginForm = () => {
             if(err){
               console.log(err)
               if(err.response.status === 400){
-                setError('Cannot login with provided credentials')
+                setError('Password or email incorrect')
+                setIsLoading(false)
+                setTimeout(() =>{
+                setError('')
+
+                }, 1500)
+              }
+              else if(err.response.status === 401){
+                setError('You are not registered.')
                 setIsLoading(false)
                 setTimeout(() =>{
                 setError('')
@@ -54,13 +63,13 @@ export const LoginForm = () => {
         });
 
         if(response && response.data){
-            console.log(response.data)
+            // console.log(response.data)
             setAuthTokens(response.data)
-            setUser()
+            localStorage.setItem('authTokens', JSON.stringify(response.data))
+            // setUser(jwt_decode(response.data.access))
             navigate('/dashboard')
             setIsLoading(false)
 
-            // setAuthTokens(response.data)
         }
     }
 
@@ -97,19 +106,19 @@ export const LoginForm = () => {
                     {() => (
 
                         <Form onSubmit={formik.handleSubmit}>
-                            <FormInputBox type="text" name="email" id="email" className="border p-2.5 block my-[1.6rem]  w-full  border-solid border-[#808080] rounded-lg outline-none" icon={<FaEnvelope />}
+                            <FormInputBox type="text" name="email" id="email" className="border p-2.5 block   w-full  border-solid border-[#808080] rounded-lg outline-none" icon={<FaEnvelope />}
                                 onChange={formik.handleChange} value={formik.values.email} onBlur={formik.handleBlur} placeholder="Email Address" />
                             {formik.touched.email && formik.errors.email ? (<small className="text-red-600">{formik.errors.email}</small>) : null}
 
 
 
-                            <FormInputBox type="password" name="password" id="password" className="border p-2.5 my-[1.6rem] block w-full  border-solid border-[#808080] rounded-lg outline-none"
+                            <FormInputBox type="password" name="password" id="password" className="border p-2.5 mt-[1.6rem] block w-full  border-solid border-[#808080] rounded-lg outline-none"
                                 onChange={formik.handleChange} value={formik.values.password} onBlur={formik.handleBlur} placeholder="Password" />
 
                             {formik.touched.password && formik.errors.password ? (<small className="text-red-600">{formik.errors.password}</small>) : null}
 
 
-                            <div>
+                            <div className='mt-[1.6rem]'>
                             {!isLoading && <button disabled={!formik.isValid } className={!formik.isValid  ? 'bg-blue block w-full text-white opacity-25 rounded-sm p-2':'bg-blue opacity-100 block w-full text-white rounded-sm p-2' } type="submit">LOGIN</button>}
      {isLoading && (
         <div className='flex justify-center'>
