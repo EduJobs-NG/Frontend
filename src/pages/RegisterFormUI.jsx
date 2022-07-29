@@ -9,7 +9,7 @@ export const RegisterFormUI = () => {
   return (
     <>
 
-    <section className="flex  justify-center items-center lg:hidden">
+    <section className="flex  justify-center items-center md:hidden">
       <div className="w-full max-w-sm">
       <RegisterFormMobile />
 
@@ -18,7 +18,7 @@ export const RegisterFormUI = () => {
 
 
     {/* Desktop */}
-      <section className='hidden lg:block relative bg-hero lg:pt-[20px] lg:pb-[70px]  h-full bg-center  bg-cover bg-no-repeat'>
+      <section className='hidden md:block relative bg-hero lg:pt-[20px] lg:pb-[70px]  h-full bg-center  bg-cover bg-no-repeat'>
         {/* <div className="absolute top-0 left-0 right-0 bottom-0 bg-[#02378B] opacity-40 z-[100] ">
       </div> */}
       <div className='container mx-auto flex flex-col lg:flex-row lg:gap-x-[100px] z-[999]'>
