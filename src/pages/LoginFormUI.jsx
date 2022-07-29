@@ -8,8 +8,8 @@ export const LoginFormUI = () => {
 
   return (
     <>
-    <section className='flex w-full h-full justify-center items-center lg:hidden'>
-      <div className='w-[500px]'>
+    <section className='flex  justify-center items-center lg:hidden'>
+      <div className='w-full max-w-sm'>
       <LoginFormMobile />
 
       </div>

@@ -59,7 +59,7 @@ export const ForgotPassword = () => {
 
       {success && (
 
-<div className="p-3 my-3 max-w-[400px] text-center">
+<div className="p-3 my-3  text-center">
   <p className="bg-green-600 text-white p-2 rounded-md">{success}</p>
 </div>
 )}
@@ -67,11 +67,11 @@ export const ForgotPassword = () => {
 {show && (
   <>
       <h1 className=' text-black font-[700] text-2xl'>Forgot Password</h1>
-      <p className='mt-4 max-w-[500px]'>Kindly enter your registered email addess below and a resent link wil be sent.
+      <p className='mt-4'>Kindly enter your registered email addess below and a resent link wil be sent.
         Kindly click on it to reset your password.</p>
         {error && (
 
-<div className="p-3 my-4 max-w-[400px] text-center">
+<div className="p-3 my-4  text-center">
   <p className="bg-red-600 text-white p-2 rounded-md">{error}</p>
 </div>
 )}

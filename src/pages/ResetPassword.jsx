@@ -59,7 +59,7 @@ export const ResetPassword = () => {
       <div className='rounded-full bg-[#d5d3fe] p-5'>
         <img src={password} alt="" />
       </div>
-      <div className="w-full max-w-sm">
+      <div className="w-full max-w-[500px]">
 
       {success && (
 
