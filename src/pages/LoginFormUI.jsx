@@ -10,7 +10,7 @@ export const LoginFormUI = () => {
   return (
     <>
     <section className='flex justify-center items-center lg:hidden'>
-      <div className='max-w-[500px]'>
+      <div className='w-[500px]'>
       <LoginFormMobile />
 
       </div>
@@ -35,7 +35,7 @@ export const LoginFormUI = () => {
   </div>
   
 </section>
-{/* <Footer /> */}
+
 </>
 
   )
