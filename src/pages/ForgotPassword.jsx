@@ -55,19 +55,21 @@ export const ForgotPassword = () => {
       <div className='rounded-full bg-[#d5d3fe] p-5'>
         <img src={password} alt="" />
       </div>
-      <div className='w-full max-w-sm'>
-
+     
+     
       {success && (
 
-<div className="p-3 my-3  text-center">
+
+<div className="p-3 my-3 max-w-[500px] text-center">
   <p className="bg-green-600 text-white p-2 rounded-md">{success}</p>
 </div>
 )}
 
+
 {show && (
   <>
       <h1 className=' text-black font-[700] text-2xl'>Forgot Password</h1>
-      <p className='mt-4'>Kindly enter your registered email addess below and a resent link wil be sent.
+      <p className='mt-4 max-w-[500px]'>Kindly enter your registered email addess below and a resent link wil be sent.
         Kindly click on it to reset your password.</p>
         {error && (
 
@@ -77,7 +79,10 @@ export const ForgotPassword = () => {
 )}
 
 
+
+
 <Formik>
+<div className='w-full max-w-[380px]'>
         <div className='text-left  mt-[1.8rem]'>
         <Form onSubmit={formik.handleSubmit}>
           <FormInputBox type="text" name="email" id="email" className="border p-2.5 block w-full border-solid border-[#808080] rounded-lg outline-none" icon={<FaEnvelope />}
@@ -98,7 +103,7 @@ export const ForgotPassword = () => {
      </div>
         
           </Form>
-
+          </div>
         </div>
 </Formik>
 </>
@@ -110,7 +115,7 @@ export const ForgotPassword = () => {
         <p>All Rights Reserved</p>
 
       </div>
-      </div>
+      
 
 
     </section>

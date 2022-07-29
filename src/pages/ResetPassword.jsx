@@ -59,17 +59,19 @@ export const ResetPassword = () => {
       <div className='rounded-full bg-[#d5d3fe] p-5'>
         <img src={password} alt="" />
       </div>
-      <div className="w-full max-w-[500px]">
+     
 
       {success && (
 
-        <div className="p-3 my-3  text-center">
+        <div className="p-3 my-3 max-w-[500]  text-center">
           <p className="bg-green-600 text-white p-2 rounded-md">{success}</p>
         </div>
       )}
 
       {show && (
         <>
+        <div className='max-w-[500px]'>
+
           <h1 className=' text-black font-[700] text-2xl'>Change Password</h1>
           <p className='mt-4'>Create a new Password with at least 8 characters and must include an uppercase letter and a number.</p>
           {error && (
@@ -78,9 +80,12 @@ export const ResetPassword = () => {
               <p className="bg-red-600 text-white p-2 rounded-md">{error}</p>
             </div>
           )}
+        </div>
+
 
 
           <Formik>
+          <div className="w-full max-w-[380px]">
             <div className='text-left mt-[1.8rem]'>
               <Form onSubmit={formik.handleSubmit}>
                 <FormInputBox type="password" name="new_password" id="new_password" className="border p-2.5 mt-[1.6rem] block w-full   border-solid border-[#808080] rounded-lg outline-none"
@@ -108,6 +113,7 @@ export const ResetPassword = () => {
               </Form>
 
             </div>
+            </div>
           </Formik>
         </>
 
@@ -118,7 +124,7 @@ export const ResetPassword = () => {
         <p>All Rights Reserved</p>
 
       </div>
-      </div>
+      
 
     </section>
   )
