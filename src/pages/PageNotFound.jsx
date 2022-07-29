@@ -5,10 +5,11 @@ export const PageNotFound = () => {
   return (
     <>
     <Navbar />
-    <section className='container mx-auto'>
+    <section className=''>
 
-    <div className=' flex justify-center align-items text-center'>
+    <div className='flex flex-col h-screen text-center justify-center align-items'>
         
+        <p>PageNotFound</p>
         <p>PageNotFound</p>
         </div>
     </section>

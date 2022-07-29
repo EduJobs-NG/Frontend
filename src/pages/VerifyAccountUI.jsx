@@ -4,7 +4,7 @@ import messageIcon from '../assets/Vector.png'
 
 export const VerifyAccountUI = () => {
   return (
-    <section className='container mx-auto mt-[3rem]  flex flex-col justify-center items-center text-center '>
+    <section className='container mx-auto mt-[3rem] h-screen  flex flex-col justify-center items-center text-center '>
       <div className='rounded-full bg-[#d5d3fe] p-5'>
         <img src={messageIcon} alt="" />
       </div>
