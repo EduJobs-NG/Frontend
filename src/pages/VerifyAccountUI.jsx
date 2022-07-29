@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import messageIcon from '../assets/Vector.png'
+import messageIcon from '../assets/Vector.png';
+
 
 export const VerifyAccountUI = () => {
   return (
@@ -18,7 +19,7 @@ export const VerifyAccountUI = () => {
       <Link className='text-blue mt-[5rem]' to="/resend">Resend Link</Link>
 
 
-      <div className="text-center mt-5">
+      <div className="text-center mt-[5rem]">
         <h1 className="text-blue font-[700]">EduJobsNg</h1>
         <p>All Rights Reserved</p>
       </div>

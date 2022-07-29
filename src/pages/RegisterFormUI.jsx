@@ -1,5 +1,4 @@
 import React from "react";
-import { Footer } from "../components/Footer";
 import { RegisterForm } from "../components/Forms/RegisterForm";
 import { RegisterFormMobile } from "../components/Forms/RegisterFormMobile";
 
@@ -37,7 +36,7 @@ export const RegisterFormUI = () => {
       </div>
       
     </section>
-    {/* <Footer /> */}
+
     </>
 
 

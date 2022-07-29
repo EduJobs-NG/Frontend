@@ -1,5 +1,4 @@
 import React from 'react';
-import { Footer } from '../components/Footer';
 import { LoginForm } from '../components/Forms/LoginForm';
 import { LoginFormMobile } from '../components/Forms/LoginFormMobile';
 

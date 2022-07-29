@@ -9,6 +9,8 @@ import { Dashboard } from './pages/JobSeekers/Dashboard';
 import { PageNotFound } from './pages/PageNotFound';
 import { AuthProvider } from './context/AuthContext';
 import { VerifyAccountUI } from './pages/VerifyAccountUI';
+import { UserProfile } from './pages/JobSeekers/UserProfile';
+import { ForgotPassword } from './pages/ForgotPassword';
 
 // loader css
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
@@ -22,13 +24,15 @@ function App() {
       <Routes>
       <Route path="/" exact  element={<Home />} />
       <Route element={<PrivateRoute />}>
-        <Route path="/dashboard" exact element={<Dashboard />} />
+      <Route path="/profile" exact element={<UserProfile />} />
+      <Route path="/dashboard" exact  element={<Dashboard />} />
       </Route>
 
       <Route path="/login" element={<LoginFormUI />}/>
       <Route path="/register" element={<RegisterFormUI />}/>
       <Route path="/activate/:uid/:token" element={<VerifyAccount />}/>
       <Route path="/verify" element={<VerifyAccountUI />}/>
+      <Route path="/forgotpassword" element={<ForgotPassword />}/>
       <Route path="*" element={<PageNotFound />} />
       </Routes>
       </AuthProvider>

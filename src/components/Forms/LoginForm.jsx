@@ -10,7 +10,7 @@ import {ThreeDots} from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
 import google from '../../assets/google.png'
 import linkedin from '../../assets/linkedin.png';
-import jwt_decode from 'jwt-decode';
+
 
 
 
@@ -130,7 +130,7 @@ export const LoginForm = () => {
                             </div>
 
                             <div className='flex flex-row justify-between mt-[1rem] mb-[1.2rem] '>
-                                <small><a className='text-blue underline' href="#">Forgot Password?</a></small>
+                                <small><Link to="/forgotpassword" className='text-blue underline'>Forgot Password?</Link></small>
                                 <small>Don't have an account?<Link className="text-blue underline" to="/register">Sign up</Link></small>
                             </div>
 
