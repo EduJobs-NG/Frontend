@@ -11,7 +11,7 @@ import { AuthProvider } from './context/AuthContext';
 import { VerifyAccountUI } from './pages/VerifyAccountUI';
 import { UserProfile } from './pages/JobSeekers/UserProfile';
 import { ForgotPassword } from './pages/ForgotPassword';
-
+import { ResetPassword } from './pages/ResetPassword';
 // loader css
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
@@ -33,6 +33,7 @@ function App() {
       <Route path="/activate/:uid/:token" element={<VerifyAccount />}/>
       <Route path="/verify" element={<VerifyAccountUI />}/>
       <Route path="/forgotpassword" element={<ForgotPassword />}/>
+      <Route path="/email/reset/confirm/:uid/:token" element={<ResetPassword />}/>
       <Route path="*" element={<PageNotFound />} />
       </Routes>
       </AuthProvider>

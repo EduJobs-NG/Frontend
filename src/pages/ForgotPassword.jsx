@@ -51,9 +51,12 @@ export const ForgotPassword = () => {
   })
   return (
     <section className='container mx-auto mt-[3rem] h-screen  flex flex-col justify-center items-center text-center '>
+
       <div className='rounded-full bg-[#d5d3fe] p-5'>
         <img src={password} alt="" />
       </div>
+      <div className='w-full max-w-sm'>
+
       {success && (
 
 <div className="p-3 my-3 max-w-[400px] text-center">
@@ -75,7 +78,7 @@ export const ForgotPassword = () => {
 
 
 <Formik>
-        <div className='text-left w-[400px] mt-[1.8rem]'>
+        <div className='text-left  mt-[1.8rem]'>
         <Form onSubmit={formik.handleSubmit}>
           <FormInputBox type="text" name="email" id="email" className="border p-2.5 block w-full border-solid border-[#808080] rounded-lg outline-none" icon={<FaEnvelope />}
             onChange={formik.handleChange} value={formik.values.email} onBlur={formik.handleBlur} placeholder="Email Address" />
@@ -107,6 +110,8 @@ export const ForgotPassword = () => {
         <p>All Rights Reserved</p>
 
       </div>
+      </div>
+
 
     </section>
   )
