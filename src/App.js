@@ -1,5 +1,4 @@
 import { Home } from './pages/Home';
-import {Navbar} from './components/Navbar';
 import {RegisterFormUI} from './pages/RegisterFormUI';
 import {LoginFormUI} from './pages/LoginFormUI';
 import {VerifyAccount} from './pages/VerifyAccount';

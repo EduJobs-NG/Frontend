@@ -18,6 +18,10 @@ export const Dashboard = () => {
 
   </section>
 
+  <section>
+    <h1 className='text-center'>You'll see jobs here later one</h1>
+  </section>
+
   <Footer />
   </>
 
