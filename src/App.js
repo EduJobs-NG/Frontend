@@ -36,9 +36,9 @@ function App() {
       <Route path="/activate/:uid/:token" element={<VerifyAccount />}/>
       <Route path="/verify" element={<VerifyAccountUI />}/>
       <Route path="/forgot-password" element={<ForgotPassword />}/>
-      <Route path="/email/reset/confirm/:uid/:token" element={<ResetPassword />}/>
+      <Route path="/password/reset/confirm/:uid/:token" element={<ResetPassword />}/>
       <Route path="/reset-email" element={<ResetEmail />}/>
-      <Route path="/password/reset/confirm/:uid/:token" element={<NewEmail />}/>
+      <Route path="/email/reset/confirm/:uid/:token" element={<NewEmail />}/>
       <Route path="*" element={<PageNotFound />} />
       </Routes>
       </AuthProvider>

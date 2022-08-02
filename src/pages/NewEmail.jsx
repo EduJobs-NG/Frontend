@@ -25,7 +25,7 @@ export const NewEmail = () => {
   const onSubmit = async (values) => {
     setIsLoading(true);
     // const {new_password, re_new_password} = values;
-    const response = await axios.post('https://edujobsng.herokuapp.com/api/v1/auth/users/reset_email_confirm/',
+    const response = await axios.post(`${process.env.REACT_APP_BASE_URL}users/reset_email_confirm/`,
     values)
       .catch(err => {
         const {data} = err.response;

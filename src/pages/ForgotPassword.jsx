@@ -19,11 +19,12 @@ export const ForgotPassword = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState("");
   const [show, setShow] = useState(true);
+ 
 
 
   const onSubmit = async (values) =>{
     setIsLoading(true);
-    const response = await axios.post('https://edujobsng.herokuapp.com/api/v1/auth/users/reset_password/', values)
+    const response = await axios.post(`${process.env.REACT_APP_BASE_URL}users/reset_password/`, values)
     .catch(err =>{
       setError(err.message)
       setIsLoading(false)
@@ -35,7 +36,6 @@ export const ForgotPassword = () => {
       setIsLoading(false)
       setSuccess('A reset link has been sent to the provided email address.')
       
-      console.log(response)
     }
 
   }

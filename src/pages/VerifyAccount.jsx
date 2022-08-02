@@ -11,7 +11,7 @@ export const VerifyAccount = () => {
   const navigate = useNavigate()
   const handleSubmit = async () =>{
     const response = await axios
-    .post("https://edujobsng.herokuapp.com/api/v1/auth/user/email/activate/", values)
+    .post(`${process.env.REACT_APP_BASE_URL}user/email/activate/`, values)
     .catch(err =>{
         if(err && err.response){
           if (err.response.status === 400){
