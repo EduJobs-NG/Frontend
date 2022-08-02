@@ -13,6 +13,7 @@ import { UserProfile } from './pages/JobSeekers/UserProfile';
 import { ForgotPassword } from './pages/ForgotPassword';
 import { ResetPassword } from './pages/ResetPassword';
 import { ResetEmail } from './pages/ResetEmail';
+import { NewEmail } from './pages/NewEmail';
 
 // loader css
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
@@ -37,7 +38,7 @@ function App() {
       <Route path="/forgot-password" element={<ForgotPassword />}/>
       <Route path="/email/reset/confirm/:uid/:token" element={<ResetPassword />}/>
       <Route path="/reset-email" element={<ResetEmail />}/>
-      <Route path="/password/reset/confirm/:uid/:token" element={<ResetEmail />}/>
+      <Route path="/password/reset/confirm/:uid/:token" element={<NewEmail />}/>
       <Route path="*" element={<PageNotFound />} />
       </Routes>
       </AuthProvider>

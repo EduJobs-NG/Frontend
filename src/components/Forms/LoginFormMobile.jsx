@@ -137,7 +137,7 @@ export const LoginFormMobile = () => {
                 </Formik>
                 <div className='flex flex-col text-center gap-y-[1rem] justify-between mt-[1rem] mb-[1.2rem] '>
                             <small>Don't have an account?<Link className="text-blue underline" to="/register">Sign up</Link></small>
-                            <small><Link className='text-blue underline' to="/forgotpassword">Forgot Password?</Link></small>
+                            <small><Link className='text-blue underline' to="/forgot-password">Forgot Password?</Link></small>
                             </div>
 
                             

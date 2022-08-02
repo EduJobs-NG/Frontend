@@ -10,7 +10,7 @@ export const VerifyAccountUI = () => {
         <img src={messageIcon} alt="" />
       </div>
 
-      <h1 className=' text-black font-[700] text-2xl'>Verify Account</h1>
+      <h1 className='text-black font-[700] text-2xl'>Verify Account</h1>
       <p className='mt-4'>A link has been sent to your email. <br />
         Kindly click on it to verify your account.</p>
 

@@ -34,14 +34,9 @@ export const ResetPassword = () => {
     setIsLoading(true);
     const {new_password, re_new_password} = values;
     const response = await axios.post('https://edujobsng.herokuapp.com/api/v1/auth/users/reset_password_confirm/',
-    
-      {uid,token, new_password, re_new_password}
-      
-    
-    )
+    {uid,token, new_password, re_new_password})
       .catch(err => {
-        // const {message} = err.response.data
-        // setError(message[0])
+        setError("Something went wrong. Try again")
         setIsLoading(false)
         console.log(err)
       })
@@ -55,7 +50,7 @@ export const ResetPassword = () => {
 
       }, 1000)
 
-      console.log(response)
+      // console.log(response)
     }
 
   }
