@@ -5,7 +5,7 @@ import { FormInputBox } from '../components/Forms/FormInputBox';
 import * as Yup from 'yup';
 import { ThreeDots } from 'react-loader-spinner';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 
 
@@ -21,6 +21,7 @@ const validationSchema = Yup.object({
 })
 
 export const ResetPassword = () => {
+  const navigate = useNavigate();
   const {uid, token} = useParams();
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -31,10 +32,10 @@ export const ResetPassword = () => {
 
   const onSubmit = async (values) => {
     setIsLoading(true);
-    
+    const {new_password, re_new_password} = values;
     const response = await axios.post('https://edujobsng.herokuapp.com/api/v1/auth/users/reset_password_confirm/',
     
-      values,uid,token
+      {uid,token, new_password, re_new_password}
       
     
     )
@@ -47,7 +48,8 @@ export const ResetPassword = () => {
     if (response) {
       setShow(false)
       setIsLoading(false)
-      setSuccess('A reset link has been sent to the provided email address.')
+      setSuccess('Password has been reset successfully.')
+      navigate('/login')
 
       console.log(response)
     }
