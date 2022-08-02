@@ -5,8 +5,7 @@ import { FormInputBox } from '../components/Forms/FormInputBox';
 import { FaEnvelope } from 'react-icons/fa';
 import * as Yup from 'yup';
 import {ThreeDots} from 'react-loader-spinner';
-import axios from 'axios';
-
+import axios from 'axios'
 
 
 const validationSchema = Yup.object({
@@ -14,7 +13,7 @@ const validationSchema = Yup.object({
 
 })
 
-export const ForgotPassword = () => {
+export const NewEmail = () => {
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState("");

@@ -115,14 +115,14 @@ export const RegisterFormMobile = () => {
      <Form onSubmit={formik.handleSubmit}>
      <div className=''>
        
-       <FormInputBox type="text" className="border p-2.5 block w-full  my-[1rem]  border-solid border-[#808080] rounded-lg outline-none"
+       <FormInputBox type="text" className="border p-2.5 block w-full  mt-[1rem]  border-solid border-[#808080] rounded-lg outline-none"
                  placeholder="First Name" icon={<FaUserCircle />} id="first_name" name="first_name" onChange={formik.handleChange} value={formik.values.first_name} onBlur={formik.handleBlur} />
                 
              {formik.touched.first_name && formik.errors.first_name ? (<small className="text-red-600">{formik.errors.first_name}</small>) : null}
       
              
        
-       <FormInputBox type="text" className="border p-2.5 block my-[1rem] w-full  border-solid border-[#808080] rounded-lg outline-none"
+       <FormInputBox type="text" className="border p-2.5 block mt-[1rem] w-full  border-solid border-[#808080] rounded-lg outline-none"
                  placeholder="Last  Name"  icon={<FaUserCircle />} id="last_name" name="last_name" onChange={formik.handleChange} value={formik.values.last_name} onBlur={formik.handleBlur} />
              {formik.touched.last_name && formik.errors.last_name ? (<small className="text-red-600">{formik.errors.last_name}</small>) : null}
 
@@ -132,20 +132,20 @@ export const RegisterFormMobile = () => {
      </div>
 
 
-     <FormInputBox type="email" className="border p-2.5 my-[1rem]  block w-full border-solid border-[#808080] rounded-lg outline-none"
+     <FormInputBox type="email" className="border p-2.5 mt-[1rem]  block w-full border-solid border-[#808080] rounded-lg outline-none"
       icon={<FaEnvelope />}   placeholder="Email"  id="email" name="email" onChange={formik.handleChange} value={formik.values.email} onBlur={formik.handleBlur}  />
          
      {formik.touched.email && formik.errors.email ? (<small className="text-red-600">{formik.errors.email}</small>) : null}
  
 
     
-     <FormInputBox type="password" className=" border p-2.5 my-[1rem]  block w-full border-solid border-[#808080] rounded-lg outline-none"
+     <FormInputBox type="password" className=" border p-2.5 mt-[1rem]  block w-full border-solid border-[#808080] rounded-lg outline-none"
          placeholder="Password" id="password"  name="password"  onChange={formik.handleChange} autoComplete="new-password" value={formik.values.password}  onBlur={formik.handleBlur} />
      {formik.touched.password && formik.errors.password ? (<small className="text-red-600">{formik.errors.password}</small>) : null}
 
 
      
-     <FormInputBox type="password" className=" border p-2.5 my-[1rem]  block w-full border-solid border-[#808080] rounded-lg outline-none"
+     <FormInputBox type="password" className=" border p-2.5 mt-[1rem]  block w-full border-solid border-[#808080] rounded-lg outline-none"
          placeholder="Confirm Password"  id="re_password" onBlur={formik.handleBlur} name="re_password" onChange={formik.handleChange} autoComplete="new-password" value={formik.values.re_password} />
         
      {formik.touched.re_password && formik.errors.re_password ? (<small className="text-red-600">{formik.errors.re_password}</small>) : null}

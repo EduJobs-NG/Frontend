@@ -1,12 +1,11 @@
 import React, {useState} from 'react';
-import password from '../assets/password.png';
+import envelope from '../assets/Vector.png';
 import { Formik, Form, useFormik } from 'formik';
 import { FormInputBox } from '../components/Forms/FormInputBox';
 import { FaEnvelope } from 'react-icons/fa';
 import * as Yup from 'yup';
 import {ThreeDots} from 'react-loader-spinner';
-import axios from 'axios';
-
+import axios from 'axios'
 
 
 const validationSchema = Yup.object({
@@ -14,7 +13,7 @@ const validationSchema = Yup.object({
 
 })
 
-export const ForgotPassword = () => {
+export const ResetEmail = () => {
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState("");
@@ -23,7 +22,7 @@ export const ForgotPassword = () => {
 
   const onSubmit = async (values) =>{
     setIsLoading(true);
-    const response = await axios.post('https://edujobsng.herokuapp.com/api/v1/auth/users/reset_password/', values)
+    const response = await axios.post('https://edujobsng.herokuapp.com/api/v1/auth/users/reset_email/', values)
     .catch(err =>{
       setError(err.message)
       setIsLoading(false)
@@ -54,7 +53,7 @@ export const ForgotPassword = () => {
     <section className='container mx-auto mt-[3rem] h-screen  flex flex-col justify-center items-center text-center '>
 
       <div className='rounded-full bg-[#d5d3fe] p-5'>
-        <img src={password} alt="" />
+        <img src={envelope} alt="" />
       </div>
      
      
@@ -69,9 +68,9 @@ export const ForgotPassword = () => {
 
 {show && (
   <>
-      <h1 className=' text-black font-[700] text-2xl'>Forgot Password</h1>
-      <p className='mt-4 max-w-[500px]'>Kindly enter your registered email addess below and a resent link wil be sent.
-        Kindly click on it to reset your password.</p>
+      <h1 className=' text-black font-[700] text-2xl'>Reset Email</h1>
+      <p className='mt-4 max-w-[500px]'>Kindly enter the new email you'd like to register.
+    </p>
         {error && (
 
 <div className="p-3 my-4  text-center">

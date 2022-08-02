@@ -14,7 +14,7 @@ export const VerifyAccountUI = () => {
       <p className='mt-4'>A link has been sent to your email. <br />
         Kindly click on it to verify your account.</p>
 
-      <p className='mt-[2rem]'>Wrong email address? <Link className='text-blue' to="/changeemail">Change email</Link> </p>
+      <p className='mt-[2rem]'>Wrong email address? <Link className='text-blue' to="/reset-email">Change email</Link> </p>
 
       <Link className='text-blue mt-[5rem]' to="/resend">Resend Link</Link>
 

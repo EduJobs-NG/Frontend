@@ -9,7 +9,7 @@ export const VerifyAccount = () => {
   const {uid, token} = useParams();
   const values = {uid, token}
   const navigate = useNavigate()
-  const handleSubmit = async (props) =>{
+  const handleSubmit = async () =>{
     const response = await axios
     .post("https://edujobsng.herokuapp.com/api/v1/auth/user/email/activate/", values)
     .catch(err =>{
