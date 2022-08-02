@@ -40,7 +40,8 @@ export const ResetPassword = () => {
     
     )
       .catch(err => {
-        setError(err.message)
+        // const {message} = err.response.data
+        // setError(message[0])
         setIsLoading(false)
         console.log(err)
       })
@@ -49,7 +50,10 @@ export const ResetPassword = () => {
       setShow(false)
       setIsLoading(false)
       setSuccess('Password has been reset successfully.')
-      navigate('/login')
+      setTimeout(() =>{
+        navigate('/login')
+
+      }, 1000)
 
       console.log(response)
     }

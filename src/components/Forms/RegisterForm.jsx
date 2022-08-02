@@ -64,7 +64,7 @@ export const RegisterForm = () => {
                 setError('')
                 setTimeout(() =>{
                     navigate('/verify');
-                }, 1500)
+                }, 1000)
             }
         
 

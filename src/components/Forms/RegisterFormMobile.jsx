@@ -64,7 +64,7 @@ export const RegisterFormMobile = () => {
                 setError('')
                 setTimeout(() =>{
                     navigate('/verify');
-                }, 1500)
+                }, 1000)
 
             }
         
