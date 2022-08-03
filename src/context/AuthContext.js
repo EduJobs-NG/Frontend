@@ -37,8 +37,8 @@ export const AuthProvider = ({children}) => {
         })
      
         if (response && response.data){
-          setUser(response)
-          console.log(response.data)
+          setUser(response.data[0])
+          console.log(response.data[0])
           
         }
     
