@@ -5,7 +5,7 @@ import {Footer} from '../../components/Footer'
 
 
 export const Dashboard = () => {
-  const {user} = useContext(AuthContext)
+  const {user, authTokens} = useContext(AuthContext)
   return (
     <>
     <Navbar />
@@ -20,6 +20,7 @@ export const Dashboard = () => {
 
   <section>
     <h1 className='text-center'>You'll see jobs here later one</h1>
+    {authTokens.auth_token}
   </section>
 
   <Footer />

@@ -63,7 +63,7 @@ export const LoginForm = () => {
         });
 
         if(response && response.data){
-            // console.log(response.data)
+            console.log(response.data)
             setAuthTokens(response.data)
             localStorage.setItem('authTokens', JSON.stringify(response.data))
             // setUser(jwt_decode(response.data.access))

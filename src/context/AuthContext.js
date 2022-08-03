@@ -8,7 +8,11 @@ export const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null)
     const [authTokens, setAuthTokens] = useState(localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')):null)
 
-    
+    const logOutUser = () =>{
+        
+
+
+    }
   
     let contextData = {
         user:user,

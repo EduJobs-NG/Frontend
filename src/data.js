@@ -2,6 +2,7 @@ import Feature1 from './assets/features1.png';
 import Feature2 from './assets/features2.png';
 import Feature3 from './assets/features3.png';
 import {FaFacebookF, FaLinkedinIn, FaTwitter} from 'react-icons/fa'
+import logo from './assets/EduJobs.png'
 
 
 export const navigation = {

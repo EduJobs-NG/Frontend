@@ -24,7 +24,9 @@ export const Navbar = () => {
           <div className="flex uppercase py-[1.5rem] items-center flex-row justify-between">
             <ul className="flex gap-x-[3rem] text-white flex-row">
              <li className='title'>
-              <NavLink to="/">{logo}</NavLink>
+              <NavLink to="/">
+                {logo}
+                </NavLink>
               </li> 
               
               {navigation.leftNav.map((nav, index) =>{

@@ -63,7 +63,7 @@ export const LoginFormMobile = () => {
         });
 
         if(response && response.data){
-            // console.log(response.data)
+            // console.log(response.data.auth_token)
             setAuthTokens(response.data)
             localStorage.setItem('authTokens', JSON.stringify(response.data))
             // setUser(jwt_decode(response.data.access))
