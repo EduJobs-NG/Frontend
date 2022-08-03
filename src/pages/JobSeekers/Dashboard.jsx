@@ -5,7 +5,7 @@ import {Footer} from '../../components/Footer'
 
 
 export const Dashboard = () => {
-  const {user, authTokens} = useContext(AuthContext)
+  const {user, authTokens, logOutUser} = useContext(AuthContext)
   return (
     <>
     <Navbar />
@@ -21,6 +21,9 @@ export const Dashboard = () => {
   <section>
     <h1 className='text-center'>You'll see jobs here later one</h1>
     {authTokens.auth_token}
+
+    
+    <p onClick={logOutUser}>log out</p>
   </section>
 
   <Footer />

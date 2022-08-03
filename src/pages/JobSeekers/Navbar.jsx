@@ -22,7 +22,7 @@ export const Navbar = () => {
           </li>
           </div>
 <div>
-  <NavLink to="/profile">Profile</NavLink>
+  <NavLink to="/dashboard/profile">Profile</NavLink>
 </div>
         </ul>
 
