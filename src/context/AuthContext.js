@@ -6,13 +6,14 @@ export default AuthContext;
 
 export const AuthProvider = ({children}) => {
     const navigate = useNavigate();
-    const [user, setUser] = useState(null)
+    const [user, setUser] = useState({})
     const [authTokens, setAuthTokens] = useState(localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')):null)
+    
     const logOutUser = async () =>{
         const response = await axios.get(`${process.env.REACT_APP_BASE_URL}users/me/`, {
           headers:{
             'Content-Type':'application/json',
-            'Authorization': `Bearer ${authTokens}`
+            'Authorization': `Token ${authTokens.auth_token}`
           }
         }).catch(err =>{
           console.log(err)
@@ -20,16 +21,37 @@ export const AuthProvider = ({children}) => {
      
         if (response){
           console.log(response)
+          navigate('/login')
         }
     
       }
+
+      const getUserMeHandler = async () =>{
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}account/user-profile/`, {
+          headers:{
+            'Content-Type':'application/json',
+            'Authorization':`Token ${authTokens.auth_token}`
+          }
+        }).catch(err =>{
+          console.log(err)
+        })
+     
+        if (response && response.data){
+          setUser(response)
+          console.log(response.data)
+          
+        }
+    
+      }
+    
   
     let contextData = {
         user:user,
         setUser:setUser,
         authTokens:authTokens,
         setAuthTokens:setAuthTokens,
-        logOutUser:logOutUser
+        logOutUser:logOutUser,
+        getUserMeHandler:getUserMeHandler
     }
 
     return (
