@@ -21,7 +21,7 @@ function App() {
   return (
     <Router>
 
-    <div className="w-full max-w-[1440px] mx-auto">
+    <div className="w-full mx-auto">
       <AuthProvider>
       <Routes>
       <Route path="/" exact  element={<Home />} />

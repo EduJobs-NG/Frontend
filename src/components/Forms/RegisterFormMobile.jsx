@@ -88,7 +88,7 @@ export const RegisterFormMobile = () => {
 //  console.log(formik.isSubmitting)
    
     return (
-        <div className=' bg-white p-2 py-[2rem] px-[20px]  '>
+        <div className='flex flex-col justify-center h-screen bg-white p-2 py-[2rem] px-[20px]  '>
             <div className='flex my-4 gap-x-[1rem] justify-center '>
              <FaUserPlus className='text-[2rem] text-blue' />
              <div className='h-[2.5rem] w-[3px] bg-black'></div>
@@ -113,20 +113,20 @@ export const RegisterFormMobile = () => {
     {({isSubmitting}) =>(
     
      <Form onSubmit={formik.handleSubmit}>
-     <div className=''>
-       
-       <FormInputBox type="text" className="border p-2.5 block w-full  mt-[1rem]  border-solid border-[#808080] rounded-lg outline-none"
+    <div className='flex flex-auto w-full gap-x-[0.4rem]'>
+       <div>
+       <FormInputBox type="text" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
                  placeholder="First Name" icon={<FaUserCircle />} id="first_name" name="first_name" onChange={formik.handleChange} value={formik.values.first_name} onBlur={formik.handleBlur} />
                 
              {formik.touched.first_name && formik.errors.first_name ? (<small className="text-red-600">{formik.errors.first_name}</small>) : null}
-      
+       </div>
              
-       
-       <FormInputBox type="text" className="border p-2.5 block mt-[1rem] w-full  border-solid border-[#808080] rounded-lg outline-none"
+       <div>
+       <FormInputBox type="text" className="border p-2.5 block  w-full  border-solid border-[#808080] rounded-lg outline-none"
                  placeholder="Last  Name"  icon={<FaUserCircle />} id="last_name" name="last_name" onChange={formik.handleChange} value={formik.values.last_name} onBlur={formik.handleBlur} />
              {formik.touched.last_name && formik.errors.last_name ? (<small className="text-red-600">{formik.errors.last_name}</small>) : null}
 
-       
+       </div>
             
         
      </div>

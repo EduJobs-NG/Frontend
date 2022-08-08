@@ -10,7 +10,6 @@ import {ThreeDots} from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
 import google from '../../assets/google.png'
 import linkedin from '../../assets/linkedin.png';
-import jwt_decode from 'jwt-decode';
 
 
 
@@ -88,8 +87,8 @@ export const LoginFormMobile = () => {
     return (
 
         
-            <div className='bg-white p-2 py-[2rem] px-[20px] '>
-          <div className='flex my-4 gap-x-[2rem]  md:gap-x-[1rem] justify-center '>
+            <div className='bg-white flex flex-col h-screen justify-center  p-2 py-[2rem] px-[20px] '>
+          <div className='flex my-4 gap-x-[2rem] md:gap-x-[1rem] justify-center '>
                     <FaSignInAlt className='text-[2rem] text-blue' />
                     <div className='h-[2.5rem] w-[3px] bg-black'></div>
                     <h2 className="title text-blue  text-[24px] font-[700]">LOG IN</h2>
@@ -136,7 +135,7 @@ export const LoginFormMobile = () => {
 
                 </Formik>
                 <div className='flex flex-col text-center gap-y-[1rem] justify-between mt-[1rem] mb-[1.2rem] '>
-                            <small>Don't have an account?<Link className="text-blue underline" to="/register">Sign up</Link></small>
+                            <small>Don't have an account?<Link className="text-blue underline" to="/register"> Sign up</Link></small>
                             <small><Link className='text-blue underline' to="/forgot-password">Forgot Password?</Link></small>
                             </div>
 

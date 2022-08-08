@@ -42,10 +42,7 @@ export const Navbar = () => {
             <ul className='hidden xl:flex flex-row text-white gap-x-[2rem]'>
               
               <li>
-              <NavLink to="/login" className='p-1 cursor-pointer px-4 border border-solid   border-white rounded'>JOB SEEKERS</NavLink>
-              </li>
-              <li>
-              <NavLink to="/login" className='p-1 cursor-pointer px-4 border border-solid   border-white rounded'>EMPLOYERS</NavLink>
+              <NavLink to="/" className='p-1 cursor-pointer px-4 border border-solid   border-white rounded'>EMPLOYERS</NavLink>
               </li>
               <li>
               <NavLink to="/login" className='p-1 cursor-pointer px-4 border border-solid bg-white text-blue border-white rounded'>LOGIN</NavLink>

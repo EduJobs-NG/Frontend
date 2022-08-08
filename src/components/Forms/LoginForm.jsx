@@ -131,7 +131,7 @@ export const LoginForm = () => {
 
                             <div className='flex flex-row justify-between mt-[1rem] mb-[1.2rem] '>
                                 <small><Link to="/forgot-password" className='text-blue underline'>Forgot Password?</Link></small>
-                                <small>Don't have an account?<Link className="text-blue underline" to="/register">Sign up</Link></small>
+                                <small>Don't have an account?<Link className="text-blue underline" to="/register"> Sign up</Link></small>
                             </div>
 
                             
