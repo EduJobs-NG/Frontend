@@ -21,6 +21,7 @@ export const AuthProvider = ({children}) => {
      
         if (response){
           console.log(response)
+          localStorage.removeItem('authTokens')
           navigate('/login')
         }
     

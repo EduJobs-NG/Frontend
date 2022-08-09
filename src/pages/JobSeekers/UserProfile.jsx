@@ -37,8 +37,8 @@ export const UserProfile = () => {
           <div className='max-w-[600px]'>
             <h1 className='font-[700] text-[18px]'>Bio</h1>
             <p>
-             {user.user && user.bio}
-           <img src={user.user && user.avatar} alt="user picture" />  
+            {user && user.bio}
+            {!user.bio && <p>.</p> }
             </p>
           </div>
 
