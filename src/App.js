@@ -27,7 +27,7 @@ function App() {
       <Route path="/" exact  element={<Home />} />
       <Route element={<PrivateRoute />}>
       <Route path="/dashboard/profile" exact element={<UserProfile />} />
-      <Route path="/dashboard" exact  element={<Dashboard />} />
+      <Route path="/dashboard/find-jobs" exact  element={<Dashboard />} />
       </Route>
 
       <Route path="/login" element={<LoginFormUI />}/>

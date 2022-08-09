@@ -2,7 +2,6 @@ import React, {useContext, useEffect, useState} from 'react';
 import { Navbar } from './Navbar';
 import AuthContext from '../../context/AuthContext';
 import enoch from '../../assets/enoch.jpg';
-import axios from 'axios';
 
 
 export const UserProfile = () => {
@@ -35,7 +34,7 @@ export const UserProfile = () => {
 
           </div>
 
-          <div className='max-w-[700px]'>
+          <div className='max-w-[600px]'>
             <h1 className='font-[700] text-[18px]'>Bio</h1>
             <p>
              {user.user && user.bio}
