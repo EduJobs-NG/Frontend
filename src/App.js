@@ -13,6 +13,7 @@ import { NewEmail } from './pages/Authentication/NewEmail';
 import { UserProfile } from './pages/JobSeekers/UserProfile';
 import { AuthProvider } from './context/AuthContext';
 import { Dashboard } from './pages/JobSeekers/Dashboard';
+import { InitialProfileCreate } from './pages/JobSeekers/InitialProfileCreate';
 // loader css
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
@@ -37,6 +38,7 @@ function App() {
       <Route path="/password/reset/confirm/:uid/:token" element={<ResetPassword />}/>
       <Route path="/reset-email" element={<ResetEmail />}/>
       <Route path="/email/reset/confirm/:uid/:token" element={<NewEmail />}/>
+      <Route path="/initial-profile" exact  element={<InitialProfileCreate />} />
       <Route path="*" element={<PageNotFound />} />
       </Routes>
       </AuthProvider>
