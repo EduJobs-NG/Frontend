@@ -61,6 +61,7 @@ export const VerifyAccount = () => {
     <section className='overflow-x-hidden px-6'>
       <div className='flex flex-col h-screen  items-center gap-y-[2rem] text-center justify-center '>
         <div className='max-w-[600px]'>
+          <h1>Account Activation</h1>
           {error && (
 
             <div className="p-3 ]  my-4 text-center">

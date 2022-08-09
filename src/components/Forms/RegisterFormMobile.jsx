@@ -89,9 +89,9 @@ export const RegisterFormMobile = () => {
    
     return (
         <div className='flex flex-col justify-center h-screen bg-white p-2 py-[2rem] px-[20px]  '>
-            <div className='flex my-4 gap-x-[1rem] justify-center '>
+            <div className='flex my-4 md:gap-x-[1rem] justify-center '>
              <FaUserPlus className='text-[2rem] text-blue' />
-             <div className='h-[2.5rem] w-[3px] bg-black'></div>
+             <div className='h-[2.5rem] ml-[1rem] mr-[1rem] w-[3px] bg-black'></div>
             <h2 className="title text-blue  text-[24px] font-[700]">SIGN UP</h2>
             </div>
            
@@ -174,9 +174,9 @@ export const RegisterFormMobile = () => {
 </div>
 
 <div className='flex justify-between gap-x-5 items-baseline'>
-    <hr className='bg-blue border-[0.9px] w-[35%] h-1' />
+    <hr className='bg-blue border-[0.1px] w-[35%] ' />
     <span>OR</span>
-    <hr className='bg-blue border-[0.9px]  w-[35%] h-1' />
+    <hr className='bg-blue border-[0.1px]  w-[35%]' />
 </div>
 
 <div className='mt-4 flex justify-center flex-row gap-x-[1rem]'>
