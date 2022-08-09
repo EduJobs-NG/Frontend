@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import password from '../assets/password.png';
+import password from '../../assets/password.png';
 import { Formik, Form, useFormik } from 'formik';
-import { FormInputBox } from '../components/Forms/FormInputBox';
+import { FormInputBox } from '../../components/Forms/FormInputBox';
 import { FaEnvelope } from 'react-icons/fa';
 import * as Yup from 'yup';
 import {ThreeDots} from 'react-loader-spinner';

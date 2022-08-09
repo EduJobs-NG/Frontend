@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import messageIcon from '../assets/Vector.png';
+import messageIcon from '../../assets/Vector.png';
 
 
 export const VerifyAccountUI = () => {

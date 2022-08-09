@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import welcome from '../assets/welcome.png';
+import welcome from '../../assets/welcome.png';
 
 
 
-export const VerifyAccount = () => {
+export const ActivateAccount = () => {
   const [success, setSuccess] = useState("");
   const [error, setError] = useState('');
   const [show, setShow] = useState(false)

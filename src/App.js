@@ -1,19 +1,18 @@
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import PrivateRoute from './utils/PrivateRoute';
 import { Home } from './pages/Home';
 import {RegisterFormUI} from './pages/RegisterFormUI';
 import {LoginFormUI} from './pages/LoginFormUI';
-import {VerifyAccount} from './pages/VerifyAccount';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import PrivateRoute from './utils/PrivateRoute';
-import { Dashboard } from './pages/JobSeekers/Dashboard';
+import {ActivateAccount} from './pages/Authentication/ActivateAccount';
 import { PageNotFound } from './pages/PageNotFound';
-import { AuthProvider } from './context/AuthContext';
-import { VerifyAccountUI } from './pages/VerifyAccountUI';
+import { VerifyAccountUI } from './pages/Authentication/VerifyAccountUI';
+import { ForgotPassword } from './pages/Authentication/ForgotPassword';
+import { ResetPassword } from './pages/Authentication/ResetPassword';
+import { ResetEmail } from './pages/Authentication/ResetEmail';
+import { NewEmail } from './pages/Authentication/NewEmail';
 import { UserProfile } from './pages/JobSeekers/UserProfile';
-import { ForgotPassword } from './pages/ForgotPassword';
-import { ResetPassword } from './pages/ResetPassword';
-import { ResetEmail } from './pages/ResetEmail';
-import { NewEmail } from './pages/NewEmail';
-
+import { AuthProvider } from './context/AuthContext';
+import { Dashboard } from './pages/JobSeekers/Dashboard';
 // loader css
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
@@ -32,7 +31,7 @@ function App() {
 
       <Route path="/login" element={<LoginFormUI />}/>
       <Route path="/register" element={<RegisterFormUI />}/>
-      <Route path="/activate/:uid/:token" element={<VerifyAccount />}/>
+      <Route path="/activate/:uid/:token" element={<ActivateAccount />}/>
       <Route path="/verify" element={<VerifyAccountUI />}/>
       <Route path="/forgot-password" element={<ForgotPassword />}/>
       <Route path="/password/reset/confirm/:uid/:token" element={<ResetPassword />}/>
