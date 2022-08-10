@@ -44,16 +44,16 @@ export const UserProfile = () => {
             </div>
           </div>
 
-          <div className='container mt-[3rem] mx-auto'>
-            <EditProfile />
-
-          </div>
+          
         </div>
 
       </section>
 
       <section className='container mx-auto'>
-     
+      <div className='container mt-[3rem] mx-auto'>
+            <EditProfile />
+
+          </div>
       </section>
     </>
   )
