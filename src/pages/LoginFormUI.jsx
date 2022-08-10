@@ -19,7 +19,7 @@ export const LoginFormUI = () => {
     <section className='hidden h-full lg:block relative bg-hero lg:pt-[70px] lg:pb-[70px]   bg-center  bg-cover bg-no-repeat'>
     <div className="absolute top-0 left-0 right-0 bottom-0 bg-[#02378B] opacity-50 z-[100] ">
   </div>
-  <div className='container relative mx-auto flex flex-col lg:flex-row lg:gap-x-[100px] z-[999]'>
+  <div className='container relative mx-auto h-screen flex flex-col justify-center items-center lg:flex-row lg:gap-x-[100px] z-[999]'>
     <div>
     <h2 className='title text-[35px] font-heading lg:text-[66px] z-[999] font-[700] text-white max-w-[600px]'>Have Great Jobs
       Find You!</h2>
