@@ -18,8 +18,12 @@ export const Navbar = () => {
     setActive(!active);
 
   }
+  const activeLink = 'border-b border-b-white';
+  const normalLink = 'border-none';
+  const activeMobile = 'text-blue text-[1.3rem] font-[700]'
+
   return (
-    <section className='bg-[#02378B] z-[999]'>
+    <nav className='bg-[#02378B] z-[999]'>
       <div className="container mx-auto">
         <div className="flex uppercase py-[1.5rem] items-center flex-row justify-between">
           <ul className="flex gap-x-[3rem] text-white flex-row">
@@ -29,13 +33,13 @@ export const Navbar = () => {
             <div className='hidden xl:flex gap-x-[3rem]'>
 
               <li className=''>
-                <NavLink to="/dashboard/find-jobs" className={({ isActive }) => isActive ? 'border-b border-b-white' : undefined}>FIND JOBS</NavLink>
+                <NavLink to="/dashboard/find-jobs" className={({isActive}) => (isActive ? activeLink : normalLink)} >FIND JOBS</NavLink>
               </li>
               <li className=''>
-                <NavLink to="#" className={({ isActive }) => isActive ? 'border-b border-b-white' : undefined}>SAVED JOBS</NavLink>
+                <NavLink to="/dashboard/saved-jobs" className={({isActive}) => (isActive ? activeLink : normalLink)} >SAVED JOBS</NavLink>
               </li>
               <li className=''>
-                <NavLink to="#" className={({ isActive }) => (isActive ? 'border-b border-b-white' : undefined)}>PRICING</NavLink>
+                <NavLink to="/pricing" className={({isActive}) => (isActive ? activeLink : normalLink)} >PRICING</NavLink>
               </li>
             </div>
 
@@ -63,7 +67,7 @@ export const Navbar = () => {
           </ul>
           <div className='xl:hidden flex flex-row gap-[1rem]'>
             <div>
-          <NavLink to="/dashboard/profile">
+              <NavLink to="/dashboard/profile">
                 <FaUserCircle className='text-white w-8' />
               </NavLink>
             </div>
@@ -71,7 +75,7 @@ export const Navbar = () => {
             <div onClick={handleClick}>
               <FaBars className='text-white text-[1rem] cursor-pointer' /></div>
             <div>
-              
+
             </div>
           </div>
 
@@ -88,25 +92,25 @@ export const Navbar = () => {
           <div data-aos="fade-up" className='bg-white  transition duration-1000 ease-in-out h-screen flex flex-col align-items justify-center  text-center '>
             <FaTimes onClick={handleClick} className='text-blue text-[1.3rem] mt-3 cursor-pointer absolute right-5 top-5' />
             <ul className='py-[2rem] flex flex-col '>
-            <li className='mb-[33px]'>
-                <NavLink to="/dashboard/find-jobs" className={`${({ isActive }) => (isActive ? ' border-b border-b-blue' : undefined)} text-[1.2rem]  font-[700]` } >FIND JOBS</NavLink>
+              <li className='mb-[33px]'>
+                <NavLink to="/dashboard/find-jobs" className={({isActive}) => (isActive ? activeMobile : normalLink)}  >FIND JOBS</NavLink>
               </li>
               <li className='mb-[33px]'>
-                <NavLink to="#" className={`${({ isActive }) => (isActive ? ' border-b border-b-blue' : undefined)} text-[1.2rem]  font-[700]` } >SAVED JOBS</NavLink>
+                <NavLink to="/dashboard/saved-jobs" className={({isActive}) => (isActive ? activeMobile : normalLink)} >SAVED JOBS</NavLink>
               </li>
               <li className='mb-[33px]'>
-                <NavLink className={`${({ isActive }) => (isActive ? ' border-b border-b-blue' : undefined)} text-[1.2rem]  font-[700]` } to="">PRICING</NavLink>
+                <NavLink   to="/pricing" className={({isActive}) => (isActive ? activeMobile : normalLink)}>PRICING</NavLink>
               </li>
               <li className='mb-[33px]'>
-                <NavLink className={`${({ isActive }) => (isActive ? ' border-b border-b-blue' : undefined)} text-[1.2rem]  font-[700]` } to="">MESSAGES</NavLink>
+                <NavLink  to="/messages" className={({isActive}) => (isActive ? activeMobile : normalLink)}>MESSAGES</NavLink>
               </li>
               <li className='mb-[33px]'>
-                <NavLink className={`${({ isActive }) => (isActive ? ' border-b border-b-blue' : undefined)} text-[1.2rem]  font-[700]` } to="">NOTIFICATION</NavLink>
+                <NavLink  to="/notification" className={({isActive}) => (isActive ? activeMobile : normalLink)}>NOTIFICATION</NavLink>
               </li>
             </ul>
-          
 
-           
+
+
           </div>
 
           <div>
@@ -114,7 +118,7 @@ export const Navbar = () => {
         </div>
       )
       }
-    </section>
+    </nav>
   )
 }
 

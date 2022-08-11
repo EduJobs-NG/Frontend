@@ -16,6 +16,8 @@ import { Dashboard } from './pages/JobSeekers/Dashboard';
 
 // loader css
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import { SavedJobs } from './pages/SavedJobs';
+import { Pricing } from './pages/Pricing';
 
 function App() {
   return (
@@ -28,7 +30,7 @@ function App() {
       <Route element={<PrivateRoute />}>
       <Route path="/dashboard/profile" exact element={<UserProfile />} />
       <Route path="/dashboard/find-jobs" exact  element={<Dashboard />} />
-      {/* <Route path="/dashboard/profile/" exact  element={<Dashboard />} /> */}
+      <Route path="/dashboard/saved-jobs/" exact  element={<SavedJobs />} />
       </Route>
 
       <Route path="/login" element={<LoginFormUI />}/>
@@ -39,6 +41,7 @@ function App() {
       <Route path="/password/reset/confirm/:uid/:token" element={<ResetPassword />}/>
       <Route path="/reset-email" element={<ResetEmail />}/>
       <Route path="/email/reset/confirm/:uid/:token" element={<NewEmail />}/>
+      <Route path="/pricing" element={<Pricing />}/>
       <Route path="*" element={<PageNotFound />} />
       </Routes>
       </AuthProvider>

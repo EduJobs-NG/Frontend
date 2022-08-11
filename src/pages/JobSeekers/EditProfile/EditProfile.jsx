@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { PersonalInfo } from './PersonalInfo';
 import { ProfessionalInfo } from './ProfessionalInfo';
 import { ContactInfo } from './ContactInfo';
 import { Credentials } from './Credentials';
+import AuthContext from '../../../context/AuthContext';
 
-export const EditProfile = ({user}) => {
+
+export const EditProfile = () => {
     const [title, setTitle] = useState('personal info');
     const [active, setActive] = useState(0)
+    const { user, getUserMeHandler } = useContext(AuthContext);
+
 
     const titles = ['personal info', 'professional information', 'credentials', 'contact information'];
     const handleTitle = (e, index) => {
@@ -17,19 +21,19 @@ export const EditProfile = ({user}) => {
     const handleDisplay = () => {
         switch (title) {
             case 'professional information':
-                return <ProfessionalInfo />
+                return (<ProfessionalInfo />)
                 break;
             case 'credentials':
-                return <Credentials />
+                return (<Credentials />)
                 break;
             case 'contact information':
-                return <ContactInfo />
+                return (<ContactInfo />)
                 break;
             case 'personal information':
-                return <PersonalInfo />
+                return (<PersonalInfo />)
                 break;
             default:
-                return <PersonalInfo />
+                return (<PersonalInfo />)
                 break;
         }
     }
