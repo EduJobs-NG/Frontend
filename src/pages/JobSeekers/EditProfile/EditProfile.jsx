@@ -37,11 +37,11 @@ export const EditProfile = ({user}) => {
         <>
 
             <section className='border-b  border-b-[#808080]'>
-                <ul className=' flex flex-row overflow-x-scroll md:overflow-hidden  gap-[4rem]  whitespace-nowrap justify-between'>
+                <ul className=' flex flex-row overflow-x-scroll md:overflow-hidden    whitespace-nowrap justify-between'>
                     {titles.map((title, index) => {
                         return (
                             <li className={`${active == index ? 'text-blue border-b border-b-blue' : 'text-black'
-                                } cursor-pointer capitalize`} key={index} onClick={(e) => handleTitle(e, index)}>{title}</li>
+                                } cursor-pointer capitalize mr-[3rem]`} key={index} onClick={(e) => handleTitle(e, index)}>{title}</li>
                         )
                     })}
                 </ul>
