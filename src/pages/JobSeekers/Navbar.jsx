@@ -62,9 +62,12 @@ export const Navbar = () => {
 
           </ul>
           <div className='xl:hidden flex flex-row gap-[1rem]'>
+            <div>
           <NavLink to="/dashboard/profile">
-                <FaUserCircle className='text-white' />
+                <FaUserCircle className='text-white w-8' />
               </NavLink>
+            </div>
+
             <div onClick={handleClick}>
               <FaBars className='text-white text-[1rem] cursor-pointer' /></div>
             <div>
