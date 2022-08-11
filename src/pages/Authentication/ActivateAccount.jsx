@@ -25,7 +25,7 @@ export const ActivateAccount = () => {
             }, 2000)
           }
           else if (err.response.status === 403) {
-            setShow(false)
+            setShow(true)
             setSuccess('Your account has been activated.')
             setTimeout(() => {
               setSuccess('Account activation successful. Proceeding to Login')
