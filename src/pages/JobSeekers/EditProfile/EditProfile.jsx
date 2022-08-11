@@ -37,7 +37,7 @@ export const EditProfile = ({user}) => {
         <>
 
             <section className='border-b  border-b-[#808080]'>
-                <ul className=' flex flex-row overflow-x-scroll md:overflow-hidden    whitespace-nowrap justify-between'>
+                <ul className=' flex flex-row overflow-x-scroll md:overflow-hidden  whitespace-nowrap justify-between'>
                     {titles.map((title, index) => {
                         return (
                             <li className={`${active == index ? 'text-blue border-b border-b-blue' : 'text-black'
