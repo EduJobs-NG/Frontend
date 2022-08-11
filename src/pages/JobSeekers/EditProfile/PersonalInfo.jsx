@@ -43,7 +43,7 @@ export const PersonalInfo = () => {
     <section className='bg-white rounded-[40px]'>
       <Formik>
         <Form>
-          <div className='flex w-full  md:flex-row justify-between gap-x-[1rem]'>
+          <div className='flex w-full  md:flex-row justify-between gap-x-[2rem]'>
             <div className='w-full max-w-lg'>
 
               <FormInputBox type="text" label="First Name" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
@@ -60,7 +60,7 @@ export const PersonalInfo = () => {
 
           </div>
 
-          <div className='flex mt-[2rem] w-full  md:flex-row justify-between gap-x-[1rem]'>
+          <div className='flex mt-[2rem] w-full  md:flex-row justify-between gap-x-[2rem]'>
             <div className='w-full max-w-lg'>
 
               <FormInputBox type="text" label="Last Name" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
