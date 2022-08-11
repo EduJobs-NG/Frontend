@@ -39,7 +39,7 @@ export const Navbar = () => {
           </div>
           </div>
 
-<div className='flex flex-row gap-x-[1rem]'>
+<div className='flex flex-row gap-[1rem]'>
 
   <div>
     <img src={chat} alt="" />
