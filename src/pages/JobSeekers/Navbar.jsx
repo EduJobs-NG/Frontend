@@ -54,7 +54,7 @@ export const Navbar = () => {
   </div>
   
 <NavLink to="/dashboard/profile">
-  <FaUserCircle className='w-full' />
+  <FaUserCircle className='' />
     </NavLink>
 
 </div>
