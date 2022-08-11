@@ -16,10 +16,10 @@ export const UserProfile = () => {
     <>
       <Navbar />
 
-      <section className='bg-[#f5f5f5]'>
+      <section className='bg-[#f5f5f5] overflow-x-hidden'>
         <div className='container mx-auto rounded-[40px] bg-white'>
           <h1 className='font-[700] pt-[2rem] text-2xl'>Profile</h1>
-          <div className='container mx-auto '>
+          <div className='md:container md:mx-auto '>
 
             <div className='flex mt-[2rem] flex-col md:flex-row gap-x-[200px]'>
               <div className='flex flex-col md:flex-row gap-x-[1rem]  items-center'>
@@ -42,19 +42,21 @@ export const UserProfile = () => {
                 </p>
               </div>
             </div>
+            <div className='md:container mt-[3rem] rounded-[40px] md:mx-auto'>
+            <EditProfile />
+
+          </div>
           </div>
 
           
         </div>
+        </section>
 
+
+      <section className='container bg-white mx-auto'>
+    
       </section>
 
-      <section className='container mx-auto'>
-      <div className='container mt-[3rem] mx-auto'>
-            <EditProfile />
-
-          </div>
-      </section>
     </>
   )
 }

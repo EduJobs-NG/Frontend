@@ -4,54 +4,57 @@ import { ProfessionalInfo } from './ProfessionalInfo';
 import { ContactInfo } from './ContactInfo';
 import { Credentials } from './Credentials';
 
-export const EditProfile = () => {
+export const EditProfile = ({user}) => {
     const [title, setTitle] = useState('personal info');
     const [active, setActive] = useState(0)
 
-    const titles = ['personal info', 'professional info',  'credentials', 'contact info'];
+    const titles = ['personal info', 'professional information', 'credentials', 'contact information'];
     const handleTitle = (e, index) => {
-        setTitle(()=>e.target.textContent.toLowerCase());
-        setActive(index)  
-        console.log(title)    
+        setTitle(() => e.target.textContent.toLowerCase());
+        setActive(index)
+        // console.log(title)    
     }
     const handleDisplay = () => {
         switch (title) {
-            case 'professional info':
-               return <ProfessionalInfo />
+            case 'professional information':
+                return <ProfessionalInfo />
                 break;
             case 'credentials':
-                return  <Credentials />
+                return <Credentials />
                 break;
-            case 'contact info':
-                 return <ContactInfo />
+            case 'contact information':
+                return <ContactInfo />
+                break;
+            case 'personal information':
+                return <PersonalInfo />
                 break;
             default:
-                return  <PersonalInfo />
+                return <PersonalInfo />
                 break;
         }
     }
     return (
         <>
 
-            <section>
-                <ul className=' flex flex-row justify-between'>
+            <section className='border-b  border-b-[#808080]'>
+                <ul className=' flex flex-row overflow-x-scroll md:overflow-hidden  gap-x-[4rem] md:gap-x-[1rem] whitespace-nowrap justify-between'>
                     {titles.map((title, index) => {
                         return (
-                            <li  className={`${
-                                active == index ? 'text-blue border-b border-b-blue' : 'text-black'
-                              } cursor-pointer capitalize`} key={index}  onClick={(e)=>handleTitle(e, index)}>{title}</li>
+                            <li className={`${active == index ? 'text-blue border-b border-b-blue' : 'text-black'
+                                } cursor-pointer capitalize`} key={index} onClick={(e) => handleTitle(e, index)}>{title}</li>
                         )
                     })}
                 </ul>
 
-                <section className='mt-[2rem]'>
-
-                    <div className=''>
-                        {handleDisplay()}
-
-                    </div>
-                </section>
+            
             </section>
+            <section className='mt-[2rem]'>
+
+<div className=''>
+    {handleDisplay()}
+
+</div>
+</section>
         </>
     )
 }
