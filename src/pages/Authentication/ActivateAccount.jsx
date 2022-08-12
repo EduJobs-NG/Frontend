@@ -20,9 +20,9 @@ export const ActivateAccount = () => {
         if (err && err.response) {
           if (err.response.status === 400) {
             setShow(false)
-            setError("User does not exist. Kindly register.")
+            setError("Invalid token for given user")
             setTimeout(() => {
-              setError("User does not exist. Kindly register.")
+              setError("Invalid token for given user")
             }, 2000)
           }
           else if (err.response.status === 403) {
@@ -62,7 +62,7 @@ export const ActivateAccount = () => {
     <section className='overflow-x-hidden px-6'>
       <div className='flex flex-col h-screen  items-center gap-y-[2rem] text-center justify-center '>
         <div className='max-w-[600px]'>
-          <h1>Account Activation</h1>
+          <h1 className='text-2xl font-[800]'>Account Activation</h1>
           {error && (
 
             <div className="p-3 ]  my-4 text-center">
