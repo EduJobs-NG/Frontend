@@ -1,12 +1,18 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Navbar } from './Navbar';
 import AuthContext from '../../context/AuthContext';
 import enoch from '../../assets/enoch.jpg';
 import { EditProfile } from './EditProfile/EditProfile';
+import { FaEdit } from 'react-icons/fa';
+import { EditBionPic } from './EditProfile/EditBionPic';
 
 
 export const UserProfile = () => {
-  const { user, getUserMeHandler } = useContext(AuthContext)
+  const { user, getUserMeHandler } = useContext(AuthContext);
+  const [show, setShow] = useState(false)
+  const handleShow = () =>{
+    setShow(true);
+  }
 
   useEffect(() => {
     getUserMeHandler();
@@ -15,6 +21,7 @@ export const UserProfile = () => {
   return (
     <>
       <Navbar />
+      {show && <EditBionPic setShow={setShow} />}
 
       <section className='bg-[#f5f5f5] overflow-x-hidden'>
         <div className='container mx-auto rounded-[40px] bg-white'>
@@ -35,11 +42,14 @@ export const UserProfile = () => {
               </div>
 
               <div className='max-w-[600px]'>
-                <h1 className='font-[700] text-[18px]'>Bio</h1>
-                <p>
+                <div className='flex justify-center'>
+                <span className='font-[700] text-[18px] pr-2'>Bio</span> <FaEdit onClick={handleShow} />
+                </div>
+               
+                <div>
                   {user && user.bio}
-                  {/* {!user.bio && (<p>.</p>)} */}
-                </p>
+                  {!user.bio && (<p>.</p>)}
+                </div>
               </div>
             </div>
             <div className='md:container mt-[3rem] pb-[4rem] rounded-[40px] md:mx-auto'>

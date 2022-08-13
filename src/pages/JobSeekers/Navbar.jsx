@@ -20,6 +20,7 @@ export const Navbar = () => {
   }
   const activeLink = 'border-b border-b-white';
   const normalLink = 'border-none';
+  const normalMobile = 'text-[1.3rem]';
   const activeMobile = 'text-blue text-[1.3rem] font-[700]'
 
   return (
@@ -93,19 +94,19 @@ export const Navbar = () => {
             <FaTimes onClick={handleClick} className='text-blue text-[1.3rem] mt-3 cursor-pointer absolute right-5 top-5' />
             <ul className='py-[2rem] flex flex-col '>
               <li className='mb-[33px]'>
-                <NavLink to="/dashboard/find-jobs" className={({isActive}) => (isActive ? activeMobile : normalLink)}  >FIND JOBS</NavLink>
+                <NavLink to="/dashboard/find-jobs" className={({isActive}) => (isActive ? activeMobile : normalMobile)}  >FIND JOBS</NavLink>
               </li>
               <li className='mb-[33px]'>
-                <NavLink to="/dashboard/saved-jobs" className={({isActive}) => (isActive ? activeMobile : normalLink)} >SAVED JOBS</NavLink>
+                <NavLink to="/dashboard/saved-jobs" className={({isActive}) => (isActive ? activeMobile : normalMobile)} >SAVED JOBS</NavLink>
               </li>
               <li className='mb-[33px]'>
-                <NavLink   to="/pricing" className={({isActive}) => (isActive ? activeMobile : normalLink)}>PRICING</NavLink>
+                <NavLink   to="/pricing" className={({isActive}) => (isActive ? activeMobile : normalMobile)}>PRICING</NavLink>
               </li>
               <li className='mb-[33px]'>
-                <NavLink  to="/messages" className={({isActive}) => (isActive ? activeMobile : normalLink)}>MESSAGES</NavLink>
+                <NavLink  to="/messages" className={({isActive}) => (isActive ? activeMobile : normalMobile)}>MESSAGES</NavLink>
               </li>
               <li className='mb-[33px]'>
-                <NavLink  to="/notification" className={({isActive}) => (isActive ? activeMobile : normalLink)}>NOTIFICATION</NavLink>
+                <NavLink  to="/notification" className={({isActive}) => (isActive ? activeMobile : normalMobile)}>NOTIFICATION</NavLink>
               </li>
             </ul>
 
