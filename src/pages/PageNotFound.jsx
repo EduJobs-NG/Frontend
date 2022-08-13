@@ -9,7 +9,7 @@ export const PageNotFound = () => {
 
     <div className='flex flex-col h-screen text-center justify-center align-items'>
         
-        <p>PageNotFound</p>
+        <p>oops!</p>
         <p>PageNotFound</p>
         </div>
     </section>
