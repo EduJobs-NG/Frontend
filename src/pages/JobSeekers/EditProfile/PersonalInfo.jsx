@@ -1,6 +1,5 @@
 import React, { useRef, useContext, useEffect, useState } from 'react'
 import { FormInputBox } from '../../../components/Forms/FormInputBox';
-import { FaSignInAlt, FaEnvelope, FaLinkedin, FaGoogle } from 'react-icons/fa';
 import * as Yup from 'yup';
 import { useFormik, Formik, Form } from 'formik';
 import AuthContext from '../../../context/AuthContext';
@@ -10,7 +9,7 @@ import { ThreeDots } from 'react-loader-spinner';
 
 const validationSchema = Yup.object({
   email: Yup.string().email("Invalid email address"),
-  // phone_number: Yup.string().phone(null, true, "Has to be a number").min(11,'Has to be up to digits long').max(12, "Can't be more than 12 digits"),
+  phone_number: Yup.number()
 
 
 })
@@ -87,7 +86,7 @@ export const PersonalInfo = () => {
           <div className='grid md:grid-cols-2 md:gap-3'>
             <div className='w-full  max-w-lg'>
 
-              <FormInputBox type="text" label="First Name" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
+              <FormInputBox disabled type="text" label="First Name" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
                 placeholder="First Name" id="first_name" name="first_name" onChange={formik.handleChange} value={formik.values.first_name} onBlur={formik.handleBlur} />
 
               {formik.touched.first_name && formik.errors.first_name ? (<small className="text-red-600">{formik.errors.first_name}</small>) : null}
@@ -104,7 +103,7 @@ export const PersonalInfo = () => {
           <div className='grid md:grid-cols-2 md:gap-3 mt-[1rem]'>
             <div className='w-full max-w-lg'>
 
-              <FormInputBox type="text" label="Last Name" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
+              <FormInputBox disabled type="text" label="Last Name" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
                 placeholder="Last Name" id="last_name" name="last_name" onChange={formik.handleChange} value={formik.values.last_name} onBlur={formik.handleBlur} />
 
               {formik.touched.last_name && formik.errors.last_name ? (<small className="text-red-600">{formik.errors.last_name}</small>) : null}
@@ -128,7 +127,7 @@ export const PersonalInfo = () => {
             </div>
             <div className='w-full md:mt-0 mt-[1rem]  max-w-lg'>
 
-              <FormInputBox type="email" label="Email" className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
+              <FormInputBox disabled type="email" label="Email" className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
                 placeholder="Email" id="gender" name="email" onChange={formik.handleChange} value={formik.values.email} onBlur={formik.handleBlur} />
               {formik.touched.email && formik.errors.email ? (<small className="text-red-600">{formik.errors.email}</small>) : null}
             </div>

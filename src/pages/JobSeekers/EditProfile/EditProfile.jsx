@@ -11,7 +11,7 @@ export const EditProfile = () => {
     const [active, setActive] = useState(0)
     const { user, getUserMeHandler } = useContext(AuthContext);
    
-    const titles = ['personal info', 'professional information', 'credentials', 'contact information'];
+    const titles = ['personal info', 'education', 'credentials', 'contact information'];
     const handleTitle = (e, index) => {
         setTitle(() => e.target.textContent.toLowerCase());
         setActive(index)
@@ -19,7 +19,7 @@ export const EditProfile = () => {
     }
     const handleDisplay = () => {
         switch (title) {
-            case 'professional information':
+            case 'education':
                 return (<ProfessionalInfo />)
                 break;
             case 'credentials':
