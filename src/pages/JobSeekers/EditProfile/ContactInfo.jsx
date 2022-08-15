@@ -18,27 +18,28 @@ const validationSchema = Yup.object({
 })
 export const ContactInfo = () => {
   const [isLoading, setIsLoading] = useState(false);
+  
 
  
   const { user, authTokens } = useContext(AuthContext);
-  // const kin_first_name = user.user?.first_name || '';
-  // const last_name = user.user?.last_name || '';
-  // const middle_name = user.user?.middle_name || '';
-  // const email = user.user?.email || '';
-  const next_kin_address = user?.home_address || '';
-  // const phone_number = user?.phone_number || '';
-  // const city = user?.city || '';
-  // const state = user?.state || '';
-  // const gender = user?.gender || '';
-  // const facebook_url = user.social_info?.facebook_url || '';
-  // const twitter_url = user.social_info && user.social_info ? user.social_info.twitter_url : '';
-  // const linkedin_url = user.social_info?.linkedin_url || '';
-  // const instagram_url = user.social_info?.instagram_url || '';
+  const next_kin_fname = user.contact_info?.next_kin_fname || '';
+  const next_kin_lname = user.contact_info?.next_kin_lname || '';
+  const next_kin_address = user.contact_info?.next_kin_address || '';
+  const next_kin_email = user.contact_info?.next_kin_email || '';
+  const next_kin_phone = user.contact_info?.next_kin_phone || '';
+  const first_ref_fname = user.contact_info?.first_ref_fname || '';
+  const first_ref_lname = user.contact_info?.first_ref_lname || '';
+  const first_ref_phone = user.contact_info?.first_ref_phone || '';
+  const first_ref_jtitle = user.contact_info?.first_ref_jtitle || '';
+  const second_ref_jtitle = user.contact_info?.second_ref_jtitle || '';
+  const second_ref_fname = user.contact_info?.second_ref_fname || '';
+  const second_ref_lname = user.contact_info?.second_ref_lname || '';
+  const second_ref_phone = user.contact_info?.second_ref_phone || '';
 
   const onSubmit = async (values) => {
     setIsLoading(true)
     const response = await axios
-      .put(`${process.env.REACT_APP_BASE_URL}account/user-profile/contact_info/`, values, {
+      .put(`${process.env.REACT_APP_BASE_URL}account/user-profile/me/contact_info/`, values, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Token ${authTokens.auth_token}`
@@ -59,19 +60,19 @@ export const ContactInfo = () => {
 
   const formik = useFormik({
     initialValues: {
-      // first_ref_fname:first_ref_fname ,
-      // first_ref_jtitle:first_ref_jtitle ,
-      // first_ref_lname: first_ref_lname,
-      // first_ref_phone: first_ref_phone,
+      first_ref_fname:first_ref_fname ,
+      first_ref_jtitle:first_ref_jtitle ,
+      first_ref_lname: first_ref_lname,
+      first_ref_phone: first_ref_phone,
       next_kin_address: next_kin_address,
-      // next_kin_email: next_kin_email,
-      // next_kin_fname: next_kin_fname,
-      // next_kin_lname: next_kin_lname,
-      // next_kin_phone: next_kin_phone,
-      // second_ref_fname: second_ref_fname,
-      // second_ref_lname: second_ref_lname,
-      // second_ref_jtitle: second_ref_jtitle,
-      // second_ref_phone: second_ref_phone
+      next_kin_email: next_kin_email,
+      next_kin_fname: next_kin_fname,
+      next_kin_lname: next_kin_lname,
+      next_kin_phone: next_kin_phone,
+      second_ref_fname: second_ref_fname,
+      second_ref_lname: second_ref_lname,
+      second_ref_jtitle: second_ref_jtitle,
+      second_ref_phone: second_ref_phone
 
     },
     validateOnBlur: true,

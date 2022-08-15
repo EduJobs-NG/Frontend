@@ -2,8 +2,9 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Navbar } from './Navbar';
 import AuthContext from '../../context/AuthContext';
 import enoch from '../../assets/enoch.jpg';
+import marker from '../../assets/Marker.png';
 import { EditProfile } from './EditProfile/EditProfile';
-import { FaEdit } from 'react-icons/fa';
+import { FaEdit, FaMapMarker } from 'react-icons/fa';
 import { EditBionPic } from './EditProfile/EditBionPic';
 
 
@@ -34,15 +35,15 @@ export const UserProfile = () => {
                 <div className=''>
                   {loading && (<p>Loading...</p>)}
                  {!loading && <h1 className='font-[700] text-[20px]'>{user.user && user.user.first_name} {user.user && user.user.last_name}</h1>}
-                  <small>Location</small>
+                  <small><img src={marker} alt="" /></small>
                 </div>
 
 
               </div>
 
-              <div className='max-w-[600px]'>
+              <div className='max-w-[600px] mt-[2rem] md:mt-0'>
                 <div className='flex justify-start'>
-                <span className='font-[700] text-[18px]'>Bio</span> <FaEdit className='cursor-pointer ml-2' onClick={()=>setShow(true)} />
+                <span className='font-[700] text-[18px]'>Bio:</span> <FaEdit className='cursor-pointer ml-2' onClick={()=>setShow(true)} />
                 </div>
                
                 <div className='text-left'>
