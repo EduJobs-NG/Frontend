@@ -6,6 +6,8 @@ import { FaBars, FaTimes } from 'react-icons/fa';
 import chat from '../../assets/chat.png'
 import notification from '../../assets/notification.png'
 import Aos from 'aos'
+import enoch from '../../assets/enoch.jpg';
+
 export const Navbar = () => {
   useEffect(() => {
     Aos.init();
@@ -59,22 +61,27 @@ export const Navbar = () => {
 
             <li>
               <NavLink to="/dashboard/profile">
-                <FaUserCircle className='' />
+              <div className='w-[40px] h-[40px]'>
+                  <img className='rounded-full ' src={enoch} alt="" />
+                </div>
               </NavLink>
             </li>
 
 
 
           </ul>
-          <div className='xl:hidden flex flex-row gap-[1rem]'>
+          <div className='xl:hidden items-center flex flex-row gap-[1rem]'>
             <div>
               <NavLink to="/dashboard/profile">
-                <FaUserCircle className='text-white w-8' />
+                {/* <FaUserCircle className='text-white w-8' /> */}
+                <div className='w-[40px] h-[40px]'>
+                  <img className='rounded-full ' src={enoch} alt="" />
+                </div>
               </NavLink>
             </div>
 
             <div onClick={handleClick}>
-              <FaBars className='text-white text-[1rem] cursor-pointer' /></div>
+              <FaBars className='text-white text-[1.5rem] cursor-pointer' /></div>
             <div>
 
             </div>

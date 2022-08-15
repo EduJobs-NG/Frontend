@@ -134,7 +134,7 @@ export const PersonalInfo = () => {
 
           </div>
 
-          <div className='w-full grid  mt-[1rem]'>
+          <div className=' grid  mt-[1rem]'>
             <label>Home Address</label>
             <textarea value={formik.values.home_address} name="home_address" id="home_address" onChange={formik.handleChange} className='w-full border border-solid outline-none rounded-md resize-none border-[#808080]  p-2 '
               placeholder='Epe, Lagos' cols="100" rows="4">

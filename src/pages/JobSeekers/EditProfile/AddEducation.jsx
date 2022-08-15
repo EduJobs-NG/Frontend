@@ -16,6 +16,8 @@ const validationSchema = Yup.object({
   
   })
 export const AddEducation = ({show, setShow}) => {
+  const [isLoading, setIsLoading] = useState(false);
+
     const onSubmit = () =>{}
     const formik = useFormik({
         initialValues: {
@@ -101,6 +103,24 @@ export const AddEducation = ({show, setShow}) => {
               </div>
 
             </div>
+
+            <div className=' grid  mt-[1rem]'>
+            <label>Study Summary</label>
+            <textarea value={formik.values.home_address} name="home_address" id="home_address" onChange={formik.handleChange} className='w-full border border-solid outline-none rounded-md resize-none border-[#808080]  p-2 '
+              placeholder='Tell briefly about your education: What disciplines did you study? What projects did you do?' cols="100" rows="4">
+            </textarea>
+          </div>
+
+          <div className='mt-[3rem] flex justify-center'>
+            {!isLoading && <button className='bg-blue opacity-100  px-[5rem] text-white rounded-sm p-2' type="submit">SAVE</button>}
+            {isLoading && (
+              <div className='flex justify-center'>
+                <ThreeDots type="ThreeDots"
+                  width={100} height={20} color="blue"
+                />
+              </div>
+            )}
+          </div>
            </Form>
        </Formik>      
        </div>      {/*footer*/}

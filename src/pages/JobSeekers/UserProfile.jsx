@@ -37,7 +37,7 @@ export const UserProfile = () => {
                 <div className=''>
                   {loading && (<p>Loading...</p>)}
                  {!loading && <h1 className='font-[700] text-[20px]'>{user.user && user.user.first_name} {user.user && user.user.last_name}</h1>}
-                  <small><img src={marker} alt="" /></small>
+                  <small><img src={marker} alt="" /> {user?.city} {user.state} </small>
                 </div>
 
 
