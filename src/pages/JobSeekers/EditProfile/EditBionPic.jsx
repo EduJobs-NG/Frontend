@@ -1,28 +1,61 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useFormik, Formik, Form } from 'formik';
 import { ThreeDots } from 'react-loader-spinner';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import AuthContext from '../../../context/AuthContext';
+import axios from 'axios';
 
-
-
-export const EditBionPic = ({setShow}) => {
+export const EditBionPic = ({setShow, show}) => {
+    const { user, authTokens } = useContext(AuthContext);
     const [isLoading, setIsLoading] = useState(false);
+
+    const bio = user?.bio || '';
+
+    const onSubmit = async (values) => {
+      setIsLoading(true)
+      const response = await axios
+        .put(`${process.env.REACT_APP_BASE_URL}account/user-profile-update/`, values, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${authTokens.auth_token}`
+          }
+        })
+        .catch(err => {
+          console.log(err)
+          setIsLoading(false)
+        });
+  
+      if (response) {
+        setIsLoading(false)
+        setShow(false)
+        console.log(response)
+  
+  
+      }
+    }
+  
    
     const formik = useFormik({
         initialValues: {
-            bio: ''
-        }
+            bio: bio
+        },
+        
+        onSubmit,
+        
     })
     return (
         <>
         
-          <div onClick={() => setShow(false)}
+          <div 
             className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
             <div className="relative w-auto my-6 mx-3 max-w-3xl">
+
               {/*content*/}
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
                 <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+            <FaTimes  onClick={()=> setShow(false)} className='text-blue z-[900] text-[1.3rem] absolute right-5 mt-3 cursor-pointer' />
+
                   <h3 className="text-3xl font-semibold">
                      Bio
                   </h3>
@@ -38,7 +71,7 @@ export const EditBionPic = ({setShow}) => {
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
                 <Formik>
-             <Form>
+             <Form onSubmit={formik.handleSubmit}>
                  <div className='w-full max-w-xl grid  mt-[1rem]'>
                      {/* <label className='text-xl mb-3 font-[700]'>Edit Bio</label> */}
                      <textarea value={formik.values.bio} name="bio" id="bio" onChange={formik.handleChange} className='w-full border border-solid outline-none rounded-md resize-none border-[#808080]  p-2 '
@@ -47,6 +80,7 @@ export const EditBionPic = ({setShow}) => {
          <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">        
          
          <div className='mt-[1.6rem]'>
+
                          {!isLoading && <button  className= 'bg-blue  opacity-100 block w-full px-6 text-white rounded-md p-2' type="submit">SAVE</button>}
                          {isLoading && (
                              <div className='flex justify-center'>

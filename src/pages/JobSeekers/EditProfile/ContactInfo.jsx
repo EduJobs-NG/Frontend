@@ -25,7 +25,7 @@ export const ContactInfo = () => {
   // const last_name = user.user?.last_name || '';
   // const middle_name = user.user?.middle_name || '';
   // const email = user.user?.email || '';
-  // const home_address = user?.home_address || '';
+  const next_kin_address = user?.home_address || '';
   // const phone_number = user?.phone_number || '';
   // const city = user?.city || '';
   // const state = user?.state || '';
@@ -63,7 +63,7 @@ export const ContactInfo = () => {
       // first_ref_jtitle:first_ref_jtitle ,
       // first_ref_lname: first_ref_lname,
       // first_ref_phone: first_ref_phone,
-      // next_kin_address: next_kin_address,
+      next_kin_address: next_kin_address,
       // next_kin_email: next_kin_email,
       // next_kin_fname: next_kin_fname,
       // next_kin_lname: next_kin_lname,

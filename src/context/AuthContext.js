@@ -8,6 +8,7 @@ export default AuthContext;
 export const AuthProvider = ({children}) => {
     const navigate = useNavigate();
     const [user, setUser] = useState({})
+    const [loading, setLoading] = useState(false)
     const [authTokens, setAuthTokens] = useState(localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')):null)
     
     const logOutUser = async () =>{
@@ -29,7 +30,8 @@ export const AuthProvider = ({children}) => {
       }
 
       const getUserMeHandler = async () =>{
-        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}account/user-profile/`, {
+        setLoading(true)
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}account/user-profile-update/`, {
           headers:{
             'Content-Type':'application/json',
             'Authorization':`Token ${authTokens.auth_token}`
@@ -39,8 +41,10 @@ export const AuthProvider = ({children}) => {
         })
      
         if (response && response.data){
-          setUser(response.data[0])
-          console.log(response.data[0])
+          // console.log(response)
+          setUser(response.data)
+          setLoading(false);
+          console.log(response.data)
           
         }
     
@@ -53,7 +57,9 @@ export const AuthProvider = ({children}) => {
         authTokens:authTokens,
         setAuthTokens:setAuthTokens,
         logOutUser:logOutUser,
-        getUserMeHandler:getUserMeHandler
+        getUserMeHandler:getUserMeHandler,
+        loading:loading,
+        setLoading:setLoading
     }
 
     return (

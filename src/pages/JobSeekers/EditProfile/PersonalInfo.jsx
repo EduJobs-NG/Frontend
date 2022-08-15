@@ -3,11 +3,9 @@ import { FormInputBox } from '../../../components/Forms/FormInputBox';
 import { FaSignInAlt, FaEnvelope, FaLinkedin, FaGoogle } from 'react-icons/fa';
 import * as Yup from 'yup';
 import { useFormik, Formik, Form } from 'formik';
-import { Link } from 'react-router-dom';
 import AuthContext from '../../../context/AuthContext';
 import axios from 'axios';
 import { ThreeDots } from 'react-loader-spinner';
-import { useNavigate } from 'react-router-dom';
 
 
 const validationSchema = Yup.object({
@@ -20,25 +18,25 @@ export const PersonalInfo = () => {
   const [isLoading, setIsLoading] = useState(false);
 
 
-  const { user, authTokens } = useContext(AuthContext);
+  const { user, authTokens, loading } = useContext(AuthContext);
   const first_name = user.user?.first_name || '';
   const last_name = user.user?.last_name || '';
-  const middle_name = user.user?.middle_name || '';
+  const middle_name = user?.middle_name || '';
   const email = user.user?.email || '';
   const home_address = user?.home_address || '';
   const phone_number = user?.phone_number || '';
   const city = user?.city || '';
   const state = user?.state || '';
   const gender = user?.gender || '';
-  const facebook_url = user.social_info?.facebook_url || '';
-  const twitter_url = user.social_info && user.social_info ? user.social_info.twitter_url : '';
-  const linkedin_url = user.social_info?.linkedin_url || '';
-  const instagram_url = user.social_info?.instagram_url || '';
+  const facebook_url = user?.facebook_url || '';
+  const twitter_url = user?.twitter_url || '';
+  const linkedin_url = user?.linkedin_url || '';
+  const instagram_url = user?.instagram_url || '';
 
   const onSubmit = async (values) => {
     setIsLoading(true)
     const response = await axios
-      .put(`${process.env.REACT_APP_BASE_URL}account/user-profile/primary_info/`, values, {
+      .put(`${process.env.REACT_APP_BASE_URL}account/user-profile-update/`, values, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Token ${authTokens.auth_token}`
@@ -82,6 +80,8 @@ export const PersonalInfo = () => {
 
   return (
     <section className='bg-white rounded-[40px]'>
+      {loading && <p>loading...</p>}
+      {!loading &&
       <Formik>
         <Form onSubmit={formik.handleSubmit}>
           <div className='grid md:grid-cols-2 md:gap-3'>
@@ -207,7 +207,7 @@ export const PersonalInfo = () => {
         </Form>
 
       </Formik>
-
+}
     </section>
   )
 }
