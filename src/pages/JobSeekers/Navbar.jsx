@@ -7,8 +7,10 @@ import chat from '../../assets/chat.png'
 import notification from '../../assets/notification.png'
 import Aos from 'aos'
 import enoch from '../../assets/enoch.jpg';
+import {navigation} from '../../../src/data'
 
 export const Navbar = () => {
+  const {logo} = navigation;
   useEffect(() => {
     Aos.init();
     Aos.refresh();
@@ -30,8 +32,10 @@ export const Navbar = () => {
       <div className="container mx-auto">
         <div className="flex uppercase py-[1.5rem] items-center flex-row justify-between">
           <ul className="flex gap-x-[3rem] text-white flex-row">
-            <li className='title'>
-              <NavLink to="/" >EduJobsNg</NavLink>
+            <li className=''>
+            <NavLink to="/">
+                <img src={logo} className='w-[150px]' alt="" />
+                </NavLink>
             </li>
             <div className='hidden xl:flex gap-x-[3rem]'>
 
@@ -48,7 +52,7 @@ export const Navbar = () => {
 
           </ul>
 
-          <ul className='hidden xl:flex flex-row text-white gap-x-[2rem]'>
+          <ul className='hidden xl:flex flex-row items-center text-white gap-x-[2rem]'>
 
             <li>
               <img src={chat} alt="" />

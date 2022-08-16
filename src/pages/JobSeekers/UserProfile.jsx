@@ -3,8 +3,8 @@ import { Navbar } from './Navbar';
 import AuthContext from '../../context/AuthContext';
 import enoch from '../../assets/enoch.jpg';
 import marker from '../../assets/Marker.png';
+import EditIcon from '../../assets/EditIcon.png';
 import { EditProfile } from './EditProfile/EditProfile';
-import { FaEdit, FaMapMarker } from 'react-icons/fa';
 import { EditBionPic } from './EditProfile/EditBionPic';
 
 
@@ -37,7 +37,7 @@ export const UserProfile = () => {
                 <div className=''>
                   {loading && (<p>Loading...</p>)}
                  {!loading && <h1 className='font-[700] text-[20px]'>{user.user && user.user.first_name} {user.user && user.user.last_name}</h1>}
-                  <small><img src={marker} alt="" /> {user?.city} {user.state} </small>
+                  <small className='flex justify-start '><img src={marker} alt="" className='mr-[0.5rem]' /> {user?.city}, {user.state} </small>
                 </div>
 
 
@@ -45,7 +45,9 @@ export const UserProfile = () => {
 
               <div className='max-w-[600px] mt-[2rem] md:mt-0'>
                 <div className='flex justify-start'>
-                <span className='font-[700] text-[18px]'>Bio:</span> <FaEdit className='cursor-pointer ml-2' onClick={()=>setShow(true)} />
+                <span className='font-[700] text-[18px]'>Bio:</span> <div className='cursor-pointer ml-2' onClick={()=>setShow(true)}>
+                  <img src={EditIcon} alt="" />
+                </div>
                 </div>
                
                 <div className='text-left'>

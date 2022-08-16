@@ -6,6 +6,7 @@ import AuthContext from '../../../context/AuthContext';
 import axios from 'axios';
 import { ThreeDots } from 'react-loader-spinner';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import CustomSelect from '../../../components/Forms/CustomSelect';
 
 
 
@@ -34,13 +35,13 @@ export const AddEducation = ({show, setShow}) => {
                 <>
         
         <div 
-          className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-          <div className="relative w-full my-6 mx-3 max-w-5xl">
+          className="justify-center items-center  flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+          <div className="relative w-full mt-[20rem] md:mt-0 my-6 mx-3 max-w-5xl">
 
             {/*content*/}
-            <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+            <div className="border-0  rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
               {/*header*/}
-              <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+              <div className="flex  items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
           <FaTimes  onClick={()=> setShow(false)} className='text-blue z-[900] text-[1.3rem] absolute right-5 mt-3 cursor-pointer' />
 
                 <h3 className="text-3xl font-semibold">
@@ -68,17 +69,47 @@ export const AddEducation = ({show, setShow}) => {
               </div>
               <div className='w-full md:mt-0 mt-[1rem] max-w-lg'>
 
-                <FormInputBox type="text" label="Degree" className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
-                  placeholder="OND, HND, BSC" id="degree" name="degree" onChange={formik.handleChange} value={formik.values.degree} onBlur={formik.handleBlur} />
+              <CustomSelect
+            label="Degree"
+            name="degree"
+            placeholder="Select a degree"
+             className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"  
+             onChange={formik.handleChange}
+          >
+            <option value="" selected>Select a degree</option>
+            <option value="First Class">First Class</option>
+            <option value="Second Class Upper">Second Class Upper</option>
+            <option value="Second Class Lower">Second Class Lower</option>
+            <option value="Third Class">Third Class</option>
+            <option value="Distinction">Distinction</option>
+            <option value="Upper Credit">Upper Credit</option>
+            <option value="Lower Credit">Lower Credit</option>
+            <option value="Pass">Pass</option>
+            <option value="Others">Others</option>
+
+           
+          </CustomSelect>
               </div>
 
             </div>
 
            <div className='grid md:grid-cols-2 mt-[1rem] md:gap-3'>
               <div className='w-full  max-w-lg'>
+              <CustomSelect
+            label="Education Level"
+            name="education_level"
+            placeholder="Select a degree"
+             className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"  
+             onChange={formik.handleChange}
+          >
+            <option value="undergraduate">Undergraduate</option>
+            <option value="postgraduate">Post Graduate</option>
+            <option value="graduate">Graduate</option>
+            
 
-                <FormInputBox type="text" label="Education Level" className="border p-2.5 block w-full border-solid border-[#808080] rounded-lg outline-none"
-                  placeholder="" id="education_level" name="education_level" onChange={formik.handleChange} value={formik.values.education_level} onBlur={formik.handleBlur} />
+           
+          </CustomSelect>
+                
 
               </div>
               <div className='w-full md:mt-0 mt-[1rem] max-w-lg'>

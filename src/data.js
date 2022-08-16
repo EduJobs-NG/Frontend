@@ -2,12 +2,12 @@ import Feature1 from './assets/features1.png';
 import Feature2 from './assets/features2.png';
 import Feature3 from './assets/features3.png';
 import {FaFacebookF, FaLinkedinIn, FaTwitter} from 'react-icons/fa'
-import logo from './assets/logo.png'
+import logo1 from './assets/logo1.png'
 
 
 export const navigation = {
     
-    logo:'EduJobsNG',
+    logo:logo1,
     leftNav: [
            {
                 name: 'About us',

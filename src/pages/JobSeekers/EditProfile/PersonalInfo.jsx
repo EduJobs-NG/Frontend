@@ -5,6 +5,7 @@ import { useFormik, Formik, Form } from 'formik';
 import AuthContext from '../../../context/AuthContext';
 import axios from 'axios';
 import { ThreeDots } from 'react-loader-spinner';
+import CustomSelect from '../../../components/Forms/CustomSelect';
 
 
 const validationSchema = Yup.object({
@@ -83,6 +84,7 @@ export const PersonalInfo = () => {
       {!loading &&
       <Formik>
         <Form onSubmit={formik.handleSubmit}>
+       
           <div className='grid md:grid-cols-2 md:gap-3'>
             <div className='w-full  max-w-lg'>
 
@@ -108,13 +110,25 @@ export const PersonalInfo = () => {
 
               {formik.touched.last_name && formik.errors.last_name ? (<small className="text-red-600">{formik.errors.last_name}</small>) : null}
             </div>
-            <div className='w-full md:mt-0 mt-[1rem]  max-w-lg'>
-
+             <div className='w-full md:mt-0 mt-[1rem]  max-w-lg'>
+              <CustomSelect
+            label="Gender"
+            name="gender"
+            placeholder="Please select a job"
+             className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"  
+             onChange={formik.handleChange}
+          >
+           
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+           
+          </CustomSelect>
+{/*
               <FormInputBox type="text" label="Gender" className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
                 placeholder="Gender" id="gender" name="gender" onChange={formik.handleChange} value={formik.values.gender} onBlur={formik.handleBlur} />
               {formik.touched.gender && formik.errors.gender ? (<small className="text-red-600">{formik.errors.gender}</small>) : null}
-            </div>
-
+             */}
+</div>
           </div>
 
           <div className='grid  md:grid-cols-2 md:gap-3 mt-[1rem]'>

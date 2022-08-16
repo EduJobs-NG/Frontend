@@ -25,7 +25,7 @@ export const Navbar = () => {
             <ul className="flex gap-x-[3rem] text-white flex-row">
              <li className='title'>
               <NavLink to="/">
-                {logo}
+                <img src={logo} className='w-[150px]' alt="" />
                 </NavLink>
               </li> 
               
