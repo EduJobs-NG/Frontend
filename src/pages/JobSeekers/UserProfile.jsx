@@ -36,21 +36,22 @@ export const UserProfile = () => {
                 </div>
                 <div className=''>
                   {loading && (<p>Loading...</p>)}
-                 {!loading && <h1 className='font-[700] text-[20px]'>{user.user && user.user.first_name} {user.user && user.user.last_name}</h1>}
-                  <small className='flex justify-start '><img src={marker} alt="" className='mr-[0.5rem]' /> {user?.city}, {user.state} </small>
+                 {!loading && <h1 className='font-[700] text-[20px]'>{ user.user?.first_name} { user.user?.last_name}</h1>}
+                 {loading && <p>loading...</p>}
+                  {!loading && <small className='flex justify-center md:justify-start '><img src={marker} alt="" className='mr-[0.5rem]' /> {user?.city}, {user.state} </small>}
                 </div>
 
 
               </div>
 
               <div className='max-w-[600px] mt-[2rem] md:mt-0'>
-                <div className='flex justify-start'>
+                <div className='flex justify-center md:justify-start'>
                 <span className='font-[700] text-[18px]'>Bio:</span> <div className='cursor-pointer ml-2' onClick={()=>setShow(true)}>
                   <img src={EditIcon} alt="" />
                 </div>
                 </div>
                
-                <div className='text-left'>
+                <div className='text-center md:text-left'>
                   {loading && <p>loading...</p>}
                  {!loading && ( <p> {user?.bio}</p>)}
                   

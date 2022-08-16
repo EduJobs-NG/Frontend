@@ -39,7 +39,7 @@ export const ContactInfo = () => {
   const onSubmit = async (values) => {
     setIsLoading(true)
     const response = await axios
-      .put(`${process.env.REACT_APP_BASE_URL}account/user-profile/me/contact_info/`, values, {
+      .put(`${process.env.REACT_APP_BASE_URL}account/user-profile/me/contact_info/{id}/`, values, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Token ${authTokens.auth_token}`
@@ -153,7 +153,7 @@ export const ContactInfo = () => {
               <div className='w-full  mt-[1rem]  max-w-lg'>
 
                 <FormInputBox type="text" label="Job Title" className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
-                  placeholder="Job Title" id="first_ref_phone" name="first_ref_phone" onChange={formik.handleChange} value={formik.values.first_ref_phone} onBlur={formik.handleBlur} />
+                  placeholder="Job Title" id="first_ref_jtitle" name="first_ref_jtitle" onChange={formik.handleChange} value={formik.values.first_ref_jtitle} onBlur={formik.handleBlur} />
               </div>
             </div>
 

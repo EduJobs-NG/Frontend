@@ -11,20 +11,51 @@ import CustomSelect from '../../../components/Forms/CustomSelect';
 
 
 const validationSchema = Yup.object({
-    email: Yup.string().email("Invalid email address"),
-    phone_number: Yup.number()
+    // email: Yup.string().email("Invalid email address"),
+    // phone_number: Yup.number()
   
   
   })
 export const AddEducation = ({show, setShow}) => {
+  const { user, authTokens } = useContext(AuthContext);
+
+
+
+
   const [isLoading, setIsLoading] = useState(false);
 
-    const onSubmit = () =>{}
+  const onSubmit = async (values) => {
+    setIsLoading(true)
+    const response = await axios
+      .put(`${process.env.REACT_APP_BASE_URL}account/user-profile/me/professional_info/{id}/`, values, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Token ${authTokens.auth_token}`
+        }
+      })
+      .catch(err => {
+        console.log(err)
+        setIsLoading(false)
+      });
+
+    if (response) {
+      setIsLoading(false)
+      console.log(response)
+
+
+    }
+  }
     const formik = useFormik({
-        initialValues: {
-         
-    
-        },
+      initialValues: {
+        degree:"",
+        school_name:"",
+        start_of_education:"",
+        end_of_education:"",
+        educational_level:"",
+        study_summary:"",
+        grade:''
+  
+      },
         validateOnBlur: true,
         onSubmit,
         validationSchema: validationSchema,
@@ -76,7 +107,7 @@ export const AddEducation = ({show, setShow}) => {
              className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"  
              onChange={formik.handleChange}
           >
-            <option value="" selected>Select a degree</option>
+            <option value="">Select a degree</option>
             <option value="First Class">First Class</option>
             <option value="Second Class Upper">Second Class Upper</option>
             <option value="Second Class Lower">Second Class Lower</option>
@@ -97,16 +128,16 @@ export const AddEducation = ({show, setShow}) => {
               <div className='w-full  max-w-lg'>
               <CustomSelect
             label="Education Level"
-            name="education_level"
+            name="educational_level"
+            id="educational_level"
             placeholder="Select a degree"
              className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"  
              onChange={formik.handleChange}
           >
+            <option value="">Select a Level</option>
             <option value="undergraduate">Undergraduate</option>
             <option value="postgraduate">Post Graduate</option>
             <option value="graduate">Graduate</option>
-            
-
            
           </CustomSelect>
                 
@@ -124,20 +155,20 @@ export const AddEducation = ({show, setShow}) => {
               <div className='w-full  max-w-lg'>
 
                 <FormInputBox type="date" label="Start Date" className="border p-2.5 block w-full border-solid border-[#808080] rounded-lg outline-none"
-                  placeholder="" id="start_date" name="start_date" onChange={formik.handleChange} value={formik.values.start_date} onBlur={formik.handleBlur} />
+                  placeholder="" id="start_of_education" name="start_of_education" onChange={formik.handleChange} value={formik.values.start_of_education} onBlur={formik.handleBlur} />
 
               </div>
               <div className='w-full md:mt-0 mt-[1rem] max-w-lg'>
 
                 <FormInputBox type="date" label="End Date" className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
-                  placeholder="" id="end_date" name="end_date" onChange={formik.handleChange} value={formik.values.end_date} onBlur={formik.handleBlur} />
+                  placeholder="" id="end_of_education" name="end_of_education" onChange={formik.handleChange} value={formik.values.end_of_education} onBlur={formik.handleBlur} />
               </div>
 
             </div>
 
             <div className=' grid  mt-[1rem]'>
             <label>Study Summary</label>
-            <textarea value={formik.values.home_address} name="home_address" id="home_address" onChange={formik.handleChange} className='w-full border border-solid outline-none rounded-md resize-none border-[#808080]  p-2 '
+            <textarea value={formik.values.study_summary} name="study_summary" id="study_summary" onChange={formik.handleChange} className='w-full border border-solid outline-none rounded-md resize-none border-[#808080]  p-2 '
               placeholder='Tell briefly about your education: What disciplines did you study? What projects did you do?' cols="100" rows="4">
             </textarea>
           </div>

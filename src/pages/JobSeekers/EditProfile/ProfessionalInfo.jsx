@@ -13,7 +13,6 @@ export const ProfessionalInfo = () => {
       <h1 className='text-xl font-[700]'>Your Education</h1>
       <p>All Education is valuable, ensure to list all schools attended below.</p>
       <div className='mt-[3rem] items-baseline gap-3 text-center flex flex-row justify-center'>
-      
       <div>
       <img src={AddIcon} alt="" /> 
       </div>
