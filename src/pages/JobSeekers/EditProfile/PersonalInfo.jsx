@@ -18,22 +18,32 @@ const validationSchema = Yup.object({
 })
 export const PersonalInfo = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [userData, setUserData] = useState({});
+
+ 
+  
 
 
   const { user, authTokens, loading } = useContext(AuthContext);
-  const first_name = user.user?.first_name || '';
-  const last_name = user.user?.last_name || '';
-  const middle_name = user?.middle_name || '';
-  const email = user.user?.email || '';
-  const home_address = user?.home_address || '';
-  const phone_number = user?.phone_number || '';
-  const city = user?.city || '';
-  const state = user?.state || '';
-  const gender = user?.gender || '';
-  const facebook_url = user?.facebook_url || '';
-  const twitter_url = user?.twitter_url || '';
-  const linkedin_url = user?.linkedin_url || '';
-  const instagram_url = user?.instagram_url || '';
+  
+  const {user:{first_name, last_name, email}, middle_name, home_address, phone_number, city, state, gender, facebook_url, 
+  linkedin_url, twitter_url, instagram_url} = user;
+ 
+  // const first_name =  user.user?.first_name || '';
+  // const last_name = user.user?.last_name || '';
+  // const middle_name = user?.middle_name || '';
+  // const email = user.user?.email || '';
+  // const home_address = user?.home_address || '';
+  // const phone_number = user?.phone_number || '';
+  // const city = user?.city || '';
+  // const state = user?.state || '';
+  // const gender = user?.gender || '';
+  // const facebook_url = user?.facebook_url || '';
+  // const twitter_url = user?.twitter_url || '';
+  // const linkedin_url = user?.linkedin_url || '';
+  // const instagram_url = user?.instagram_url || '';
+
+
 
   const onSubmit = async (values) => {
     setIsLoading(true)
@@ -65,19 +75,19 @@ export const PersonalInfo = () => {
 
   const formik = useFormik({
     initialValues: {
-      first_name: first_name,
-      middle_name: middle_name,
-      last_name: last_name,
-      phone_number: phone_number,
-      email: email,
-      gender: gender,
-      home_address: home_address,
-      city: city,
-      state: state,
-      facebook_url: facebook_url,
-      instagram_url: instagram_url,
-      twitter_url: twitter_url,
-      linkedin_url: linkedin_url
+      first_name,
+      middle_name,
+      last_name,
+      phone_number,
+      email,
+      gender,
+      home_address,
+      city,
+      state,
+      facebook_url,
+      instagram_url,
+      twitter_url,
+      linkedin_url
 
     },
     validateOnBlur: true,
@@ -89,23 +99,22 @@ export const PersonalInfo = () => {
   return (
     <section className='bg-white rounded-[40px]'>
       <ToastContainer />
-      {loading && <p>loading...</p>}
-      {!loading &&
+      
       <Formik>
         <Form onSubmit={formik.handleSubmit}>
        
           <div className='grid md:grid-cols-2 md:gap-3'>
             <div className='w-full  max-w-lg'>
 
-              <FormInputBox disabled type="text" label="First Name" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
-                placeholder="First Name" id="first_name" name="first_name" onChange={formik.handleChange} value={formik.values.first_name} onBlur={formik.handleBlur} />
+              <FormInputBox  type="text" label="First Name" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
+                placeholder="First Name"  id="first_name" name="first_name" onChange={formik.handleChange} value={first_name} onBlur={formik.handleBlur} />
 
               {formik.touched.first_name && formik.errors.first_name ? (<small className="text-red-600">{formik.errors.first_name}</small>) : null}
             </div>
             <div className='w-full md:mt-0 mt-[1rem] max-w-lg'>
 
               <FormInputBox type="text" label="Middle Name" className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
-                placeholder="Middle Name" id="middle_name" name="middle_name" onChange={formik.handleChange} value={formik.values.middle_name} onBlur={formik.handleBlur} />
+                placeholder="Middle Name" id="middle_name" name="middle_name" onChange={formik.handleChange} value={middle_name} onBlur={formik.handleBlur} />
               {formik.touched.middle_name && formik.errors.middle_name ? (<small className="text-red-600">{formik.errors.middle_name}</small>) : null}
             </div>
 
@@ -115,7 +124,7 @@ export const PersonalInfo = () => {
             <div className='w-full max-w-lg'>
 
               <FormInputBox disabled type="text" label="Last Name" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
-                placeholder="Last Name" id="last_name" name="last_name" onChange={formik.handleChange} value={formik.values.last_name} onBlur={formik.handleBlur} />
+                placeholder="Last Name" id="last_name" name="last_name" onChange={formik.handleChange} value={last_name} onBlur={formik.handleBlur} />
 
               {formik.touched.last_name && formik.errors.last_name ? (<small className="text-red-600">{formik.errors.last_name}</small>) : null}
             </div>
@@ -229,7 +238,7 @@ export const PersonalInfo = () => {
         </Form>
 
       </Formik>
-}
+
     </section>
   )
 }

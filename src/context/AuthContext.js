@@ -7,7 +7,7 @@ export default AuthContext;
 
 export const AuthProvider = ({children}) => {
     const navigate = useNavigate();
-    const [user, setUser] = useState({})
+    const [user, setUser] = useState({user:{}})
     const [loading, setLoading] = useState(false)
     const [authTokens, setAuthTokens] = useState(localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')):null)
     
@@ -49,10 +49,7 @@ export const AuthProvider = ({children}) => {
           
         }
       }
-      //  useEffect(() =>{
-      //   getUserMeHandler();
-      // }, [])
-
+      
   
     let contextData = {
         user:user,

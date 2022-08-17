@@ -10,7 +10,17 @@ import { EditBionPic } from './EditProfile/EditBionPic';
 
 export const UserProfile = () => {
   const { user, getUserMeHandler, loading, setLoading } = useContext(AuthContext);
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(false);
+  const renderBasedOnStatus = () =>{
+    switch (loading) {
+      case true:
+        return <p>loading...</p>
+      case false:
+        return (<EditProfile />)
+      default:
+       return <p>loading...</p>;
+    }
+  }
   
 useEffect(() =>{
   getUserMeHandler();
@@ -55,7 +65,7 @@ useEffect(() =>{
               </div>
             </div>
             <div className='md:container mt-[3rem] pb-[4rem] rounded-[40px] md:mx-auto'>
-            <EditProfile />
+          {renderBasedOnStatus()}
 
           </div>
           </div>
