@@ -27,7 +27,7 @@ export const ProfessionalInfo = () => {
       {education && education.map((item) =>{
         return (
          <>
-          {showDelete && <DeleteEducation setShowDelete={setShowDelete} id={item.id} />}
+          {showDelete && <DeleteEducation setShowDelete={setShowDelete} item={item} />}
          
           <div key={item.id} className='relative border mt-[1rem] px-[2rem] py-[1rem] rounded-lg border-[#808080]'>
             

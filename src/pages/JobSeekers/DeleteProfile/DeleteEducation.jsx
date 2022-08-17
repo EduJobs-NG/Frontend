@@ -6,13 +6,13 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export const DeleteEducation = ({setShowDelete, id}) => {
+export const DeleteEducation = ({setShowDelete, item}) => {
     const [isLoading, setIsLoading] = useState(false);
     const { authTokens } = useContext(AuthContext);
 
     const handleDelete = async () => {
         setIsLoading(true)
-    const response = await axios.delete(`${process.env.REACT_APP_BASE_URL}account/user-profile/me/professional_info/${id}/`,
+    const response = await axios.delete(`${process.env.REACT_APP_BASE_URL}account/user-profile/me/professional_info/${item.id}/`,
    { headers: {
         'Content-Type': 'application/json',
         'Authorization': `Token ${authTokens.auth_token}`
@@ -45,10 +45,8 @@ export const DeleteEducation = ({setShowDelete, id}) => {
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
                 <div className="flex items-start justify-between p-5  rounded-t">
-            {/* <FaTimes  onClick={()=> setShow(false)} className='text-blue z-[900] text-[1.3rem] absolute right-5 mt-3 cursor-pointer' /> */}
                   
               
-                </div>
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
                 
@@ -56,8 +54,9 @@ export const DeleteEducation = ({setShowDelete, id}) => {
                      {/* <label className='text-xl mb-3 font-[700]'>Edit Bio</label> */}
                      <h3 className="text-3xl font-semibold">
                     Are you sure you want to delete?
-                    <p>{id}</p>
                   </h3>
+                  <p>{item.id}</p>
+                  {/* <p>{item.start_of_education}</p> */}
                      
          <div className="flex items-center justify-end p-6  rounded-b">        
          
@@ -75,19 +74,14 @@ export const DeleteEducation = ({setShowDelete, id}) => {
                              </div>
                          )}
                      </div>
-         {/* <button
-           className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-           type="button"
-          
-         >
-           Save Changes
-         </button> */}
+        
        </div>
                    
                  </div>
             
          </div>      {/*footer*/}
       
+              </div>
               </div>
             </div>
           </div>
