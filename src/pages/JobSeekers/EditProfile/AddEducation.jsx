@@ -7,6 +7,8 @@ import axios from 'axios';
 import { ThreeDots } from 'react-loader-spinner';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import CustomSelect from '../../../components/Forms/CustomSelect';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -14,7 +16,7 @@ const validationSchema = Yup.object({
     school_name: Yup.string().required('Required'),
     degree: Yup.string().required('Required'),
     educational_level: Yup.string().required('Required'),
-    grade:Yup.number('Must be digits').required('Required'),
+    grade: Yup.string().required('Required'),
     start_of_education:Yup.date().required('Required'),
     end_of_education:Yup.date().required('Required'),
     study_summary:Yup.string().required('Required')
@@ -40,13 +42,18 @@ export const AddEducation = ({show, setShow}) => {
       })
       .catch(err => {
         console.log(err)
+        toast.error(err)
         setIsLoading(false)
       });
 
     if (response) {
       setIsLoading(false)
+      setShow(false)
+      toast.success('Your changes have been successfully saved')
       console.log(response)
-
+      setTimeout(()=>{
+        window.location.reload(true)
+      }, 2000)
 
     }
   }
@@ -69,9 +76,9 @@ export const AddEducation = ({show, setShow}) => {
   return (
     
                 <>
+      <ToastContainer className="z-[900]" />
         
-        <div 
-          className="justify-center items-center  flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+        <div className="justify-center items-center  flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
           <div className="relative w-full mt-[20rem] md:mt-0 my-6 mx-3 max-w-5xl">
 
             {/*content*/}

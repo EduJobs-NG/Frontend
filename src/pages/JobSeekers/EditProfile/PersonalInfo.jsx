@@ -6,11 +6,13 @@ import AuthContext from '../../../context/AuthContext';
 import axios from 'axios';
 import { ThreeDots } from 'react-loader-spinner';
 import CustomSelect from '../../../components/Forms/CustomSelect';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const validationSchema = Yup.object({
   email: Yup.string().email("Invalid email address"),
-  phone_number: Yup.number()
+  phone_number: Yup.string().max(12, 'Not more than 12 numbers')
 
 
 })
@@ -44,13 +46,18 @@ export const PersonalInfo = () => {
       })
       .catch(err => {
         console.log(err)
+        toast.error(err.message)
         setIsLoading(false)
       });
 
     if (response) {
       setIsLoading(false)
+      toast.success('Your changes have been successfully saved')
       console.log(response)
-      window.location.reload(true)
+      setTimeout(()=>{
+        window.location.reload(true)
+
+      }, 2000)
 
 
     }
@@ -81,6 +88,7 @@ export const PersonalInfo = () => {
 
   return (
     <section className='bg-white rounded-[40px]'>
+      <ToastContainer />
       {loading && <p>loading...</p>}
       {!loading &&
       <Formik>

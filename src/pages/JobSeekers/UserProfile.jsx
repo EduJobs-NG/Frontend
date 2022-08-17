@@ -12,7 +12,9 @@ export const UserProfile = () => {
   const { user, getUserMeHandler, loading, setLoading } = useContext(AuthContext);
   const [show, setShow] = useState(false)
   
-
+useEffect(() =>{
+  getUserMeHandler();
+}, [])
   return (
     <>
       <Navbar />

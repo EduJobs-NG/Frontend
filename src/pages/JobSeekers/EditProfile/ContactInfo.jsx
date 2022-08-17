@@ -6,6 +6,8 @@ import { useFormik, Formik, Form } from 'formik';
 import AuthContext from '../../../context/AuthContext';
 import axios from 'axios';
 import { ThreeDots } from 'react-loader-spinner';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -47,13 +49,18 @@ export const ContactInfo = () => {
       })
       .catch(err => {
         console.log(err)
+        toast.error(err.message)
         setIsLoading(false)
       });
 
     if (response) {
       setIsLoading(false)
+      toast.success('Your changes have been successfully saved.')
       console.log(response)
-      window.location.reload(true)
+      setTimeout(() =>{
+        window.location.reload(true)
+
+      }, 2000)
 
 
     }
@@ -84,6 +91,7 @@ export const ContactInfo = () => {
 
   return (
     <section className='bg-white rounded-[40px]'>
+      <ToastContainer />
       <Formik>
         <Form onSubmit={formik.handleSubmit}>
           <div>

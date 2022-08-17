@@ -30,7 +30,7 @@ export const AuthProvider = ({children}) => {
       }
     
       const getUserMeHandler = async () =>{
-        
+
         setLoading(true)
         const response = await axios.get(`${process.env.REACT_APP_BASE_URL}account/user-profile-update/`, {
           headers:{
@@ -49,9 +49,9 @@ export const AuthProvider = ({children}) => {
           
         }
       }
-      useEffect(() =>{
-        getUserMeHandler();
-      }, [])
+      //  useEffect(() =>{
+      //   getUserMeHandler();
+      // }, [])
 
   
     let contextData = {

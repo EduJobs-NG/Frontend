@@ -22,7 +22,7 @@ module.exports = {
         blue: "#02378B"
       },
       backgroundImage:{
-        hero:'url("/src/assets/hero.jpg")',
+        hero:'url("/src/assets/homeImage.png")',
         jobs:'url("/src/assets/jobs.png")'
       }
     },
