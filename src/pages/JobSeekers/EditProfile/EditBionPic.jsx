@@ -28,6 +28,7 @@ export const EditBionPic = ({setShow, show}) => {
       if (response) {
         setIsLoading(false)
         setShow(false)
+        window.location.reload(true)
         console.log(response)
   
   

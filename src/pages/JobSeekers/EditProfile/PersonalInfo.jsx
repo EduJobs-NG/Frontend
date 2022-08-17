@@ -50,6 +50,7 @@ export const PersonalInfo = () => {
     if (response) {
       setIsLoading(false)
       console.log(response)
+      window.location.reload(true)
 
 
     }

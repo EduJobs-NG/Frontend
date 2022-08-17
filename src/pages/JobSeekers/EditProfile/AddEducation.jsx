@@ -11,8 +11,13 @@ import CustomSelect from '../../../components/Forms/CustomSelect';
 
 
 const validationSchema = Yup.object({
-    // email: Yup.string().email("Invalid email address"),
-    // phone_number: Yup.number()
+    school_name: Yup.string().required('Required'),
+    degree: Yup.string().required('Required'),
+    educational_level: Yup.string().required('Required'),
+    grade:Yup.number('Must be digits').required('Required'),
+    start_of_education:Yup.date().required('Required'),
+    end_of_education:Yup.date().required('Required'),
+    study_summary:Yup.string().required('Required')
   
   
   })
@@ -27,7 +32,7 @@ export const AddEducation = ({show, setShow}) => {
   const onSubmit = async (values) => {
     setIsLoading(true)
     const response = await axios
-      .put(`${process.env.REACT_APP_BASE_URL}account/user-profile/me/professional_info/{id}/`, values, {
+      .post(`${process.env.REACT_APP_BASE_URL}account/user-profile/me/professional_info/`, values, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Token ${authTokens.auth_token}`
@@ -96,14 +101,15 @@ export const AddEducation = ({show, setShow}) => {
 
                 <FormInputBox type="text" label="School Name" className="border p-2.5 block w-full border-solid border-[#808080] rounded-lg outline-none"
                   placeholder="School Name" id="school_name" name="school_name" onChange={formik.handleChange} value={formik.values.school_name} onBlur={formik.handleBlur} />
+              {formik.touched.school_name && formik.errors.school_name ? (<small className="text-red-600">{formik.errors.school_name}</small>) : null}
 
               </div>
               <div className='w-full md:mt-0 mt-[1rem] max-w-lg'>
 
               <CustomSelect
-            label="Degree"
-            name="degree"
-            placeholder="Select a degree"
+            label="Grade"
+            name="grade"
+            placeholder="Select a Grade"
              className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"  
              onChange={formik.handleChange}
           >
@@ -120,6 +126,8 @@ export const AddEducation = ({show, setShow}) => {
 
            
           </CustomSelect>
+          {formik.touched.grade && formik.errors.grade ? (<small className="text-red-600">{formik.errors.grade}</small>) : null}
+
               </div>
 
             </div>
@@ -130,7 +138,7 @@ export const AddEducation = ({show, setShow}) => {
             label="Education Level"
             name="educational_level"
             id="educational_level"
-            placeholder="Select a degree"
+            placeholder=""
              className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"  
              onChange={formik.handleChange}
           >
@@ -141,13 +149,17 @@ export const AddEducation = ({show, setShow}) => {
            
           </CustomSelect>
                 
+          {formik.touched.educational_level && formik.errors.educational_level ? (<small className="text-red-600">{formik.errors.educational_level}</small>) : null}
 
               </div>
               <div className='w-full md:mt-0 mt-[1rem] max-w-lg'>
 
-                <FormInputBox type="text" label="Grade" className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
-                  placeholder="e.g., upper credit or second class upper" id="grade" name="grade" onChange={formik.handleChange} value={formik.values.grade} onBlur={formik.handleBlur} />
+                <FormInputBox type="text" label="Degree" className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
+                  placeholder="e.g. B.Sc Elect/Elect" id="degree" name="degree" onChange={formik.handleChange} value={formik.values.degree} onBlur={formik.handleBlur} />
+              {formik.touched.degree && formik.errors.degree ? (<small className="text-red-600">{formik.errors.degree}</small>) : null}
+
               </div>
+
 
             </div>
 
@@ -156,12 +168,15 @@ export const AddEducation = ({show, setShow}) => {
 
                 <FormInputBox type="date" label="Start Date" className="border p-2.5 block w-full border-solid border-[#808080] rounded-lg outline-none"
                   placeholder="" id="start_of_education" name="start_of_education" onChange={formik.handleChange} value={formik.values.start_of_education} onBlur={formik.handleBlur} />
+              {formik.touched.start_of_education && formik.errors.start_of_education ? (<small className="text-red-600">{formik.errors.start_of_education}</small>) : null}
 
               </div>
               <div className='w-full md:mt-0 mt-[1rem] max-w-lg'>
 
                 <FormInputBox type="date" label="End Date" className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
                   placeholder="" id="end_of_education" name="end_of_education" onChange={formik.handleChange} value={formik.values.end_of_education} onBlur={formik.handleBlur} />
+              {formik.touched.end_of_education && formik.errors.end_of_education ? (<small className="text-red-600">{formik.errors.end_of_education}</small>) : null}
+
               </div>
 
             </div>
@@ -171,6 +186,8 @@ export const AddEducation = ({show, setShow}) => {
             <textarea value={formik.values.study_summary} name="study_summary" id="study_summary" onChange={formik.handleChange} className='w-full border border-solid outline-none rounded-md resize-none border-[#808080]  p-2 '
               placeholder='Tell briefly about your education: What disciplines did you study? What projects did you do?' cols="100" rows="4">
             </textarea>
+            {formik.touched.study_summary && formik.errors.study_summary ? (<small className="text-red-600">{formik.errors.study_summary}</small>) : null}
+
           </div>
 
           <div className='mt-[3rem] flex justify-center'>

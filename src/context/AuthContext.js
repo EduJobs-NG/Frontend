@@ -28,7 +28,7 @@ export const AuthProvider = ({children}) => {
         }
     
       }
-
+    
       const getUserMeHandler = async () =>{
         
         setLoading(true)
@@ -49,7 +49,10 @@ export const AuthProvider = ({children}) => {
           
         }
       }
-     
+      useEffect(() =>{
+        getUserMeHandler();
+      }, [])
+
   
     let contextData = {
         user:user,

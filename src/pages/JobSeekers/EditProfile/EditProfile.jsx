@@ -20,7 +20,7 @@ export const EditProfile = () => {
     const handleDisplay = () => {
         switch (title) {
             case 'education':
-                return (<ProfessionalInfo />)
+                return <ProfessionalInfo />
                 break;
             case 'credentials':
                 return (<Credentials />)

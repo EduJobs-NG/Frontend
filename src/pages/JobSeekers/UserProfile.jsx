@@ -13,11 +13,12 @@ export const UserProfile = () => {
   const [show, setShow] = useState(false)
   
 
-  useEffect(() => {
-    getUserMeHandler();
+  // useEffect(() => {
+  //   getUserMeHandler();
     
 
-  }, [])
+  // }, [])
+  // getUserMeHandler();
 
   return (
     <>
