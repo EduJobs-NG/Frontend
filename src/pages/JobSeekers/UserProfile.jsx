@@ -13,13 +13,6 @@ export const UserProfile = () => {
   const [show, setShow] = useState(false)
   
 
-  // useEffect(() => {
-  //   getUserMeHandler();
-    
-
-  // }, [])
-  // getUserMeHandler();
-
   return (
     <>
       <Navbar />

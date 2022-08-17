@@ -11,7 +11,8 @@ import { useNavigate } from 'react-router-dom';
 import google from '../../assets/google.png'
 import linkedin from '../../assets/linkedin.png';
 
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const validationSchema = Yup.object({
@@ -21,10 +22,8 @@ const validationSchema = Yup.object({
 })
 
 
-
 export const LoginForm = () => {
     const { setUser, setAuthTokens } = useContext(AuthContext);
-    const [error, setError] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
     const onSubmit = async (values) => {
@@ -35,35 +34,26 @@ export const LoginForm = () => {
                 if (err) {
                     //   console.log(err)
                     if (err.response.status === 400) {
-                        setError('Password or email incorrect')
+                        toast.error('Password or email incorrect')
                         setIsLoading(false)
-                        setTimeout(() => {
-                            setError('')
-
-                        }, 1500)
+                        
                     }
                     else if (err.response.status === 401) {
-                        setError('You are not registered.')
+                        toast.error('You are not registered.')
                         setIsLoading(false)
-                        setTimeout(() => {
-                            setError('')
-
-                        }, 1500)
+                      
                     }
                     else {
-                        setError('Something went wrong')
+                        toast.error('Something went wrong')
                         setIsLoading(false)
-                        setTimeout(() => {
-                            setError('')
-
-                        }, 1500)
+                       
 
                     }
                 }
             });
 
         if (response && response.data) {
-            console.log(response.data)
+            // console.log(response.data.auth_token)
             setAuthTokens(response.data)
             localStorage.setItem('authTokens', JSON.stringify(response.data))
             // setUser(jwt_decode(response.data.access))
@@ -88,6 +78,7 @@ export const LoginForm = () => {
     return (
 
         <section>
+            <ToastContainer />
             <div className='border bg-white p-2 py-[2rem] px-[42px]  rounded-[50px] lg:w-[500px]'>
                 <div className='flex my-4 gap-x-[1rem] justify-center '>
                     <FaSignInAlt className='text-[2rem] text-blue' />
@@ -95,12 +86,7 @@ export const LoginForm = () => {
                     <h2 className="title text-blue  text-[24px] font-[700]">LOG IN</h2>
                 </div>
 
-                {error && (
-
-                    <div className="p-3 my-4 text-center">
-                        <p className="bg-red-600 text-white p-2 rounded-md">{error}</p>
-                    </div>
-                )}
+              
 
                 <Formik>
                     {() => (

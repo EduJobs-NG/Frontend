@@ -13,11 +13,13 @@ import { NewEmail } from './pages/Authentication/NewEmail';
 import { UserProfile } from './pages/JobSeekers/UserProfile';
 import { AuthProvider } from './context/AuthContext';
 import { Dashboard } from './pages/JobSeekers/Dashboard';
-
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // loader css
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { SavedJobs } from './pages/SavedJobs';
 import { Pricing } from './pages/Pricing';
+
 
 function App() {
   return (

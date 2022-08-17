@@ -8,7 +8,9 @@ import {ThreeDots} from 'react-loader-spinner';
 import { Formik, Form } from 'formik';
 import {  Link, useNavigate } from 'react-router-dom';
 import google from '../../assets/google.png'
-import linkedin from '../../assets/linkedin.png'
+import linkedin from '../../assets/linkedin.png';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const validationSchema = Yup.object({
     first_name: Yup.string().max(15, "Must be 15 characters or less").required('Required'),
@@ -23,8 +25,7 @@ const validationSchema = Yup.object({
 })
 
 export const RegisterFormMobile = () => {
-    const [success, setSuccess] = useState("");
-    const [error, setError] = useState('');
+  
     const [agree, setAgree] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const agreeHandler = () =>{
@@ -42,17 +43,12 @@ export const RegisterFormMobile = () => {
             if(err && err.response){
               if (err.message === 'Request failed with status code 400'){
                 setIsLoading(false)
-                setError("User with this email already exists")
-                setSuccess('')
-                setTimeout(() =>{
-                    setError('')
-                }, 2000)
+                toast.error("User with this email already exists")
+               
               }else{
                 setIsLoading(false)
-                setError("An error occured. Try again")
-                setTimeout(() =>{
-                    setError('')
-                }, 2000)
+                toast.error("An error occured. Try again")
+              
                 // console.log(err)
               }
             }
@@ -60,8 +56,7 @@ export const RegisterFormMobile = () => {
 
         if(response && response.data){
                 // console.log(response)
-                setSuccess("Account created successfully.")
-                setError('')
+                toast.success("Account created successfully.")
                 setTimeout(() =>{
                     navigate('/verify');
                 }, 1000)
@@ -89,25 +84,14 @@ export const RegisterFormMobile = () => {
    
     return (
         <div className='flex flex-col justify-center h-screen bg-white p-2 py-[2rem] px-[20px]  '>
+            <ToastContainer />
+
             <div className='flex my-4 md:gap-x-[1rem] justify-center '>
              <FaUserPlus className='text-[2rem] text-blue' />
              <div className='h-[2.5rem] ml-[1rem] mr-[1rem] w-[3px] bg-black'></div>
             <h2 className="title text-blue  text-[24px] font-[700]">SIGN UP</h2>
             </div>
            
-            {error && (
-
-<div className="p-3 my-4 text-center">
-  <p className="bg-red-600 text-white p-2 rounded-md">{error}</p>
-</div>
-)}
-
-{success && (
-
-<div className="p-3 my-3 text-center">
-  <p className="bg-green-600 text-white p-2 rounded-md">{success}</p>
-</div>
-)}
 <Formik>
     
     {({isSubmitting}) =>(
