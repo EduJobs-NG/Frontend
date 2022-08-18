@@ -20,15 +20,15 @@ export const PersonalInfo = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [userData, setUserData] = useState({});
 
- 
-  
 
 
-  const { user, authTokens, loading } = useContext(AuthContext);
-  
-  const {user:{first_name, last_name, email}, middle_name, home_address, phone_number, city, state, gender, facebook_url, 
-  linkedin_url, twitter_url, instagram_url} = user;
- 
+
+
+  const { user, authTokens } = useContext(AuthContext);
+
+  const { user: { first_name, last_name, email }, middle_name, home_address, phone_number, city, state, gender, facebook_url,
+    linkedin_url, twitter_url, instagram_url } = user;
+
   // const first_name =  user.user?.first_name || '';
   // const last_name = user.user?.last_name || '';
   // const middle_name = user?.middle_name || '';
@@ -64,7 +64,7 @@ export const PersonalInfo = () => {
       setIsLoading(false)
       toast.success('Your changes have been successfully saved')
       console.log(response)
-      setTimeout(()=>{
+      setTimeout(() => {
         window.location.reload(true)
 
       }, 2000)
@@ -99,22 +99,22 @@ export const PersonalInfo = () => {
   return (
     <section className='bg-white rounded-[40px]'>
       <ToastContainer />
-      
+
       <Formik>
         <Form onSubmit={formik.handleSubmit}>
-       
+
           <div className='grid md:grid-cols-2 md:gap-3'>
             <div className='w-full  max-w-lg'>
 
-              <FormInputBox  type="text" label="First Name" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
-                placeholder="First Name"  id="first_name" name="first_name" onChange={formik.handleChange} value={first_name} onBlur={formik.handleBlur} />
+              <FormInputBox type="text" label="First Name" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
+                placeholder="First Name" id="first_name" name="first_name" onChange={formik.handleChange} value={formik.values.first_name} onBlur={formik.handleBlur} />
 
               {formik.touched.first_name && formik.errors.first_name ? (<small className="text-red-600">{formik.errors.first_name}</small>) : null}
             </div>
             <div className='w-full md:mt-0 mt-[1rem] max-w-lg'>
 
               <FormInputBox type="text" label="Middle Name" className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
-                placeholder="Middle Name" id="middle_name" name="middle_name" onChange={formik.handleChange} value={middle_name} onBlur={formik.handleBlur} />
+                placeholder="Middle Name" id="middle_name" name="middle_name" onChange={formik.handleChange} value={formik.values.middle_name} onBlur={formik.handleBlur} />
               {formik.touched.middle_name && formik.errors.middle_name ? (<small className="text-red-600">{formik.errors.middle_name}</small>) : null}
             </div>
 
@@ -123,30 +123,30 @@ export const PersonalInfo = () => {
           <div className='grid md:grid-cols-2 md:gap-3 mt-[1rem]'>
             <div className='w-full max-w-lg'>
 
-              <FormInputBox disabled type="text" label="Last Name" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
-                placeholder="Last Name" id="last_name" name="last_name" onChange={formik.handleChange} value={last_name} onBlur={formik.handleBlur} />
+              <FormInputBox type="text" label="Last Name" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
+                placeholder="Last Name" id="last_name" name="last_name" onChange={formik.handleChange} value={formik.values.last_name} onBlur={formik.handleBlur} />
 
               {formik.touched.last_name && formik.errors.last_name ? (<small className="text-red-600">{formik.errors.last_name}</small>) : null}
             </div>
-             <div className='w-full md:mt-0 mt-[1rem]  max-w-lg'>
+            <div className='w-full md:mt-0 mt-[1rem]  max-w-lg'>
               <CustomSelect
-            label="Gender"
-            name="gender"
-            placeholder="Please select a job"
-             className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"  
-             onChange={formik.handleChange}
-          >
-           
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-           
-          </CustomSelect>
-{/*
+                label="Gender"
+                name="gender"
+                placeholder="Please select a job"
+                className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
+                onChange={formik.handleChange}
+              >
+
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+
+              </CustomSelect>
+              {/*
               <FormInputBox type="text" label="Gender" className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
                 placeholder="Gender" id="gender" name="gender" onChange={formik.handleChange} value={formik.values.gender} onBlur={formik.handleBlur} />
               {formik.touched.gender && formik.errors.gender ? (<small className="text-red-600">{formik.errors.gender}</small>) : null}
              */}
-</div>
+            </div>
           </div>
 
           <div className='grid  md:grid-cols-2 md:gap-3 mt-[1rem]'>
