@@ -24,25 +24,10 @@ export const PersonalInfo = () => {
 
 
 
-  const { user, authTokens } = useContext(AuthContext);
+  const { user, loading, authTokens } = useContext(AuthContext);
 
   const { user: { first_name, last_name, email }, middle_name, home_address, phone_number, city, state, gender, facebook_url,
     linkedin_url, twitter_url, instagram_url } = user;
-
-  // const first_name =  user.user?.first_name || '';
-  // const last_name = user.user?.last_name || '';
-  // const middle_name = user?.middle_name || '';
-  // const email = user.user?.email || '';
-  // const home_address = user?.home_address || '';
-  // const phone_number = user?.phone_number || '';
-  // const city = user?.city || '';
-  // const state = user?.state || '';
-  // const gender = user?.gender || '';
-  // const facebook_url = user?.facebook_url || '';
-  // const twitter_url = user?.twitter_url || '';
-  // const linkedin_url = user?.linkedin_url || '';
-  // const instagram_url = user?.instagram_url || '';
-
 
 
   const onSubmit = async (values) => {
@@ -106,16 +91,14 @@ export const PersonalInfo = () => {
           <div className='grid md:grid-cols-2 md:gap-3'>
             <div className='w-full  max-w-lg'>
 
-              <FormInputBox type="text" label="First Name" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
+              <FormInputBox disabled type="text" label="First Name" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
                 placeholder="First Name" id="first_name" name="first_name" onChange={formik.handleChange} value={formik.values.first_name} onBlur={formik.handleBlur} />
 
-              {formik.touched.first_name && formik.errors.first_name ? (<small className="text-red-600">{formik.errors.first_name}</small>) : null}
             </div>
             <div className='w-full md:mt-0 mt-[1rem] max-w-lg'>
 
               <FormInputBox type="text" label="Middle Name" className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
                 placeholder="Middle Name" id="middle_name" name="middle_name" onChange={formik.handleChange} value={formik.values.middle_name} onBlur={formik.handleBlur} />
-              {formik.touched.middle_name && formik.errors.middle_name ? (<small className="text-red-600">{formik.errors.middle_name}</small>) : null}
             </div>
 
           </div>
@@ -123,10 +106,9 @@ export const PersonalInfo = () => {
           <div className='grid md:grid-cols-2 md:gap-3 mt-[1rem]'>
             <div className='w-full max-w-lg'>
 
-              <FormInputBox type="text" label="Last Name" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
+              <FormInputBox disabled type="text" label="Last Name" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
                 placeholder="Last Name" id="last_name" name="last_name" onChange={formik.handleChange} value={formik.values.last_name} onBlur={formik.handleBlur} />
 
-              {formik.touched.last_name && formik.errors.last_name ? (<small className="text-red-600">{formik.errors.last_name}</small>) : null}
             </div>
             <div className='w-full md:mt-0 mt-[1rem]  max-w-lg'>
               <CustomSelect
@@ -152,7 +134,7 @@ export const PersonalInfo = () => {
           <div className='grid  md:grid-cols-2 md:gap-3 mt-[1rem]'>
             <div className='w-full max-w-lg'>
 
-              <FormInputBox type="tel" label="Phone Number" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
+              <FormInputBox type="tel" label="Phone Number" maxLength="13" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
                 placeholder="Phone Number" id="phone_number" name="phone_number" onChange={formik.handleChange} value={formik.values.phone_number} onBlur={formik.handleBlur} />
 
               {formik.touched.phone_number && formik.errors.phone_number ? (<small className="text-red-600">{formik.errors.phone_number}</small>) : null}

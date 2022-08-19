@@ -40,13 +40,10 @@ export const LoginFormMobile = () => {
                     else if (err.response.status === 401) {
                         toast.error('You are not registered.')
                         setIsLoading(false)
-                      
                     }
                     else {
                         toast.error('Something went wrong')
                         setIsLoading(false)
-                       
-
                     }
                 }
             });

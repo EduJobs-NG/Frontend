@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import { ThreeDots } from 'react-loader-spinner';
-import { FaBars, FaTimes } from 'react-icons/fa';
 import AuthContext from '../../../context/AuthContext';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
@@ -9,10 +8,12 @@ import 'react-toastify/dist/ReactToastify.css';
 export const DeleteEducation = ({setShowDelete, item}) => {
     const [isLoading, setIsLoading] = useState(false);
     const { authTokens } = useContext(AuthContext);
+    console.log(item)
 
     const handleDelete = async () => {
         setIsLoading(true)
-    const response = await axios.delete(`${process.env.REACT_APP_BASE_URL}account/user-profile/me/professional_info/${item.id}/`,
+    const response = await axios.
+    delete(`${process.env.REACT_APP_BASE_URL}account/user-profile/me/professional_info/${item.id}/`,
    { headers: {
         'Content-Type': 'application/json',
         'Authorization': `Token ${authTokens.auth_token}`
@@ -26,10 +27,9 @@ export const DeleteEducation = ({setShowDelete, item}) => {
 
     if (response) {
       setIsLoading(false)
-      window.location.reload(true)
+      // window.location.reload(true)
+      setShowDelete(false)
       console.log(response)
-
-
     }
     }
 
@@ -56,7 +56,7 @@ export const DeleteEducation = ({setShowDelete, item}) => {
                     Are you sure you want to delete?
                   </h3>
                   <p>{item.id}</p>
-                  {/* <p>{item.start_of_education}</p> */}
+                  <p>{item.start_of_education}</p>
                      
          <div className="flex items-center justify-end p-6  rounded-b">        
          

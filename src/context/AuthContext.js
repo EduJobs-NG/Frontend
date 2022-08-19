@@ -38,6 +38,9 @@ export const AuthProvider = ({children}) => {
           }
         }).catch(err =>{
           console.log(err)
+          // if (err.message === "Network Error"){
+          //   setLoading( err.message)
+          // }
         })
      
         if (response && response.data){

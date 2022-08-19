@@ -9,7 +9,7 @@ export const EditBionPic = ({setShow, show}) => {
     const { user, authTokens } = useContext(AuthContext);
     const [isLoading, setIsLoading] = useState(false);
 
-    const bio = user?.bio || '';
+    const {bio, avatar} = user;
 
     const onSubmit = async (values) => {
       setIsLoading(true)
@@ -38,7 +38,8 @@ export const EditBionPic = ({setShow, show}) => {
    
     const formik = useFormik({
         initialValues: {
-            bio: bio
+            bio,
+            avatar
         },
         
         onSubmit,
@@ -58,7 +59,7 @@ export const EditBionPic = ({setShow, show}) => {
             <FaTimes  onClick={()=> setShow(false)} className='text-blue z-[900] text-[1.3rem] absolute right-5 mt-3 cursor-pointer' />
 
                   <h3 className="text-3xl font-semibold">
-                     Bio
+                     Edit Bio or Picture
                   </h3>
                   <button
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
@@ -74,10 +75,17 @@ export const EditBionPic = ({setShow, show}) => {
                 <Formik>
              <Form onSubmit={formik.handleSubmit}>
                  <div className='w-full max-w-xl grid  mt-[1rem]'>
-                     {/* <label className='text-xl mb-3 font-[700]'>Edit Bio</label> */}
+                  <div className='w-[130px] h-[130px]'>
+                    <img  src={avatar} />
+                  </div>
+
+                  <div>
+                     <label className='text-xl mb-3 font-[700]'>Edit Bio</label>
                      <textarea value={formik.values.bio} name="bio" id="bio" onChange={formik.handleChange} className='w-full border border-solid outline-none rounded-md resize-none border-[#808080]  p-2 '
                          placeholder='Say something about yourself' cols="100" rows="7">
                      </textarea>
+                  </div>
+
          <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">        
          
          <div className='mt-[1.6rem]'>
@@ -91,19 +99,13 @@ export const EditBionPic = ({setShow, show}) => {
                              </div>
                          )}
                      </div>
-         {/* <button
-           className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-           type="button"
-          
-         >
-           Save Changes
-         </button> */}
+     
        </div>
                    
                  </div>
              </Form>
          </Formik>      
-         </div>      {/*footer*/}
+         </div>      
       
               </div>
             </div>

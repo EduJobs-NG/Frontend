@@ -6,10 +6,10 @@ import { FaBars, FaTimes } from 'react-icons/fa';
 import chat from '../../assets/chat.png'
 import notification from '../../assets/notification.png'
 import Aos from 'aos'
-import enoch from '../../assets/enoch.jpg';
-import {navigation} from '../../../src/data'
+import {navigation} from '../../../src/data';
 
 export const Navbar = () => {
+  const { user } = useContext(AuthContext);
   const {logo} = navigation;
   useEffect(() => {
     Aos.init();
@@ -30,7 +30,7 @@ export const Navbar = () => {
   return (
     <nav className='bg-[#02378B] z-[999]'>
       <div className="container mx-auto">
-        <div className="flex uppercase py-[1.5rem] items-center flex-row justify-between">
+        <div className="flex uppercase py-[1rem] items-center flex-row justify-between">
           <ul className="flex gap-x-[3rem] text-white flex-row">
             <li className=''>
             <NavLink to="/">
@@ -64,11 +64,19 @@ export const Navbar = () => {
             </li>
 
             <li>
+              {!user && <NavLink to="/dashboard/profile">
+              <div className='w-[40px] h-[40px]'>
+                  <FaUserCircle className='w-10' />
+                </div>
+              </NavLink>}
+
+              {user.avatar &&  
               <NavLink to="/dashboard/profile">
               <div className='w-[40px] h-[40px]'>
-                  <img className='rounded-full ' src={enoch} alt="" />
+                  <img className='rounded-full ' src={user.avatar} alt="" />
                 </div>
               </NavLink>
+              }
             </li>
 
 
@@ -79,7 +87,7 @@ export const Navbar = () => {
               <NavLink to="/dashboard/profile">
                 {/* <FaUserCircle className='text-white w-8' /> */}
                 <div className='w-[40px] h-[40px]'>
-                  <img className='rounded-full ' src={enoch} alt="" />
+                  <img className='rounded-full ' src={user.avatar} alt="" />
                 </div>
               </NavLink>
             </div>

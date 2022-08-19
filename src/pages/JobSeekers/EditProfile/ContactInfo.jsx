@@ -24,19 +24,8 @@ export const ContactInfo = () => {
 
  
   const { user, authTokens } = useContext(AuthContext);
-  const next_kin_fname = user.contact_info?.next_kin_fname || '';
-  const next_kin_lname = user.contact_info?.next_kin_lname || '';
-  const next_kin_address = user.contact_info?.next_kin_address || '';
-  const next_kin_email = user.contact_info?.next_kin_email || '';
-  const next_kin_phone = user.contact_info?.next_kin_phone || '';
-  const first_ref_fname = user.contact_info?.first_ref_fname || '';
-  const first_ref_lname = user.contact_info?.first_ref_lname || '';
-  const first_ref_phone = user.contact_info?.first_ref_phone || '';
-  const first_ref_jtitle = user.contact_info?.first_ref_jtitle || '';
-  const second_ref_jtitle = user.contact_info?.second_ref_jtitle || '';
-  const second_ref_fname = user.contact_info?.second_ref_fname || '';
-  const second_ref_lname = user.contact_info?.second_ref_lname || '';
-  const second_ref_phone = user.contact_info?.second_ref_phone || '';
+  const {contact_info:{next_kin_fname, next_kin_address, next_kin_email, next_kin_phone, first_ref_fname, first_ref_phone, first_ref_lname, first_ref_jtitle, second_ref_jtitle,
+next_kin_lname, second_ref_fname, second_ref_lname, second_ref_phone}} = user
 
   const onSubmit = async (values) => {
     setIsLoading(true)
@@ -68,19 +57,19 @@ export const ContactInfo = () => {
 
   const formik = useFormik({
     initialValues: {
-      first_ref_fname:first_ref_fname ,
-      first_ref_jtitle:first_ref_jtitle ,
-      first_ref_lname: first_ref_lname,
-      first_ref_phone: first_ref_phone,
-      next_kin_address: next_kin_address,
-      next_kin_email: next_kin_email,
-      next_kin_fname: next_kin_fname,
-      next_kin_lname: next_kin_lname,
-      next_kin_phone: next_kin_phone,
-      second_ref_fname: second_ref_fname,
-      second_ref_lname: second_ref_lname,
-      second_ref_jtitle: second_ref_jtitle,
-      second_ref_phone: second_ref_phone
+      first_ref_fname,
+      first_ref_jtitle,
+      first_ref_lname,
+      first_ref_phone,
+      next_kin_address ,
+      next_kin_email,
+      next_kin_fname,
+      next_kin_lname,
+      next_kin_phone,
+      second_ref_fname,
+      second_ref_lname,
+      second_ref_jtitle,
+      second_ref_phone
 
     },
     validateOnBlur: true,
