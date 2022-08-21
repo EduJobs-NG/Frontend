@@ -13,7 +13,6 @@ export const Credentials = () => {
 
         <p>{credential.credential_type}</p>
         <p>{credential.file}</p>
-        {/* <input type="file" value='' /> */}
         </div>
 
       )

@@ -7,6 +7,7 @@ import chat from '../../assets/chat.png'
 import notification from '../../assets/notification.png'
 import Aos from 'aos'
 import {navigation} from '../../../src/data';
+import enoch from '../../assets/enoch.jpg'
 
 export const Navbar = () => {
   const { user } = useContext(AuthContext);
@@ -73,7 +74,8 @@ export const Navbar = () => {
               {user.avatar &&  
               <NavLink to="/dashboard/profile">
               <div className='w-[40px] h-[40px]'>
-                  <img className='rounded-full ' src={user.avatar} alt="" />
+                  {/* <img className='rounded-full ' src={user?.avatar} alt="" /> */}
+                  <img className='rounded-full ' src={enoch} alt="" />
                 </div>
               </NavLink>
               }
@@ -87,7 +89,8 @@ export const Navbar = () => {
               <NavLink to="/dashboard/profile">
                 {/* <FaUserCircle className='text-white w-8' /> */}
                 <div className='w-[40px] h-[40px]'>
-                  <img className='rounded-full ' src={user.avatar} alt="" />
+                  <img className='rounded-full ' src={user?.avatar} alt="" />
+                  <img className='rounded-full ' src={enoch} alt="" />
                 </div>
               </NavLink>
             </div>

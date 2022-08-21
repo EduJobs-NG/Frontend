@@ -46,10 +46,7 @@ next_kin_lname, second_ref_fname, second_ref_lname, second_ref_phone}} = user
       setIsLoading(false)
       toast.success('Your changes have been successfully saved.')
       console.log(response)
-      setTimeout(() =>{
-        window.location.reload(true)
-
-      }, 2000)
+      
 
 
     }

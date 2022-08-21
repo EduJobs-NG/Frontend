@@ -13,25 +13,11 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const validationSchema = Yup.object({
-    // school_name: Yup.string().required('Required'),
-    // degree: Yup.string().required('Required'),
-    // educational_level: Yup.string().required('Required'),
-    // grade: Yup.string().required('Required'),
-    // start_of_education:Yup.date().required('Required'),
-    // end_of_education:Yup.date().required('Required'),
-    // study_summary:Yup.string().required('Required')
-  
   
   })
 export const EditEducation = ({setShowEdit, item}) => {
-  const {user, authTokens } = useContext(AuthContext);
-  const education = user?.professional_info[0];
-  const {school_name, degree, grade, educational_level, start_of_education, study_summary, end_of_education} = education;
-  console.log(item)
-
-
-
-
+  const {authTokens } = useContext(AuthContext);
+  const {school_name, degree, grade, educational_level, start_of_education, study_summary, end_of_education} = item;
   const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async (values) => {
@@ -79,19 +65,21 @@ export const EditEducation = ({setShowEdit, item}) => {
   return (
     
                 <>
-      <ToastContainer className="z-[900]" />
         
         <div className="justify-center items-center  flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+        <ToastContainer />
+
           <div className="relative w-full mt-[20rem] md:mt-0 my-6 mx-3 max-w-5xl">
 
             {/*content*/}
             <div className="border-0  rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
               {/*header*/}
               <div className="flex  items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+
           <FaTimes  onClick={()=> setShowEdit(false)} className='text-blue z-[900] text-[1.3rem] absolute right-5 mt-3 cursor-pointer' />
 
                 <h3 className="text-3xl font-semibold">
-                   Edit {item.grade} Education
+                   Edit Degree {item.degree} 
                 </h3>
                 <button
                   className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
@@ -133,8 +121,6 @@ export const EditEducation = ({setShowEdit, item}) => {
             <option value="Lower Credit">Lower Credit</option>
             <option value="Pass">Pass</option>
             <option value="Others">Others</option>
-
-           
           </CustomSelect>
           {formik.touched.grade && formik.errors.grade ? (<small className="text-red-600">{formik.errors.grade}</small>) : null}
 

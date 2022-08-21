@@ -23,11 +23,8 @@ const validationSchema = Yup.object({
   
   
   })
-export const AddEducation = ({setShowEducation}) => {
+export const AddEducation = ({setShowEducation, getUserMeHandler}) => {
   const { user, authTokens } = useContext(AuthContext);
-
-
-
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -50,10 +47,10 @@ export const AddEducation = ({setShowEducation}) => {
       setIsLoading(false)
       setShowEducation(false)
       toast.success('Your changes have been successfully saved')
+      getUserMeHandler();
       console.log(response)
-      setTimeout(()=>{
-        window.location.reload(false)
-      }, 2000)
+       
+      
 
     }
   }
@@ -120,7 +117,7 @@ export const AddEducation = ({setShowEducation}) => {
              className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"  
              onChange={formik.handleChange}
           >
-            <option value="">Select a degree</option>
+            <option value="">Select a Grade</option>
             <option value="First Class">First Class</option>
             <option value="Second Class Upper">Second Class Upper</option>
             <option value="Second Class Lower">Second Class Lower</option>

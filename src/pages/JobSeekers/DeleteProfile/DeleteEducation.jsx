@@ -5,15 +5,14 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export const DeleteEducation = ({setShowDelete, item}) => {
+export const DeleteEducation = ({setShowDelete, getUserMeHandler, item}) => {
     const [isLoading, setIsLoading] = useState(false);
     const { authTokens } = useContext(AuthContext);
-    console.log(item)
 
     const handleDelete = async () => {
         setIsLoading(true)
     const response = await axios.
-    delete(`${process.env.REACT_APP_BASE_URL}account/user-profile/me/professional_info/${item.id}/`,
+    delete(`${process.env.REACT_APP_BASE_URL}account/user-profile/me/professional_info/${item.id}`,
    { headers: {
         'Content-Type': 'application/json',
         'Authorization': `Token ${authTokens.auth_token}`
@@ -27,7 +26,7 @@ export const DeleteEducation = ({setShowDelete, item}) => {
 
     if (response) {
       setIsLoading(false)
-      // window.location.reload(true)
+      getUserMeHandler()
       setShowDelete(false)
       console.log(response)
     }

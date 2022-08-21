@@ -24,7 +24,7 @@ export const PersonalInfo = () => {
 
 
 
-  const { user, loading, authTokens } = useContext(AuthContext);
+  const { user, authTokens } = useContext(AuthContext);
 
   const { user: { first_name, last_name, email }, middle_name, home_address, phone_number, city, state, gender, facebook_url,
     linkedin_url, twitter_url, instagram_url } = user;
@@ -181,7 +181,7 @@ export const PersonalInfo = () => {
             <div className='w-full max-w-lg'>
 
               <FormInputBox type="url" label="Facebook" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
-                placeholder="Facebook" id="facebook_url" name="facebook_url" onChange={formik.handleChange} value={formik.values.facebook_url} onBlur={formik.handleBlur} />
+                placeholder="Facebook" id="facebook_url" name="facebook_url" onChange={formik.handleChange} value={formik.values.facebook_url } onBlur={formik.handleBlur} />
 
             </div>
             <div className='w-full md:mt-0 mt-[1rem]  max-w-lg'>

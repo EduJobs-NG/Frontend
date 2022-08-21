@@ -6,6 +6,7 @@ import marker from '../../assets/Marker.png';
 import EditIcon from '../../assets/EditIcon.png';
 import { EditProfile } from './EditProfile/EditProfile';
 import { EditBionPic } from './EditProfile/EditBionPic';
+import {FaBars, FaTimes, FaUserCircle} from 'react-icons/fa'
 
 
 export const UserProfile = () => {
@@ -43,7 +44,9 @@ export const UserProfile = () => {
             <div className='grid mt-[2rem] md:grid-cols-2 md:gap-6'>
               <div className='flex flex-col md:flex-row gap-x-[1rem]  items-center'>
                 <div className=' relative w-[130px] h-[130px]'>
-                  <img className='  rounded-full ' src={user.avatar} alt="" />
+                  <img className='  rounded-full ' src={user?.avatar} alt="" />
+                  <img className='  rounded-full ' src={enoch} alt="" />
+                  {/* <FaUserCircle /> */}
                   {!loading &&
                   <div className=' absolute top-0 cursor-pointer ml-2' onClick={()=>setShow(true)}>
                   <img src={EditIcon} alt="" />

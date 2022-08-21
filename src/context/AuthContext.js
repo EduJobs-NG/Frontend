@@ -9,6 +9,7 @@ export const AuthProvider = ({children}) => {
     const navigate = useNavigate();
     const [user, setUser] = useState({user:{}})
     const [loading, setLoading] = useState(false)
+    const [isError, setIsError] = useState(false)
     const [authTokens, setAuthTokens] = useState(localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')):null)
     
     const logOutUser = async () =>{

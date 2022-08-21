@@ -59,7 +59,7 @@ export const EditBionPic = ({setShow, show}) => {
             <FaTimes  onClick={()=> setShow(false)} className='text-blue z-[900] text-[1.3rem] absolute right-5 mt-3 cursor-pointer' />
 
                   <h3 className="text-3xl font-semibold">
-                     Edit Bio or Picture
+                     Edit Bio
                   </h3>
                   <button
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
