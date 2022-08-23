@@ -12,11 +12,11 @@ export const FormInputBox = (props) => {
     <div className='relative'>
       <label>{label}</label>
       
-     {props.type!=='password' && (
+     {props.type!=='password' && props.type!=='tel' && (
       <>
       <input type={type}
       placeholder={placeholder}
-      className={className} maxLength={maxLength} disabled={disabled} 
+      className={className}  disabled={disabled} 
       value={value} onBlur={onBlur} name={name} id={id} onChange={onChange} />
       <span className='i_absolute' >{icon}</span>
      
@@ -38,6 +38,17 @@ export const FormInputBox = (props) => {
       {show ? <FaEye />:<FaEyeSlash /> }
     </span>
     }
+
+    {props.type === 'tel' && (
+      <div className='flex'>
+      <p className='flex items-center bg-[#d9d9d9] rounded-sm p-1'>+234</p>
+      <input type={type}
+      placeholder={placeholder}
+      className={className} value={value} maxLength={maxLength} name={name} id={id} onBlur={onBlur} onChange={onChange}
+      />
+      </div>
+      
+    )}
       
     </div>
   )

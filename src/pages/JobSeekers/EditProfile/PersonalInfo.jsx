@@ -57,19 +57,19 @@ export const PersonalInfo = () => {
 
   const formik = useFormik({
     initialValues: {
-      first_name,
-      middle_name,
-      last_name,
-      phone_number,
-      email,
-      gender,
-      home_address,
-      city,
-      state,
-      facebook_url,
-      instagram_url,
-      twitter_url,
-      linkedin_url
+      first_name:first_name || "",
+      middle_name:middle_name || '',
+      last_name:last_name || '',
+      phone_number:phone_number || '',
+      email:email || '',
+      gender:gender || '',
+      home_address:home_address || '',
+      city:city || '',
+      state:state || '',
+      facebook_url:facebook_url || '',
+      instagram_url:instagram_url || '',
+      twitter_url:twitter_url || '',
+      linkedin_url:linkedin_url || ''
 
     },
     validateOnBlur: true,
@@ -88,7 +88,7 @@ export const PersonalInfo = () => {
           <div className='grid md:grid-cols-2 md:gap-3'>
             <div className='w-full  max-w-lg'>
 
-              <FormInputBox disabled type="text" label="First Name" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
+              <FormInputBox disabled  type="text" label="First Name" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
                 placeholder="First Name" id="first_name" name="first_name" onChange={formik.handleChange} value={formik.values.first_name} onBlur={formik.handleBlur} />
 
             </div>
@@ -120,18 +120,14 @@ export const PersonalInfo = () => {
                 <option value="Female">Female</option>
 
               </CustomSelect>
-              {/*
-              <FormInputBox type="text" label="Gender" className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
-                placeholder="Gender" id="gender" name="gender" onChange={formik.handleChange} value={formik.values.gender} onBlur={formik.handleBlur} />
-              {formik.touched.gender && formik.errors.gender ? (<small className="text-red-600">{formik.errors.gender}</small>) : null}
-             */}
+              
             </div>
           </div>
 
           <div className='grid  md:grid-cols-2 md:gap-3 mt-[1rem]'>
             <div className='w-full max-w-lg'>
 
-              <FormInputBox type="tel" label="Phone Number" maxLength="13" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
+              <FormInputBox type="tel" label="Phone Number" maxLength="12" className="border p-2.5 block w-full border-l- border-solid border-[#808080] rounded-lg outline-none"
                 placeholder="Phone Number" id="phone_number" name="phone_number" onChange={formik.handleChange} value={formik.values.phone_number} onBlur={formik.handleBlur} />
 
               {formik.touched.phone_number && formik.errors.phone_number ? (<small className="text-red-600">{formik.errors.phone_number}</small>) : null}

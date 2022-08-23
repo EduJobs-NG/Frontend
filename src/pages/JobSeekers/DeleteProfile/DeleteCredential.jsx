@@ -8,7 +8,6 @@ import 'react-toastify/dist/ReactToastify.css';
 export const DeleteCredential = ({ setShowDelete, item }) => {
     const [isLoading, setIsLoading] = useState(false);
     const { authTokens, getUserMeHandler } = useContext(AuthContext);
-    console.log(item)
 
     const handleDelete = async () => {
         setIsLoading(true)

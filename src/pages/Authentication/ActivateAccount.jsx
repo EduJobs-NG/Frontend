@@ -48,6 +48,7 @@ export const ActivateAccount = () => {
     if (response) {
       console.log(response)
       setShow(true)
+      setIsLoading(false)
       toast.success("Account activated successfully")
       setTimeout(() => {
         navigate('/login');

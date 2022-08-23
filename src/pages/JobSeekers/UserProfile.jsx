@@ -53,7 +53,7 @@ export const UserProfile = () => {
                 <div className=''>
                   {loading && (<p>Loading...</p>)}
                  {!loading && <h1 className='font-[700] text-[20px]'>{ user.user?.first_name} { user.user?.last_name}</h1>}
-                  {!loading && <small className='flex justify-center md:justify-start '><img src={marker} alt="" className='mr-[0.5rem]' /> {user?.city}, {user.state} </small>}
+                  {!loading && <small className='flex justify-center md:justify-start '><img src={marker} alt="" className='mr-[0.5rem]' /> {user?.city || "..."}, {user.state || "..."} </small>}
                 </div>
 
 
@@ -70,7 +70,7 @@ export const UserProfile = () => {
                
                 <div className='text-center md:text-left'>
                   {loading && <p>loading...</p>}
-                 {!loading && ( <p> {user?.bio}</p>)}
+                 {!loading && ( <p> {user?.bio || '...'}</p>)}
                   
                 </div>
               </div>

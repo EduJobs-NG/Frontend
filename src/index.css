@@ -36,3 +36,10 @@ body{
   bottom:0.75rem;
     right:0.75rem;
 }
+
+.p_absolute{
+  color:#808080 !important;
+  position:absolute;
+  bottom:0.75rem;
+    left:0.75rem;
+}

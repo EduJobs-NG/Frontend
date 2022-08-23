@@ -13,16 +13,17 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const validationSchema = Yup.object({
-  // email: Yup.string().email("Invalid email address"),
+  next_kin_email: Yup.string().email("Invalid email address"),
   // phone_number: Yup.string().phone(null, true, "Has to be a number").min(11,'Has to be up to digits long').max(12, "Can't be more than 12 digits"),
+  next_kin_phone: Yup.string().max(12, 'Not more than 12 numbers'),
+  first_ref_phone:Yup.string().max(12, 'Not more than 12 numbers'),
+  second_ref_phone:Yup.string().max(12, 'Not more than 12 numbers'),
 
 
 })
 export const ContactInfo = () => {
   const [isLoading, setIsLoading] = useState(false);
   
-
- 
   const { user, authTokens, getUserMeHandler } = useContext(AuthContext);
   const {contact_info:{next_kin_fname, next_kin_address, next_kin_email, next_kin_phone, first_ref_fname, first_ref_phone, first_ref_lname, first_ref_jtitle, second_ref_jtitle,
 next_kin_lname, second_ref_fname, second_ref_lname, second_ref_phone}} = user
@@ -100,7 +101,7 @@ next_kin_lname, second_ref_fname, second_ref_lname, second_ref_phone}} = user
             <div className='grid md:grid-cols-2 md:gap-3 mt-[1rem]'>
               <div className='w-full max-w-lg'>
 
-                <FormInputBox type="tel" label="Phone Number" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
+                <FormInputBox type="tel" label="Phone Number" maxLength="12" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
                   placeholder="Phone" id="next_kin_phone" name="next_kin_phone" onChange={formik.handleChange} value={formik.values.next_kin_phone} onBlur={formik.handleBlur} />
 
                 {formik.touched.next_kin_phone && formik.errors.next_kin_phone ? (<small className="text-red-600">{formik.errors.next_kin_phone}</small>) : null}
@@ -140,7 +141,7 @@ next_kin_lname, second_ref_fname, second_ref_lname, second_ref_phone}} = user
               </div>
               <div className='w-full  mt-[1rem]  max-w-lg'>
 
-                <FormInputBox type="tel" label="Phone Number" className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
+                <FormInputBox type="tel" label="Phone Number" maxLength="12" className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
                   placeholder="Phone Number" id="first_ref_phone" name="first_ref_phone" onChange={formik.handleChange} value={formik.values.first_ref_phone} onBlur={formik.handleBlur} />
                 {formik.touched.first_ref_phone && formik.errors.first_ref_phone ? (<small className="text-red-600">{formik.errors.first_ref_phone}</small>) : null}
               </div>
@@ -168,8 +169,8 @@ next_kin_lname, second_ref_fname, second_ref_lname, second_ref_phone}} = user
               </div>
               <div className='w-full  mt-[1rem]  max-w-lg'>
 
-                <FormInputBox type="tel" label="Phone Number" className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
-                  placeholder="Phone Number" id="first_ref_phone" name="first_ref_phone" onChange={formik.handleChange} value={formik.values.first_ref_phone} onBlur={formik.handleBlur} />
+                <FormInputBox type="tel" label="Phone Number" maxLength="12" className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
+                  placeholder="Phone Number" id="second_ref_phone" name="second_ref_phone" onChange={formik.handleChange} value={formik.values.second_ref_phone} onBlur={formik.handleBlur} />
                 {formik.touched.second_ref_phone && formik.errors.second_ref_phone ? (<small className="text-red-600">{formik.errors.second_ref_phone}</small>) : null}
               </div>
               <div className='w-full  mt-[1rem]  max-w-lg'>
