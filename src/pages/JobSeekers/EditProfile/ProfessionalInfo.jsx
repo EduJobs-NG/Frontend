@@ -12,7 +12,7 @@ export const ProfessionalInfo = () => {
   const [showEducation, setShowEducation] = useState(false)
   const [showDelete, setShowDelete] = useState(false)
   const [showEdit, setShowEdit] = useState(false)
-  const { user, getUserMeHandler } = useContext(AuthContext);
+  const { user, getUserMeHandler, getUserEducation } = useContext(AuthContext);
   const education = user?.professional_info;
   const [selectedItem, setSelectedItem] = useState({});
   const deleteSelectedItem = (item) =>{
@@ -24,6 +24,7 @@ export const ProfessionalInfo = () => {
     setShowEdit(true)
   }
   
+  // getUserEducation()
 
   return (
     <section>
@@ -43,15 +44,13 @@ export const ProfessionalInfo = () => {
             <div className='absolute right-5'>
               <div className='flex flex-row gap-6 '>
                 <img className='cursor-pointer' onClick={() => editSelectedItem(item)} src={EditIcon2} alt="" />
-                 <img className='cursor-pointer' onClick={() => deleteSelectedItem(item)}
+                 <img className='cursor-pointer ml-5 md:ml-0' onClick={() => deleteSelectedItem(item)}
                 src={DeleteIcon} alt="" />
-
               </div>
             </div>
             <h1 className='text-xl font-[700]'>{degree}</h1>
             <p className='text-[1rem] font-[500]'>{school_name}</p>
             <p className='text-[1rem] font-[500]'>{start_of_education} - {end_of_education}</p>
-            <p className='text-[1rem] font-[500]'>{id}</p>
             <p className='text-[1rem] font-[500]'>{grade}</p>
             <p>{item.study_summary}</p>
 

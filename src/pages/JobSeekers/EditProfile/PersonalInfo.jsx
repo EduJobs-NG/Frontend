@@ -24,7 +24,7 @@ export const PersonalInfo = () => {
 
 
 
-  const { user, authTokens } = useContext(AuthContext);
+  const { user, authTokens, getUserMeHandler } = useContext(AuthContext);
 
   const { user: { first_name, last_name, email }, middle_name, home_address, phone_number, city, state, gender, facebook_url,
     linkedin_url, twitter_url, instagram_url } = user;
@@ -49,10 +49,7 @@ export const PersonalInfo = () => {
       setIsLoading(false)
       toast.success('Your changes have been successfully saved')
       console.log(response)
-      setTimeout(() => {
-        window.location.reload(true)
-
-      }, 2000)
+      getUserMeHandler()
 
 
     }

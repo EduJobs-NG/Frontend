@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 const AuthContext = createContext();
 export default AuthContext;
 
+  
+
 
 export const AuthProvider = ({children}) => {
     const navigate = useNavigate();
@@ -11,7 +13,8 @@ export const AuthProvider = ({children}) => {
     const [loading, setLoading] = useState(false)
     const [isError, setIsError] = useState(false)
     const [authTokens, setAuthTokens] = useState(localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')):null)
-    
+  
+  
     const logOutUser = async () =>{
         const response = await axios.get(`${process.env.REACT_APP_BASE_URL}users/me/`, {
           headers:{
@@ -32,7 +35,31 @@ export const AuthProvider = ({children}) => {
     
       const getUserMeHandler = async () =>{
         setLoading(true)
+        setIsError(false)
         const response = await axios.get(`${process.env.REACT_APP_BASE_URL}account/user-profile-update/`, {
+          headers:{
+            'Content-Type':'application/json',
+            'Authorization':`Token ${authTokens.auth_token}`
+          }
+        }).catch(err =>{
+          console.log(err)
+          setLoading(false)
+          setIsError(true)
+        })
+     
+        if (response && response.data){
+          // console.log(response)
+          setUser(response.data)
+          setLoading(false);
+          setIsError(false)
+          console.log(response.data)
+          
+        }
+      }
+
+      const getUserCredentials = async () =>{
+        setLoading(true)
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}account/user-profile/me/contact_info/`, {
           headers:{
             'Content-Type':'application/json',
             'Authorization':`Token ${authTokens.auth_token}`
@@ -46,7 +73,53 @@ export const AuthProvider = ({children}) => {
      
         if (response && response.data){
           // console.log(response)
-          setUser(response.data)
+          // setUser(response.data)
+          setLoading(false);
+          console.log(response.data)
+          
+        }
+      }
+
+      const getUserEducation = async () =>{
+        setLoading(true)
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}account/user-profile/me/professional_info/`, {
+          headers:{
+            'Content-Type':'application/json',
+            'Authorization':`Token ${authTokens.auth_token}`
+          }
+        }).catch(err =>{
+          console.log(err)
+          // if (err.message === "Network Error"){
+          //   setLoading( err.message)
+          // }
+        })
+     
+        if (response && response.data){
+          // console.log(response)
+          // setUser(response.data)
+          setLoading(false);
+          console.log(response.data)
+          
+        }
+      }
+
+      const getUserContactInfo = async () =>{
+        setLoading(true)
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}account/user-profile/me/contact_info/`, {
+          headers:{
+            'Content-Type':'application/json',
+            'Authorization':`Token ${authTokens.auth_token}`
+          }
+        }).catch(err =>{
+          console.log(err)
+          // if (err.message === "Network Error"){
+          //   setLoading( err.message)
+          // }
+        })
+     
+        if (response && response.data){
+          // console.log(response)
+          // setUser(response.data)
           setLoading(false);
           console.log(response.data)
           
@@ -62,7 +135,10 @@ export const AuthProvider = ({children}) => {
         logOutUser:logOutUser,
         getUserMeHandler:getUserMeHandler,
         loading:loading,
-        setLoading:setLoading
+        setLoading:setLoading,
+        getUserContactInfo:getUserContactInfo,
+        getUserCredentials:getUserCredentials,
+        getUserEducation:getUserEducation
     }
 
     return (

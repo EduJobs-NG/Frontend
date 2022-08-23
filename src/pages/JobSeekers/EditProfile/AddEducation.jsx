@@ -11,7 +11,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-
 const validationSchema = Yup.object({
     school_name: Yup.string().required('Required'),
     degree: Yup.string().required('Required'),
@@ -20,13 +19,12 @@ const validationSchema = Yup.object({
     start_of_education:Yup.date().required('Required'),
     end_of_education:Yup.date().required('Required'),
     study_summary:Yup.string().required('Required')
-  
-  
   })
-export const AddEducation = ({setShowEducation, getUserMeHandler}) => {
-  const { user, authTokens } = useContext(AuthContext);
+export const AddEducation = ({setShowEducation}) => {
+  const { user, authTokens, getUserMeHandler } = useContext(AuthContext);
 
   const [isLoading, setIsLoading] = useState(false);
+      
 
   const onSubmit = async (values) => {
     setIsLoading(true)
@@ -47,7 +45,7 @@ export const AddEducation = ({setShowEducation, getUserMeHandler}) => {
       setIsLoading(false)
       setShowEducation(false)
       toast.success('Your changes have been successfully saved')
-      getUserMeHandler();
+      getUserMeHandler()
       console.log(response)
        
       
@@ -73,7 +71,7 @@ export const AddEducation = ({setShowEducation, getUserMeHandler}) => {
   return (
     
                 <>
-      <ToastContainer className="z-[900]" />
+      <ToastContainer  />
         
         <div className="justify-center items-center  flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
           <div className="relative w-full mt-[20rem] md:mt-0 my-6 mx-3 max-w-5xl">

@@ -23,7 +23,7 @@ export const ContactInfo = () => {
   
 
  
-  const { user, authTokens } = useContext(AuthContext);
+  const { user, authTokens, getUserMeHandler } = useContext(AuthContext);
   const {contact_info:{next_kin_fname, next_kin_address, next_kin_email, next_kin_phone, first_ref_fname, first_ref_phone, first_ref_lname, first_ref_jtitle, second_ref_jtitle,
 next_kin_lname, second_ref_fname, second_ref_lname, second_ref_phone}} = user
 
@@ -45,10 +45,9 @@ next_kin_lname, second_ref_fname, second_ref_lname, second_ref_phone}} = user
     if (response) {
       setIsLoading(false)
       toast.success('Your changes have been successfully saved.')
+      getUserMeHandler()
       console.log(response)
       
-
-
     }
   }
 

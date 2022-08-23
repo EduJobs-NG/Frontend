@@ -5,9 +5,9 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export const DeleteEducation = ({setShowDelete, getUserMeHandler, item}) => {
+export const DeleteEducation = ({setShowDelete, item}) => {
     const [isLoading, setIsLoading] = useState(false);
-    const { authTokens } = useContext(AuthContext);
+    const { authTokens, getUserMeHandler } = useContext(AuthContext);
 
     const handleDelete = async () => {
         setIsLoading(true)
@@ -26,8 +26,8 @@ export const DeleteEducation = ({setShowDelete, getUserMeHandler, item}) => {
 
     if (response) {
       setIsLoading(false)
-      getUserMeHandler()
       setShowDelete(false)
+      getUserMeHandler()
       console.log(response)
     }
     }
@@ -54,8 +54,7 @@ export const DeleteEducation = ({setShowDelete, getUserMeHandler, item}) => {
                      <h3 className="text-3xl font-semibold">
                     Are you sure you want to delete?
                   </h3>
-                  <p>{item.id}</p>
-                  <p>{item.start_of_education}</p>
+                  
                      
          <div className="flex items-center justify-end p-6  rounded-b">        
          
@@ -64,7 +63,7 @@ export const DeleteEducation = ({setShowDelete, getUserMeHandler, item}) => {
                 <button onClick={()=> setShowDelete(false)} className= 'bg-blue  opacity-100 block w-full px-6 text-white rounded-md p-2' type="submit">Cancel</button>
     
             </div>
-                         {!isLoading && <button onClick={handleDelete} className= 'bg-red-600  opacity-100 block w-full px-6 text-white rounded-md p-2' type="submit">Delete</button>}
+                         {!isLoading && <button onClick={handleDelete} className= 'ml-5 md:ml-0 bg-red-600  opacity-100 block w-full px-6 text-white rounded-md p-2' type="submit">Delete</button>}
                          {isLoading && (
                              <div className='flex justify-center'>
                                  <ThreeDots type="ThreeDots"

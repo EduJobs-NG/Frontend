@@ -16,14 +16,14 @@ const validationSchema = Yup.object({
   
   })
 export const EditEducation = ({setShowEdit, item}) => {
-  const {authTokens } = useContext(AuthContext);
+  const {authTokens, getUserMeHandler } = useContext(AuthContext);
   const {school_name, degree, grade, educational_level, start_of_education, study_summary, end_of_education} = item;
   const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async (values) => {
     setIsLoading(true)
     const response = await axios
-      .put(`${process.env.REACT_APP_BASE_URL}account/user-profile/me/professional_info/${item.id}`, values, {
+      .put(`${process.env.REACT_APP_BASE_URL}account/user-profile/me/professional_info/${item.id}/`, values, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Token ${authTokens.auth_token}`
@@ -39,10 +39,9 @@ export const EditEducation = ({setShowEdit, item}) => {
       setIsLoading(false)
       setShowEdit(false)
       toast.success('Your changes have been successfully saved')
+      getUserMeHandler()
       console.log(response)
-      setTimeout(()=>{
-        window.location.reload(false)
-      }, 2000)
+    
 
     }
   }

@@ -6,7 +6,7 @@ import AuthContext from '../../../context/AuthContext';
 import axios from 'axios';
 
 export const EditBionPic = ({setShow, show}) => {
-    const { user, authTokens } = useContext(AuthContext);
+    const { user, authTokens, getUserMeHandler } = useContext(AuthContext);
     const [isLoading, setIsLoading] = useState(false);
 
     const {bio, avatar} = user;
@@ -28,7 +28,7 @@ export const EditBionPic = ({setShow, show}) => {
       if (response) {
         setIsLoading(false)
         setShow(false)
-        window.location.reload(true)
+        getUserMeHandler()
         console.log(response)
   
   
