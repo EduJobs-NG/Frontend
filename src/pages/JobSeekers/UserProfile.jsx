@@ -43,6 +43,7 @@ export const UserProfile = () => {
                 <div className=' relative w-[130px] h-[130px]'>
                   <img className='rounded-full ' src={user?.avatar} alt="" />
                   
+                  
                   {!loading &&
                   <div className=' absolute top-0 cursor-pointer ml-2' onClick={()=>setShow(true)}>
                   <img src={EditIcon} alt="" />

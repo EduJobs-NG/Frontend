@@ -4,8 +4,6 @@ import { useNavigate } from "react-router-dom";
 const AuthContext = createContext();
 export default AuthContext;
 
-  
-
 
 export const AuthProvider = ({children}) => {
     const navigate = useNavigate();
@@ -13,7 +11,6 @@ export const AuthProvider = ({children}) => {
     const [loading, setLoading] = useState(false)
     const [isError, setIsError] = useState(false)
     const [authTokens, setAuthTokens] = useState(localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')):null)
-  
   
     const logOutUser = async () =>{
         const response = await axios.get(`${process.env.REACT_APP_BASE_URL}users/me/`, {

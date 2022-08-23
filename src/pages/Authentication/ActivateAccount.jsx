@@ -4,16 +4,20 @@ import axios from 'axios';
 import welcome from '../../assets/welcome.png';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { ThreeDots } from 'react-loader-spinner';
 
 
 
 export const ActivateAccount = () => {
   
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(false);
   const { uid, token } = useParams();
+  const [isLoading, setIsLoading] = useState(false);
+
   const values = { uid, token }
   const navigate = useNavigate()
   const handleSubmit = async () => {
+    setIsLoading(true);
     const response = await axios
       .post(`${process.env.REACT_APP_BASE_URL}user/email/activate/`, values)
       .catch(err => {
@@ -21,10 +25,12 @@ export const ActivateAccount = () => {
         if (err && err.response) {
           if (err.response.status === 400) {
             setShow(false)
+            setIsLoading(false)
             toast.error("Invalid token for given user")
           }
           else if (err.response.status === 403) {
             setShow(true)
+            setIsLoading(false)
             toast.info('Your account has been activated.')
             setTimeout(() => {
               navigate('/login')
@@ -33,6 +39,7 @@ export const ActivateAccount = () => {
           }
           else {
             toast.error(err.message + ' .Try again')
+            setIsLoading(false)
             console.log(err)
           }
 
@@ -60,7 +67,16 @@ export const ActivateAccount = () => {
 
       <div className='flex flex-col h-screen  items-center gap-y-[2rem] text-center justify-center '>
         <div className='max-w-[600px]'>
-          <h1 className='text-2xl font-[800]'>Account Activation</h1>
+          {/* <h1 className='text-2xl font-[800]'>Account Activation</h1> */}
+          <div className='mt-[1.6rem]'>
+                                {isLoading && (
+                                    <div className='flex justify-center'>
+                                        <ThreeDots type="ThreeDots"
+                                            width={100} height={20} color="blue"
+                                        />
+                                    </div>
+                                )}
+                            </div>
   
           {show && (
             <div>
