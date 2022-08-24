@@ -23,7 +23,8 @@ module.exports = {
       },
       backgroundImage:{
         hero:'url("/src/assets/homeImage.png")',
-        jobs:'url("/src/assets/jobs.png")'
+        jobs:'url("/src/assets/jobs.png")',
+        employers:'url("/src/assets/employers-hero.png")'
       }
     },
   },

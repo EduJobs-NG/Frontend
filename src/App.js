@@ -3,9 +3,8 @@ import PrivateRoute from './utils/PrivateRoute';
 import { Home } from './pages/Home';
 import {RegisterFormUI} from './pages/RegisterFormUI';
 import {LoginFormUI} from './pages/LoginFormUI';
-import {ActivateAccount} from './pages/Authentication/ActivateAccount';
+import { ActivateAccount } from './pages/Authentication/ActivateAccount';
 import { PageNotFound } from './pages/PageNotFound';
-import { VerifyAccountUI } from './pages/Authentication/VerifyAccountUI';
 import { ForgotPassword } from './pages/Authentication/ForgotPassword';
 import { ResetPassword } from './pages/Authentication/ResetPassword';
 import { ResetEmail } from './pages/Authentication/ResetEmail';
@@ -13,8 +12,9 @@ import { NewEmail } from './pages/Authentication/NewEmail';
 import { UserProfile } from './pages/JobSeekers/UserProfile';
 import { AuthProvider } from './context/AuthContext';
 import { Dashboard } from './pages/JobSeekers/Dashboard';
-import { EmployersHome } from './Employers/EmployersHome';
-// loader css
+import { EmployersHome } from './pages/Employers/EmployersHome';
+import { VerifyAccountUI } from './pages/Authentication/VerifyAccountUI';
+
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { SavedJobs } from './pages/SavedJobs';
 import { Pricing } from './pages/Pricing';
