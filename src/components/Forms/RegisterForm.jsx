@@ -11,6 +11,8 @@ import google from '../../assets/google.png'
 import linkedin from '../../assets/linkedin.png'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { FaBars, FaTimes } from 'react-icons/fa'
+
 
 
 const validationSchema = Yup.object({
@@ -25,7 +27,7 @@ const validationSchema = Yup.object({
         .oneOf([Yup.ref('password'), null], 'Passwords must match').required('Required')
 })
 
-export const RegisterForm = () => {
+export const RegisterForm = ({showModal, setShowRegister}) => {
    
     const [agree, setAgree] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -83,13 +85,15 @@ export const RegisterForm = () => {
     //  console.log(formik.isSubmitting)
 
     return (
-        <div className=' border bg-white p-2 py-[2rem] px-[42px] rounded-[50px] max-w-[500px]'>
+        <div className=' border relative  bg-white p-2 py-[2rem] px-[42px] rounded-[50px] max-w-[500px]'>
             <ToastContainer />
 
-            <div className='flex my-4 gap-x-[1rem] justify-center '>
+            <div className=' flex my-4 gap-x-[1rem] justify-center '>
                 <FaUserPlus className='text-[2rem] text-blue' />
                 <div className='h-[2.5rem] w-[3px] bg-black'></div>
                 <h2 className="title text-blue  text-[24px] font-[700]">SIGN UP</h2>
+                {showModal ? <FaTimes onClick={() => setShowRegister(false)} className='text-blue z-[99999] text-[1.3rem] absolute top-[1rem] right-[1.5rem] mt-3 cursor-pointer' /> : null } 
+
             </div>
             <Formik>
 

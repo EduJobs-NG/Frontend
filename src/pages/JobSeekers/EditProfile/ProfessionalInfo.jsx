@@ -40,7 +40,7 @@ export const ProfessionalInfo = () => {
       {education && education.map((item, index) => {
         const { id, degree, school_name, start_of_education, end_of_education, grade } = item
         return (
-          <div key={index} className='relative border mt-[1rem] px-[2rem] py-[1rem] rounded-lg border-[#808080]'>
+          <div key={index} className='relative border mt-[1rem] px-[0.5rem] md:px-[2rem] py-[1rem] rounded-lg border-[#808080]'>
             <div className='absolute right-5'>
               <div className='flex flex-row gap-6 '>
                 <img className='cursor-pointer' onClick={() => editSelectedItem(item)} src={EditIcon2} alt="" />
@@ -58,9 +58,6 @@ export const ProfessionalInfo = () => {
           // </> 
         )
       })}
-
-
-
 
       <div className='mt-[3rem] items-baseline gap-3 text-center flex flex-row justify-center'>
         <div>

@@ -127,7 +127,7 @@ export const PersonalInfo = () => {
           <div className='grid  md:grid-cols-2 md:gap-3 mt-[1rem]'>
             <div className='w-full max-w-lg'>
 
-              <FormInputBox type="tel" label="Phone Number" maxLength="12" className="border p-2.5 block w-full border-l- border-solid border-[#808080] rounded-lg outline-none"
+              <FormInputBox type="tel" label="Phone Number" maxLength="12" className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
                 placeholder="Phone Number" id="phone_number" name="phone_number" onChange={formik.handleChange} value={formik.values.phone_number} onBlur={formik.handleBlur} />
 
               {formik.touched.phone_number && formik.errors.phone_number ? (<small className="text-red-600">{formik.errors.phone_number}</small>) : null}

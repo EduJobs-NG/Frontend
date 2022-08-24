@@ -97,7 +97,7 @@ export const RegisterFormMobile = () => {
     {({isSubmitting}) =>(
     
      <Form onSubmit={formik.handleSubmit}>
-    <div className='flex flex-auto w-full gap-x-[0.4rem]'>
+    <div className='flex flex-auto w-full gap-x-[1rem] justify-between'>
        <div>
        <FormInputBox type="text" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
                  placeholder="First Name" icon={<FaUserCircle />} id="first_name" name="first_name" onChange={formik.handleChange} value={formik.values.first_name} onBlur={formik.handleBlur} />

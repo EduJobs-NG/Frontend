@@ -1,6 +1,6 @@
 import React, { useRef, useContext, useState } from 'react'
 import { FormInputBox } from './FormInputBox';
-import { FaSignInAlt, FaEnvelope, FaLinkedin, FaGoogle } from 'react-icons/fa';
+import { FaSignInAlt, FaEnvelope, FaLinkedin, FaTimes, FaGoogle } from 'react-icons/fa';
 import * as Yup from 'yup';
 import { useFormik, Formik, Form } from 'formik';
 import { Link } from 'react-router-dom';
@@ -22,7 +22,7 @@ const validationSchema = Yup.object({
 })
 
 
-export const LoginForm = () => {
+export const LoginForm = ({setShowLogin, showModal}) => {
     const { setUser, setAuthTokens } = useContext(AuthContext);
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
@@ -79,14 +79,14 @@ export const LoginForm = () => {
 
         <section>
             <ToastContainer />
-            <div className='border bg-white p-2 py-[2rem] px-[42px]  rounded-[50px] lg:w-[500px]'>
+            <div className='relative border bg-white p-2 py-[2rem] px-[42px]  rounded-[50px] lg:w-[500px]'>
                 <div className='flex my-4 gap-x-[1rem] justify-center '>
                     <FaSignInAlt className='text-[2rem] text-blue' />
                     <div className='h-[2.5rem] w-[3px] bg-black'></div>
                     <h2 className="title text-blue  text-[24px] font-[700]">LOG IN</h2>
-                </div>
+                {showModal ? <FaTimes onClick={() => setShowLogin(false)} className='text-blue z-[99999] text-[1.3rem] absolute top-[1rem] right-[1.5rem] mt-3 cursor-pointer' /> : null } 
 
-              
+                </div>
 
                 <Formik>
                     {() => (

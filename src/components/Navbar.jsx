@@ -4,8 +4,10 @@ import {NavLink} from 'react-router-dom';
 import {FaBars, FaTimes} from 'react-icons/fa'
 import Aos from 'aos';
 import "aos/dist/aos.css";
+import { PopupRegistration } from './Forms/PopupRegistration';
+import { PopupLogin } from './Forms/PopupLogin';
 
-export const Navbar = () => {
+export const Navbar = ({}) => {
   useEffect(() => {
     Aos.init();
     Aos.refresh();
@@ -13,13 +15,18 @@ export const Navbar = () => {
   const {logo} = navigation;
   const [menu, setMenu] = useState(false);
   const [active, setActive] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+ 
   const handleClick = () =>{
     setMenu(!menu);
     setActive(!active);
-
   }
   return (
     <section className='bg-[#02378B] z-[999]'>
+  {showRegister && <PopupRegistration setShowRegister={setShowRegister}  />}
+  {showLogin && <PopupLogin setShowLogin={setShowLogin}  />}
+
         <div className="container mx-auto">
           <div className="flex uppercase py-[1.5rem] items-center flex-row justify-between">
             <ul className="flex gap-x-[3rem] text-white flex-row">
@@ -34,7 +41,6 @@ export const Navbar = () => {
                   <li className='hidden xl:flex' key={index}>
                      <NavLink to="#"> {nav.name}</NavLink>
                   </li>
-                 
                 )
               })}
             </ul>
@@ -42,10 +48,13 @@ export const Navbar = () => {
             <ul className='hidden xl:flex flex-row text-white gap-x-[2rem]'>
               
               <li>
-              <NavLink to="/" className='p-1 cursor-pointer px-4 border border-solid   border-white rounded'>EMPLOYERS</NavLink>
+              <NavLink to="#" onClick={() => setShowRegister(true)} className='p-1 cursor-pointer px-2'>I'm a job seeker</NavLink>
               </li>
               <li>
-              <NavLink to="/login" className='p-1 cursor-pointer px-4 border border-solid bg-white text-blue border-white rounded'>LOGIN</NavLink>
+              <NavLink to="/employers" className='p-1 cursor-pointer px-2'>I'm an employer</NavLink>
+              </li>
+              <li>
+              <NavLink to="#" onClick={() => setShowLogin(true)}  className='p-1 cursor-pointer px-4 border border-solid bg-white text-blue border-white rounded'>LOGIN</NavLink>
               </li>
              
 
@@ -76,8 +85,8 @@ export const Navbar = () => {
               </div>
 
               <ul className='py-[2rem] flex flex-col'>
-                <NavLink data-aos-delay="300" data-aos="fade-left" className="text-blue text-[1.2rem] mb-[33px] font-[700]" to="#">I'm a job seeker</NavLink>
-                <NavLink data-aos-delay="300" data-aos="fade-left" className="text-blue text-[1.2rem] mb-[45px] font-[700]" to="#">I'm an employer</NavLink>
+                <NavLink data-aos-delay="300" data-aos="fade-left" className="text-blue text-[1.2rem] mb-[33px] font-[700]" to="/register">I'm a job seeker</NavLink>
+                <NavLink data-aos-delay="300" data-aos="fade-left" className="text-blue text-[1.2rem] mb-[45px] font-[700]" to="/employers">I'm an employer</NavLink>
     
               </ul>
               <div className=''>

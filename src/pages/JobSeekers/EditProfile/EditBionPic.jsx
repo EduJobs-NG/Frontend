@@ -80,7 +80,7 @@ export const EditBionPic = ({setShow, show}) => {
                   </div>
 
                   <div>
-                     <label className='text-xl mb-3 font-[700]'>Edit Bio</label>
+                     {/* <label className='text-xl mb-3 font-[700]'>Edit Bio</label> */}
                      <textarea value={formik.values.bio} name="bio" id="bio" onChange={formik.handleChange} className='w-full border border-solid outline-none rounded-md resize-none border-[#808080]  p-2 '
                          placeholder='Say something about yourself' cols="100" rows="7">
                      </textarea>

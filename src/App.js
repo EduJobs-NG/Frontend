@@ -13,7 +13,7 @@ import { NewEmail } from './pages/Authentication/NewEmail';
 import { UserProfile } from './pages/JobSeekers/UserProfile';
 import { AuthProvider } from './context/AuthContext';
 import { Dashboard } from './pages/JobSeekers/Dashboard';
-
+import { EmployersHome } from './Employers/EmployersHome';
 // loader css
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { SavedJobs } from './pages/SavedJobs';
@@ -43,6 +43,7 @@ function App() {
       <Route path="/reset-email" element={<ResetEmail />}/>
       <Route path="/email/reset/confirm/:uid/:token" element={<NewEmail />}/>
       <Route path="/pricing" element={<Pricing />}/>
+      <Route path="/employers" element={<EmployersHome />}/>
       <Route path="*" element={<PageNotFound />} />
       </Routes>
       </AuthProvider>
