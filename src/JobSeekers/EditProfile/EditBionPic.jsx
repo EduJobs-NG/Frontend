@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useFormik, Formik, Form } from 'formik';
 import { ThreeDots } from 'react-loader-spinner';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import AuthContext from '../../../context/AuthContext';
+import AuthContext from '../../context/AuthContext';
 import axios from 'axios';
 
 export const EditBionPic = ({setShow, show}) => {

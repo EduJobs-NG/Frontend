@@ -1,10 +1,10 @@
 import React from 'react';
-import { LoginForm } from '../components/Forms/LoginForm';
-import { LoginFormMobile } from '../components/Forms/LoginFormMobile';
+import { LoginForm } from '../../components/Forms/LoginForm';
+import { LoginFormMobile } from '../../components/Forms/LoginFormMobile';
 
 
 
-export const LoginFormUI = () => {
+export const JobseekerLoginFormUI = () => {
 
   return (
     <>

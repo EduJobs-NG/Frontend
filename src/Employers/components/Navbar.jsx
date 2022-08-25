@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {navigation} from '../../../data';
+import {navigation} from '../../data';
 import {NavLink} from 'react-router-dom';
 import {FaBars, FaTimes} from 'react-icons/fa'
 import Aos from 'aos';

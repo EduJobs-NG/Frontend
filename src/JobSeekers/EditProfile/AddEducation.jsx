@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { FormInputBox } from '../../../components/Forms/FormInputBox';
+import { FormInputBox } from '../../components/Forms/FormInputBox';
+import AuthContext from '../../context/AuthContext';
 import * as Yup from 'yup';
 import { useFormik, Formik, Form } from 'formik';
-import AuthContext from '../../../context/AuthContext';
 import axios from 'axios';
 import { ThreeDots } from 'react-loader-spinner';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import CustomSelect from '../../../components/Forms/CustomSelect';
+import CustomSelect from '../../components/Forms/CustomSelect';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

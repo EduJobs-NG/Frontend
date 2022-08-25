@@ -1,14 +1,14 @@
 import React, {useContext} from 'react';
 import AuthContext from '../../context/AuthContext';
-import { Navbar } from './Navbar';
+import { JobseekerNavbar } from '../components/JobseekerNavbar';
 import {Footer} from '../../components/Footer'
 
 
-export const Dashboard = () => {
+export const JobseekerDashboard = () => {
   const {user, authTokens, logOutUser} = useContext(AuthContext)
   return (
     <>
-    <Navbar />
+    <JobseekerNavbar />
   <section className="relative bg-jobs lg:pt-[20px] lg:pb-[70px] h-[500px] bg-center bg-cover bg-no-repeat">
   <div className="container mx-auto h-full flex items-center justify-between">
   <h2 className='title text-[35px] font-heading lg:text-[66px] font-[700] text-white max-w-[400px] md:max-w-[600px] z-[999] '>Find Jobs that Best Suit You</h2>

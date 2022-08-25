@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react'
-import AuthContext from '../../../context/AuthContext';
+import AuthContext from '../../context/AuthContext';
 import { AddEducation } from './AddEducation';
-import AddIcon from '../../../assets/AddIcon.png';
-import EditIcon2 from '../../../assets/EditIcon2.png'
-import DeleteIcon from '../../../assets/DeleteIcon.png';
+import AddIcon from '../../assets/AddIcon.png';
+import EditIcon2 from '../../assets/EditIcon2.png'
+import DeleteIcon from '../../assets/DeleteIcon.png';
 import { DeleteEducation } from '../DeleteProfile/DeleteEducation';
 import { EditEducation } from './EditEducation';
 

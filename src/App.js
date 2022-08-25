@@ -1,22 +1,22 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PrivateRoute from './utils/PrivateRoute';
-import { Home } from './pages/Home';
-import {RegisterFormUI} from './pages/RegisterFormUI';
-import {LoginFormUI} from './pages/LoginFormUI';
+import {JobseekersHome} from './JobSeekers/pages/JobseekersHome';
+import {JobseekerRegisterFormUI} from './JobSeekers/pages/JobseekerRegisterFormUI';
+import {JobseekerLoginFormUI} from './JobSeekers/pages/JobseekerLoginFormUI';
 import { ActivateAccount } from './pages/Authentication/ActivateAccount';
 import { PageNotFound } from './pages/PageNotFound';
 import { ForgotPassword } from './pages/Authentication/ForgotPassword';
 import { ResetPassword } from './pages/Authentication/ResetPassword';
 import { ResetEmail } from './pages/Authentication/ResetEmail';
 import { NewEmail } from './pages/Authentication/NewEmail';
-import { UserProfile } from './pages/JobSeekers/UserProfile';
+import { JobseekerProfile } from './JobSeekers/pages/JobseekerProfile';
 import { AuthProvider } from './context/AuthContext';
-import { Dashboard } from './pages/JobSeekers/Dashboard';
-import { EmployersHome } from './pages/Employers/EmployersHome';
+import { JobseekerDashboard } from './JobSeekers/pages/JobseekerDashboard';
+import { EmployersHome } from './Employers/pages/EmployersHome';
 import { VerifyAccountUI } from './pages/Authentication/VerifyAccountUI';
 
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import { SavedJobs } from './pages/SavedJobs';
+import { JobseekerSavedjobs } from './JobSeekers/pages/JobseekerSavedjobs';
 import { Pricing } from './pages/Pricing';
 
 
@@ -27,15 +27,15 @@ function App() {
     <div className="w-full mx-auto">
       <AuthProvider>
       <Routes>
-      <Route path="/" exact  element={<Home />} />
+      <Route path="/" exact  element={<JobseekersHome />} />
       <Route element={<PrivateRoute />}>
-      <Route path="/dashboard/profile" exact element={<UserProfile />} />
-      <Route path="/dashboard/find-jobs" exact  element={<Dashboard />} />
-      <Route path="/dashboard/saved-jobs/" exact  element={<SavedJobs />} />
+      <Route path="/dashboard/profile" exact element={<JobseekerProfile />} />
+      <Route path="/dashboard/find-jobs" exact  element={<JobseekerDashboard />} />
+      <Route path="/dashboard/saved-jobs/" exact  element={<JobseekerSavedjobs />} />
       </Route>
 
-      <Route path="/login" element={<LoginFormUI />}/>
-      <Route path="/register" element={<RegisterFormUI />}/>
+      <Route path="/login" element={<JobseekerLoginFormUI />}/>
+      <Route path="/register" element={<JobseekerRegisterFormUI />}/>
       <Route path="/activate/:uid/:token" element={<ActivateAccount />}/>
       <Route path="/verify" element={<VerifyAccountUI />}/>
       <Route path="/forgot-password" element={<ForgotPassword />}/>

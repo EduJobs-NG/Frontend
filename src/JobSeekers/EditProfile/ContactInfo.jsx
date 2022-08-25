@@ -1,9 +1,8 @@
-import React, { useRef, useContext, useEffect, useState } from 'react'
-import { FormInputBox } from '../../../components/Forms/FormInputBox';
-import { FaSignInAlt, FaEnvelope, FaLinkedin, FaGoogle } from 'react-icons/fa';
+import React, {useContext, useEffect, useState } from 'react'
+import { FormInputBox } from '../../components/Forms/FormInputBox';
 import * as Yup from 'yup';
 import { useFormik, Formik, Form } from 'formik';
-import AuthContext from '../../../context/AuthContext';
+import AuthContext from '../../context/AuthContext';
 import axios from 'axios';
 import { ThreeDots } from 'react-loader-spinner';
 import { ToastContainer, toast } from 'react-toastify';

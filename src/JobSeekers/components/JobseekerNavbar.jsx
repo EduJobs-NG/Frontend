@@ -6,11 +6,9 @@ import { FaBars, FaTimes } from 'react-icons/fa';
 import chat from '../../assets/chat.png'
 import notification from '../../assets/notification.png'
 import Aos from 'aos'
-import {navigation} from '../../../src/data';
-import enoch from '../../assets/enoch.jpg'
+import {navigation} from '../../data';
 
-export const Navbar = () => {
-  const { user } = useContext(AuthContext);
+export const JobseekerNavbar = ({user}) => {
   const {logo} = navigation;
   useEffect(() => {
     Aos.init();
@@ -65,20 +63,11 @@ export const Navbar = () => {
             </li>
 
             <li>
-              {!user && <NavLink to="/dashboard/profile">
-              <div className='w-[40px] h-[40px]'>
-                  <FaUserCircle className='w-10' />
-                </div>
-              </NavLink>}
-
-              {user.avatar &&  
               <NavLink to="/dashboard/profile">
               <div className='w-[40px] h-[40px]'>
-                  {/* <img className='rounded-full ' src={user?.avatar} alt="" /> */}
-                  <img className='rounded-full ' src={enoch} alt="" />
+                  <img className='rounded-full' src={user?.avatar} alt="" />
                 </div>
               </NavLink>
-              }
             </li>
 
 
@@ -87,10 +76,8 @@ export const Navbar = () => {
           <div className='xl:hidden items-center flex flex-row gap-[1rem]'>
             <div>
               <NavLink to="/dashboard/profile">
-                {/* <FaUserCircle className='text-white w-8' /> */}
                 <div className='w-[40px] h-[40px]'>
-                  <img className='rounded-full ' src={user?.avatar} alt="" />
-                  <img className='rounded-full ' src={enoch} alt="" />
+                  <img className='rounded-full' src={user?.avatar} alt="" />
                 </div>
               </NavLink>
             </div>

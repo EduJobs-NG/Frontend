@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react'
-import AuthContext from '../../../context/AuthContext';
-import { FormInputBox } from '../../../components/Forms/FormInputBox';
-import AddIcon from '../../../assets/AddIcon.png';
+import AuthContext from '../../context/AuthContext';
+import AddIcon from '../../assets/AddIcon.png';
 import { AddCredentials } from './AddCredentials';
 import { Link } from 'react-router-dom';
 import { DeleteCredential } from '../DeleteProfile/DeleteCredential';

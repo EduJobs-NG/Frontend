@@ -1,11 +1,9 @@
-import React, { useRef, useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { FormInputBox } from "./FormInputBox";
 import {
   FaSignInAlt,
   FaEnvelope,
-  FaLinkedin,
   FaTimes,
-  FaGoogle,
 } from "react-icons/fa";
 import * as Yup from "yup";
 import { useFormik, Formik, Form } from "formik";
@@ -25,7 +23,7 @@ const validationSchema = Yup.object({
   password: Yup.string().min(8, "Enter your password").required("Required"),
 });
 
-export const LoginForm = ({ setShowLogin, showModal }) => {
+export const EmployersLoginForm = ({ setShowLogin, showModal }) => {
   const { setUser, setAuthTokens } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();

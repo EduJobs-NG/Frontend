@@ -3,7 +3,8 @@ import { PersonalInfo } from './PersonalInfo';
 import { ProfessionalInfo } from './ProfessionalInfo';
 import { ContactInfo } from './ContactInfo';
 import { Credentials } from './Credentials';
-import AuthContext from '../../../context/AuthContext';
+import AuthContext from '../../context/AuthContext';
+
 
 
 export const EditProfile = () => {

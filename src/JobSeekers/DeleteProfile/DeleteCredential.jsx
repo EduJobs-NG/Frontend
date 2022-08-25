@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { ThreeDots } from 'react-loader-spinner';
-import AuthContext from '../../../context/AuthContext';
+import AuthContext from '../../context/AuthContext';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
