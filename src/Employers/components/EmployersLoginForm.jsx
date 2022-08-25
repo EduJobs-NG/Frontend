@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { FormInputBox } from "./FormInputBox";
+import { FormInputBox } from "../../components/Forms/FormInputBox";
 import {
   FaSignInAlt,
   FaEnvelope,
@@ -150,7 +150,7 @@ export const EmployersLoginForm = ({ setShowLogin, showModal }) => {
                 </small>
                 <small>
                   Don't have an account?
-                  <Link className="text-blue underline" to="/register">
+                  <Link className="text-blue underline" to="employer/register">
                     {" "}
                     Sign up
                   </Link>

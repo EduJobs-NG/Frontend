@@ -8,15 +8,15 @@ export const JobseekerLoginFormUI = () => {
 
   return (
     <>
-    <section className='flex  justify-center items-center lg:hidden'>
-      <div className='w-full max-w-[600px]'>
+    <section className=' container mx-auto flex  justify-center items-center'>
+      <div className='w-full max-w-[500px]'>
       <LoginFormMobile />
 
       </div>
     </section>
 
 
-    <section className='hidden h-full lg:block relative bg-hero lg:pt-[70px] lg:pb-[70px]   bg-center  bg-cover bg-no-repeat'>
+    {/* <section className='hidden h-full lg:block relative bg-hero lg:pt-[70px] lg:pb-[70px]   bg-center  bg-cover bg-no-repeat'>
     <div className="absolute top-0 left-0 right-0 bottom-0 bg-[#02378B] opacity-50 z-[100] ">
   </div>
   <div className='container relative mx-auto h-screen flex flex-col justify-center items-center lg:flex-row lg:gap-x-[100px] z-[999]'>
@@ -33,7 +33,7 @@ export const JobseekerLoginFormUI = () => {
 
   </div>
   
-</section>
+</section> */}
 
 </>
 

@@ -83,7 +83,7 @@ export const RegisterFormMobile = () => {
 //  console.log(formik.isSubmitting)
    
     return (
-        <div className='flex flex-col justify-center h-screen bg-white p-2 py-[2rem] px-[20px]  '>
+        <div className='flex flex-col justify-center h-screen bg-white p-1 py-[2rem] px-[5px]  '>
             <ToastContainer />
 
             <div className='flex my-4 md:gap-x-[1rem] justify-center '>
@@ -97,7 +97,7 @@ export const RegisterFormMobile = () => {
     {({isSubmitting}) =>(
     
      <Form onSubmit={formik.handleSubmit}>
-    <div className='flex flex-auto w-full gap-x-[1rem] justify-between'>
+    <div className='grid grid-cols-2 gap-4 '>
        <div>
        <FormInputBox type="text" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
                  placeholder="First Name" icon={<FaUserCircle />} id="first_name" name="first_name" onChange={formik.handleChange} value={formik.values.first_name} onBlur={formik.handleBlur} />

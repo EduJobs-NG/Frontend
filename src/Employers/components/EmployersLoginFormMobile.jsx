@@ -1,5 +1,5 @@
 import React, { useRef, useContext, useState } from 'react'
-import { FormInputBox } from './FormInputBox';
+import { FormInputBox } from '../../components/Forms/FormInputBox';
 import { FaSignInAlt, FaEnvelope, FaLinkedin, FaGoogle } from 'react-icons/fa';
 import * as Yup from 'yup';
 import { useFormik, Formik, Form } from 'formik';
@@ -22,7 +22,7 @@ const validationSchema = Yup.object({
 })
 
 
-export const LoginFormMobile = () => {
+export const EmployersLoginFormMobile = () => {
     const { setUser, setAuthTokens } = useContext(AuthContext);
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
@@ -75,7 +75,7 @@ export const LoginFormMobile = () => {
         <>
             <ToastContainer />
 
-            <div className='bg-white flex flex-col h-screen justify-center  p-1 py-[2rem] px-[5px] '>
+            <div className='bg-white flex flex-col h-screen justify-center  p-2 py-[2rem] px-[20px] '>
                 <div className='flex my-4  md:gap-x-[1rem] justify-center '>
                     <FaSignInAlt className='text-[2rem] text-blue' />
                     <div className='h-[2.5rem] ml-[1rem] mr-[1rem] w-[3px] bg-black'></div>
@@ -116,7 +116,7 @@ export const LoginFormMobile = () => {
 
                 </Formik>
                 <div className='flex flex-col text-center gap-y-[1rem] justify-between mt-[1rem] mb-[1.2rem] '>
-                    <small>Don't have an account?<Link className="text-blue underline" to="/jobseeker/register"> Sign up</Link></small>
+                    <small>Don't have an account?<Link className="text-blue underline" to="/employer/register"> Sign up</Link></small>
                     <small><Link className='text-blue underline' to="/forgot-password">Forgot Password?</Link></small>
                 </div>
 

@@ -1,22 +1,21 @@
 import React from 'react';
-import { LoginForm } from '../../components/Forms/LoginForm';
-import { LoginFormMobile } from '../../components/Forms/LoginFormMobile';
+import { EmployersLoginForm } from '../components/EmployersLoginForm';
+import { EmployersLoginFormMobile } from '../components/EmployersLoginFormMobile';
 
 
-
-export const LoginFormUI = () => {
+export const EmployersLoginFormUI = () => {
 
   return (
     <>
     <section className='flex  justify-center items-center lg:hidden'>
       <div className='w-full max-w-[600px]'>
-      <LoginFormMobile />
+      <EmployersLoginFormMobile />
 
       </div>
     </section>
 
 
-    <section className='hidden h-full lg:block relative bg-hero lg:pt-[70px] lg:pb-[70px]   bg-center  bg-cover bg-no-repeat'>
+    <section className='hidden h-full lg:block relative bg-employers lg:pt-[70px] lg:pb-[70px]  bg-left  bg-cover bg-no-repeat'>
     <div className="absolute top-0 left-0 right-0 bottom-0 bg-[#02378B] opacity-50 z-[100] ">
   </div>
   <div className='container relative mx-auto h-screen flex flex-col justify-center items-center lg:flex-row lg:gap-x-[100px] z-[999]'>
@@ -29,7 +28,7 @@ export const LoginFormUI = () => {
     </p>
     </div>
 
- <LoginForm />
+ <EmployersLoginForm />
 
   </div>
   

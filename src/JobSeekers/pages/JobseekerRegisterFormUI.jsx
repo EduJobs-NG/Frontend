@@ -1,5 +1,5 @@
 import React from "react";
-import { RegisterForm } from "../../components/Forms/RegisterForm";
+// import { RegisterForm } from "../../components/Forms/RegisterForm";
 import { RegisterFormMobile } from "../../components/Forms/RegisterFormMobile";
 
 
@@ -9,8 +9,8 @@ export const JobseekerRegisterFormUI = () => {
   return (
     <>
 
-    <section className="flex  justify-center items-center lg:hidden">
-      <div className="w-full my-[2rem] max-w-[600px]">
+    <section className="flex  justify-center items-center">
+      <div className="w-full my-[2rem] max-w-[500px]">
       <RegisterFormMobile />
 
       </div>
@@ -18,7 +18,7 @@ export const JobseekerRegisterFormUI = () => {
 
 
     {/* Desktop */}
-      <section className='hidden lg:block relative bg-hero lg:pt-[20px] lg:pb-[70px]  h-full bg-center  bg-cover bg-no-repeat'>
+      {/* <section className='hidden lg:block relative bg-hero lg:pt-[20px] lg:pb-[70px]  h-full bg-center  bg-cover bg-no-repeat'>
         <div className="absolute top-0 left-0 right-0 bottom-0 bg-[#02378B] opacity-40 z-[100] ">
       </div>
       <div className='relative container mx-auto flex flex-col lg:flex-row lg:gap-x-[100px] z-[999]'>
@@ -35,7 +35,7 @@ export const JobseekerRegisterFormUI = () => {
 
       </div>
       
-    </section>
+    </section> */}
 
     </>
 

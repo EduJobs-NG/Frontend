@@ -51,7 +51,7 @@ export const Navbar = ({}) => {
               <NavLink to="#" onClick={() => setShowRegister(true)} className='p-1 cursor-pointer px-2'>I'm a job seeker</NavLink>
               </li>
               <li>
-              <NavLink to="/employers" className='p-1 cursor-pointer px-2'>I'm an employer</NavLink>
+              <NavLink to="/employer" className='p-1 cursor-pointer px-2'>I'm an employer</NavLink>
               </li>
               <li>
               <NavLink to="#" onClick={() => setShowLogin(true)}  className='p-1 cursor-pointer px-4 border border-solid bg-white text-blue border-white rounded'>LOGIN</NavLink>

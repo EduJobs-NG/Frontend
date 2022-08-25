@@ -72,7 +72,7 @@ export const LoginForm = ({ setShowLogin, showModal }) => {
   return (
     <section>
       <ToastContainer />
-      <div className="relative border bg-white p-2 py-[2rem] px-[42px]  rounded-[50px] lg:w-[500px]">
+      <div className="relative border bg-white p-2 py-[2rem] px-[32px] rounded-[50px] lg:w-[500px]">
         <div className="flex my-4 gap-x-[1rem] justify-center ">
           <FaSignInAlt className="text-[2rem] text-blue" />
           <div className="h-[2.5rem] w-[3px] bg-black"></div>
@@ -152,7 +152,7 @@ export const LoginForm = ({ setShowLogin, showModal }) => {
                 </small>
                 <small>
                   Don't have an account?
-                  <Link className="text-blue underline" to="/register">
+                  <Link className="text-blue underline" to="/jobseeker/register">
                     {" "}
                     Sign up
                   </Link>
