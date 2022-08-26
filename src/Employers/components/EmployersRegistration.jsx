@@ -25,7 +25,7 @@ export const EmployersRegistration = () => {
   };
 
   return (
-    <section className="container mx-auto flex flex-col h-screen justify-center items-center">
+    <section className="px-[20px] flex flex-col h-screen justify-center items-center">
          <div className='flex my-4 md:gap-x-[1rem] justify-center '>
              <FaUserPlus className='text-[2rem] text-blue' />
              <div className='h-[2.5rem] ml-[1rem] mr-[1rem] w-[3px] bg-black'></div>

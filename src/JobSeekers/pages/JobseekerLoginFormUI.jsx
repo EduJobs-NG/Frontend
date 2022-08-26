@@ -8,7 +8,7 @@ export const JobseekerLoginFormUI = () => {
 
   return (
     <>
-    <section className=' container mx-auto flex  justify-center items-center'>
+    <section className='flex justify-center items-center'>
       <div className='w-full max-w-[500px]'>
       <LoginFormMobile />
 

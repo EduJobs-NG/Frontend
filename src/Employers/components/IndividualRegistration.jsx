@@ -44,7 +44,7 @@ export const IndividualRegistration = () => {
   const onSubmit = async (values) => {
     setIsLoading(true);
     const response = await axios
-      .post(`${process.env.REACT_APP_BASE_URL}employer/account/individual-employer`, values)
+      .post(`${process.env.REACT_APP_BASE_URL}employer/account/individual-employer/`, values)
       .catch((err) => {
         if (err && err.response) {
           if (err.message === "Request failed with status code 400") {
@@ -84,7 +84,7 @@ export const IndividualRegistration = () => {
   //  console.log(formik.isSubmitting)
   //    flex flex-col justify-center h-screen
   return (
-    <div className=" bg-white p-1 px-[10px]  ">
+    <div className=" bg-white ">
       <ToastContainer />
 
       <Formik>

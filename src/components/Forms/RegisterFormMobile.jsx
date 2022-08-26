@@ -80,10 +80,9 @@ export const RegisterFormMobile = () => {
         
     })
 
-//  console.log(formik.isSubmitting)
    
     return (
-        <div className='flex flex-col justify-center h-screen bg-white p-1 px-[10px]  '>
+        <div className='flex flex-col justify-center h-screen bg-white px-[20px]  '>
             <ToastContainer />
 
             <div className='flex my-4 md:gap-x-[1rem] justify-center '>
@@ -94,7 +93,7 @@ export const RegisterFormMobile = () => {
            
 <Formik>
     
-    {({isSubmitting}) =>(
+    {({}) =>(
     
      <Form onSubmit={formik.handleSubmit}>
     <div className='grid grid-cols-2 gap-4 '>

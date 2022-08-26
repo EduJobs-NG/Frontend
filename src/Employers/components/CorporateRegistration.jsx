@@ -78,7 +78,7 @@ export const CoroporateRegistration = () => {
     })
 
     return (
-        <div className=' bg-white p-1 px-[10px]  '>
+        <div className=' bg-white   '>
             <ToastContainer />
            
 <Formik>

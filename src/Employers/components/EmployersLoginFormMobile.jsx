@@ -73,7 +73,7 @@ export const EmployersLoginFormMobile = () => {
         <>
             <ToastContainer />
 
-            <div className='bg-white flex flex-col h-screen justify-center  p-2 py-[2rem] px-[20px] '>
+            <div className='bg-white flex flex-col h-screen justify-center p-2 py-[2rem] px-[20px] '>
                 <div className='flex my-4  md:gap-x-[1rem] justify-center '>
                     <FaSignInAlt className='text-[2rem] text-blue' />
                     <div className='h-[2.5rem] ml-[1rem] mr-[1rem] w-[3px] bg-black'></div>
