@@ -10,18 +10,21 @@ export const EditPic = ({ setShowPic }) => {
   const {authTokens, getUserMeHandler } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const [preview, setPreview] = useState(null);
-  const [src, setSrc] = useState(null);
+  const [image, setImage] = useState(null);
+  console.log(preview)
+//   console.log(image)
   const onCrop = (view) =>{
     setPreview(view)
-    setSrc(src)
   }
 
   const onSubmit = async (values) => {
     setIsLoading(true);
+    const data = new FormData();
+    data.append('avatar', image);
     const response = await axios
       .put(
         `${process.env.REACT_APP_BASE_URL}account/user-profile-update/`,
-        values,
+        data,
         {
           headers: {
             "Content-Type": "application/json",
@@ -77,7 +80,7 @@ export const EditPic = ({ setShowPic }) => {
                   <Avatar 
                   width={300}
                   height={300}
-                  src={src}
+                  image={image}
                   onCrop={onCrop}
                    />
                   {preview && <img src={preview} />}
