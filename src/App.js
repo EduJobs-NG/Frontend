@@ -19,12 +19,12 @@ import { Pricing } from './pages/Pricing';
 
 // employers import
 import { EmployersHome } from './Employers/pages/EmployersHome';
-import { EmployersLoginFormUI } from './Employers/pages/EmployersLoginFormUI';
+// import { EmployersLoginFormUI } from './Employers/pages/EmployersLoginFormUI';
 
 
 //loader css
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import { EmployersRegistration } from './Employers/components/EmployersRegistration';
+import { EmployersRegistration } from './Employers/pages/EmployersRegistration';
 
 
 function App() {

@@ -5,6 +5,7 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { EmployersPopupLogin } from "./EmployersPopupLogin";
+import { EmployersRegistrationPopup } from "./EmployersRegistrationPopup";
 
 export const Navbar = ({}) => {
   useEffect(() => {
@@ -24,6 +25,7 @@ export const Navbar = ({}) => {
   return (
     <section className="bg-[#02378B] z-[999]">
       {showLogin && <EmployersPopupLogin setShowLogin={setShowLogin} />}
+      {showRegister && <EmployersRegistrationPopup setShowRegister={setShowRegister} />}
 
       <div className="container mx-auto">
         <div className="flex uppercase py-[1.5rem] items-center flex-row justify-between">
@@ -54,7 +56,7 @@ export const Navbar = ({}) => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="#" className="p-1 cursor-pointer px-2">
+              <NavLink to="#" onClick={() => setShowRegister(true)} className="p-1 cursor-pointer px-2">
                 I'm an employer
               </NavLink>
             </li>

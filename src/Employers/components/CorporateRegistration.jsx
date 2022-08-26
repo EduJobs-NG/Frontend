@@ -3,7 +3,7 @@ import { FormInputBox } from '../../components/Forms/FormInputBox';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
-import {FaUserPlus, FaUserCircle, FaEnvelope} from 'react-icons/fa';
+import {FaUserPlus, FaUserCircle, FaEnvelope, FaUser} from 'react-icons/fa';
 import {ThreeDots} from 'react-loader-spinner';
 import { Formik, Form } from 'formik';
 import {  Link, useNavigate } from 'react-router-dom';
@@ -23,7 +23,7 @@ const validationSchema = Yup.object({
         .oneOf([Yup.ref('password'), null], 'Passwords must match').required('Required')
 })
 
-export const CoroporateRegistration = () => {
+export const CorporateRegistration = () => {
   
     const [agree, setAgree] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -89,7 +89,7 @@ export const CoroporateRegistration = () => {
     
 
      <FormInputBox type="text" className="border p-2.5 block w-full border-solid border-[#808080] rounded-lg outline-none"
-      icon={<FaEnvelope />}   placeholder="Organization Name"  id="organization_name" name="organization_name" onChange={formik.handleChange} value={formik.values.organization_name} onBlur={formik.handleBlur}  />
+      icon={<FaUserCircle />}   placeholder="Organization Name"  id="organization_name" name="organization_name" onChange={formik.handleChange} value={formik.values.organization_name} onBlur={formik.handleBlur}  />
          
      {formik.touched.organization_name && formik.errors.organization_name ? (<small className="text-red-600">{formik.errors.organization_name}</small>) : null}
  

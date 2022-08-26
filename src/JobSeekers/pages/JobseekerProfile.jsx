@@ -4,13 +4,14 @@ import AuthContext from '../../context/AuthContext';
 import marker from '../../assets/Marker.png';
 import EditIcon from '../../assets/EditIcon.png';
 import { EditProfile } from '../EditProfile/EditProfile';
-import { EditBionPic } from '../EditProfile/EditBionPic';
-import {FaBars, FaTimes, FaUserCircle} from 'react-icons/fa'
+import { EditBio } from '../EditProfile/EditBio';
+import { EditPic } from '../EditProfile/EditPic';
 
 
 export const JobseekerProfile = () => {
   const { user, getUserMeHandler, loading, isError } = useContext(AuthContext);
-  const [show, setShow] = useState(false);
+  const [showBio, setShowBio] = useState(false);
+  const [showPic, setShowPic] = useState(false)
   const renderBasedOnStatus = () =>{
     switch (loading) {
       case true:
@@ -30,7 +31,8 @@ export const JobseekerProfile = () => {
   return (
     <>
       <JobseekerNavbar user={user} />
-      {show && <EditBionPic show={show} setShow={setShow} />}
+      {showBio && <EditBio showBio={showBio} setShowBio={setShowBio} />}
+      {showPic && <EditPic showPic={showPic} setShowPic={setShowPic} />}
       
       <section className='bg-[#f5f5f5] overflow-x-hidden'>
         <div className='container mx-auto rounded-[40px] bg-white'>
@@ -41,16 +43,16 @@ export const JobseekerProfile = () => {
                 <div className=' relative w-[130px] h-[130px]'>
                   <img className='rounded-full ' src={user?.avatar} alt="" />
                   
-                  {/* {!loading &&
-                  <div className=' absolute top-0 cursor-pointer ml-2' onClick={()=>setShow(true)}>
+                  {!loading &&
+                  <div className=' absolute top-0 cursor-pointer ml-2' onClick={()=>setShowPic(true)}>
                   <img src={EditIcon} alt="" />
                 </div>
-                } */}
+                }
                 </div>
                 <div className=''>
-                  {loading && (<p>Loading...</p>)}
-                 {!loading && <h1 className='font-[700] text-[20px]'>{ user.user?.first_name} { user.user?.last_name}</h1>}
-                  {!loading && <small className='flex justify-center md:justify-start '><img src={marker} alt="" className='mr-[0.5rem]' /> {user?.city || "..."}, {user.state || "..."} </small>}
+                  {/* {loading && (<p>Loading...</p>)} */}
+                  <h1 className='font-[700] text-[20px]'>{ user.user?.first_name} { user.user?.last_name}</h1>
+                  <small className='flex justify-center md:justify-start '><img src={marker} alt="" className='mr-[0.5rem]' /> {user?.city || "..."}, {user.state || "..."} </small>
                 </div>
 
 
@@ -59,7 +61,7 @@ export const JobseekerProfile = () => {
               <div className='max-w-[600px] mt-[2rem] md:mt-0'>
                 {/* {!loading &&  */}
                 <div className='flex justify-center md:justify-start'>
-                <span className='font-[700] text-[18px]'>Bio:</span> <div className='cursor-pointer ml-2' onClick={()=>setShow(true)}>
+                <span className='font-[700] text-[18px]'>Bio:</span> <div className='cursor-pointer ml-2' onClick={()=>setShowBio(true)}>
                   <img src={EditIcon} alt="" />
                 </div>
                 </div>

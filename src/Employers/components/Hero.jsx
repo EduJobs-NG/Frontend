@@ -8,7 +8,7 @@ export const Hero = () => {
           <h2 className="title text-[35px] font-heading lg:text-[66px]  font-[700] text-white max-w-[600px]">
             Hire Top Talents faster than ever!
           </h2>
-          <p className="subtitle text-[25px]  lg:text-[36px] text-white max-w-[700px] ">
+          <p className="subtitle text-[20px]  lg:text-[30px] text-white max-w-[700px] ">
             Save time and money on recruitment with EduJobs matchmaking
             technology and Candidates' assessement.
           </p>

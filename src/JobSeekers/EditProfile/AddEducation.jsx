@@ -74,7 +74,7 @@ export const AddEducation = ({setShowEducation}) => {
       <ToastContainer  />
         
         <div className="justify-center items-center  flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-          <div className="relative w-full mt-[20rem] md:mt-0 my-6 mx-3 max-w-5xl">
+          <div className="relative w-full mt-[20rem] md:mt-[4rem] my-6 mx-3 max-w-5xl">
 
             {/*content*/}
             <div className="border-0  rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
