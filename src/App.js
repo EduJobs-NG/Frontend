@@ -24,6 +24,7 @@ import { EmployersLoginFormUI } from './Employers/pages/EmployersLoginFormUI';
 
 //loader css
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import { EmployersRegistration } from './Employers/components/EmployersRegistration';
 
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
       <Route path="*" element={<PageNotFound />} />
 
       <Route path="/employer" element={<EmployersHome />}/>
+      <Route path="/employer/register" element={<EmployersRegistration />}/>
       {/* <Route path="/login" element={<EmployersLoginFormUI />}/> */}
 
       </Routes>

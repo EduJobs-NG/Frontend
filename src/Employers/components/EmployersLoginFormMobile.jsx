@@ -49,10 +49,8 @@ export const EmployersLoginFormMobile = () => {
             });
 
         if (response && response.data) {
-            // console.log(response.data.auth_token)
             setAuthTokens(response.data)
             localStorage.setItem('authTokens', JSON.stringify(response.data))
-            // setUser(jwt_decode(response.data.access))
             navigate('/dashboard/find-jobs')
             setIsLoading(false)
 
@@ -81,7 +79,6 @@ export const EmployersLoginFormMobile = () => {
                     <div className='h-[2.5rem] ml-[1rem] mr-[1rem] w-[3px] bg-black'></div>
                     <h2 className="title text-blue  text-[24px] font-[700]">LOG IN</h2>
                 </div>
-
            
                 <Formik>
                     {() => (

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { FormInputBox } from './FormInputBox';
+import { FormInputBox } from '../../components/Forms/FormInputBox';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
@@ -13,8 +13,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const validationSchema = Yup.object({
-    first_name: Yup.string().max(15, "Must be 15 characters or less").required('Required'),
-    last_name: Yup.string().max(15, "Must be 15 characters or less").required('Required'),
+    organization_name:Yup.string().required('Required'),
     email: Yup.string().email("Invalid email address").required('Required'),
     password: Yup.string().min(8).required('Required').matches(
         /^(?=.*[a-z])(?=.*[0-9])/,
@@ -24,7 +23,7 @@ const validationSchema = Yup.object({
         .oneOf([Yup.ref('password'), null], 'Passwords must match').required('Required')
 })
 
-export const RegisterFormMobile = () => {
+export const CoroporateRegistration = () => {
   
     const [agree, setAgree] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -38,7 +37,7 @@ export const RegisterFormMobile = () => {
     const onSubmit = async (values) =>{
         setIsLoading(true)
         const response = await axios
-        .post(`${process.env.REACT_APP_BASE_URL}users/`, values)
+        .post(`${process.env.REACT_APP_BASE_URL}employer/account/cooperate-employer/`, values)
         .catch(err =>{
             if(err && err.response){
               if (err.message === 'Request failed with status code 400'){
@@ -48,14 +47,13 @@ export const RegisterFormMobile = () => {
               }else{
                 setIsLoading(false)
                 toast.error("An error occured. Try again")
+                console.log(err)
               
-                // console.log(err)
               }
             }
         });
 
         if(response && response.data){
-                // console.log(response)
                 toast.success("Account created successfully.")
                 setTimeout(() =>{
                     navigate('/verify');
@@ -68,8 +66,7 @@ export const RegisterFormMobile = () => {
 
     const formik = useFormik({
         initialValues: {
-            first_name: '',
-            last_name: '',
+            organization_name:'',
             email: '',
             password: '',
             re_password: ''
@@ -80,42 +77,22 @@ export const RegisterFormMobile = () => {
         
     })
 
-//  console.log(formik.isSubmitting)
-   
     return (
-        <div className='flex flex-col justify-center h-screen bg-white p-1 px-[10px]  '>
+        <div className=' bg-white p-1 px-[10px]  '>
             <ToastContainer />
-
-            <div className='flex my-4 md:gap-x-[1rem] justify-center '>
-             <FaUserPlus className='text-[2rem] text-blue' />
-             <div className='h-[2.5rem] ml-[1rem] mr-[1rem] w-[3px] bg-black'></div>
-            <h2 className="title text-blue  text-[24px] font-[700]">SIGN UP</h2>
-            </div>
            
 <Formik>
     
-    {({isSubmitting}) =>(
+    {({}) =>(
     
      <Form onSubmit={formik.handleSubmit}>
-    <div className='grid grid-cols-2 gap-4 '>
-       <div>
-       <FormInputBox type="text" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
-                 placeholder="First Name" icon={<FaUserCircle />} id="first_name" name="first_name" onChange={formik.handleChange} value={formik.values.first_name} onBlur={formik.handleBlur} />
-                
-             {formik.touched.first_name && formik.errors.first_name ? (<small className="text-red-600">{formik.errors.first_name}</small>) : null}
-       </div>
-             
-       <div>
-       <FormInputBox type="text" className="border p-2.5 block  w-full  border-solid border-[#808080] rounded-lg outline-none"
-                 placeholder="Last  Name"  icon={<FaUserCircle />} id="last_name" name="last_name" onChange={formik.handleChange} value={formik.values.last_name} onBlur={formik.handleBlur} />
-             {formik.touched.last_name && formik.errors.last_name ? (<small className="text-red-600">{formik.errors.last_name}</small>) : null}
+    
 
-       </div>
-            
-        
-     </div>
-
-
+     <FormInputBox type="text" className="border p-2.5 block w-full border-solid border-[#808080] rounded-lg outline-none"
+      icon={<FaEnvelope />}   placeholder="Organization Name"  id="organization_name" name="organization_name" onChange={formik.handleChange} value={formik.values.organization_name} onBlur={formik.handleBlur}  />
+         
+     {formik.touched.organization_name && formik.errors.organization_name ? (<small className="text-red-600">{formik.errors.organization_name}</small>) : null}
+ 
      <FormInputBox type="email" className="border p-2.5 mt-[1rem]  block w-full border-solid border-[#808080] rounded-lg outline-none"
       icon={<FaEnvelope />}   placeholder="Email"  id="email" name="email" onChange={formik.handleChange} value={formik.values.email} onBlur={formik.handleBlur}  />
          

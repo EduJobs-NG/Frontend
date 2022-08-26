@@ -22,19 +22,14 @@ export const EditProfile = () => {
         switch (title) {
             case 'education':
                 return <ProfessionalInfo />
-                break;
             case 'credentials':
                 return (<Credentials />)
-                break;
             case 'contact information':
                 return (<ContactInfo />)
-                break;
             case 'personal information':
                 return (<PersonalInfo />)
-                break;
             default:
                 return (<PersonalInfo />)
-                break;
         }
     }
     return (
