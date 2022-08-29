@@ -82,7 +82,7 @@ export const JobseekerNavbar = () => {
           <div className='xl:hidden items-center flex flex-row gap-[1rem]'>
             <div>
               <NavLink to="/dashboard/profile">
-                <div className='w-[40px] h-[40px]'>
+                <div className='w-[35px] mr-[0.5rem] h-[35px]'>
                   <img className='rounded-full' src={user?.avatar} alt="" />
                 </div>
               </NavLink>
