@@ -7,7 +7,7 @@ export const FindJobs = () => {
     <>
     <section className='bg-[#f5f5f5] '>
     <div className='container mx-auto py-[4rem]'>
-      <div className='grid place-items-center md:grid-cols-2 gap-3'>
+      <div className='grid place-items-center md:grid-cols-2 gap-3 md:gap-[6rem]'>
 
       <div className='bg-white px-[2rem] py-[0.3rem] w-full border rounded-[5px] border-[#808080] flex flex-row justify-start items-center gap-2 '>
         <p className='text-blue font-[700]'>Job Title</p>
