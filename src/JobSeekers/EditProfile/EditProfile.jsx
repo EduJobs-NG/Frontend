@@ -40,7 +40,7 @@ export const EditProfile = () => {
                     {titles.map((title, index) => {
                         return (
                             <li className={`${active == index ? 'text-blue  border-b-[0.2rem] border-b-blue' : 'text-black'
-                                } cursor-pointer capitalize mr-[3rem] text-[1.2rem] md:text-[1.5rem] font-[700] `} key={index} onClick={(e) => handleTitle(e, index)}>
+                                } cursor-pointer capitalize mr-[3rem] text-[1.2rem] md:text-[1.2rem] font-[700] `} key={index} onClick={(e) => handleTitle(e, index)}>
                                     {title}</li>
                         )
                     })}

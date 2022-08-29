@@ -54,25 +54,25 @@ export const AuthProvider = ({children}) => {
         }
       }
 
-      const getUserEmail = async () =>{
-        setLoading(true)
-        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}users/`, {
-          headers:{
-            'Content-Type':'application/json',
-            'Authorization':`Token ${authTokens.auth_token}`
-          }
-        }).catch(err =>{
-          console.log(err)
+      // const getUserEmail = async () =>{
+      //   setLoading(true)
+      //   const response = await axios.get(`${process.env.REACT_APP_BASE_URL}users/`, {
+      //     headers:{
+      //       'Content-Type':'application/json',
+      //       'Authorization':`Token ${authTokens.auth_token}`
+      //     }
+      //   }).catch(err =>{
+      //     console.log(err)
           
-        })
+      //   })
      
-        if (response && response.data){
+      //   if (response && response.data){
           
-          setLoading(false);
-          console.log(response.data)
+      //     setLoading(false);
+      //     console.log(response.data)
           
-        }
-      }
+      //   }
+      // }
 
       
   
@@ -85,9 +85,7 @@ export const AuthProvider = ({children}) => {
         getUserMeHandler:getUserMeHandler,
         loading:loading,
         setLoading:setLoading,
-        getUserEmail,
-        // getUserCredentials:getUserCredentials,
-        // getUserEducation:getUserEducation
+      
     }
 
     return (

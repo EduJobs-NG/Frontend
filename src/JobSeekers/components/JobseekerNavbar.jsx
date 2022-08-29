@@ -1,14 +1,13 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import AuthContext from '../../context/AuthContext';
-import { FaUserCircle } from 'react-icons/fa';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import chat from '../../assets/chat.png'
 import notification from '../../assets/notification.png'
 import Aos from 'aos'
 import {navigation} from '../../data';
 
-export const JobseekerNavbar = ({}) => {
+export const JobseekerNavbar = () => {
   const {user, getUserMeHandler} = useContext(AuthContext)
   const {logo} = navigation;
   useEffect(() => {
@@ -25,7 +24,6 @@ export const JobseekerNavbar = ({}) => {
 
   useEffect(() => {
     getUserMeHandler();
-  
     
   }, [])
   
