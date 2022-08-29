@@ -20,7 +20,7 @@ const validationSchema = Yup.object({
 
 
 })
-export const ContactInfo = () => {
+export const ContactInfo = ({setActive}) => {
   const [isLoading, setIsLoading] = useState(false);
   
   const { user, authTokens, getUserMeHandler } = useContext(AuthContext);
@@ -46,8 +46,8 @@ next_kin_lname, second_ref_fname, second_ref_lname, second_ref_phone}} = user
       setIsLoading(false)
       toast.success('Your changes have been successfully saved.')
       getUserMeHandler()
+      setActive(3)
       console.log(response)
-      
     }
   }
 

@@ -20,7 +20,7 @@ const validationSchema = Yup.object({
     end_of_education:Yup.date().required('Required'),
     study_summary:Yup.string().required('Required')
   })
-export const AddEducation = ({setShowEducation}) => {
+export const AddEducation = ({setShowEducation, setActive}) => {
   const { user, authTokens, getUserMeHandler } = useContext(AuthContext);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -46,6 +46,7 @@ export const AddEducation = ({setShowEducation}) => {
       setShowEducation(false)
       toast.success('Your changes have been successfully saved')
       getUserMeHandler()
+      setActive(1)
       console.log(response)
        
       

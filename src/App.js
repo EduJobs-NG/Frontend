@@ -49,6 +49,7 @@ function App() {
       <Route path="/password/reset/confirm/:uid/:token" element={<ResetPassword />}/>
       <Route path="/reset-email" element={<ResetEmail />}/>
       <Route path="/email/reset/confirm/:uid/:token" element={<NewEmail />}/>
+      <Route path="resend-link" element={<NewEmail />}/>
       <Route path="/pricing" element={<Pricing />}/>
       <Route path="*" element={<PageNotFound />} />
 

@@ -8,7 +8,8 @@ import notification from '../../assets/notification.png'
 import Aos from 'aos'
 import {navigation} from '../../data';
 
-export const JobseekerNavbar = ({user}) => {
+export const JobseekerNavbar = ({}) => {
+  const {user, getUserMeHandler} = useContext(AuthContext)
   const {logo} = navigation;
   useEffect(() => {
     Aos.init();
@@ -21,6 +22,13 @@ export const JobseekerNavbar = ({user}) => {
     setActive(!active);
 
   }
+
+  useEffect(() => {
+    getUserMeHandler();
+  
+    
+  }, [])
+  
   const activeLink = 'border-b border-b-white';
   const normalLink = 'border-none';
   const normalMobile = 'text-[1.3rem]';

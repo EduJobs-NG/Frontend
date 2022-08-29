@@ -21,26 +21,26 @@ export const EditProfile = () => {
     const handleDisplay = () => {
         switch (title) {
             case 'education':
-                return <ProfessionalInfo />
+                return <ProfessionalInfo setActive={setActive} />
             case 'credentials':
-                return (<Credentials />)
+                return (<Credentials setActive={setActive} />)
             case 'contact information':
-                return (<ContactInfo />)
+                return (<ContactInfo setActive={setActive}/>)
             case 'personal information':
-                return (<PersonalInfo />)
+                return (<PersonalInfo setActive={setActive} />)
             default:
-                return (<PersonalInfo />)
+                return (<PersonalInfo setActive={setActive}/>)
         }
     }
     return (
         <>
 
-            <section className='border-b  border-b-[#808080]'>
+            <section className='border-b  border-b-[#808080] '>
                 <ul className=' flex flex-row overflow-x-scroll lg:overflow-hidden  whitespace-nowrap justify-between'>
                     {titles.map((title, index) => {
                         return (
-                            <li className={`${active == index ? 'text-blue border-b border-b-blue' : 'text-black'
-                                } cursor-pointer capitalize mr-[3rem]`} key={index} onClick={(e) => handleTitle(e, index)}>
+                            <li className={`${active == index ? 'text-blue  border-b border-b-blue' : 'text-black'
+                                } cursor-pointer capitalize mr-[3rem] text-[1.5rem] font-[700] `} key={index} onClick={(e) => handleTitle(e, index)}>
                                     {title}</li>
                         )
                     })}

@@ -15,7 +15,7 @@ const validationSchema = Yup.object({
     credential_type: Yup.string().required('Required'),
     file: Yup.string().required('Required')
 })
-export const AddCredentials = ({ setShowAddCredentials }) => {
+export const AddCredentials = ({ setShowAddCredentials, setActive }) => {
     const { user, authTokens, getUserMeHandler } = useContext(AuthContext);
 
     const [isLoading, setIsLoading] = useState(false);
@@ -43,6 +43,7 @@ export const AddCredentials = ({ setShowAddCredentials }) => {
             setShowAddCredentials(false)
             toast.success('Your changes have been successfully saved')
             getUserMeHandler()
+            setActive(2)
             console.log(response)
         }
 

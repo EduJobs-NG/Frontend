@@ -1,9 +1,15 @@
-import React from 'react'
+import React,{useContext, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import messageIcon from '../../assets/Vector.png';
+// import AuthContext from '../../context/AuthContext';
 
 
 export const VerifyAccountUI = () => {
+//   const {getUserEmail} = useContext(AuthContext);
+// useEffect(() => {
+//   getUserEmail();
+// }, [])
+
   return (
     <section className='container mx-auto mt-[3rem] h-screen  flex flex-col justify-center items-center text-center '>
       <div className='rounded-full bg-[#d5d3fe] p-5'>

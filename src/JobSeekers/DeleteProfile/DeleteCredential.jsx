@@ -5,7 +5,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export const DeleteCredential = ({ setShowDelete, item }) => {
+export const DeleteCredential = ({ setShowDelete, setActive, item }) => {
     const [isLoading, setIsLoading] = useState(false);
     const { authTokens, getUserMeHandler } = useContext(AuthContext);
 
@@ -29,6 +29,7 @@ export const DeleteCredential = ({ setShowDelete, item }) => {
             setIsLoading(false)
             setShowDelete(false)
             getUserMeHandler()
+            setActive(2)
             console.log(response)
         }
     }

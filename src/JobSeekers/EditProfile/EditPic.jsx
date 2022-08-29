@@ -4,23 +4,24 @@ import { ThreeDots } from "react-loader-spinner";
 import { FaBars, FaTimes } from "react-icons/fa";
 import AuthContext from "../../context/AuthContext";
 import axios from "axios";
-import Avatar from 'react-avatar-edit'
+import Avatar from 'react-avatar-edit';
+import { FormInputBox } from '../../components/Forms/FormInputBox';
+import * as Yup from 'yup';
 
+
+const validationSchema = Yup.object({
+  avatar: Yup.string().required('Required')
+})
 export const EditPic = ({ setShowPic }) => {
   const {authTokens, getUserMeHandler } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
-  const [preview, setPreview] = useState(null);
-  const [image, setImage] = useState(null);
-  console.log(preview)
-//   console.log(image)
-  const onCrop = (view) =>{
-    setPreview(view)
-  }
+ 
 
   const onSubmit = async (values) => {
     setIsLoading(true);
     const data = new FormData();
-    data.append('avatar', image);
+    data.append('avatar', values.avatar);
+    console.log(data)
     const response = await axios
       .put(
         `${process.env.REACT_APP_BASE_URL}account/user-profile-update/`,
@@ -49,7 +50,8 @@ export const EditPic = ({ setShowPic }) => {
     initialValues: {
       avatar:''  
     },
-
+    validateOnBlur: true,
+    validationSchema:validationSchema,
     onSubmit,
   });
   return (
@@ -74,16 +76,15 @@ export const EditPic = ({ setShowPic }) => {
             </div>
             {/*body*/}
             <div className="relative p-6 flex-auto">
+              <p>Upload a headshot of yourself.</p>
               <Formik>
                 <Form onSubmit={formik.handleSubmit}>
                   <div className="w-full max-w-xl grid  mt-[1rem]">
-                  <Avatar 
-                  width={300}
-                  height={300}
-                  image={image}
-                  onCrop={onCrop}
-                   />
-                  {preview && <img src={preview} />}
+                  
+          <FormInputBox name="avatar" accept="image/*" onChange={(event) => {
+              formik.setFieldValue("avatar", event.currentTarget.files[0])
+          }} className="border p-2.5 block w-full mt-[2rem]  border-solid border-[#808080] rounded-lg outline-none" type='file' />
+          {formik.touched.avatar && formik.errors.avatar ? (<small className="text-red-600">{formik.errors.avatar}</small>) : null}
 
                     <div className="flex items-center justify-end">
                       <div className="mt-[1.6rem]">
@@ -119,3 +120,15 @@ export const EditPic = ({ setShowPic }) => {
   );
 };
 
+ // const [preview, setPreview] = useState(null);
+  // const [image, setImage] = useState(null);
+  // console.log(preview)
+  // const onCrop = (view) =>{
+  //   setPreview(view)
+  // }{/* <Avatar 
+  // width={300}
+  // height={300}
+  // image={image}
+  // onCrop={onCrop}
+  //  />
+  // {preview && <img src={preview} />}

@@ -54,74 +54,26 @@ export const AuthProvider = ({children}) => {
         }
       }
 
-      const getUserCredentials = async () =>{
+      const getUserEmail = async () =>{
         setLoading(true)
-        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}account/user-profile/me/contact_info/`, {
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}users/`, {
           headers:{
             'Content-Type':'application/json',
             'Authorization':`Token ${authTokens.auth_token}`
           }
         }).catch(err =>{
           console.log(err)
-          // if (err.message === "Network Error"){
-          //   setLoading( err.message)
-          // }
+          
         })
      
         if (response && response.data){
-          // console.log(response)
-          // setUser(response.data)
+          
           setLoading(false);
           console.log(response.data)
           
         }
       }
 
-      const getUserEducation = async () =>{
-        setLoading(true)
-        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}account/user-profile/me/professional_info/`, {
-          headers:{
-            'Content-Type':'application/json',
-            'Authorization':`Token ${authTokens.auth_token}`
-          }
-        }).catch(err =>{
-          console.log(err)
-          // if (err.message === "Network Error"){
-          //   setLoading( err.message)
-          // }
-        })
-     
-        if (response && response.data){
-          // console.log(response)
-          // setUser(response.data)
-          setLoading(false);
-          console.log(response.data)
-          
-        }
-      }
-
-      const getUserContactInfo = async () =>{
-        setLoading(true)
-        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}account/user-profile/me/contact_info/`, {
-          headers:{
-            'Content-Type':'application/json',
-            'Authorization':`Token ${authTokens.auth_token}`
-          }
-        }).catch(err =>{
-          console.log(err)
-          // if (err.message === "Network Error"){
-          //   setLoading( err.message)
-          // }
-        })
-     
-        if (response && response.data){
-          // console.log(response)
-          // setUser(response.data)
-          setLoading(false);
-          console.log(response.data)
-          
-        }
-      }
       
   
     let contextData = {
@@ -133,9 +85,9 @@ export const AuthProvider = ({children}) => {
         getUserMeHandler:getUserMeHandler,
         loading:loading,
         setLoading:setLoading,
-        getUserContactInfo:getUserContactInfo,
-        getUserCredentials:getUserCredentials,
-        getUserEducation:getUserEducation
+        getUserEmail,
+        // getUserCredentials:getUserCredentials,
+        // getUserEducation:getUserEducation
     }
 
     return (

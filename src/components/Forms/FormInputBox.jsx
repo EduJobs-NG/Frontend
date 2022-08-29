@@ -2,7 +2,8 @@ import React, {useState} from 'react';
 import {FaEye, FaEyeSlash} from 'react-icons/fa'
 
 export const FormInputBox = (props) => {
-  const {label, placeholder, icon, className, maxLength, disabled, value, onBlur, onChange, name, id, type} = props;
+  const {label, placeholder, icon, className, accept,
+     maxLength, disabled, value, onBlur, onChange, name, id, type} = props;
 
   const [show, setShow] = useState(false);
   const handleClick = () =>{
@@ -16,7 +17,7 @@ export const FormInputBox = (props) => {
       <>
       <input type={type}
       placeholder={placeholder}
-      className={className}  disabled={disabled} 
+      className={className} accept={accept}   disabled={disabled} 
       value={value} onBlur={onBlur} name={name} id={id} onChange={onChange} />
       <span className='i_absolute' >{icon}</span>
      

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { DeleteCredential } from '../DeleteProfile/DeleteCredential';
 
 
-export const Credentials = () => {
+export const Credentials = ({setActive}) => {
   const { user, getUserMeHandler } = useContext(AuthContext);
   const credentials = user?.credentials;
   const [selectedItem, setSelectedItem] = useState({});
@@ -22,8 +22,8 @@ export const Credentials = () => {
 
   return (
     <section>
-      {showAddCredentials && <AddCredentials showAddCredentials={showAddCredentials} setShowAddCredentials={setShowAddCredentials} />}
-      {showDelete && <DeleteCredential setShowDelete={setShowDelete} getUserMeHandler={getUserMeHandler} item={selectedItem} />}
+      {showAddCredentials && <AddCredentials setActive={setActive} showAddCredentials={showAddCredentials} setShowAddCredentials={setShowAddCredentials} />}
+      {showDelete && <DeleteCredential setActive={setActive} setShowDelete={setShowDelete} getUserMeHandler={getUserMeHandler} item={selectedItem} />}
 
       <h1 className='text-xl font-[700]'>Credentials</h1>
       <p>Add all of your necessary credentials.</p>

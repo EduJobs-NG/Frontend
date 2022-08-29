@@ -8,7 +8,7 @@ import { DeleteEducation } from '../DeleteProfile/DeleteEducation';
 import { EditEducation } from './EditEducation';
 
 
-export const ProfessionalInfo = () => {
+export const ProfessionalInfo = ({setActive}) => {
   const [showEducation, setShowEducation] = useState(false)
   const [showDelete, setShowDelete] = useState(false)
   const [showEdit, setShowEdit] = useState(false)
@@ -28,9 +28,9 @@ export const ProfessionalInfo = () => {
 
   return (
     <section>
-      {showEducation && <AddEducation getUserMeHandler={getUserMeHandler} showEducation={showEducation} setShowEducation={setShowEducation} />}
-      {showDelete && <DeleteEducation setShowDelete={setShowDelete} getUserMeHandler={getUserMeHandler} item={selectedItem} />}
-      {showEdit && <EditEducation setShowEdit={setShowEdit} getUserMeHandler={getUserMeHandler} item={selectedItem} />}
+      {showEducation && <AddEducation setActive={setActive} getUserMeHandler={getUserMeHandler} showEducation={showEducation} setShowEducation={setShowEducation} />}
+      {showDelete && <DeleteEducation setActive={setActive}  setShowDelete={setShowDelete} getUserMeHandler={getUserMeHandler} item={selectedItem} />}
+      {showEdit && <EditEducation setActive={setActive}  setShowEdit={setShowEdit} getUserMeHandler={getUserMeHandler} item={selectedItem} />}
 
 
       <h1 className='text-xl font-[700]'>Your Education</h1>
