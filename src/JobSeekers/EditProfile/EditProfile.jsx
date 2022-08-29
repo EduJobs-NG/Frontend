@@ -16,7 +16,6 @@ export const EditProfile = () => {
     const handleTitle = (e, index) => {
         setTitle(() => e.target.textContent.toLowerCase());
         setActive(index)
-        // console.log(title)    
     }
     const handleDisplay = () => {
         switch (title) {
