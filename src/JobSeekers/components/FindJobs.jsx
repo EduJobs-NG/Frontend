@@ -9,7 +9,7 @@ export const FindJobs = () => {
     <div className='container mx-auto py-[4rem]'>
       <div className='grid place-items-center md:grid-cols-2 gap-3'>
 
-      <div className='bg-white px-[1.2rem] py-[0.3rem] border rounded-[5px] border-[#808080] flex flex-row items-center gap-2 '>
+      <div className='bg-white px-[1.2rem] py-[0.3rem] border rounded-[5px] border-[#808080] flex flex-row justify-between items-center gap-2 '>
         <p className='text-blue font-[700]'>Job Title</p>
         <div className='bg-[#000] h-[2rem] w-[3px]'></div>
         <div>
@@ -18,7 +18,7 @@ export const FindJobs = () => {
         
       </div>
 
-      <div className='bg-white px-[1.2rem] py-[0.3rem] border rounded-[5px] border-[#808080] flex flex-row items-center gap-2 '>
+      <div className='bg-white px-[1.2rem] py-[0.3rem] border rounded-[5px] border-[#808080] flex flex-row justify-between items-center gap-2 '>
         <p className='text-blue font-[700]'>Location</p>
         <div className='bg-[#000] h-[2rem] w-[3px]'></div>
         <div>
