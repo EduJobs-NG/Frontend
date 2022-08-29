@@ -90,7 +90,7 @@ export const EditPic = ({ setShowPic }) => {
                       <div className="mt-[1.6rem]">
                         {!isLoading && (
                           <button
-                            className="bg-blue  opacity-100 block w-full px-6 text-white rounded-md p-2"
+                            className="bg-blue  opacity-100 block w-full px-6 text-white rounded-[5px] p-2"
                             type="submit"
                           >
                             SAVE

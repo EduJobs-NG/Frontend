@@ -194,7 +194,7 @@ export const AddEducation = ({setShowEducation, setActive}) => {
           </div>
 
           <div className='mt-[3rem] flex justify-center'>
-            {!isLoading && <button className='bg-blue opacity-100  px-[5rem] text-white rounded-sm p-2' type="submit">SAVE</button>}
+            {!isLoading && <button className='bg-blue opacity-100  px-[5rem] text-white rounded-[5px] p-2' type="submit">SAVE</button>}
             {isLoading && (
               <div className='flex justify-center'>
                 <ThreeDots type="ThreeDots"
