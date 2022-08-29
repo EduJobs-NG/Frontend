@@ -11,7 +11,7 @@ export const FindJobs = () => {
 
       <div className='bg-white px-[2rem] py-[0.3rem] w-full border rounded-[5px] border-[#808080] flex flex-row justify-start items-center gap-2 '>
         <p className='text-blue font-[700]'>Job Title</p>
-        <div className='bg-[#000] h-[2rem] w-[3px]'></div>
+        <div className='bg-[#000] ml-[0.5rem]  h-[2rem] w-[3px]'></div>
         <div>
         <FormInputBox placeholder='Search keyword' className="border-none p-2.5 block w-full    border-[#808080] outline-none" />
         </div>
@@ -20,7 +20,7 @@ export const FindJobs = () => {
 
       <div className='bg-white px-[2rem] py-[0.3rem] w-full border rounded-[5px] border-[#808080] flex flex-row justify-start items-center gap-2 '>
         <p className='text-blue font-[700]'>Location</p>
-        <div className='bg-[#000] h-[2rem] w-[3px]'></div>
+        <div className='bg-[#000] ml-[0.5rem] h-[2rem] w-[3px]'></div>
         <div>
         <FormInputBox placeholder='Search keyword' className="border-none p-2.5 block w-full    border-[#808080] outline-none" />
         </div>
