@@ -49,13 +49,11 @@ export const RegisterFormMobile = () => {
                 setIsLoading(false)
                 toast.error("An error occured. Try again")
               
-                // console.log(err)
               }
             }
         });
 
         if(response && response.data){
-                // console.log(response)
                 toast.success("Account created successfully.")
                 setTimeout(() =>{
                     navigate('/verify');
@@ -82,13 +80,12 @@ export const RegisterFormMobile = () => {
 
    
     return (
-        <div className='flex flex-col justify-center h-screen bg-white px-[20px]  '>
+        <div className='flex flex-col justify-center  bg-white px-[20px]  '>
             <ToastContainer />
-
             <div className='flex my-4 md:gap-x-[1rem] justify-center '>
              <FaUserPlus className='text-[2rem] text-blue' />
              <div className='h-[2.5rem] ml-[1rem] mr-[1rem] w-[3px] bg-black'></div>
-            <h2 className="title text-blue  text-[24px] font-[700]">SIGN UP</h2>
+            <h2 className="title text-blue text-[24px] font-[700]">SIGN UP</h2>
             </div>
            
 <Formik>
@@ -162,7 +159,7 @@ export const RegisterFormMobile = () => {
     <hr className='bg-blue border-[0.1px]  w-[35%]' />
 </div>
 
-<div className='mt-4 flex justify-center flex-row gap-x-[1rem]'>
+<div className='mt-4 flex justify-center flex-row gap-[1rem]'>
 <img className='border rounded-full p-[0.3rem]  border-[#808080]' src={google} alt="" />
 <img  className='border p-[0.4rem] rounded-full border-[#808080]' src={linkedin} alt="" />
 </div>

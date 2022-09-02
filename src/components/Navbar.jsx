@@ -7,7 +7,7 @@ import "aos/dist/aos.css";
 import { PopupRegistration } from './Forms/PopupRegistration';
 import { PopupLogin } from './Forms/PopupLogin';
 
-export const Navbar = ({}) => {
+export const Navbar = () => {
   useEffect(() => {
     Aos.init();
     Aos.refresh();
@@ -30,7 +30,7 @@ export const Navbar = ({}) => {
         <div className="container mx-auto">
           <div className="flex uppercase py-[1.5rem] items-center flex-row justify-between">
             <ul className="flex gap-x-[3rem] text-white flex-row">
-             <li className='title'>
+             <li className=''>
               <NavLink to="/">
                 <img src={logo} className='w-[150px]' alt="" />
                 </NavLink>
@@ -38,8 +38,8 @@ export const Navbar = ({}) => {
               
               {navigation.leftNav.map((nav, index) =>{
                 return (
-                  <li className='hidden xl:flex' key={index}>
-                     <NavLink to="#"> {nav.name}</NavLink>
+                  <li className='hidden  xl:flex' key={index}>
+                     <NavLink className="" to="#"> {nav.name}</NavLink>
                   </li>
                 )
               })}
@@ -90,7 +90,7 @@ export const Navbar = ({}) => {
     
               </ul>
               <div className=''>
-              <NavLink to="/login" className="bg-blue rounded-sm px-[3rem] py-[0.5rem] text-white ">Login</NavLink>
+              <NavLink to="/jobseeker/login" className="bg-blue rounded-sm px-[3rem] py-[0.5rem] text-white ">Login</NavLink>
 
               </div>
             </div>

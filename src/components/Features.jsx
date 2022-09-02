@@ -32,7 +32,7 @@ export const Features = () => {
             <div className='flex flex-col justify-center items-center'>
                 <div className='max-w-[500px]'>
                 <div className='bg-blue p-[0.4rem] mb-[1rem] font-[600] px-[2.5rem] text-center w-full rounded-lg text-white transition'>
-                <a className='' href="/register">
+                <a className='' href="/jobseeker/register">
                     Join Now
                 </a>
                 </div>
