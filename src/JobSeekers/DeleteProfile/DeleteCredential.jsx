@@ -45,7 +45,7 @@ export const DeleteCredential = ({ setShowDelete, setActive, item }) => {
                     {/*content*/}
                     <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                         {/*header*/}
-                        <div className="flex items-start justify-between p-5  rounded-t">
+                        <div className="flex items-start justify-between p-1 ">
 
 
                             {/*body*/}
@@ -58,7 +58,7 @@ export const DeleteCredential = ({ setShowDelete, setActive, item }) => {
                                     </h3>
 
 
-                                    <div className="flex items-center justify-end p-6  rounded-b">
+                                    <div className="flex items-center justify-end   rounded-b">
 
                                         <div className='mt-[1.6rem] flex flex-row justify-between gap-6'>
                                             <div>

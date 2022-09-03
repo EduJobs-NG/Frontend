@@ -9,7 +9,7 @@ export const PopupRegistration = ({setShowRegister}) => {
         
     <div 
       className="justify-center  items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-[9999999] outline-none focus:outline-none">
-      <div className="relative  w-auto my-6 mx-3 max-w-3xl">
+      <div className="relative  w-auto  mx-3 max-w-3xl">
 
         {/*content*/}
         <div className="">
@@ -30,7 +30,7 @@ export const PopupRegistration = ({setShowRegister}) => {
         </div>
       </div>
     </div>
-    <div className="opacity-25 fixed  inset-0 z-40  bg-blue"></div>
+    <div className="opacity-25 fixed  inset-0 z-40   backdrop-blur-[8px]  bg-blue"></div>
   </>
   )
 }

@@ -1,13 +1,10 @@
-import React, { useRef, useContext, useState } from "react";
+import React, {useContext, useState } from "react";
 import { FormInputBox } from "./FormInputBox";
 import {
   FaSignInAlt,
   FaEnvelope,
-  FaLinkedin,
   FaTimes,
-  FaGoogle,
 } from "react-icons/fa";
-import * as Yup from "yup";
 import { useFormik, Formik, Form } from "formik";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
@@ -16,14 +13,12 @@ import { ThreeDots } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
 import google from "../../assets/google.png";
 import linkedin from "../../assets/linkedin.png";
+import { LoginSchema } from "./schema";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const validationSchema = Yup.object({
-  email: Yup.string().email("Invalid email address").required("Required"),
-  password: Yup.string().min(8, "Enter your password").required("Required"),
-});
+
 
 export const LoginForm = ({ setShowLogin, showModal }) => {
   const { setUser, setAuthTokens } = useContext(AuthContext);
@@ -66,7 +61,7 @@ export const LoginForm = ({ setShowLogin, showModal }) => {
     },
     validateOnBlur: true,
     onSubmit,
-    validationSchema: validationSchema,
+    validationSchema: LoginSchema,
   });
 
   return (
@@ -172,7 +167,7 @@ export const LoginForm = ({ setShowLogin, showModal }) => {
                   alt=""
                 />
                 <img
-                  className="border p-[0.4rem] rounded-full border-[#808080]"
+                  className="border p-[0.4rem] rounded-full ml-[1rem] border-[#808080]"
                   src={linkedin}
                   alt=""
                 />

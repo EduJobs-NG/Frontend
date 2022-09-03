@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { FormInputBox } from './FormInputBox';
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
 import axios from 'axios';
 import { FaUserPlus, FaUserCircle, FaEnvelope } from 'react-icons/fa';
 import { ThreeDots } from 'react-loader-spinner';
@@ -11,31 +10,15 @@ import google from '../../assets/google.png'
 import linkedin from '../../assets/linkedin.png'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { FaBars, FaTimes } from 'react-icons/fa'
+import {  FaTimes } from 'react-icons/fa';
+import CustomCheckbox from './CustomCheckbox';
+import { RegistrationSchema } from './schema';
 
 
-
-const validationSchema = Yup.object({
-    first_name: Yup.string().max(15, "Must be 15 characters or less").required('Required'),
-    last_name: Yup.string().max(15, "Must be 15 characters or less").required('Required'),
-    email: Yup.string().email("Invalid email address").required('Required'),
-    password: Yup.string().min(8).required('Required').matches(
-        /^(?=.*[a-z])(?=.*[0-9])/,
-        "Must Contain 8 Characters of letters & numbers"
-    ),
-    re_password: Yup.string()
-        .oneOf([Yup.ref('password'), null], 'Passwords must match').required('Required')
-})
 
 export const RegisterForm = ({showModal, setShowRegister}) => {
    
-    const [agree, setAgree] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const agreeHandler = () => {
-        setAgree(!agree);
-
-    }
-
     const navigate = useNavigate();
 
     const onSubmit = async (values) => {
@@ -52,13 +35,11 @@ export const RegisterForm = ({showModal, setShowRegister}) => {
                         setIsLoading(false)
                         toast.error("An error occured. Try again")
                      
-                        // console.log(err)
                     }
                 }
             });
 
         if (response && response.data) {
-            // console.log(response)
             toast.success("Account created successfully.")
             setTimeout(() => {
                 navigate('/verify');
@@ -74,15 +55,15 @@ export const RegisterForm = ({showModal, setShowRegister}) => {
             last_name: '',
             email: '',
             password: '',
-            re_password: ''
+            re_password: '',
+            acceptedTos:false
         },
         validateOnBlur: true,
         onSubmit,
-        validationSchema: validationSchema,
+        validationSchema: RegistrationSchema,
 
     })
 
-    //  console.log(formik.isSubmitting)
 
     return (
         <div className=' border relative  bg-white p-2 py-[2rem] px-[42px] rounded-[50px] max-w-[500px]'>
@@ -97,7 +78,7 @@ export const RegisterForm = ({showModal, setShowRegister}) => {
             </div>
             <Formik>
 
-                {({ isSubmitting }) => (
+                {() => (
 
                     <Form onSubmit={formik.handleSubmit}>
                         <div className='flex flex-row w-full  gap-x-[0.4rem]'>
@@ -124,8 +105,6 @@ export const RegisterForm = ({showModal, setShowRegister}) => {
 
                         {formik.touched.email && formik.errors.email ? (<small className="text-red-600">{formik.errors.email}</small>) : null}
 
-
-
                         <FormInputBox type="password" className=" border p-2.5 mt-[1rem]  block w-full border-solid border-[#808080] rounded-lg outline-none"
                             placeholder="Password" id="password" name="password" onChange={formik.handleChange} autoComplete="new-password" value={formik.values.password} onBlur={formik.handleBlur} />
                         {formik.touched.password && formik.errors.password ? (<small className="text-red-600">{formik.errors.password}</small>) : null}
@@ -137,10 +116,17 @@ export const RegisterForm = ({showModal, setShowRegister}) => {
 
                         {formik.touched.re_password && formik.errors.re_password ? (<small className="text-red-600">{formik.errors.re_password}</small>) : null}
                         <div className='my-3'>
-                            <input type="checkbox" value={agree} onChange={agreeHandler} /> By signing up on this platform, you agree to EduJobs NG’s Terms & conditions.
+                        <CustomCheckbox type="checkbox"  name="acceptedTos" value={formik.values.acceptedTos} onChange={formik.handleChange} />
+                        By signing up on this platform,
+                         you agree to EduJobs NG’s <Link className='text-blue underline' to="#"> Terms & Conditions.</Link>
+                         <div>
+                         {formik.touched.acceptedTos && formik.errors.acceptedTos ? (<small className="text-red-600">{formik.errors.acceptedTos}</small>) : null}
+
+                         </div>
+                      
                         </div>
 
-                        {!isLoading && <button disabled={!formik.isValid || (agree === false)} className={!formik.isValid || (agree === false) ? 'bg-blue block w-full text-white opacity-25 rounded-sm p-2' : 'bg-blue opacity-100 block w-full text-white rounded-sm p-2'} type="submit">SIGN UP</button>}
+                        {!isLoading && <button disabled={!formik.isValid} className={!formik.isValid  ? 'bg-blue block w-full text-white opacity-25 rounded-sm p-2' : 'bg-blue opacity-100 block w-full text-white rounded-sm p-2'} type="submit">SIGN UP</button>}
                         {isLoading && (
                             <div className='flex justify-center'>
                                 <ThreeDots type="ThreeDots"
@@ -168,7 +154,7 @@ export const RegisterForm = ({showModal, setShowRegister}) => {
 
             <div className='mt-4 flex justify-center flex-row gap-x-[1rem]'>
                 <img className='border rounded-full p-[0.3rem]  border-[#808080]' src={google} alt="" />
-                <img className='border p-[0.4rem] rounded-full border-[#808080]' src={linkedin} alt="" />
+                <img className='border p-[0.4rem] rounded-full ml-[1rem] border-[#808080]' src={linkedin} alt="" />
             </div>
 
             <div className="text-center mt-5">

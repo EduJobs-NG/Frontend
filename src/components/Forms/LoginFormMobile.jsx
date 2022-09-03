@@ -1,7 +1,6 @@
 import React, { useRef, useContext, useState } from 'react'
 import { FormInputBox } from './FormInputBox';
 import { FaSignInAlt, FaEnvelope, FaLinkedin, FaGoogle } from 'react-icons/fa';
-import * as Yup from 'yup';
 import { useFormik, Formik, Form } from 'formik';
 import { Link } from 'react-router-dom';
 import AuthContext from '../../context/AuthContext';
@@ -10,16 +9,9 @@ import { ThreeDots } from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
 import google from '../../assets/google.png'
 import linkedin from '../../assets/linkedin.png';
-
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-
-const validationSchema = Yup.object({
-    email: Yup.string().email("Invalid email address").required('Required'),
-    password: Yup.string().min(8, "Enter your password").required('Required')
-
-})
+import { LoginSchema } from './schema';
 
 
 export const LoginFormMobile = () => {
@@ -49,10 +41,8 @@ export const LoginFormMobile = () => {
             });
 
         if (response && response.data) {
-            // console.log(response.data.auth_token)
             setAuthTokens(response.data)
             localStorage.setItem('authTokens', JSON.stringify(response.data))
-            // setUser(jwt_decode(response.data.access))
             navigate('/dashboard/find-jobs')
             setIsLoading(false)
 
@@ -67,7 +57,7 @@ export const LoginFormMobile = () => {
         },
         validateOnBlur: true,
         onSubmit,
-        validationSchema: validationSchema,
+        validationSchema: LoginSchema,
 
     })
 
@@ -129,7 +119,7 @@ export const LoginFormMobile = () => {
 
                 <div className='mt-4 flex justify-center flex-row gap-x-[1rem]'>
                     <img className='border rounded-full p-[0.3rem]  border-[#808080]' src={google} alt="" />
-                    <img className='border p-[0.4rem] rounded-full border-[#808080]' src={linkedin} alt="" />
+                    <img className='border p-[0.4rem] rounded-full ml-[1rem] border-[#808080]' src={linkedin} alt="" />
 
                 </div>
 

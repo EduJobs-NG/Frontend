@@ -13,7 +13,7 @@ export const JobseekerRegisterFormUI = () => {
     <>
 
     <section className="flex justify-center items-center">
-      <div className="w-full my-[2rem] max-w-[500px]">
+      <div className="w-full  max-w-[500px]">
       
       <RegisterFormMobile />
 

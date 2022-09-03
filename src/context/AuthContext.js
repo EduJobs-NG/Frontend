@@ -45,7 +45,6 @@ export const AuthProvider = ({children}) => {
         })
      
         if (response && response.data){
-          // console.log(response)
           setUser(response.data)
           setLoading(false);
           setIsError(false)
@@ -53,28 +52,6 @@ export const AuthProvider = ({children}) => {
           
         }
       }
-
-      // const getUserEmail = async () =>{
-      //   setLoading(true)
-      //   const response = await axios.get(`${process.env.REACT_APP_BASE_URL}users/`, {
-      //     headers:{
-      //       'Content-Type':'application/json',
-      //       'Authorization':`Token ${authTokens.auth_token}`
-      //     }
-      //   }).catch(err =>{
-      //     console.log(err)
-          
-      //   })
-     
-      //   if (response && response.data){
-          
-      //     setLoading(false);
-      //     console.log(response.data)
-          
-      //   }
-      // }
-
-      
   
     let contextData = {
         user:user,
