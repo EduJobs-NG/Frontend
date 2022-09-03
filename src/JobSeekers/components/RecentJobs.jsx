@@ -34,7 +34,7 @@ export const RecentJobs = () => {
                         <li>lorem ipsum dolor sit amer consectetur elit</li>
                         <li>lorem ipsum dolor sit amer consectetur elit</li>
                       </ol>
-                      <div className='grid my-[2rem] md:mt-[3rem] place-items-center'>
+                      <div className='grid w-full  my-[2rem] md:mt-[3rem] place-items-center'>
                        <Link to="#">
                       <button className='bg-blue uppercase opacity-100 w-full md:w-[300px] px-[5rem] text-white rounded-[5px] p-2' type="submit">
                         APPLY
