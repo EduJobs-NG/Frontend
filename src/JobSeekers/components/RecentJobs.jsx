@@ -6,7 +6,7 @@ export const RecentJobs = () => {
         <div className='container mx-auto'>
             <hr className='text-[#d9d9d9]' />
             <h2 className='text-blue my-[1rem] font-[700] text-[1.5rem]'>Recent Jobs</h2>
-            <div className='relative ml-[1rem] h-[150px] over py-[1.2rem] border bg-white border-[#d9d9d9] px-[1.2rem] rounded-[20px]'>
+            <div className='relative ml-[1rem]  py-[1.2rem] border bg-white border-[#d9d9d9] px-[1.2rem] rounded-[20px]'>
 
               <h2 className='font-[700] text-[1.2rem]'>Chemistry Teacher</h2>
               <p className='font-[500]'>Stars College</p>

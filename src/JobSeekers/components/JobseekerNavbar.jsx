@@ -38,7 +38,7 @@ export const JobseekerNavbar = () => {
         <div className="flex uppercase py-[1rem] items-center flex-row justify-between">
           <ul className="flex gap-x-[3rem] text-white flex-row">
             <li className=''>
-            <NavLink to="/">
+            <NavLink to="/dashboard/find-jobs">
                 <img src={logo} className='w-[150px]' alt="" />
                 </NavLink>
             </li>
