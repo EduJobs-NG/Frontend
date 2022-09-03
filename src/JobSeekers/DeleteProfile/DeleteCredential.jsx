@@ -49,10 +49,9 @@ export const DeleteCredential = ({ setShowDelete, setActive, item }) => {
 
 
                             {/*body*/}
-                            <div className="relative p-6 flex-auto">
+                            <div className="relative p-8 flex-auto">
 
                                 <div className='w-full max-w-xl grid  mt-[1rem]'>
-                                    {/* <label className='text-xl mb-3 font-[700]'>Edit Bio</label> */}
                                     <h3 className="text-2xl font-semibold">
                                         Are you sure you want to delete?
                                     </h3>

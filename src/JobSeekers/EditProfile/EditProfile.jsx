@@ -38,8 +38,8 @@ export const EditProfile = () => {
                 <ul className=' flex flex-row overflow-x-scroll lg:overflow-hidden  whitespace-nowrap justify-between'>
                     {titles.map((title, index) => {
                         return (
-                            <li className={`${active === index ? 'text-blue  border-b-[0.2rem] border-b-blue' : 'text-black'
-                                } cursor-pointer capitalize mr-[3rem] text-[1.2rem] md:text-[1.2rem] font-[700] `} key={index} onClick={(e) => handleTitle(e, index)}>
+                            <li className={`${active === index ? 'text-blue text-[1.2rem]  border-b-[0.2rem] border-b-blue' : 'text-black'
+                                } cursor-pointer capitalize mr-[3rem] text-[1.1rem] font-[700] `} key={index} onClick={(e) => handleTitle(e, index)}>
                                     {title}</li>
                         )
                     })}

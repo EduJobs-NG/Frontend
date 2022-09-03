@@ -85,12 +85,12 @@ export const Navbar = () => {
               </div>
 
               <ul className='py-[2rem] flex flex-col'>
-                <NavLink data-aos-delay="300" data-aos="fade-left" className="text-blue text-[1.2rem] mb-[33px] font-[700]" to="/register">I'm a job seeker</NavLink>
-                <NavLink data-aos-delay="300" data-aos="fade-left" className="text-blue text-[1.2rem] mb-[45px] font-[700]" to="/employers">I'm an employer</NavLink>
+                <NavLink data-aos-delay="300" data-aos="fade-left" className="text-blue text-[1.2rem] mb-[33px] font-[700]" to="/jobseeker/register">I'm a job seeker</NavLink>
+                <NavLink data-aos-delay="300" data-aos="fade-left" className="text-blue text-[1.2rem] mb-[45px] font-[700]" to="/employer">I'm an employer</NavLink>
     
               </ul>
               <div className=''>
-              <NavLink to="/jobseeker/login" className="bg-blue rounded-sm px-[3rem] py-[0.5rem] text-white ">Login</NavLink>
+              <NavLink to="/login" className="bg-blue rounded-sm px-[3rem] py-[0.5rem] text-white ">Login</NavLink>
 
               </div>
             </div>
