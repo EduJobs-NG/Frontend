@@ -24,7 +24,7 @@ export const EditPic = ({ setShowPic }) => {
     console.log(data)
     const response = await axios
       .put(
-        `${process.env.REACT_APP_BASE_URL}auth/account/user-profile-update/`,
+        `${process.env.REACT_APP_BASE_URL}jobseeker/user-profile-update/`,
         data,
         {
           headers: {

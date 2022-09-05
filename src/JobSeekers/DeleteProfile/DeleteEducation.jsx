@@ -12,7 +12,7 @@ export const DeleteEducation = ({ setShowDelete, setActive, item }) => {
   const handleDelete = async () => {
     setIsLoading(true)
     const response = await axios.
-      delete(`${process.env.REACT_APP_BASE_URL}auth/account/user-profile/me/professional_info/${item.id}`,
+      delete(`${process.env.REACT_APP_BASE_URL}jobseeker/user-profile/me/professional_info/${item.id}`,
         {
           headers: {
             'Content-Type': 'application/json',

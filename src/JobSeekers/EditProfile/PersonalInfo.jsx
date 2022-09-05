@@ -33,7 +33,7 @@ export const PersonalInfo = () => {
   const onSubmit = async (values) => {
     setIsLoading(true)
     const response = await axios
-      .put(`${process.env.REACT_APP_BASE_URL}auth/account/user-profile-update/`, values, {
+      .put(`${process.env.REACT_APP_BASE_URL}jobseeker/user-profile-update/`, values, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Token ${authTokens.auth_token}`

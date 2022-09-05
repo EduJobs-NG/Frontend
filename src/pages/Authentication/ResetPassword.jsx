@@ -32,7 +32,7 @@ export const ResetPassword = () => {
   const onSubmit = async (values) => {
     setIsLoading(true);
     const { new_password, re_new_password } = values;
-    const response = await axios.post(`${process.env.REACT_APP_BASE_URL}users/reset_password_confirm/`,
+    const response = await axios.post(`${process.env.REACT_APP_BASE_URL}jobseeker/users/reset_password_confirm/`,
       { uid, token, new_password, re_new_password })
       .catch(err => {
         toast.error("Something went wrong. Try again")

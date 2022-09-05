@@ -6,12 +6,14 @@ import { Circles } from 'react-loader-spinner';
 
 export const RecentJobs = () => {
   const {authTokens} = useContext(AuthContext)
-  const [viewMore, setViewMore] = useState(false)
+  const [viewMore, setViewMore] = useState(false);
+  const [jobId, setJobId] = useState(null)
   const [jobs, setJobs] = useState([]);
   const [isLoading, setIsLoading] = useState(false)
   const handleView = (id) =>{
     setViewMore(!viewMore)
-    console.log(id)
+    setJobId(id)
+    
   }
   const getJobs = async () =>{
     setIsLoading(true)
@@ -63,8 +65,7 @@ export const RecentJobs = () => {
                   </p>
                   <p className='absolute  left-5 bottom-[0.5rem]'>5 hours ago</p>
                   <p onClick={() => handleView(job.id)} className='cursor-pointer font-[600] absolute text-blue right-5 bottom-[0.5rem]'>{viewMore ? 'View Less':'View More'}</p>
-
-                  {viewMore && (
+                  {viewMore && jobId && (
                     <div className='my-[1rem]'>
                       <h1 className='font-[700]'>Requirements</h1>
                       <ol className='list-style'>

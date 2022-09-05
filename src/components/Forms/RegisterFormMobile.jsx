@@ -20,7 +20,7 @@ export const RegisterFormMobile = () => {
   const onSubmit = async (values) => {
     setIsLoading(true);
     const response = await axios
-      .post(`${process.env.REACT_APP_BASE_URL}users/`, values)
+      .post(`${process.env.REACT_APP_BASE_URL}jobseeker/users/`, values)
       .catch((err) => {
         if (err && err.response) {
           if (err.message === "Request failed with status code 400") {

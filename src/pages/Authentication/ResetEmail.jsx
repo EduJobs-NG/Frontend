@@ -21,7 +21,7 @@ export const ResetEmail = () => {
 
   const onSubmit = async (values) => {
     setIsLoading(true);
-    const response = await axios.post(`${process.env.REACT_APP_BASE_URL}users/reset_email/`, values)
+    const response = await axios.post(`${process.env.REACT_APP_BASE_URL}jobseeker/users/reset_email/`, values)
       .catch(err => {
         toast.error(err.message)
         setIsLoading(false)

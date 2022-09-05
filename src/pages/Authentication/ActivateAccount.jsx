@@ -19,7 +19,7 @@ export const ActivateAccount = () => {
   const handleSubmit = async () => {
     setIsLoading(true);
     const response = await axios
-      .post(`${process.env.REACT_APP_BASE_URL}user/email/activate/`, values)
+      .post(`${process.env.REACT_APP_BASE_URL}jobseeker/user/email/activate/`, values)
       .catch(err => {
         console.log(err)
         if (err && err.response) {

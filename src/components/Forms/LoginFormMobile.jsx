@@ -21,7 +21,7 @@ export const LoginFormMobile = () => {
     const onSubmit = async (values) => {
         setIsLoading(true)
         const response = await axios
-            .post(`${process.env.REACT_APP_BASE_URL}token/login/`, values)
+            .post(`${process.env.REACT_APP_BASE_URL}auth/token/login/`, values)
             .catch(err => {
                 if (err) {
                     if (err.response.status === 400) {

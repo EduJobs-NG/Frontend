@@ -33,7 +33,7 @@ export const AuthProvider = ({children}) => {
       const getUserMeHandler = async () =>{
         setLoading(true)
         setIsError(false)
-        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}auth/account/user-profile-update/`, {
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}jobseeker/user-profile-update/`, {
           headers:{
             'Content-Type':'application/json',
             'Authorization':`Token ${authTokens.auth_token}`

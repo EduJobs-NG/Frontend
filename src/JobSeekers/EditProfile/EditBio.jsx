@@ -15,7 +15,7 @@ export const EditBio = ({ setShowBio }) => {
     setIsLoading(true);
     const response = await axios
       .put(
-        `${process.env.REACT_APP_BASE_URL}auth/account/user-profile-update/`,
+        `${process.env.REACT_APP_BASE_URL}jobseeker/user-profile-update/`,
         values,
         {
           headers: {

@@ -23,7 +23,7 @@ export const ForgotPassword = () => {
 
   const onSubmit = async (values) => {
     setIsLoading(true);
-    const response = await axios.post(`${process.env.REACT_APP_BASE_URL}users/reset_password/`, values)
+    const response = await axios.post(`${process.env.REACT_APP_BASE_URL}jobseeker/users/reset_password/`, values)
       .catch(err => {
         toast.error(err.message)
         setIsLoading(false)

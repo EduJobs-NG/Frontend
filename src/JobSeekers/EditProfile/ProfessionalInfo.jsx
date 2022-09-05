@@ -12,7 +12,7 @@ export const ProfessionalInfo = ({setActive}) => {
   const [showEducation, setShowEducation] = useState(false)
   const [showDelete, setShowDelete] = useState(false)
   const [showEdit, setShowEdit] = useState(false)
-  const { user, getUserMeHandler, getUserEducation } = useContext(AuthContext);
+  const { user, getUserMeHandler} = useContext(AuthContext);
   const education = user?.professional_info;
   const [selectedItem, setSelectedItem] = useState({});
   const deleteSelectedItem = (item) => {
@@ -23,7 +23,6 @@ export const ProfessionalInfo = ({setActive}) => {
     setSelectedItem(item)
     setShowEdit(true)
   }
-
 
 
   return (
@@ -37,10 +36,10 @@ export const ProfessionalInfo = ({setActive}) => {
       <p>All Education is valuable, ensure to list all schools attended below.</p>
 
 
-      {education && education.map((item, index) => {
+      {education && education.map((item) => {
         const { id, degree, school_name, start_of_education, end_of_education, grade } = item
         return (
-          <div key={index} className='relative border mt-[1rem] px-[0.5rem] md:px-[2rem] py-[1rem] rounded-lg border-[#808080]'>
+          <div key={id} className='relative border mt-[1rem] px-[0.5rem] md:px-[2rem] py-[1rem] rounded-lg border-[#808080]'>
             <div className='absolute right-5'>
               <div className='flex flex-row gap-6 '>
                 <img className='cursor-pointer' onClick={() => editSelectedItem(item)} src={EditIcon2} alt="" />
