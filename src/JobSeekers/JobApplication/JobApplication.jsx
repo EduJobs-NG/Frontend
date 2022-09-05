@@ -1,8 +1,47 @@
-import React from "react";
+import React, {useState, useEffect, useContext} from "react";
+import { Link, useParams } from 'react-router-dom';
+import axios from 'axios';
+import AuthContext from '../../context/AuthContext';
 
-export const JobApplication = ({job}) => {
+
+
+export const JobApplication = () => {
+  const {authTokens} = useContext(AuthContext)
+  const [job, setJob] = useState({});
+  const { id } = useParams();
+  console.log(id)
+  const [viewMore, setViewMore] = useState(false);
+  const handleView = () =>{
+    setViewMore(!viewMore)
+  }
+  const [isLoading, setIsLoading] = useState(false)
+  const getJob = async () =>{
+
+    setIsLoading(true)
+    const response = await axios.get(`${process.env.REACT_APP_BASE_URL}jobseeker/job-list/${id}`, {
+      headers:{
+        'Content-Type':'application/json',
+        'Authorization':`Token ${authTokens.auth_token}`
+      }
+    }).catch(err =>{
+      console.log(err)
+      setIsLoading(false)
+    })
+ 
+    if (response && response.data){
+      setJob(response.data)
+      setIsLoading(false);
+      console.log(response)
+ 
+    }
+ 
+  }
+  useEffect(() =>{
+    getJob();
+  }, [])
   return (
     <section>
+      {job && (
       <div
         key={job.id}
         className="relative md:mx-[1rem] my-[2rem]  py-[1.2rem] border bg-white border-[#d9d9d9] px-[1.2rem] rounded-[20px]"
@@ -11,16 +50,16 @@ export const JobApplication = ({job}) => {
         <p className="font-[500]">{job.organization_name}</p>
         <p className="font-[500]">{job.location}</p>
         <p className="mt-[0.5rem] mb-[1.2rem]">
-          {viewMore ? `${job.summary}` : `${job.summary.substring(0, 250)}...`}
+          {viewMore ? `${job.summary}` : `${job.summary.substring(0, 100)}...`}
         </p>
         <p className="absolute  left-5 bottom-[0.5rem]">5 hours ago</p>
         <p
-          onClick={() => handleView(job.id)}
+          onClick={() => handleView()}
           className="cursor-pointer font-[600] absolute text-blue right-5 bottom-[0.5rem]"
         >
           {viewMore ? "View Less" : "View More"}
         </p>
-        {viewMore && jobId && (
+        {viewMore && (
           <div className="my-[1rem]">
             <h1 className="font-[700]">Requirements</h1>
             <ol className="list-style">
@@ -44,6 +83,7 @@ export const JobApplication = ({job}) => {
           </div>
         )}
       </div>
+      )}
     </section>
   );
 };

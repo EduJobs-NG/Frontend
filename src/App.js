@@ -13,7 +13,7 @@ import { ResetEmail } from './pages/Authentication/ResetEmail';
 import { NewEmail } from './pages/Authentication/NewEmail';
 import { AuthProvider } from './context/AuthContext';
 import { VerifyAccountUI } from './pages/Authentication/VerifyAccountUI';
-
+import { JobApplication } from './JobSeekers/JobApplication/JobApplication';
 import { JobseekerSavedjobs } from './JobSeekers/pages/JobseekerSavedjobs';
 import { Pricing } from './pages/Pricing';
 
@@ -36,9 +36,9 @@ function App() {
       <Routes>
       <Route path="/" exact  element={<JobseekersHome />} />
       <Route element={<PrivateRoute />}>
-      <Route path="/dashboard/profile" exact element={<JobseekerProfile />} />
-      <Route path="/dashboard/find-jobs" exact  element={<JobseekerDashboard />} />
-      <Route path="/dashboard/saved-jobs/" exact  element={<JobseekerSavedjobs />} />
+      <Route path="/dashboard/profile"  element={<JobseekerProfile />} />
+      <Route path="/dashboard/find-jobs"   element={<JobseekerDashboard />} />
+      <Route path="/dashboard/apply/job/:id"  element={<JobApplication />} />
       </Route>
 
       <Route path="/login" element={<JobseekerLoginFormUI />}/>

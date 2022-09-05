@@ -3,24 +3,27 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import AuthContext from '../../context/AuthContext';
 import { Circles } from 'react-loader-spinner';
-
+import { JobApplication } from '../JobApplication/JobApplication';
 export const RecentJobs = () => {
   const {authTokens} = useContext(AuthContext)
   const [viewMore, setViewMore] = useState(false);
-  const [jobId, setJobId] = useState(null)
   const [jobs, setJobs] = useState([]);
+  const [selectedJob, setSelectedJob] = useState({})
   const [isLoading, setIsLoading] = useState(false)
-  const handleView = (id) =>{
+
+  const handleView = () =>{
     setViewMore(!viewMore)
-    setJobId(id)
-    
+  }
+  const handleSelectedJob = (job) =>{
+    setSelectedJob(job)
+
   }
   const getJobs = async () =>{
     setIsLoading(true)
-    const response = await axios.get(`${process.env.REACT_APP_BASE_URL}job-list`, {
+    const response = await axios.get(`${process.env.REACT_APP_BASE_URL}jobseeker/job-list`, {
       headers:{
         'Content-Type':'application/json',
-        // 'Authorization':`Token ${authTokens.auth_token}`
+        'Authorization':`Token ${authTokens.auth_token}`
       }
     }).catch(err =>{
       console.log(err)
@@ -65,7 +68,7 @@ export const RecentJobs = () => {
                   </p>
                   <p className='absolute  left-5 bottom-[0.5rem]'>5 hours ago</p>
                   <p onClick={() => handleView(job.id)} className='cursor-pointer font-[600] absolute text-blue right-5 bottom-[0.5rem]'>{viewMore ? 'View Less':'View More'}</p>
-                  {viewMore && jobId && (
+                  {viewMore && (
                     <div className='my-[1rem]'>
                       <h1 className='font-[700]'>Requirements</h1>
                       <ol className='list-style'>
@@ -77,8 +80,8 @@ export const RecentJobs = () => {
                         <li>lorem ipsum dolor sit amer consectetur elit</li>
                       </ol>
                       <div className='grid w-full  my-[2rem] md:mt-[3rem] place-items-center'>
-                       <Link to="#">
-                      <button className='bg-blue uppercase opacity-100 w-full md:w-[300px] px-[5rem] text-white rounded-[5px] p-2' type="submit">
+                       <Link to={`/dashboard/apply/job/${job.id}`}>
+                      <button onClick={()=> handleSelectedJob(job)} className='bg-blue uppercase opacity-100 w-full md:w-[300px] px-[5rem] text-white rounded-[5px] p-2' type="submit">
                         APPLY
                         </button>
                         </Link> 
@@ -94,7 +97,6 @@ export const RecentJobs = () => {
               )
                      })}
         </div>
-
     </section>
     </>
   )
