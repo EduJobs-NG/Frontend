@@ -13,7 +13,7 @@ export const AuthProvider = ({children}) => {
     const [authTokens, setAuthTokens] = useState(localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')):null)
   
     const logOutUser = async () =>{
-        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}users/me/`, {
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}auth/users/me/`, {
           headers:{
             'Content-Type':'application/json',
             'Authorization': `Token ${authTokens.auth_token}`
@@ -33,7 +33,7 @@ export const AuthProvider = ({children}) => {
       const getUserMeHandler = async () =>{
         setLoading(true)
         setIsError(false)
-        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}account/user-profile-update/`, {
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}auth/account/user-profile-update/`, {
           headers:{
             'Content-Type':'application/json',
             'Authorization':`Token ${authTokens.auth_token}`

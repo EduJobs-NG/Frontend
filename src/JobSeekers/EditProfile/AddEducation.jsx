@@ -29,7 +29,7 @@ export const AddEducation = ({setShowEducation, setActive}) => {
   const onSubmit = async (values) => {
     setIsLoading(true)
     const response = await axios
-      .post(`${process.env.REACT_APP_BASE_URL}account/user-profile/me/professional_info/`, values, {
+      .post(`${process.env.REACT_APP_BASE_URL}auth/account/user-profile/me/professional_info/`, values, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Token ${authTokens.auth_token}`

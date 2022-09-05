@@ -12,7 +12,7 @@ export const DeleteCredential = ({ setShowDelete, setActive, item }) => {
     const handleDelete = async () => {
         setIsLoading(true)
         const response = await axios.
-            delete(`${process.env.REACT_APP_BASE_URL}account/user-profile/me/credentials/${item.id}`,
+            delete(`${process.env.REACT_APP_BASE_URL}auth/account/user-profile/me/credentials/${item.id}`,
                 {
                     headers: {
                         'Content-Type': 'application/json',

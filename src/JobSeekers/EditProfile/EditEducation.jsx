@@ -23,7 +23,7 @@ export const EditEducation = ({setShowEdit, setActive, item}) => {
   const onSubmit = async (values) => {
     setIsLoading(true)
     const response = await axios
-      .put(`${process.env.REACT_APP_BASE_URL}account/user-profile/me/professional_info/${item.id}/`, values, {
+      .put(`${process.env.REACT_APP_BASE_URL}auth/account/user-profile/me/professional_info/${item.id}/`, values, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Token ${authTokens.auth_token}`

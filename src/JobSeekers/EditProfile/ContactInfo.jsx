@@ -30,7 +30,7 @@ next_kin_lname, second_ref_fname, second_ref_lname, second_ref_phone}} = user
   const onSubmit = async (values) => {
     setIsLoading(true)
     const response = await axios
-      .put(`${process.env.REACT_APP_BASE_URL}account/user-profile/me/contact_info/{id}/`, values, {
+      .put(`${process.env.REACT_APP_BASE_URL}auth/account/user-profile/me/contact_info/{id}/`, values, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Token ${authTokens.auth_token}`

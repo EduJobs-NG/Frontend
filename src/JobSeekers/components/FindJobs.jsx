@@ -27,7 +27,7 @@ export const FindJobs = () => {
         
       </div>
       </div>
-      <div className='grid mt-[2rem] md:mt-[3rem]   place-items-center'>
+      <div className='grid mt-[2rem] md:mt-[3rem]  place-items-center'>
             <button className='bg-blue uppercase opacity-100 w-full md:w-[300px] px-[5rem] text-white rounded-[5px] p-2' type="submit">Search Jobs</button>
              
               {/* <div className='flex justify-center'>

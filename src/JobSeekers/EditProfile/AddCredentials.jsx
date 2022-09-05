@@ -26,7 +26,7 @@ export const AddCredentials = ({ setShowAddCredentials, setActive }) => {
         data.append('name', values.file.name)
         setIsLoading(true)
         const response = await axios
-            .post(`${process.env.REACT_APP_BASE_URL}account/user-profile/me/credentials/`, data, {
+            .post(`${process.env.REACT_APP_BASE_URL}auth/account/user-profile/me/credentials/`, data, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Token ${authTokens.auth_token}`

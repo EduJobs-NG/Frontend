@@ -1,27 +1,68 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import AuthContext from '../../context/AuthContext';
+import { Circles } from 'react-loader-spinner';
+
 export const RecentJobs = () => {
+  const {authTokens} = useContext(AuthContext)
   const [viewMore, setViewMore] = useState(false)
-  const handleView = () =>{
+  const [jobs, setJobs] = useState([]);
+  const [isLoading, setIsLoading] = useState(false)
+  const handleView = (id) =>{
     setViewMore(!viewMore)
+    console.log(id)
   }
-  const jd = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem autem odit suscipit quae consectetur. Provident, commodi sint nobis repellendus iure doloremque reiciendis ut hic ratione beatae perferendis veritatis ipsam soluta excepturi sed. Delectus, consectetur recusandae praesentium eligendi molestias quaerat ea, blanditiis ullam obcaecati provident a porro. Sunt numquam architecto inventore!'
+  const getJobs = async () =>{
+    setIsLoading(true)
+    const response = await axios.get(`${process.env.REACT_APP_BASE_URL}job-list`, {
+      headers:{
+        'Content-Type':'application/json',
+        // 'Authorization':`Token ${authTokens.auth_token}`
+      }
+    }).catch(err =>{
+      console.log(err)
+      setIsLoading(false)
+    })
+ 
+    if (response && response.data){
+      setJobs(response.data.results)
+      setIsLoading(false);
+ 
+    }
+ 
+  }
+  useEffect(() =>{
+    getJobs();
+  }, [])
   return (
     <>
     <section className='bg-[#f5f5f5]'>
         <div className='container py-[4rem] mx-auto'>
             <hr className='text-[#d9d9d9]' />
             <h2 className='text-blue my-[1rem] font-[700] text-[1.5rem]'>Recent Jobs</h2>
-            <div className='relative md:mx-[1rem] my-[rem]  py-[1.2rem] border bg-white border-[#d9d9d9] px-[1.2rem] rounded-[20px]'>
 
-              <h2 className='font-[700] text-[1.2rem]'>Chemistry Teacher</h2>
-              <p className='font-[500]'>Stars College</p>
-              <p className='font-[500]'>Ikorodu, Lagos.</p>
+            {isLoading && (
+              <div className='flex justify-center'>
+                <Circles type="ThreeDots"
+                  width={100} height={20} color="blue"
+                />
+              </div>)}
+
+            {jobs && jobs.map((job) =>{
+              return (
+   
+            <div key={job.id} className='relative md:mx-[1rem] my-[2rem]  py-[1.2rem] border bg-white border-[#d9d9d9] px-[1.2rem] rounded-[20px]'>
+
+              <h2 className='font-[700] text-[1.2rem]'>{job.title}</h2>
+              <p className='font-[500]'>{job.organization_name}</p>
+              <p className='font-[500]'>{job.location}</p>
               <p className='mt-[0.5rem] mb-[1.2rem]'>
-               {viewMore ? `${jd}` : `${jd.substring(0, 250)}...` } 
+               {viewMore ? `${job.summary}` : `${job.summary.substring(0, 250)}...` } 
+            
                   </p>
                   <p className='absolute  left-5 bottom-[0.5rem]'>5 hours ago</p>
-                  <p onClick={handleView} className='cursor-pointer font-[600] absolute text-blue right-5 bottom-[0.5rem]'>{viewMore ? 'View Less':'View More'}</p>
+                  <p onClick={() => handleView(job.id)} className='cursor-pointer font-[600] absolute text-blue right-5 bottom-[0.5rem]'>{viewMore ? 'View Less':'View More'}</p>
 
                   {viewMore && (
                     <div className='my-[1rem]'>
@@ -45,8 +86,12 @@ export const RecentJobs = () => {
                       </div>
 
                     </div>
+                  
                   )}
+                  
             </div>
+              )
+                     })}
         </div>
 
     </section>
