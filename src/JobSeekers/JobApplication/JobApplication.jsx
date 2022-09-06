@@ -4,6 +4,7 @@ import axios from 'axios';
 import AuthContext from '../../context/AuthContext';
 import { Circles } from 'react-loader-spinner';
 import { JobseekerNavbar } from "../components/JobseekerNavbar";
+import { UserForm } from "./UserForm";
 
 
 
@@ -57,7 +58,7 @@ export const JobApplication = () => {
               {!isLoading && (
       <div
         key={job?.id}
-        className="relative md:mx-[1rem] my-[2rem]  py-[1.2rem] border bg-white border-[#d9d9d9] px-[1.2rem] rounded-[20px]"
+        className="relative md:mx-[1rem] mt-[1.5rem]  py-[1.2rem] border bg-white border-[#d9d9d9] px-[1.2rem] rounded-[20px]"
       >
         <h2 className="font-[700] text-[1.2rem]">{job?.title}</h2>
         <p className="font-[500]">{job?.organization_name}</p>
@@ -92,6 +93,11 @@ export const JobApplication = () => {
         
        )}
       </div>
+      {!isLoading && (
+      <div className="pb-[2rem]">
+        {<UserForm job={job} />}
+      </div>
+      )}
       
     </section>
   );

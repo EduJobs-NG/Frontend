@@ -34,7 +34,8 @@ export const Credentials = ({setActive}) => {
             <div className='border relative mt-[0.5rem] px-[2rem] py-[1rem] rounded-lg border-[#808080]'>
               <p className='absolute cursor-pointer right-5 text-red-600' onClick={() => deleteSelectedItem(item)}>Remove</p>
               <p>
-                <a className='text-blue underline' href={item.file}>{item.name}</a>
+                <a className='text-blue underline' href={item.file}>
+                  {item.name}</a>
               </p>
             </div>
           </div>

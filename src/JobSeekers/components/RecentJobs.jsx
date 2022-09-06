@@ -5,14 +5,11 @@ import AuthContext from '../../context/AuthContext';
 import { Circles } from 'react-loader-spinner';
 export const RecentJobs = () => {
   const {authTokens} = useContext(AuthContext)
-  const [viewMore, setViewMore] = useState(false);
   const [jobs, setJobs] = useState([]);
   const [selectedJob, setSelectedJob] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
 
   const handleView = (id) =>{
-    // setViewMore(!viewMore)
-    console.log(id)
     if(selectedJob === id){
      return setSelectedJob(null)
     }
