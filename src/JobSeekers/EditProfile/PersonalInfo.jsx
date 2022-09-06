@@ -23,7 +23,6 @@ export const PersonalInfo = () => {
 
 
 
-
   const { user, authTokens, getUserMeHandler } = useContext(AuthContext);
 
   const { user: { first_name, last_name, email }, middle_name, home_address, phone_number, city, state, gender, facebook_url,
@@ -135,7 +134,7 @@ export const PersonalInfo = () => {
             <div className='w-full md:mt-0 mt-[1rem]  max-w-lg'>
 
               <FormInputBox disabled type="email" label="Email" className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
-                placeholder="Email" id="gender" name="email" onChange={formik.handleChange} value={formik.values.email} onBlur={formik.handleBlur} />
+                placeholder="Email" id="" name="email" onChange={formik.handleChange} value={formik.values.email} onBlur={formik.handleBlur} />
               {formik.touched.email && formik.errors.email ? (<small className="text-red-600">{formik.errors.email}</small>) : null}
             </div>
 

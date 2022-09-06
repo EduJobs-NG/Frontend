@@ -25,6 +25,7 @@ import { EmployersHome } from './Employers/pages/EmployersHome';
 //loader css
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { EmployersRegistration } from './Employers/pages/EmployersRegistration';
+import { ResetLink } from './pages/Authentication/ResendLink';
 
 
 function App() {
@@ -49,7 +50,7 @@ function App() {
       <Route path="/password/reset/confirm/:uid/:token" element={<ResetPassword />}/>
       <Route path="/reset-email" element={<ResetEmail />}/>
       <Route path="/email/reset/confirm/:uid/:token" element={<NewEmail />}/>
-      <Route path="resend-link" element={<NewEmail />}/>
+      <Route path="resend-link" element={<ResetLink />}/>
       <Route path="/pricing" element={<Pricing />}/>
       <Route path="*" element={<PageNotFound />} />
 

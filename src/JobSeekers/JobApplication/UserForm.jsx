@@ -1,17 +1,22 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import { SubmitResume } from './SubmitResume';
 import { ScreenerQuestions } from './ScreenerQuestions';
 import { ContactInfo } from './ContactInfo';
 import { ReviewApplication } from './ReviewApplication';
+import AuthContext from '../../context/AuthContext';
+
 
 export const UserForm = ({job}) => {
+  const { user } = useContext(AuthContext);
+  const {phone_number, user:{email}} = user;
+
     const [step, setStep] = useState(1);
     const [formData, setFormData] = useState({
         resume: '',
         why_work_with_us:'',
         cover_letter:'',
-        email_address:'',
-        phone_number:'',
+        email_address:email,
+        phone_number:phone_number,
     })
     const nextStep = () => setStep(prev => prev + 1);
     const prevStep = () => setStep(prev => prev - 1);

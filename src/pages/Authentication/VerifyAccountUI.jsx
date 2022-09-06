@@ -22,7 +22,7 @@ export const VerifyAccountUI = () => {
 
       <p className='mt-[2rem]'>Wrong email address? <Link className='text-blue' to="/reset-email">Change email</Link> </p>
 
-      <Link className='text-blue mt-[5rem]' to="/resend">Resend Link</Link>
+      <Link className='text-blue mt-[5rem]' to="/resend-link">Resend Link</Link>
 
 
       <div className="text-center mt-[5rem]">

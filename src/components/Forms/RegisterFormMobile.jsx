@@ -165,7 +165,7 @@ export const RegisterFormMobile = () => {
                   onChange={formik.handleChange}
                 />
                 By signing up on this platform, you agree to EduJobs NG’s
-                <Link className="text-blue underline" to="#">
+                <Link className="text-blue underline" to="terms-and-condition">
                   
                   Terms & Conditions.
                 </Link>

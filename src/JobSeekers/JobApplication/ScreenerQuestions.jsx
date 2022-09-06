@@ -17,7 +17,7 @@ export const ScreenerQuestions = ({
   const onSubmit = (values) => {
     setFormData(values);
     console.log(values);
-    // nextStep();
+    nextStep();
   };
   const formik = useFormik({
     initialValues: formData,
@@ -39,7 +39,6 @@ export const ScreenerQuestions = ({
                 name="why_work_with_us"
                 onChange={formik.handleChange}
                 className="w-full border border-solid outline-none rounded-md resize-none border-[#808080]  p-2 "
-                placeholder="Say something about yourself"
                 cols="100"
                 rows="7"
               ></textarea>
@@ -52,7 +51,6 @@ export const ScreenerQuestions = ({
                 name="cover_letter"
                 onChange={formik.handleChange}
                 className="w-full border border-solid outline-none rounded-md resize-none border-[#808080]  p-2 "
-                placeholder="Say something about yourself"
                 cols="100"
                 rows="7"
               ></textarea>

@@ -117,8 +117,8 @@ export const RegisterForm = ({showModal, setShowRegister}) => {
                         {formik.touched.re_password && formik.errors.re_password ? (<small className="text-red-600">{formik.errors.re_password}</small>) : null}
                         <div className='my-3'>
                         <CustomCheckbox type="checkbox"  name="acceptedTos" value={formik.values.acceptedTos} onChange={formik.handleChange} />
-                        By signing up on this platform,
-                         you agree to EduJobs NG’s <Link className='text-blue underline' to="#"> Terms & Conditions.</Link>
+                       <label htmlFor="acceptedTos"> By signing up on this platform,
+                         you agree to EduJobs NG’s</label> <Link className='text-blue underline' to="terms-and-condition"> Terms & Conditions.</Link>
                          <div>
                          {formik.touched.acceptedTos && formik.errors.acceptedTos ? (<small className="text-red-600">{formik.errors.acceptedTos}</small>) : null}
 
