@@ -11,7 +11,7 @@ export const SubmitResume = ({ formData, job, setFormData, nextStep, prevStep}) 
   const onSubmit = (values) =>{
     setFormData(values);
     console.log(values)
-    // nextStep();
+    nextStep();
   }
   const formik = useFormik({
     initialValues: formData,
