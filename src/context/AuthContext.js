@@ -1,13 +1,14 @@
 import { createContext, useState, useEffect } from "react";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import { getStoredUser, storeUser } from "../storage/localStorage";
 const AuthContext = createContext();
 export default AuthContext;
 
 
 export const AuthProvider = ({children}) => {
     const navigate = useNavigate();
-    const [user, setUser] = useState({user:{}})
+    const [user, setUser] = useState(getStoredUser())
     const [loading, setLoading] = useState(false)
     const [isError, setIsError] = useState(false)
     const [authTokens, setAuthTokens] = useState(localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')):null)
@@ -29,6 +30,12 @@ export const AuthProvider = ({children}) => {
         }
     
       }
+      const updateUser = (updateKey, updateValue) =>{
+        setUser({...user, [updateKey]:updateValue })
+        storeUser({...user, [updateKey]:updateValue})
+
+
+      }
     
       const getUserMeHandler = async () =>{
         setLoading(true)
@@ -46,6 +53,7 @@ export const AuthProvider = ({children}) => {
      
         if (response && response.data){
           setUser(response.data)
+          storeUser(response.data)
           setLoading(false);
           setIsError(false)
           console.log(response.data)
@@ -62,6 +70,7 @@ export const AuthProvider = ({children}) => {
         getUserMeHandler:getUserMeHandler,
         loading:loading,
         setLoading:setLoading,
+        updateUser:updateUser
       
     }
 

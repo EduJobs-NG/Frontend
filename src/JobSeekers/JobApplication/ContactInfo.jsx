@@ -39,7 +39,7 @@ export const ContactInfo = (job, formData, setFormData, prevStep, nextStep) => {
               placeholder="Email"
               name="email"
               // onChange={formik.handleChange}
-              // value={formik.values.email}
+              value={formik.values.email}
               onBlur={formik.handleBlur}
             />
             {formik.touched.email && formik.errors.email ? (

@@ -30,9 +30,10 @@ export const PersonalInfo = () => {
 
 
   const onSubmit = async (values) => {
+    console.log(values ,'normal values')
     setIsLoading(true)
     const response = await axios
-      .put(`${process.env.REACT_APP_BASE_URL}jobseeker/user-profile-update/`, values, {
+      .put(`${process.env.REACT_APP_BASE_URL}jobseeker/user-profile-update/`, {...values}, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Token ${authTokens.auth_token}`
@@ -53,7 +54,7 @@ export const PersonalInfo = () => {
 
     }
   }
-
+  // value={firstName ? firstName : ""}
   const formik = useFormik({
     initialValues: {
       first_name:first_name || "",
@@ -87,7 +88,7 @@ export const PersonalInfo = () => {
           <div className='grid md:grid-cols-2 md:gap-3'>
             <div className='w-full  max-w-lg'>
 
-              <FormInputBox disabled  type="text" label="First Name" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
+              <FormInputBox  type="text" label="First Name" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
                 placeholder="First Name" id="first_name" name="first_name" onChange={formik.handleChange} value={formik.values.first_name} onBlur={formik.handleBlur} />
 
             </div>
@@ -102,7 +103,7 @@ export const PersonalInfo = () => {
           <div className='grid md:grid-cols-2 md:gap-3 mt-[1rem]'>
             <div className='w-full max-w-lg'>
 
-              <FormInputBox disabled type="text" label="Last Name" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
+              <FormInputBox  type="text" label="Last Name" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
                 placeholder="Last Name" id="last_name" name="last_name" onChange={formik.handleChange} value={formik.values.last_name} onBlur={formik.handleBlur} />
 
             </div>
@@ -133,7 +134,7 @@ export const PersonalInfo = () => {
             </div>
             <div className='w-full md:mt-0 mt-[1rem]  max-w-lg'>
 
-              <FormInputBox disabled type="email" label="Email" className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
+              <FormInputBox  type="email" label="Email" className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
                 placeholder="Email" id="" name="email" onChange={formik.handleChange} value={formik.values.email} onBlur={formik.handleBlur} />
               {formik.touched.email && formik.errors.email ? (<small className="text-red-600">{formik.errors.email}</small>) : null}
             </div>

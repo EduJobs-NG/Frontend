@@ -23,7 +23,7 @@ const validationSchema = Yup.object({
 export const ContactInfo = ({setActive}) => {
   const [isLoading, setIsLoading] = useState(false);
   
-  const { user, authTokens, getUserMeHandler } = useContext(AuthContext);
+  const { user, authTokens, updateUser, getUserMeHandler } = useContext(AuthContext);
   const {contact_info:{next_kin_fname, next_kin_address, next_kin_email, next_kin_phone, first_ref_fname, first_ref_phone, first_ref_lname, first_ref_jtitle, second_ref_jtitle,
 next_kin_lname, second_ref_fname, second_ref_lname, second_ref_phone}} = user
 
@@ -45,9 +45,12 @@ next_kin_lname, second_ref_fname, second_ref_lname, second_ref_phone}} = user
     if (response) {
       setIsLoading(false)
       toast.success('Your changes have been successfully saved.')
-      getUserMeHandler()
+      // getUserMeHandler()
+      // setUser(response.data)
+      updateUser('contact_info', response.data)
+      console.log(response.data, 'update response data')
       setActive(3)
-      console.log(response)
+      // console.log(response)
     }
   }
 
@@ -86,7 +89,7 @@ next_kin_lname, second_ref_fname, second_ref_lname, second_ref_phone}} = user
               <div className='w-full  max-w-lg'>
 
                 <FormInputBox type="text" label="First Name" className="border p-2.5 block w-full border-solid border-[#808080] rounded-lg outline-none"
-                  placeholder="First Name" id="next_kin_fname" name="next_kin_fname" onChange={formik.handleChange} value={formik.values.next_kin_fname} onBlur={formik.handleBlur} />
+                  placeholder="First Name" id="next_kin_fname" name="next_kin_fname" onChange={formik.handleChange} value={formik.values.next_kin_fname } onBlur={formik.handleBlur} />
 
               </div>
               <div className='w-full md:mt-0 mt-[1rem] max-w-lg'>
