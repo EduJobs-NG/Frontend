@@ -3,6 +3,7 @@ import { SubmitResume } from './SubmitResume';
 import { ScreenerQuestions } from './ScreenerQuestions';
 import { ContactInfo } from './ContactInfo';
 import { ReviewApplication } from './ReviewApplication';
+import { SuccessfulApplication } from './SuccessfulApplication';
 import AuthContext from '../../context/AuthContext';
 
 
@@ -15,6 +16,7 @@ export const UserForm = ({job}) => {
         resume: "",
         questions:[{question:'', question_id:'', answer:''}],
         cover_letter:'',
+        why_work_with_us:'',
         email:email,
         phone_number:phone_number,
     })
@@ -48,6 +50,15 @@ export const UserForm = ({job}) => {
           />
         case 4:
           return <ReviewApplication 
+          nextStep={nextStep}
+          setStep={setStep}
+          prevStep={prevStep}
+          formData={formData}
+          setFormData={setFormData}
+          job={job}
+          />
+        case 5:
+          return <SuccessfulApplication 
           nextStep={nextStep}
           setStep={setStep}
           prevStep={prevStep}

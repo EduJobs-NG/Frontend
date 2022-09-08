@@ -161,14 +161,12 @@ export const RegisterFormMobile = () => {
                 <CustomCheckbox
                   type="checkbox"
                   name="acceptedTos"
+                  id="acceptedTos"
                   value={formik.values.acceptedTos}
                   onChange={formik.handleChange}
                 />
-                By signing up on this platform, you agree to EduJobs NG’s
-                <Link className="text-blue underline" to="terms-and-condition">
-                  
-                  Terms & Conditions.
-                </Link>
+                <label for="acceptedTos"> By signing up on this platform,
+                         you agree to EduJobs NG’s</label> <Link className='text-blue underline' to="terms-and-condition"> Terms & Conditions.</Link>
                 <div>
                   {formik.touched.acceptedTos && formik.errors.acceptedTos ? (
                     <small className="text-red-600">
