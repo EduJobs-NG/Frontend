@@ -18,11 +18,6 @@ const validationSchema = Yup.object({
 })
 export const PersonalInfo = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [userData, setUserData] = useState({});
-
-
-
-
   const { user, authTokens, getUserMeHandler } = useContext(AuthContext);
 
   const { user: { first_name, last_name, email }, middle_name, home_address, phone_number, city, state, gender, facebook_url,

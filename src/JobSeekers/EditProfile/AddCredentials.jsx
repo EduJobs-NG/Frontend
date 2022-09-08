@@ -42,10 +42,10 @@ export const AddCredentials = ({ setShowAddCredentials }) => {
             setIsLoading(false)
             setShowAddCredentials(false)
             toast.success('Your changes have been successfully saved')
-            // updateUser('credentials', response.data)
+            updateUser('credentials', [response.data])
             console.log(response.data)
            
-            console.log(response)
+            // console.log(response)
         }
 
     }

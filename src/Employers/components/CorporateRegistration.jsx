@@ -11,7 +11,7 @@ import google from '../../assets/google.png'
 import linkedin from '../../assets/linkedin.png';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import CustomCheckbox from '../../components/Forms/CustomCheckbox';
 const validationSchema = Yup.object({
     organization_name:Yup.string().required('Required'),
     email: Yup.string().email("Invalid email address").required('Required'),
@@ -20,17 +20,16 @@ const validationSchema = Yup.object({
         "Must Contain 8 Characters of letters & numbers"
       ),
     re_password: Yup.string()
-        .oneOf([Yup.ref('password'), null], 'Passwords must match').required('Required')
+        .oneOf([Yup.ref('password'), null], 'Passwords must match').required('Required'),
+    acceptedTos: Yup.boolean().oneOf([true], "Please accept the terms and conditions")
+
+        
 })
 
 export const CorporateRegistration = () => {
   
-    const [agree, setAgree] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const agreeHandler = () =>{
-        setAgree(!agree);
-        
-    }
+ 
   
     const navigate = useNavigate();
     
@@ -69,7 +68,8 @@ export const CorporateRegistration = () => {
             organization_name:'',
             email: '',
             password: '',
-            re_password: ''
+            re_password: '',
+            acceptedTos:false
         },
         validateOnBlur:true,
         onSubmit,
@@ -111,10 +111,17 @@ export const CorporateRegistration = () => {
         
      {formik.touched.re_password && formik.errors.re_password ? (<small className="text-red-600">{formik.errors.re_password}</small>) : null}
      <div className='my-3'>
-     <input type="checkbox" value={agree} onChange={agreeHandler}  /> By signing up on this platform, you agree to EduJobs NG’s Terms & conditions.
-</div>
+                        <CustomCheckbox type="checkbox" id="acceptedTos"  name="acceptedTos" value={formik.values.acceptedTos} onChange={formik.handleChange} />
+                       <label for="acceptedTos"> By signing up on this platform,
+                         you agree to EduJobs NG’s</label> <Link className='text-blue underline' to="terms-and-condition"> Terms & Conditions.</Link>
+                         <div>
+                         {formik.touched.acceptedTos && formik.errors.acceptedTos ? (<small className="text-red-600">{formik.errors.acceptedTos}</small>) : null}
+
+                         </div>
+                      
+                        </div>
      
-      {!isLoading && <button disabled={!formik.isValid || (agree === false) } className={!formik.isValid || (agree===false) ? 'bg-blue block w-full text-white opacity-25 rounded-sm p-2':'bg-blue opacity-100 block w-full text-white rounded-sm p-2' } type="submit">SIGN UP</button>}
+      {!isLoading && <button disabled={!formik.isValid } className={!formik.isValid  ? 'bg-blue block w-full text-white opacity-25 rounded-sm p-2':'bg-blue opacity-100 block w-full text-white rounded-sm p-2' } type="submit">SIGN UP</button>}
      {isLoading && (
         <div className='flex justify-center'>
         <ThreeDots type="ThreeDots"

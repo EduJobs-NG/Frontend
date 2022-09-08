@@ -1,5 +1,5 @@
 
-const CustomCheckbox = (props) => {
+export const CustomCheckbox = (props) => {
 
     const {placeholder, className, accept,
      disabled, value, onBlur, onChange, name,  text, id, type} = props;

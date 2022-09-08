@@ -56,7 +56,7 @@ export const AuthProvider = ({children}) => {
           storeUser(response.data)
           setLoading(false);
           setIsError(false)
-          console.log(response.data)
+          // console.log(response.data)
           
         }
       }

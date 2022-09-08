@@ -11,6 +11,8 @@ import google from "../../assets/google.png";
 import linkedin from "../../assets/linkedin.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CustomCheckbox from '../../components/Forms/CustomCheckbox';
+
 
 const validationSchema = Yup.object({
   first_name: Yup.string()
@@ -33,11 +35,7 @@ const validationSchema = Yup.object({
 });
 
 export const IndividualRegistration = () => {
-  const [agree, setAgree] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const agreeHandler = () => {
-    setAgree(!agree);
-  };
 
   const navigate = useNavigate();
 
@@ -81,14 +79,12 @@ export const IndividualRegistration = () => {
     validationSchema: validationSchema,
   });
 
-  //  console.log(formik.isSubmitting)
-  //    flex flex-col justify-center h-screen
   return (
     <div className=" bg-white ">
       <ToastContainer />
 
       <Formik>
-        {({ isSubmitting }) => (
+        {({  }) => (
           <Form onSubmit={formik.handleSubmit}>
             <div className="grid grid-cols-2 gap-4 ">
               <div>
@@ -179,17 +175,21 @@ export const IndividualRegistration = () => {
                 {formik.errors.re_password}
               </small>
             ) : null}
-            <div className="my-3">
-              <input type="checkbox" value={agree} onChange={agreeHandler} /> By
-              signing up on this platform, you agree to EduJobs NG’s Terms &
-              conditions.
-            </div>
+            <div className='my-3'>
+                        <CustomCheckbox type="checkbox" id="acceptedTos"  name="acceptedTos" value={formik.values.acceptedTos} onChange={formik.handleChange} />
+                       <label for="acceptedTos"> By signing up on this platform,
+                         you agree to EduJobs NG’s</label> <Link className='text-blue underline' to="terms-and-condition"> Terms & Conditions.</Link>
+                         <div>
+                         {formik.touched.acceptedTos && formik.errors.acceptedTos ? (<small className="text-red-600">{formik.errors.acceptedTos}</small>) : null}
 
+                         </div>
+                      
+                        </div>
             {!isLoading && (
               <button
-                disabled={!formik.isValid || agree === false}
+                disabled={!formik.isValid}
                 className={
-                  !formik.isValid || agree === false
+                  !formik.isValid 
                     ? "bg-blue block w-full text-white opacity-25 rounded-sm p-2"
                     : "bg-blue opacity-100 block w-full text-white rounded-sm p-2"
                 }
