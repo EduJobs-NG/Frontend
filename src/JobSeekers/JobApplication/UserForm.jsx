@@ -13,7 +13,7 @@ export const UserForm = ({job}) => {
     const [step, setStep] = useState(1);
     const [formData, setFormData] = useState({
         resume: "",
-        // questions:[{qname, qid, answer}, {}],
+        questions:[{question:'', question_id:'', answer:''}],
         cover_letter:'',
         email:email,
         phone_number:phone_number,

@@ -45,17 +45,18 @@ export const JobApplication = () => {
     <section className="bg-[#f5f5f5]">
         <JobseekerNavbar />
 
-      <div className="container py-[2rem] mx-auto">
-        <h2 className="font-[700] text-2xl">Job Application</h2>
 
           {isLoading && (
-              <div className='flex mt-[1rem] justify-center'>
+              <div className='flex mt-[1rem] pb-[1rem] justify-center'>
                 <Circles type="ThreeDots"
                   width={100} height={20} color="blue"
                 />
               </div>)}
 
               {!isLoading && (
+                
+      <div className="container py-[2rem] mx-auto">
+      <h2 className="font-[700] text-2xl">Job Application</h2>
       <div
         key={job?.id}
         className="relative md:mx-[1rem] mt-[1.5rem]  py-[1.2rem] border bg-white border-[#d9d9d9] px-[1.2rem] rounded-[20px]"
@@ -90,9 +91,9 @@ export const JobApplication = () => {
         )}
          
       </div>
+      </div>
         
        )}
-      </div>
       {!isLoading && (
       <div className="pb-[2rem]">
         {<UserForm job={job} />}

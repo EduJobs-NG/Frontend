@@ -70,12 +70,18 @@ export const ReviewApplication = ({formData, setStep}) => {
               placeholder="Phone Number"
               id="phone_number"
               name="phone_number"
-              // onChange={formik.handleChange}
               value={phone_number}
             />
         </div>
         </div>
 
+        <div className='md:mx-[1rem]'>
+          By pressing Submit:
+          <p>1) You agree to our Terms and Privacy Policies;</p> 
+          <p>
+              2) You consent to your application being transmitted to the Employer (EduJobs does not guarantee receipt), & processed & analyzed in accordance with its & Edujobs' terms & privacy policies;
+          </p>
+        </div>
 
 
       </div>
