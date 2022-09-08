@@ -12,10 +12,10 @@ export const UserForm = ({job}) => {
 
     const [step, setStep] = useState(1);
     const [formData, setFormData] = useState({
-        resume: '',
-        questions:[{qname, qid, answer}, {}],
+        resume: "",
+        // questions:[{qname, qid, answer}, {}],
         cover_letter:'',
-        email_address:email,
+        email:email,
         phone_number:phone_number,
     })
     const nextStep = () => setStep(prev => prev + 1);
@@ -49,6 +49,7 @@ export const UserForm = ({job}) => {
         case 4:
           return <ReviewApplication 
           nextStep={nextStep}
+          setStep={setStep}
           prevStep={prevStep}
           formData={formData}
           setFormData={setFormData}

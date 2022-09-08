@@ -27,7 +27,7 @@ export const Credentials = ({setActive}) => {
 
       <h1 className='text-xl font-[700]'>Credentials</h1>
       <p>Add all of your necessary credentials.</p>
-      {credentials.map((item) => {
+      {credentials && credentials.map((item) => {
         return (
           <div key={item.id} className="mt-[2rem]">
             <p>{item.credential_type}</p>
