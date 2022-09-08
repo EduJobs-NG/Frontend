@@ -67,7 +67,7 @@ export const LoginForm = ({ setShowLogin, showModal }) => {
   return (
     <section>
       <ToastContainer />
-      <div className="relative border bg-white p-2 py-[2rem] px-[32px] rounded-[50px] lg:w-[500px]">
+      <div className="relative border px-[10px] h-full my-[1rem] mx-[1rem] bg-white p-2 py-[2rem] md:px-[32px] rounded-[50px] lg:w-[500px]">
         <div className="flex my-4 gap-x-[1rem] justify-center ">
           <FaSignInAlt className="text-[2rem] text-blue" />
           <div className="h-[2.5rem] w-[3px] bg-black"></div>
@@ -173,10 +173,7 @@ export const LoginForm = ({ setShowLogin, showModal }) => {
                 />
               </div>
 
-              <div className="text-center mt-5">
-                <h1 className="text-blue font-[700]">EduJobsNg</h1>
-                <p>All Rights Reserved</p>
-              </div>
+              
             </Form>
           )}
         </Formik>

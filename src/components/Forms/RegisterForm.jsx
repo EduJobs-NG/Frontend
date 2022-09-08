@@ -66,7 +66,7 @@ export const RegisterForm = ({showModal, setShowRegister}) => {
 
 
     return (
-        <div className=' border relative  bg-white p-2 py-[2rem] px-[42px] rounded-[50px] max-w-[500px]'>
+        <div className=' border relative bg-white p-2 py-[2rem] px-[10px] mx-[1rem] md:px-[42px] rounded-[50px] max-w-[500px]'>
             <ToastContainer />
 
             <div className=' flex my-4 gap-x-[1rem] justify-center '>
@@ -157,10 +157,7 @@ export const RegisterForm = ({showModal, setShowRegister}) => {
                 <img className='border p-[0.4rem] rounded-full ml-[1rem] border-[#808080]' src={linkedin} alt="" />
             </div>
 
-            <div className="text-center mt-5">
-                <h1 className="text-blue font-[700]">EduJobsNg</h1>
-                <p>All Rights Reserved</p>
-            </div>
+            
         </div>
     )
 }

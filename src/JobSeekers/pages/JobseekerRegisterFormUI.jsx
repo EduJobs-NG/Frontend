@@ -2,7 +2,7 @@ import React from "react";
 import {NavLink} from 'react-router-dom';
 import {navigation} from '../../data';
 
-import { RegisterFormMobile } from "../../components/Forms/RegisterFormMobile";
+import { RegisterForm } from "../../components/Forms/RegisterForm";
 
 
 
@@ -12,10 +12,10 @@ export const JobseekerRegisterFormUI = () => {
   return (
     <>
 
-    <section className="flex justify-center items-center">
+    <section className="flex bg-blue justify-center items-center">
       <div className="w-full my-[2rem]  max-w-[500px]">
       
-      <RegisterFormMobile />
+      <RegisterForm />
 
       </div>
     </section>

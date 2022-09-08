@@ -1,9 +1,13 @@
-import React from 'react';
-import {features} from '../data.js'
+import React,{useState} from 'react';
+import {features} from '../data.js';
+import { JoinNowModal } from './JoinNowModal.jsx';
+
 
 export const Features = () => {
+    const [showModal, setShowModal] = useState(false)
     return (
-      
+        <>
+      {/* {showModal && <JoinNowModal />} */}
         <section className='section  bg-[#F5F5F5]'>
             <div className='container mx-auto'>
 
@@ -31,10 +35,10 @@ export const Features = () => {
 
             <div className='flex flex-col justify-center items-center'>
                 <div className='max-w-[500px]'>
-                <div className='bg-blue p-[0.4rem] mb-[1rem] font-[600] px-[2.5rem] text-center w-full rounded-lg text-white transition'>
-                <a className='' href="/jobseeker/register">
+                <div onClick={() => setShowModal(true)} className='bg-blue cursor-pointer p-[0.4rem] mb-[1rem] font-[600] px-[2.5rem] text-center w-full rounded-lg text-white transition'>
+                
                     Join Now
-                </a>
+                
                 </div>
             
                 
@@ -49,5 +53,7 @@ export const Features = () => {
             </div>
 
         </section>
+        </>
+
     )
 }

@@ -132,7 +132,7 @@ export const Navbar = ({}) => {
                 data-aos-delay="300"
                 data-aos="fade-left"
                 className="text-blue text-[1.2rem] mb-[33px] font-[700]"
-                to="/register"
+                to="/"
               >
                 I'm a job seeker
               </NavLink>
@@ -140,7 +140,7 @@ export const Navbar = ({}) => {
                 data-aos-delay="300"
                 data-aos="fade-left"
                 className="text-blue text-[1.2rem] mb-[45px] font-[700]"
-                to="/employers"
+                to="/employer/register"
               >
                 I'm an employer
               </NavLink>
