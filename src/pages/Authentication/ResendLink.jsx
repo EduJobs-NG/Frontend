@@ -16,7 +16,6 @@ const validationSchema = Yup.object({
 
 export const ResetLink = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [show, setShow] = useState(true);
 
 
   const onSubmit = async (values) => {
@@ -29,7 +28,6 @@ export const ResetLink = () => {
       })
 
     if (response) {
-      setShow(false)
       setIsLoading(false)
       toast.success('A reset link has been sent to the provided email address.')
 

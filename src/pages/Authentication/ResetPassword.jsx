@@ -25,7 +25,6 @@ export const ResetPassword = () => {
   const navigate = useNavigate();
   const { uid, token } = useParams();
   const [isLoading, setIsLoading] = useState(false);
-  const [show, setShow] = useState(true);
 
 
 
@@ -36,12 +35,12 @@ export const ResetPassword = () => {
       { uid, token, new_password, re_new_password })
       .catch(err => {
         toast.error("Something went wrong. Try again")
+    
         setIsLoading(false)
         console.log(err)
       })
 
     if (response) {
-      setShow(false)
       setIsLoading(false)
       toast.success('Password has been reset successfully.')
       setTimeout(() => {
@@ -49,7 +48,6 @@ export const ResetPassword = () => {
 
       }, 1000)
 
-      // console.log(response)
     }
 
   }
@@ -76,7 +74,7 @@ export const ResetPassword = () => {
         <img src={password} alt="" />
       </div>
 
-      <div className='max-w-[380px]'>
+      <div className='max-w-[380px] mx-auto'>
 
         <h1 className=' text-black font-[700] text-2xl'>Change Password</h1>
         <p className='mt-4'>Create a new Password with at least 8 characters and must include an uppercase letter and a number.</p>
