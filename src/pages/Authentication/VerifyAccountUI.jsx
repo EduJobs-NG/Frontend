@@ -13,7 +13,7 @@ export const VerifyAccountUI = () => {
   return (
     <section className='bg-blue'>
       <div className='container  mx-auto  h-screen  flex flex-col justify-center items-center text-center'>
-        <div className='w-full max-w-[500px] py-[2rem] rounded-[30px] bg-white'>
+        <div className='w-full max-w-[500px] py-[2rem] px-[1rem] rounded-[30px] bg-white'>
 
 
       <div className='flex justify-center' >
@@ -26,7 +26,9 @@ export const VerifyAccountUI = () => {
 
       <p className='mt-[2rem]'>Wrong email address? <Link className='text-blue' to="/reset-email">Change email</Link> </p>
 
-      <Link className='text-blue mt-[5rem]' to="/resend-link">Resend Link</Link>
+<p className='mt-[2rem]'>
+      <Link className='text-blue ' to="/resend-link">Resend Link</Link>
+      </p>
 
 
       </div>
