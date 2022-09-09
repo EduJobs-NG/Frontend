@@ -1,6 +1,6 @@
 import React,{useContext, useEffect} from 'react'
 import { Link } from 'react-router-dom'
-import messageIcon from '../../assets/Vector.png';
+import messageIcon from '../../assets/messageIcon.png';
 // import AuthContext from '../../context/AuthContext';
 
 
@@ -11,9 +11,13 @@ export const VerifyAccountUI = () => {
 // }, [])
 
   return (
-    <section className='container mx-auto mt-[3rem] h-screen  flex flex-col justify-center items-center text-center '>
-      <div className='rounded-full bg-[#d5d3fe] p-5'>
-        <img src={messageIcon} alt="" />
+    <section className='bg-blue'>
+      <div className='container  mx-auto  h-screen  flex flex-col justify-center items-center text-center'>
+        <div className='w-full max-w-[500px] py-[2rem] rounded-[30px] bg-white'>
+
+
+      <div className='flex justify-center' >
+        <img src={messageIcon} className=' ' alt="" />
       </div>
 
       <h1 className='text-black font-[700] text-2xl'>Verify Account</h1>
@@ -25,9 +29,8 @@ export const VerifyAccountUI = () => {
       <Link className='text-blue mt-[5rem]' to="/resend-link">Resend Link</Link>
 
 
-      <div className="text-center mt-[5rem]">
-        <h1 className="text-blue font-[700]">EduJobsNg</h1>
-        <p>All Rights Reserved</p>
+      </div>
+     
       </div>
 
     </section>
