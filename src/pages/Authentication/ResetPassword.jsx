@@ -66,10 +66,13 @@ export const ResetPassword = () => {
 
   })
   return (
-    <section className='container mx-auto mt-[3rem] h-screen w-full  flex flex-col justify-center items-center text-center '>
+    <section className="bg-blue" >
       <ToastContainer />
 
-      <div className='rounded-full bg-[#d5d3fe] p-5'>
+      <div className="container mx-auto  h-screen  flex flex-col justify-center items-center text-center " >
+        <div className="w-full max-w-[500px] py-[2rem] px-[1rem] rounded-[30px] bg-white">
+
+      <div className='flex justify-center'>
         <img src={password} alt="" />
       </div>
 
@@ -81,6 +84,7 @@ export const ResetPassword = () => {
       </div>
 
 
+<div className='flex justify-center'>
 
       <Formik>
         <div className="w-full max-w-[380px]">
@@ -113,14 +117,10 @@ export const ResetPassword = () => {
           </div>
         </div>
       </Formik>
-
-
-      <div className="text-center mt-[5rem]">
-        <h1 className="text-blue font-[700]">EduJobsNg</h1>
-        <p>All Rights Reserved</p>
-
       </div>
 
+</div>
+</div>
 
     </section>
   )
