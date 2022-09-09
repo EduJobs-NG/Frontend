@@ -11,22 +11,26 @@ export const JobseekerRegisterFormUI = () => {
   
   return (
     <>
-
-    <section className="hidden lg:flex bg-blue justify-center items-center">
-      <div className="w-full my-[2rem]  max-w-[500px]">
+{/* hidden md:flex */}
+    <section className=" bg-blue flex justify-center items-center">
+      <div className="w-full py-[2rem]  max-w-[500px]">
       
       <RegisterForm />
 
       </div>
     </section>
 
-    <section className="lg:hidden my-[1.2rem]">
-    {/* <NavLink to="/">
-                <img src={logo} className='w-[150px]' alt="" />
-                </NavLink> */}
-      <RegisterFormMobile />
+    {/* <section className="md:hidden ">
+  
+                <div className=" flex bg-blue justify-center items-center   ">
+                  <div className="w-full max-w-[500px] py-[2rem]">
+                  <RegisterFormMobile />
 
-    </section>
+                  </div>
+                </div>
+  
+
+    </section> */}
 
 
     

@@ -66,7 +66,7 @@ export const RegisterForm = ({showModal, setShowRegister}) => {
 
 
     return (
-        <div className=' border relative bg-white p-2 py-[2rem] px-[10px] mx-[1rem] md:px-[42px] rounded-[50px] max-w-[500px]'>
+        <div className=' border relative bg-white p-2 py-[2rem] px-[20px] mx-[1.5rem] md:px-[42px] rounded-[30px] md:rounded-[50px] max-w-[500px]'>
             <ToastContainer />
 
             <div className=' flex my-4 gap-x-[1rem] justify-center '>

@@ -56,7 +56,7 @@ export const RegisterFormMobile = () => {
   });
 
   return (
-    <div className="flex flex-col justify-center  bg-white px-[20px]  ">
+    <div className="flex flex-col justify-center py-[1rem] rounded-[40px] mx-[2rem]  bg-white px-[20px]  ">
       <ToastContainer />
       <div className="flex my-4 md:gap-x-[1rem] justify-center ">
         <FaUserPlus className="text-[2rem] text-blue" />
@@ -156,26 +156,17 @@ export const RegisterFormMobile = () => {
                 {formik.errors.re_password}
               </small>
             ) : null}
-            <div className="my-3">
-              <div className="my-3">
-                <CustomCheckbox
-                  type="checkbox"
-                  name="acceptedTos"
-                  id="acceptedTos"
-                  value={formik.values.acceptedTos}
-                  onChange={formik.handleChange}
-                />
-                <label for="acceptedTos"> By signing up on this platform,
+           
+           <div className='my-3'>
+                        <CustomCheckbox type="checkbox" id="acceptedTos"  name="acceptedTos" value={formik.values.acceptedTos} onChange={formik.handleChange} />
+                       <label for="acceptedTos"> By signing up on this platform,
                          you agree to EduJobs NG’s</label> <Link className='text-blue underline' to="terms-and-condition"> Terms & Conditions.</Link>
-                <div>
-                  {formik.touched.acceptedTos && formik.errors.acceptedTos ? (
-                    <small className="text-red-600">
-                      {formik.errors.acceptedTos}
-                    </small>
-                  ) : null}
-                </div>
-              </div>
-            </div>
+                         <div>
+                         {formik.touched.acceptedTos && formik.errors.acceptedTos ? (<small className="text-red-600">{formik.errors.acceptedTos}</small>) : null}
+
+                         </div>
+                      
+                        </div>
 
             {!isLoading && (
               <button
