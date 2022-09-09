@@ -28,7 +28,7 @@ export const Navbar = () => {
   {showLogin && <PopupLogin setShowLogin={setShowLogin}  />}
 
         <div className="container mx-auto">
-          <div className="flex uppercase py-[1.5rem] items-center flex-row justify-between">
+          <div className="flex  py-[1.5rem] items-center flex-row justify-between">
             <ul className="flex gap-x-[3rem] text-white flex-row">
              <li className=''>
               <NavLink to="/">
@@ -38,7 +38,7 @@ export const Navbar = () => {
               
               {navigation.leftNav.map((nav, index) =>{
                 return (
-                  <li className='hidden  xl:flex' key={index}>
+                  <li className='hidden uppercase xl:flex' key={index}>
                      <NavLink className="" to="#"> {nav.name}</NavLink>
                   </li>
                 )

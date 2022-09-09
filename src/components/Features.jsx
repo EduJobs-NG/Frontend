@@ -11,7 +11,7 @@ export const Features = () => {
         <section className='section  bg-[#F5F5F5]'>
             <div className='container mx-auto'>
 
-            <h1 className='text-center mx-auto title max-w-[630px] text-blue px-3'>EduJobs NG brings the next
+            <h1 className='text-center mx-auto text-[1.5rem] font-[700] max-w-[630px] text-blue px-3'>EduJobs NG brings the next
                 opportunities to You
                 with just a click.</h1>
 
@@ -20,10 +20,10 @@ export const Features = () => {
                 {features.map((item, index) =>{
                     return(
                         <>
-                    <div key={index} className="mx-auto md:mx-0 drop-shadow-lg max-w-[320px] p-3 mb-[1rem] rounded-[24px]   bg-white border border-solid ">
-                       <img className='min-h-[200px]' src={item.img.type} alt="" /> 
-                       <h2 className='title mt-2 text-center text-blue'>{item.title}</h2> 
-                       <p className='subtitle text-center'>{item.subtitle}</p> 
+                    <div key={index} className="mx-auto md:mx-0 flex flex-col justify-center items-center drop-shadow-lg max-w-[320px] px-[1.5rem] py-[1rem] mb-[1rem] rounded-[24px]   bg-white border border-solid ">
+                       <img className=' min-h-[200px]' src={item.img.type} alt="" /> 
+                       <h2 className='text-[1.5rem] font-[700] mt-2 text-center text-blue'>{item.title}</h2> 
+                       <p className=' text-[1.1rem]  text-center'>{item.subtitle}</p> 
                     </div>
 
                     </>
@@ -41,10 +41,11 @@ export const Features = () => {
                 
                 </div>
             
-                
-                <div className='text-blue p-[0.3rem] px-[1.5rem] text-center w-full font-[600] rounded-lg border border-[#F0F0F0]'>
-                <a href="#" >Take A QUICK TOUR</a>
+                <a href="#" >
+                <div className='text-blue p-[0.3rem] px-[1.5rem] bg-[#f0f0f0] hover:bg-blue hover:text-white transition-all text-center w-full font-[600] rounded-lg'>
+                Take A QUICK TOUR
                 </div>
+                </a>
                 </div>
 
             </div>
