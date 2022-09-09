@@ -86,18 +86,18 @@ export const footer = {
     candidates:[
         {
             name:'Sign up',
-            href:''
+            href:'/jobseeker/register'
         },
         {
             name:'Find Jobs',
-            href:''
+            href:'/dashboard/find-jobs'
 
         },
     ],
     employees:[
         {
             name:'Sign up',
-            href:''
+            href:'/employer/register'
 
         },
         {
@@ -132,17 +132,17 @@ export const footer = {
     support:[
         {
             name:'Job Seekers/FAQS ',
-            href:''
+            href:'/faqs'
 
         },
         {
             name:'Employment Help/FAQs',
-            href:''
+            href:'/faqs'
 
         },
         {
             name:'General FAQs',
-            href:''
+            href:'/faqs'
 
         },
     ],
