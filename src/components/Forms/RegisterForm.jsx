@@ -71,7 +71,7 @@ export const RegisterForm = ({showModal, setShowRegister}) => {
 
             <div className=' flex my-4 gap-x-[1rem] justify-center '>
                 <FaUserPlus className='text-[2rem] text-blue' />
-                <div className='h-[2.5rem] w-[3px] bg-black'></div>
+                <div className='h-[2.5rem] w-[3px] mr-[0.5rem] ml-[0.5rem] bg-black'></div>
                 <h2 className="title text-blue  text-[24px] font-[700]">SIGN UP</h2>
                 {showModal ? <FaTimes onClick={() => setShowRegister(false)} className='text-blue z-[99999] text-[1.3rem] absolute top-[1rem] right-[1.5rem] mt-3 cursor-pointer' /> : null } 
 
