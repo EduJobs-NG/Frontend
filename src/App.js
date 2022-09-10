@@ -40,6 +40,7 @@ function App() {
       <Route path="/dashboard/profile"  element={<JobseekerProfile />} />
       <Route path="/dashboard/find-jobs"   element={<JobseekerDashboard />} />
       <Route path="/dashboard/apply/job/:id"  element={<JobApplication />} />
+      <Route path="/dashboard/job-application-successful"  element={<JobApplication />} />
       </Route>
 
       <Route path="/login" element={<JobseekerLoginFormUI />}/>

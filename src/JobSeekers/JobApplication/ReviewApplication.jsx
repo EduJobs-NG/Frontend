@@ -1,13 +1,42 @@
-import React from "react";
+import React, {useState} from "react";
 import { FormInputBox } from "../../components/Forms/FormInputBox";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { SuccessfulApplication } from "./SuccessfulApplication";
+import axios from "axios";
 
 
 export const ReviewApplication = ({ formData, nextStep, prevStep, setStep }) => {
-  const { resume, why_work_with_us, email, cover_letter, phone_number } =
-    formData;
+  const { resume, why_work_with_us, email, cover_letter, phone_number } = formData;
+  const [showSuccess, setShowSuccess] = useState(false)
+  const handleSubmission = async () => {
+    console.log(formData, 'formData submission')
+    // setIsLoading(true);
+    // const response = await axios
+    //   .delete(
+    //     `${process.env.REACT_APP_BASE_URL}jobseeker/user-profile/me/credentials/${item.id}`,
+    //     {
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //         Authorization: `Token ${authTokens.auth_token}`,
+    //       },
+    //     }
+    //   )
+    //   .catch((err) => {
+    //     console.log(err);
+    //     toast.error(err.message);
+    //     setIsLoading(false);
+    //   });
+
+    // if (response) {
+    //   setIsLoading(false);
+    //   setShowDelete(false);
+    //   updateUser("credentials", response.data);
+
+    //   console.log(response);
+    }
   return (
     <section>
+      {showSuccess && <SuccessfulApplication email={email} /> }
       <div className="container mx-auto">
         <h1 className="font-[700] text-[1.3rem]">Review your application</h1>
 
@@ -111,7 +140,7 @@ export const ReviewApplication = ({ formData, nextStep, prevStep, setStep }) => 
               <button
                 className="bg-blue uppercase opacity-100 px-[1rem]  text-white rounded-[5px] p-2"
                 type="submit"
-                onClick={() => nextStep()}
+                onClick={() => handleSubmission()}
               >
                 NEXT
               </button>
@@ -129,7 +158,7 @@ export const ReviewApplication = ({ formData, nextStep, prevStep, setStep }) => 
               <button
                 className="bg-blue w-full flex justify-center gap-6 items-center max-w-[300px] uppercase opacity-100 px-[1rem]  text-white rounded-[5px] p-2"
                 type="submit"
-                onClick={() => nextStep()}
+                onClick={() => handleSubmission()}
               >
                 SUBMIT <FaArrowRight />
               </button>
