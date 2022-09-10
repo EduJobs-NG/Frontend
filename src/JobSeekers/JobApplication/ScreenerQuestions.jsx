@@ -1,7 +1,7 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Formik, Form, useFormik, FormikContext } from "formik";
 import * as Yup from "yup";
-import { FormInputBox } from "../../components/Forms/FormInputBox";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 const validationSchema = Yup.object({
   // resume: Yup.string().required('Required')
@@ -13,11 +13,11 @@ export const ScreenerQuestions = ({
   prevStep,
   nextStep,
 }) => {
-  const [direction, setDirection] = useState('back')
+  const [direction, setDirection] = useState("back");
   const onSubmit = (values) => {
     setFormData(values);
     console.log(values);
-    direction === 'back' ? prevStep() : nextStep();
+    direction === "back" ? prevStep() : nextStep();
   };
   const formik = useFormik({
     initialValues: formData,
@@ -35,7 +35,7 @@ export const ScreenerQuestions = ({
             <div className="my-[1rem]">
               <label htmlFor="">Why do you want work with us?</label>
               <textarea
-                // value={formik.values.why_work_with_us}
+                value={formik.values.why_work_with_us}
                 name="why_work_with_us"
                 onChange={formik.handleChange}
                 className="w-full border border-solid outline-none rounded-md resize-none border-[#808080]  p-2 "
@@ -44,10 +44,10 @@ export const ScreenerQuestions = ({
               ></textarea>
             </div>
 
-            <div className="mb-[1rem]">
+            <div className="">
               <label htmlFor="">Write a cover letter</label>
               <textarea
-                // value={formik.values.cover_letter}
+                value={formik.values.cover_letter}
                 name="cover_letter"
                 onChange={formik.handleChange}
                 className="w-full border border-solid outline-none rounded-md resize-none border-[#808080]  p-2 "
@@ -56,23 +56,44 @@ export const ScreenerQuestions = ({
               ></textarea>
             </div>
 
-            <div className="flex justify-between">
+            <div className="pt-[3rem] md:hidden flex justify-between">
               <button
-                className="bg-blue uppercase opacity-100  px-[5rem] text-white rounded-[5px] p-2"
+                className="bg-[#f0f0f0] hover:bg-blue hover:text-white uppercase opacity-100  px-[1rem]  text-black rounded-[5px] p-2"
                 type="submit"
-                onClick={() => setDirection('back')}
+                onClick={() => setDirection("back")}
               >
                 Back
               </button>
 
               <button
-                className="bg-blue uppercase opacity-100 px-[5rem] text-white rounded-[5px] p-2"
+                className="bg-blue uppercase opacity-100 px-[1rem]  text-white rounded-[5px] p-2"
                 type="submit"
-               onClick={() => setDirection('forward')}
+                onClick={() => setDirection("forward")}
               >
                 NEXT
               </button>
             </div>
+
+            <div className="pt-[3rem] hidden md:flex justify-evenly">
+              <button
+                className="bg-[#f0f0f0] flex justify-center gap-6 items-center w-full max-w-[300px] hover:bg-blue hover:text-white uppercase opacity-100  px-[1rem]  text-black rounded-[5px] p-2"
+                type="submit"
+                onClick={() => setDirection("back")}
+              >
+                 <FaArrowLeft className="" /> BACK
+              </button>
+
+              <button
+                className="bg-blue w-full flex justify-center gap-6 items-center max-w-[300px] uppercase opacity-100 px-[1rem]  text-white rounded-[5px] p-2"
+                type="submit"
+                onClick={() => setDirection("forward")}
+              >
+                NEXT <FaArrowRight />
+              </button>
+            </div>
+            
+            
+
           </Form>
         </Formik>
       </div>

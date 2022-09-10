@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Formik, Form, useFormik, FormikContext } from "formik";
 import * as Yup from "yup";
 import { FormInputBox } from "../../components/Forms/FormInputBox";
-import AuthContext from "../../context/AuthContext";
-import { useContext } from "react";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+
 
 const validationSchema = Yup.object({
   // resume: Yup.string().required('Required')
@@ -68,23 +68,40 @@ export const ContactInfo = ({
             />
         </div>
 
-            {/* {formik.touched.email && formik.errors.email ? (<small className="text-red-600">{formik.errors.email}</small>) : null} */}
 
-            <div className="flex mt-[2rem] justify-between">
+        <div className="pt-[3rem] md:hidden flex justify-between">
               <button
-                className="bg-blue uppercase opacity-100 px-[5rem] text-white rounded-[5px] p-2"
+                className="bg-[#f0f0f0] hover:bg-blue hover:text-white uppercase opacity-100  px-[1rem]  text-black rounded-[5px] p-2"
                 type="submit"
                 onClick={() => setDirection("back")}
               >
-                Back
+                BACK
               </button>
 
               <button
-                className="bg-blue uppercase opacity-100  px-[5rem] text-white rounded-[5px] p-2"
+                className="bg-blue uppercase opacity-100 px-[1rem]  text-white rounded-[5px] p-2"
                 type="submit"
                 onClick={() => setDirection("forward")}
               >
                 NEXT
+              </button>
+            </div>
+
+            <div className="pt-[3rem] hidden md:flex justify-evenly">
+              <button
+                className="bg-[#f0f0f0] flex justify-center gap-6 items-center w-full max-w-[300px] hover:bg-blue hover:text-white uppercase opacity-100  px-[1rem]  text-black rounded-[5px] p-2"
+                type="submit"
+                onClick={() => setDirection("back")}
+              >
+                 <FaArrowLeft className="" /> BACK
+              </button>
+
+              <button
+                className="bg-blue w-full flex justify-center gap-6 items-center max-w-[300px] uppercase opacity-100 px-[1rem]  text-white rounded-[5px] p-2"
+                type="submit"
+                onClick={() => setDirection("forward")}
+              >
+                NEXT <FaArrowRight />
               </button>
             </div>
           </Form>

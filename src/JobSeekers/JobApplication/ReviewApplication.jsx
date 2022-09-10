@@ -1,7 +1,9 @@
 import React from "react";
 import { FormInputBox } from "../../components/Forms/FormInputBox";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
-export const ReviewApplication = ({ formData, nextStep, setStep }) => {
+
+export const ReviewApplication = ({ formData, nextStep, prevStep, setStep }) => {
   const { resume, why_work_with_us, email, cover_letter, phone_number } =
     formData;
   return (
@@ -97,9 +99,41 @@ export const ReviewApplication = ({ formData, nextStep, setStep }) => {
           </p>
         </div>
 
-        <div>
-          <button onClick={() => nextStep()}>Submit</button>
-        </div>
+        <div className="pt-[3rem] md:hidden flex justify-between">
+              <button
+                className="bg-[#f0f0f0] hover:bg-blue hover:text-white uppercase opacity-100  px-[1rem]  text-black rounded-[5px] p-2"
+                type="submit"
+                onClick={() => prevStep()}
+              >
+                BACK
+              </button>
+
+              <button
+                className="bg-blue uppercase opacity-100 px-[1rem]  text-white rounded-[5px] p-2"
+                type="submit"
+                onClick={() => nextStep()}
+              >
+                NEXT
+              </button>
+            </div>
+
+            <div className="pt-[3rem] hidden md:flex justify-evenly">
+              <button
+                className="bg-[#f0f0f0] flex justify-center gap-6 items-center w-full max-w-[300px] hover:bg-blue hover:text-white uppercase opacity-100  px-[1rem]  text-black rounded-[5px] p-2"
+                type="submit"
+                onClick={() => prevStep()}
+              >
+                 <FaArrowLeft className="" /> BACK
+              </button>
+
+              <button
+                className="bg-blue w-full flex justify-center gap-6 items-center max-w-[300px] uppercase opacity-100 px-[1rem]  text-white rounded-[5px] p-2"
+                type="submit"
+                onClick={() => nextStep()}
+              >
+                SUBMIT <FaArrowRight />
+              </button>
+            </div>
       </div>
     </section>
   );
