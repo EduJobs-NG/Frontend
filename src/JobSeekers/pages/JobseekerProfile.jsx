@@ -6,10 +6,11 @@ import EditIcon from '../../assets/EditIcon.png';
 import { EditProfile } from '../EditProfile/EditProfile';
 import { EditBio } from '../EditProfile/EditBio';
 import { EditPic } from '../EditProfile/EditPic';
+import { FaEdit, FaMapMarker } from 'react-icons/fa';
 
 
 export const JobseekerProfile = () => {
-  const { user, getUserMeHandler, loading, isError } = useContext(AuthContext);
+  const { user, getUserMeHandler, loading } = useContext(AuthContext);
   const [showBio, setShowBio] = useState(false);
   const [showPic, setShowPic] = useState(false)
   const renderBasedOnStatus = () =>{
@@ -23,10 +24,10 @@ export const JobseekerProfile = () => {
     }
   }
   
-  useEffect(() =>{
-      getUserMeHandler();
+  // useEffect(() =>{
+  //     getUserMeHandler();
      
-    }, [])
+  //   }, [])
 
   return (
     <>
@@ -52,7 +53,8 @@ export const JobseekerProfile = () => {
                 <div className=''>
                   {/* {loading && (<p>Loading...</p>)} */}
                   <h1 className='font-[700] text-[20px]'>{ user.user?.first_name} { user.user?.last_name}</h1>
-                  <small className='flex justify-center md:justify-start '><img src={marker} alt="" className='mr-[0.5rem]' /> {user?.city || "..."}, {user.state || "..."} </small>
+                  <small className='flex justify-center md:justify-start '><img src={marker} alt="" className='mr-[0.5rem]' />
+                   {user?.city || "..."}, {user.state || "..."} </small>
                 </div>
 
 
@@ -63,6 +65,7 @@ export const JobseekerProfile = () => {
                 <div className='flex justify-center md:justify-start'>
                 <span className='font-[700] text-[18px]'>Bio:</span> <div className='cursor-pointer ml-2' onClick={()=>setShowBio(true)}>
                   <img src={EditIcon} alt="" />
+                  {/* <FaEdit /> */}
                 </div>
                 </div>
                 {/* } */}

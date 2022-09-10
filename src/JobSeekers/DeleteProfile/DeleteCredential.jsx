@@ -46,15 +46,15 @@ export const DeleteCredential = ({ setShowDelete, updateUser, item }) => {
             {/*header*/}
             <div className="flex items-start justify-between p-1 ">
               {/*body*/}
-              <div className="relative p-8 flex-auto">
+              <div className="relative p-[1rem] md:p-[2rem] flex-auto">
                 <div className="w-full max-w-xl grid  mt-[1rem]">
-                  <h3 className="text-2xl font-semibold">
+                  <h3 className="text-xl font-semibold">
                     Are you sure you want to delete?
                   </h3>
 
-                  <div className="flex items-center justify-end   rounded-b">
-                    <div className="mt-[1.6rem] flex flex-row justify-between gap-6">
-                      <div>
+                  <div className="flex items-center justify-end mb-[1rem]">
+                    <div className="mt-[1.6rem] grid grid-cols-2 gap-6">
+                      <div className="ml">
                         <button
                           onClick={() => setShowDelete(false)}
                           className="bg-blue  opacity-100 block w-full px-6 text-white rounded-md p-2"
