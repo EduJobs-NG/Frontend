@@ -52,7 +52,7 @@ export const ForgotPassword = () => {
           <img src={password} alt="" />
         </div>
 
-        <div className='w-[380px] mx-auto'>
+        <div className='max-w-[380px] mx-auto'>
         <h1 className=" text-black font-[700] text-2xl">Forgot Password</h1>
         <p className="mt-4">
         Kindly enter your registered email addess below and a resent link wil be sent.

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import envelope from '../../assets/Vector.png';
+import envelope from '../../assets/messageIcon.png';
 import { Formik, Form, useFormik } from 'formik';
 import { FormInputBox } from '../../components/Forms/FormInputBox';
 import { FaEnvelope } from 'react-icons/fa';
@@ -16,8 +16,6 @@ const validationSchema = Yup.object({
 
 export const ResetLink = () => {
   const [isLoading, setIsLoading] = useState(false);
-
-
   const onSubmit = async (values) => {
     setIsLoading(true);
     const response = await axios.post(`${process.env.REACT_APP_BASE_URL}jobseeker/users/resend_activation/`, values)
@@ -47,10 +45,13 @@ export const ResetLink = () => {
 
   })
   return (
-    <section className='container mx-auto mt-[3rem] h-screen  flex flex-col justify-center items-center text-center '>
-      <ToastContainer />
+    <section className="bg-blue" >
+    <ToastContainer />
 
-      <div className='rounded-full bg-[#d5d3fe] p-5'>
+    <div className="container mx-auto  h-screen  flex flex-col justify-center items-center text-center " >
+      <div className="w-full max-w-[500px] py-[2rem] px-[1rem] rounded-[30px] bg-white">
+
+      <div className='flex justify-center'>
         <img src={envelope} alt="" />
       </div>
 
@@ -86,17 +87,8 @@ export const ResetLink = () => {
         </div>
       </Formik>
 
-
-
-
-      <div className="text-center mt-[5rem]">
-        <h1 className="text-blue font-[700]">EduJobsNg</h1>
-        <p>All Rights Reserved</p>
-
-      </div>
-
-
-
+</div> 
+</div>
     </section>
   )
 }
