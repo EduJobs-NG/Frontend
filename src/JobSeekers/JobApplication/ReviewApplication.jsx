@@ -1,41 +1,47 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import { FormInputBox } from "../../components/Forms/FormInputBox";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { SuccessfulApplication } from "./SuccessfulApplication";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import AuthContext from "../../context/AuthContext";
 
 
 export const ReviewApplication = ({ formData, nextStep, prevStep, setStep }) => {
   const { resume, why_work_with_us, email, cover_letter, phone_number } = formData;
   const [showSuccess, setShowSuccess] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
+  const { authTokens } = useContext(AuthContext);
+
   const handleSubmission = async () => {
     console.log(formData, 'formData submission')
-    // setIsLoading(true);
-    // const response = await axios
-    //   .delete(
-    //     `${process.env.REACT_APP_BASE_URL}jobseeker/user-profile/me/credentials/${item.id}`,
-    //     {
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //         Authorization: `Token ${authTokens.auth_token}`,
-    //       },
-    //     }
-    //   )
-    //   .catch((err) => {
-    //     console.log(err);
-    //     toast.error(err.message);
-    //     setIsLoading(false);
-    //   });
+    setIsLoading(true);
+    const response = await axios
+      .post(
+        `${process.env.REACT_APP_BASE_URL}jobseeker/jobs/application/`, formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Token ${authTokens.auth_token}`,
+          },
+        }
+      )
+      .catch((err) => {
+        console.log(err);
+        toast.error(err.message);
+        setIsLoading(false);
+      });
 
-    // if (response) {
-    //   setIsLoading(false);
-    //   setShowDelete(false);
-    //   updateUser("credentials", response.data);
-
-    //   console.log(response);
+    if (response) {
+      setIsLoading(false);
+      console.log(response);
     }
+  }
   return (
     <section>
+      <ToastContainer />
+
       {showSuccess && <SuccessfulApplication email={email} /> }
       <div className="container mx-auto">
         <h1 className="font-[700] text-[1.3rem]">Review your application</h1>
