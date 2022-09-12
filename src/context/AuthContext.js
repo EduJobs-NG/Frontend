@@ -33,8 +33,6 @@ export const AuthProvider = ({children}) => {
       const updateUser = (updateKey, updateValue) =>{
         setUser({...user, [updateKey]:updateValue })
         storeUser({...user, [updateKey]:updateValue})
-
-
       }
     
       const getUserMeHandler = async () =>{

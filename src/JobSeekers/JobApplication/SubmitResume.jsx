@@ -42,6 +42,7 @@ export const SubmitResume = ({ formData, job, setFormData, nextStep}) => {
     <FormInputBox name="resume" id="upload-resume" accept=".doc, .docx, .pdf"  onChange={(event) => {
       formik.setFieldValue("resume", event.currentTarget.files[0])}} className=" hidden" type='file' />
         {formik.touched.resume && formik.errors.resume ? (<small className="text-red-600">{formik.errors.resume}</small>) : null}
+        {formik.values.resume.name}
         <div className='flex mt-[2rem] justify-center'>
         <button
                 className="bg-blue w-full flex justify-center gap-6 items-center max-w-[300px] uppercase opacity-100 px-[1rem]  text-white rounded-[5px] p-2"

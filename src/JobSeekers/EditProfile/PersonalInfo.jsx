@@ -25,7 +25,6 @@ export const PersonalInfo = () => {
 
 
   const onSubmit = async (values) => {
-    console.log(values ,'normal values')
     setIsLoading(true)
     const response = await axios
       .put(`${process.env.REACT_APP_BASE_URL}jobseeker/user-profile-update/`, {...values}, {

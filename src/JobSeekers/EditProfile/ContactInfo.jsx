@@ -7,7 +7,10 @@ import axios from 'axios';
 import { ThreeDots } from 'react-loader-spinner';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import PhoneInput from 'react-phone-number-input'
+// import PhoneInput from 'react-phone-number-input'
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 
 
 
@@ -30,27 +33,28 @@ next_kin_lname, second_ref_fname, second_ref_lname, second_ref_phone}} = user
 
   const onSubmit = async (values) => {
     console.log(values)
-    // setIsLoading(true)
-    // const response = await axios
-    //   .put(`${process.env.REACT_APP_BASE_URL}jobseeker/user-profile/me/contact_info/{id}/`, values, {
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //       'Authorization': `Token ${authTokens.auth_token}`
-    //     }
-    //   })
-    //   .catch(err => {
-    //     console.log(err)
-    //     toast.error(err.message)
-    //     setIsLoading(false)
-    //   });
+    setIsLoading(true)
+    const response = await axios
+      .put(`${process.env.REACT_APP_BASE_URL}jobseeker/user-profile/me/contact_info/{id}/`, values, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Token ${authTokens.auth_token}`
+        }
+      })
+      .catch(err => {
+        console.log(err)
+        toast.error(err.message)
+        setIsLoading(false)
+      });
 
-    // if (response) {
-    //   setIsLoading(false)
-    //   toast.success('Your changes have been successfully saved.')
-    //   updateUser('contact_info', response.data)
-    //   console.log(response.data, 'update response data')
+    if (response) {
+      setIsLoading(false)
+      toast.success('Your changes have been successfully saved.')
+      updateUser('contact_info', response.data)
+      console.log(response.data, 'update response data')
       
-    // }
+    }
+   
   }
 
   const formik = useFormik({
@@ -103,10 +107,17 @@ next_kin_lname, second_ref_fname, second_ref_lname, second_ref_phone}} = user
 
             <div className='grid md:grid-cols-2 md:gap-3 mt-[1rem]'>
               <div className='w-full max-w-lg'>
-              <PhoneInput className='border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none'
+              {/* <PhoneInput className='border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none'
       placeholder="Enter phone number"
       value={formik.values.next_kin_phone}
-      onChange={formik.handleChange}/>
+      onChange={formik.handleChange}/> */}
+
+<PhoneInput
+          country={'ng'}
+          value={next_kin_phone}
+          name="next_kin_phone"
+          onChange={formik.handleChange}
+        />
 
                 {/* <FormInputBox type="tel" label="Phone Number" maxLength="12" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
                   placeholder="Phone" id="next_kin_phone" name="next_kin_phone" onChange={formik.handleChange} value={formik.values.next_kin_phone} onBlur={formik.handleBlur} /> */}

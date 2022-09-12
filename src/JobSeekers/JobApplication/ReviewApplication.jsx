@@ -142,7 +142,7 @@ export const ReviewApplication = ({ formData, nextStep, prevStep, setStep }) => 
                 type="submit"
                 onClick={() => handleSubmission()}
               >
-                NEXT
+                SUBMIT
               </button>
             </div>
 

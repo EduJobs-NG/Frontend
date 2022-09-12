@@ -28,8 +28,8 @@ export const Navbar = ({}) => {
       {showRegister && <EmployersRegistrationPopup setShowRegister={setShowRegister} />}
 
       <div className="container mx-auto">
-        <div className="flex uppercase py-[1.5rem] items-center flex-row justify-between">
-          <ul className="flex gap-x-[3rem] text-white flex-row">
+        <div className="flex e py-[1.5rem] items-center flex-row justify-between">
+          <ul className="flex uppercas gap-x-[3rem] text-white flex-row">
             <li className="title">
               <NavLink to="/employer">
                 <img src={logo} className="w-[150px]" alt="" />

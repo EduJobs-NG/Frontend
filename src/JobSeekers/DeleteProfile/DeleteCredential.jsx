@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 export const DeleteCredential = ({ setShowDelete, updateUser, item }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const { authTokens } = useContext(AuthContext);
+  const { authTokens, getUserMeHandler } = useContext(AuthContext);
 
   const handleDelete = async () => {
     setIsLoading(true);
@@ -31,7 +31,8 @@ export const DeleteCredential = ({ setShowDelete, updateUser, item }) => {
       setIsLoading(false);
       setShowDelete(false);
       updateUser("credentials", response.data);
-
+      
+      // getUserMeHandler()
       console.log(response);
     }
   };

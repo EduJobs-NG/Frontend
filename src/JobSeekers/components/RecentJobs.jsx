@@ -30,7 +30,9 @@ export const RecentJobs = () => {
     })
  
     if (response && response.data){
+      
       setJobs(response.data.results)
+      console.log(response.data)
       setIsLoading(false);
  
     }

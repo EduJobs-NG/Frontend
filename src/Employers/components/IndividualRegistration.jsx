@@ -240,10 +240,7 @@ export const IndividualRegistration = () => {
           alt=""
         />
       </div>
-      <div className="text-center mt-5">
-        <h1 className="text-blue font-[700]">EduJobsNg</h1>
-        <p>All Rights Reserved</p>
-      </div>
+     
     </div>
   );
 };

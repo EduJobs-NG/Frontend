@@ -57,7 +57,7 @@ function App() {
 
       <Route path="/employer" element={<EmployersHome />}/>
       <Route path="/employer/register" element={<EmployersRegistration />}/>
-      {/* <Route path="/login" element={<EmployersLoginFormUI />}/> */}
+      {/* <Route path="/employer/login" element={<EmployersLoginFormUI />}/> */}
 
       </Routes>
       </AuthProvider>
