@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { RegisterForm } from './RegisterForm';
 import { LoginForm } from './LoginForm';
 
 
@@ -24,7 +23,7 @@ export const PopupLogin = ({setShowLogin}) => {
             </button>
           </div>
           {/*body*/}
-          <div className="p-6 relative  flex-auto">
+          <div className="p-6 relative   flex-auto">
                 <LoginForm showModal={showModal} setShowLogin={setShowLogin}  />
    </div>      
 

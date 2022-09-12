@@ -19,7 +19,7 @@ import { Pricing } from './pages/Pricing';
 
 // employers import
 import { EmployersHome } from './Employers/pages/EmployersHome';
-// import { EmployersLoginFormUI } from './Employers/pages/EmployersLoginFormUI';
+import { EmployersLoginFormUI } from './Employers/pages/EmployersLoginFormUI';
 
 
 //loader css
@@ -57,7 +57,7 @@ function App() {
 
       <Route path="/employer" element={<EmployersHome />}/>
       <Route path="/employer/register" element={<EmployersRegistration />}/>
-      {/* <Route path="/employer/login" element={<EmployersLoginFormUI />}/> */}
+      <Route path="/employer/login" element={<EmployersLoginFormUI />}/>
 
       </Routes>
       </AuthProvider>

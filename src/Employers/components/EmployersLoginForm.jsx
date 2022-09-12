@@ -70,7 +70,7 @@ export const EmployersLoginForm = ({ setShowLogin, showModal }) => {
   return (
     <section>
       <ToastContainer />
-      <div className="relative border bg-white p-2 py-[2rem] px-[42px]  rounded-[50px] lg:w-[500px]">
+      <div className="border relative bg-white p-2 py-[2rem] px-[20px] mx-[1.5rem] md:px-[42px] rounded-[30px] md:rounded-[50px] lg:w-[500px]">
         <div className="flex my-4 gap-x-[1rem] justify-center ">
           <FaSignInAlt className="text-[2rem] text-blue" />
           <div className="h-[2.5rem] w-[3px] bg-black"></div>
@@ -150,7 +150,7 @@ export const EmployersLoginForm = ({ setShowLogin, showModal }) => {
                 </small>
                 <small>
                   Don't have an account?
-                  <Link className="text-blue underline" to="employer/register">
+                  <Link className="text-blue underline" to="/employer/register">
                     {" "}
                     Sign up
                   </Link>
@@ -176,10 +176,7 @@ export const EmployersLoginForm = ({ setShowLogin, showModal }) => {
                 />
               </div>
 
-              <div className="text-center mt-5">
-                <h1 className="text-blue font-[700]">EduJobsNg</h1>
-                <p>All Rights Reserved</p>
-              </div>
+             
             </Form>
           )}
         </Formik>

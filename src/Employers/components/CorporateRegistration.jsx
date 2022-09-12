@@ -139,7 +139,7 @@ export const CorporateRegistration = () => {
         <p>
           {" "}
           Already have an account?
-          <Link className="underline text-blue" to="/login">
+          <Link className="underline text-blue" to="/employer/login">
             {" "}
             Login
           </Link>

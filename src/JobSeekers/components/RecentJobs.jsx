@@ -16,7 +16,7 @@ export const RecentJobs = () => {
     setSelectedJob(id)
     
   }
- 
+//  count 10 access 90 mins refresh 5 days
   const getJobs = async () =>{
     setIsLoading(true)
     const response = await axios.get(`${process.env.REACT_APP_BASE_URL}jobseeker/job-list`, {
@@ -30,13 +30,19 @@ export const RecentJobs = () => {
     })
  
     if (response && response.data){
+      const {results, count, previous, next} = response.data
       
-      setJobs(response.data.results)
+      setJobs(results)
       console.log(response.data)
       setIsLoading(false);
- 
+
     }
  
+  }
+
+ const  getNextJobs = () =>{
+  
+
   }
   useEffect(() =>{
     getJobs();
@@ -74,12 +80,13 @@ export const RecentJobs = () => {
                     <div className='my-[1rem]'>
                       <h1 className='font-[700]'>Requirements</h1>
                       <ol className='list-style'>
+                        {/* <li>lorem ipsum dolor sit amer consectetur elit</li>
                         <li>lorem ipsum dolor sit amer consectetur elit</li>
                         <li>lorem ipsum dolor sit amer consectetur elit</li>
                         <li>lorem ipsum dolor sit amer consectetur elit</li>
                         <li>lorem ipsum dolor sit amer consectetur elit</li>
-                        <li>lorem ipsum dolor sit amer consectetur elit</li>
-                        <li>lorem ipsum dolor sit amer consectetur elit</li>
+                        <li>lorem ipsum dolor sit amer consectetur elit</li> */}
+                        <p>{job.requirements ? job.requirements : 'No requirements from the organization'}</p>
                       </ol>
                       <div className='grid w-full  my-[2rem] md:mt-[3rem] place-items-center'>
                        <Link to={`/dashboard/apply/job/${id}`}>

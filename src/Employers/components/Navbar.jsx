@@ -147,7 +147,7 @@ export const Navbar = ({}) => {
             </ul>
             <div className="">
               <NavLink
-                to="/login"
+                to="/employer/login"
                 className="bg-blue rounded-sm px-[3rem] py-[0.5rem] text-white "
               >
                 Login

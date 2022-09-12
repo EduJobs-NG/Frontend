@@ -1,5 +1,4 @@
 import React from "react";
-import { RegisterFormMobile } from "../../components/Forms/RegisterFormMobile";
 import { RegisterForm } from "../../components/Forms/RegisterForm";
 
 
