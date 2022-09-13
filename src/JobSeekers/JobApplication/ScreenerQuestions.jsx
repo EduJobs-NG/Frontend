@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Formik, Form, useFormik, FormikContext } from "formik";
+import { Formik, Form, useFormik } from "formik";
 import * as Yup from "yup";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
@@ -76,7 +76,7 @@ export const ScreenerQuestions = ({
 
             <div className="pt-[3rem] hidden md:flex justify-evenly">
               <button
-                className="bg-[#f0f0f0] flex justify-center gap-6 items-center w-full max-w-[300px] hover:bg-blue hover:text-white uppercase opacity-100  px-[1rem]  text-black rounded-[5px] p-2"
+                className="bg-[#f0f0f0] flex justify-center gap-6 items-center w-full max-w-[300px] hover:bg-blue hover:text-white uppercase px-[1rem]  text-black rounded-[5px] p-2"
                 type="submit"
                 onClick={() => setDirection("back")}
               >
@@ -84,7 +84,7 @@ export const ScreenerQuestions = ({
               </button>
 
               <button
-                className="bg-blue w-full flex justify-center gap-6 items-center max-w-[300px] uppercase opacity-100 px-[1rem]  text-white rounded-[5px] p-2"
+                className="bg-blue w-full flex justify-center gap-6 items-center max-w-[300px] uppercase  px-[1rem]  text-white rounded-[5px] p-2"
                 type="submit"
                 onClick={() => setDirection("forward")}
               >

@@ -16,8 +16,9 @@ export const UserForm = ({job}) => {
         resume: "",
         cover_letter:'',
         why_work_with_us:'',
-        email:email,
+        email_address:email,
         phone_number:phone_number,
+        job:job.id
     })
     const nextStep = () => setStep(prev => prev + 1);
     const prevStep = () => setStep(prev => prev - 1);

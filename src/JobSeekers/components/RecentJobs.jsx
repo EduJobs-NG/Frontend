@@ -1,131 +1,166 @@
-import React, {useState, useEffect, useContext} from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import AuthContext from '../../context/AuthContext';
-import { Circles } from 'react-loader-spinner';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { Error } from '../../components/Error';
-
-
+import React, { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import AuthContext from "../../context/AuthContext";
+import { Circles } from "react-loader-spinner";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Error } from "../../components/Error";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 export const RecentJobs = () => {
-  const {authTokens} = useContext(AuthContext)
   const [jobs, setJobs] = useState([]);
-  const [selectedJob, setSelectedJob] = useState(null)
+  const [selectedJob, setSelectedJob] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('')
+  const [errorMessage, setErrorMessage] = useState("");
+  const [nextURL, setNextURL] = useState();
+  const [prevURL, setPrevURL] = useState();
+  
 
-  const handleView = (id) =>{
-    if(selectedJob === id){
-     return setSelectedJob(null)
+  const handleView = (id) => {
+    if (selectedJob === id) {
+      return setSelectedJob(null);
     }
-    setSelectedJob(id)
-    
-  }
-//  count 10 access 90 mins refresh 5 days
-  const getJobs = async () =>{
-    setIsLoading(true)
-    const response = await axios.get(`${process.env.REACT_APP_BASE_URL}jobseeker/job-list`, {
-      headers:{
-        'Content-Type':'application/json',
-        'Authorization':`Token ${authTokens.auth_token}`
-      }
-    }).catch(err =>{
-      if(err.message === "Network Error"){
-        toast.error(`${err.message}. Could not fetch jobs.`)
-        setErrorMessage(err.message)
-        setError(true)
-        setIsLoading(false)
+    setSelectedJob(id);
+  };
+  //  count 10 access 90 mins refresh 5 days
+  const getJobs = async () => {
+    setIsLoading(true);
+    const response = await axios
+      .get( `${process.env.REACT_APP_BASE_URL}jobseeker/job-list`)
+      .catch((err) => {
+        if (err.message === "Network Error") {
+          toast.error(`${err.message}. Could not fetch jobs.`);
+          setErrorMessage(err.message);
+          setError(true);
+          setIsLoading(false);
+        }
+        console.log(err);
+        setIsLoading(false);
+        setErrorMessage(err.message);
+        setError(true);
+      });
 
-      }
-      console.log(err)
-      setIsLoading(false)
-      setErrorMessage(err.message)
-      setError(true)
-
-    })
- 
-    if (response && response.data){
-      
-      setJobs(response.data.results)
-      console.log(response.data)
+    if (response && response.data) {
+      setJobs(response.data.results);
+      setPrevURL(response.data.previous)
+      setNextURL(response.data.next)
+      console.log('normal data', response.data);
       setIsLoading(false);
-
     }
- 
+  };
+
+  const handlePagination = async (url) =>{
+    setIsLoading(true);
+    const response = await axios
+      .get(url)
+      .catch((err) => {
+        if (err.message === "Network Error") {
+          toast.error(`${err.message}. Could not fetch jobs.`);
+          setErrorMessage(err.message);
+          setError(true);
+          setIsLoading(false);
+        }
+        console.log(err);
+        setIsLoading(false);
+        setErrorMessage(err.message);
+        setError(true);
+      });
+
+    if (response && response.data) {
+      setJobs(response.data.results);
+      setPrevURL(response.data.previous)
+      setNextURL(response.data.next)
+      console.log('paginated data', response.data);
+      setIsLoading(false);
+    }
   }
 
-  useEffect(() =>{
+  useEffect(() => {
     getJobs();
-  }, [])
+  }, []);
   return (
     <>
-    <section className='bg-[#f5f5f5]'>
-    <ToastContainer />
+      <section className="bg-[#f5f5f5]">
+        <ToastContainer />
 
-        <div className='container py-[4rem] mx-auto'>
-            <hr className='text-[#d9d9d9]' />
-            <h2 className='text-blue my-[1rem] font-[700] text-[1.5rem]'>Recent Jobs</h2>
+        <div className="container py-[4rem] mx-auto">
+          <hr className="text-[#d9d9d9]" />
+          <h2 className="text-blue my-[1rem] font-[700] text-[1.5rem]">
+            Recent Jobs
+          </h2>
 
-            {error && 
-            <Error message={errorMessage}/>
-          }
+          {error && <Error message={errorMessage} />}
 
-            {isLoading && (
-              <div className='flex justify-center'>
-                <Circles type="ThreeDots"
-                  width={100} height={20} color="blue"
-                />
-              </div>)}
-
-            {jobs && jobs.map((job) =>{
-              const {id} = job;
-              return (
-   
-            <div key={job.id} className='relative md:mx-[1rem] my-[2rem]  py-[1.2rem] border bg-white border-[#d9d9d9] px-[1.2rem] rounded-[20px]'>
-
-              <h2 className='font-[700] text-[1.2rem]'>{job.title}</h2>
-              <p className='font-[500]'>{job.organization_name}</p>
-              <p className='font-[500]'>{job.location}</p>
-              <p className='mt-[0.5rem] mb-[1.2rem]'>
-               {selectedJob === id ? `${job.summary}` : `${job.summary.substring(0, 250)}...` } 
-            
-                  </p>
-                  <p className='absolute  left-5 bottom-[0.5rem]'>5 hours ago</p>
-                  <p onClick={() => handleView(id)} className='cursor-pointer font-[600] absolute text-blue right-5 bottom-[0.5rem]'>{selectedJob === id ? 'View Less':'View More'}</p>
-                  {selectedJob === id && (
-                    <div className='my-[1rem]'>
-                      <h1 className='font-[700]'>Requirements</h1>
-                      <ol className='list-style'>
-                        {/* <li>lorem ipsum dolor sit amer consectetur elit</li>
-                        <li>lorem ipsum dolor sit amer consectetur elit</li>
-                        <li>lorem ipsum dolor sit amer consectetur elit</li>
-                        <li>lorem ipsum dolor sit amer consectetur elit</li>
-                        <li>lorem ipsum dolor sit amer consectetur elit</li>
-                        <li>lorem ipsum dolor sit amer consectetur elit</li> */}
-                        <p>{job.requirements ? job.requirements : 'No requirements from the organization'}</p>
-                      </ol>
-                      <div className='grid w-full  my-[2rem] md:mt-[3rem] place-items-center'>
-                       <Link to={`/dashboard/apply/job/${id}`}>
-                      <button  className='bg-blue uppercase opacity-100 w-full md:w-[300px] px-[5rem] text-white rounded-[5px] p-2' type="submit">
-                        APPLY
-                        </button>
-                        </Link> 
-
-
-                      </div>
-
-                    </div>
-                  
-                  )}
-                  
+          {isLoading && (
+            <div className="flex justify-center">
+              <Circles type="ThreeDots" width={100} height={20} color="blue" />
             </div>
-              )
-                     })}
+          )}
+
+          {jobs &&
+            jobs.map((job) => {
+              const { id } = job;
+              return (
+                <div
+                  key={job.id}
+                  className="relative md:mx-[1rem] my-[2rem]  py-[1.2rem] border bg-white border-[#d9d9d9] px-[1.2rem] rounded-[20px]"
+                >
+                  <h2 className="font-[700] text-[1.2rem]">{job.title}</h2>
+                  <p className="font-[500]">{job.organization_name}</p>
+                  <p className="font-[500]">{job.location}</p>
+                  <p className="mt-[0.5rem] mb-[1.2rem]">
+                    {selectedJob === id
+                      ? `${job.summary}`
+                      : `${job.summary.substring(0, 250)}...`}
+                  </p>
+                  <p className="absolute  left-5 bottom-[0.5rem]">
+                    {job.posted_time}
+                  </p>
+                  <p
+                    onClick={() => handleView(id)}
+                    className="cursor-pointer font-[600] absolute text-blue right-5 bottom-[0.5rem]"
+                  >
+                    {selectedJob === id ? "View Less" : "View More"}
+                  </p>
+                  {selectedJob === id && (
+                    <div className="my-[1rem]">
+                      <h1 className="font-[700]">Requirements</h1>
+
+                      <p>
+                        {job.requirements
+                          ? job.requirements
+                          : "No requirements from the organization"}
+                      </p>
+                      <div className="grid w-full  my-[2rem] md:mt-[3rem] place-items-center">
+                        <Link to={`/dashboard/apply/job/${id}`}>
+                          <button
+                            className="bg-blue uppercase opacity-100 w-full md:w-[300px] px-[5rem] text-white rounded-[5px] p-2"
+                            type="submit"
+                          >
+                            APPLY
+                          </button>
+                        </Link>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+
+          <div className="flex flex-row justify-end">
+            <div className="grid grid-cols-2 gap-4">
+            {prevURL && 
+                <button onClick={() => handlePagination(prevURL)} className="bg-blue flex justify-center items-center text-white px-[1rem] rounded-md py-[0.3rem]">PREV <FaArrowLeft className="ml-1" /> </button>
+            }
+              {nextURL && 
+              <button onClick={() => handlePagination(nextURL)} className="bg-blue flex justify-center items-center text-white px-[1rem] rounded-md py-[0.3rem]">NEXT <FaArrowRight className="ml-1" /></button>
+              }
+            </div>
+          </div>
         </div>
-    </section>
+      </section>
     </>
-  )
-}
+  );
+};

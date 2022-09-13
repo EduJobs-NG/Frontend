@@ -78,14 +78,7 @@ export const JobApplication = () => {
         {viewMore &&  (
           <div className="my-[1rem]">
             <h1 className="font-[700]">Requirements</h1>
-               {/*<ol className="list-style">
-            <li>lorem ipsum dolor sit amer consectetur elit</li>
-              <li>lorem ipsum dolor sit amer consectetur elit</li>
-              <li>lorem ipsum dolor sit amer consectetur elit</li>
-              <li>lorem ipsum dolor sit amer consectetur elit</li>
-              <li>lorem ipsum dolor sit amer consectetur elit</li>
-              <li>lorem ipsum dolor sit amer consectetur elit</li>
-            </ol> */}
+        
                         <p>{job.requirements ? job.requirements : 'No requirements from the organization'}</p>
 
           </div>

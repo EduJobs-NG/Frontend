@@ -21,6 +21,13 @@ export const SuccessfulApplication = ({ email }) => {
                   You will get an email confirmation at{" "}
                   <span className="ml-[0.3rem]">{email}</span>
                 </p>
+                <a href='/dashboard/find-jobs'
+                className="bg-blue mt-[2rem] w-full flex justify-center gap-6 items-center  uppercase opacity-100 px-[1rem]  text-white rounded-[5px] p-2"
+                type="submit"
+                
+              >
+                Return to Find Jobs
+              </a>
               </div>
             </div>{" "}
             {/*footer*/}

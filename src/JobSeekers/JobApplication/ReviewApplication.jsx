@@ -6,20 +6,28 @@ import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AuthContext from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
-
-export const ReviewApplication = ({ formData, nextStep, prevStep, setStep }) => {
-  const { resume, why_work_with_us, email, cover_letter, phone_number } = formData;
+export const ReviewApplication = ({ formData, prevStep, setStep }) => {
+  const { resume, why_work_with_us, email_address, cover_letter, phone_number, job } = formData;
   const [showSuccess, setShowSuccess] = useState(false)
   const [isLoading, setIsLoading] = useState(false);
   const { authTokens } = useContext(AuthContext);
+  const navigate = useNavigate()
 
   const handleSubmission = async () => {
-    console.log(formData, 'formData submission')
+    
+    const data = new FormData();
+    data.append('resume', resume)
+    data.append('email_address', email_address)
+    data.append('phone_number', phone_number)
+    data.append('cover_letter', cover_letter)
+    data.append('why_work_with_us', why_work_with_us)
+    data.append('job', job)
     setIsLoading(true);
     const response = await axios
       .post(
-        `${process.env.REACT_APP_BASE_URL}jobseeker/jobs/application/`, formData,
+        `${process.env.REACT_APP_BASE_URL}jobseeker/jobs/application/`, data,
         {
           headers: {
             "Content-Type": "application/json",
@@ -36,13 +44,17 @@ export const ReviewApplication = ({ formData, nextStep, prevStep, setStep }) => 
     if (response) {
       setIsLoading(false);
       console.log(response);
+      setShowSuccess(true)
+      setTimeout(() => {
+        navigate('/dashboard/find-jobs')
+      }, 5000)
     }
   }
   return (
     <section>
       <ToastContainer />
 
-      {showSuccess && <SuccessfulApplication email={email} /> }
+      {showSuccess && <SuccessfulApplication email={email_address} /> }
       <div className="container mx-auto">
         <h1 className="font-[700] text-[1.3rem]">Review your application</h1>
 
@@ -105,8 +117,8 @@ export const ReviewApplication = ({ formData, nextStep, prevStep, setStep }) => 
               label="Email"
               className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
               placeholder="Email"
-              name="email"
-              value={email}
+              name="email_address"
+              value={email_address}
             />
           </div>
 

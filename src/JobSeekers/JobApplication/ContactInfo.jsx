@@ -45,7 +45,7 @@ export const ContactInfo = ({
               className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
               placeholder="Email"
               name="email"
-              value={formik.values.email}
+              value={formik.values.email_address}
               onBlur={formik.handleBlur}
               // onChange={formik.handleChange}
            

@@ -110,7 +110,7 @@ export const JobseekerNavbar = () => {
                 </div>
 
 
-            <div onClick={handleClick} className="">
+            <div onClick={handleClick} className="ml-[0.4rem]">
               <FaBars className='text-white text-[1.5rem] cursor-pointer' /></div>
             <div>
 
