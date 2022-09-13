@@ -1,6 +1,7 @@
 import React from 'react';
 import { FormInputBox } from '../../components/Forms/FormInputBox';
 import { RecentJobs } from './RecentJobs';
+import { Error } from '../../components/Error';
 
 export const FindJobs = () => {
   return (

@@ -4,7 +4,6 @@ import { JobseekerNavbar } from "../components/JobseekerNavbar";
 import { Footer } from "../../components/Footer";
 import { FindJobs } from "../components/FindJobs";
 export const JobseekerDashboard = () => {
-  const { logOutUser } = useContext(AuthContext);
   return (
     <>
       <JobseekerNavbar />
@@ -20,7 +19,6 @@ export const JobseekerDashboard = () => {
 
       <section>
         <FindJobs />
-        <p onClick={logOutUser}>log out</p>
       </section>
 
       <Footer />

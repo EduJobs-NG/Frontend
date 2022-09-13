@@ -5,13 +5,17 @@ import AuthContext from '../../context/AuthContext';
 import { Circles } from 'react-loader-spinner';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Error } from '../../components/Error';
+
 
 
 export const RecentJobs = () => {
   const {authTokens} = useContext(AuthContext)
   const [jobs, setJobs] = useState([]);
   const [selectedJob, setSelectedJob] = useState(null)
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleView = (id) =>{
     if(selectedJob === id){
@@ -31,15 +35,21 @@ export const RecentJobs = () => {
     }).catch(err =>{
       if(err.message === "Network Error"){
         toast.error(`${err.message}. Could not fetch jobs.`)
+        setErrorMessage(err.message)
+        setError(true)
+        setIsLoading(false)
+
       }
       console.log(err)
       setIsLoading(false)
+      setErrorMessage(err.message)
+      setError(true)
+
     })
  
     if (response && response.data){
-      const {results, count, previous, next} = response.data
       
-      setJobs(results)
+      setJobs(response.data.results)
       console.log(response.data)
       setIsLoading(false);
 
@@ -47,10 +57,6 @@ export const RecentJobs = () => {
  
   }
 
- const  getNextJobs = () =>{
-  
-
-  }
   useEffect(() =>{
     getJobs();
   }, [])
@@ -62,6 +68,10 @@ export const RecentJobs = () => {
         <div className='container py-[4rem] mx-auto'>
             <hr className='text-[#d9d9d9]' />
             <h2 className='text-blue my-[1rem] font-[700] text-[1.5rem]'>Recent Jobs</h2>
+
+            {error && 
+            <Error message={errorMessage}/>
+          }
 
             {isLoading && (
               <div className='flex justify-center'>

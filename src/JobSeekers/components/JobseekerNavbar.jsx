@@ -6,6 +6,7 @@ import chat from '../../assets/chat.png'
 import notification from '../../assets/notification.png'
 import Aos from 'aos'
 import {navigation} from '../../data';
+import { FaCaretDown } from 'react-icons/fa';
 
 export const JobseekerNavbar = () => {
   const {user} = useContext(AuthContext)
@@ -16,6 +17,7 @@ export const JobseekerNavbar = () => {
   }, []);
   const [menu, setMenu] = useState(false);
   const [active, setActive] = useState(false);
+  const [dropDown, setDropDown] = useState(false)
   const handleClick = () => {
     setMenu(!menu);
     setActive(!active);
@@ -32,14 +34,14 @@ export const JobseekerNavbar = () => {
   return (
     <nav className='bg-[#02378B] z-[999]'>
       <div className="container mx-auto">
-        <div className="flex uppercase py-[1rem] items-center flex-row justify-between">
+        <div className="flex  py-[1rem] items-center flex-row justify-between">
           <ul className="flex gap-x-[3rem] text-white flex-row">
             <li className=''>
             <NavLink to="/dashboard/find-jobs">
                 <img src={logo} className='w-[150px]' alt="" />
                 </NavLink>
             </li>
-            <div className='hidden xl:flex gap-x-[3rem]'>
+            <div className='hidden uppercase xl:flex gap-x-[3rem]'>
 
               <li className=''>
                 <NavLink to="/dashboard/find-jobs" className={({isActive}) => (isActive ? activeLink : normalLink)} >FIND JOBS</NavLink>
@@ -66,26 +68,49 @@ export const JobseekerNavbar = () => {
             </li>
 
             <li>
-              <NavLink to="/dashboard/profile">
-              <div className='w-[40px] h-[40px]'>
-                  <img className='rounded-full' src={user?.avatar} alt="" />
+              <div onClick={() => setDropDown(!dropDown)} className='flex relative cursor-pointer flex-row items-center '>
+                <div className='w-[40px] h-[40px]'>
+                <img className='rounded-full' src={user?.avatar} alt="" />
                 </div>
-              </NavLink>
+                  <FaCaretDown />
+                  {dropDown && 
+                    <div className='absolute z-[9999] rounded-b-[15px] bg-[#f1f1f1] right-[0.2rem] top-[3.5rem]'>
+                    <ul className='text-black w-[150px] '>
+                      <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>
+                     <a href="/dashboard/profile">View Profile</a>   
+                        </li>
+                      <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Settings</li>
+                      <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Log out</li>
+                    </ul>
+                  </div>
+                  }
+                </div>
             </li>
 
 
 
           </ul>
-          <div className='xl:hidden items-center flex flex-row gap-[1rem]'>
-            <div>
-              <NavLink to="/dashboard/profile">
-                <div className='w-[35px] mr-[0.5rem] h-[35px]'>
-                  <img className='rounded-full' src={user?.avatar} alt="" />
+          <div className='xl:hidden flex flex-row items-center h-[35px] gap-[1rem]'>
+            <div onClick={() => setDropDown(!dropDown)} className='flex relative cursor-pointer flex-row items-center '>
+                <div className='w-[40px] h-[40px]'>
+                <img className='rounded-full' src={user?.avatar} alt="" />
                 </div>
-              </NavLink>
-            </div>
+                  <FaCaretDown className='text-white' />
+                  {dropDown && 
+                    <div className='absolute z-[9999] rounded-b-[15px] bg-[#f1f1f1] right-[0.2rem] top-[3.5rem]'>
+                    <ul className='text-black w-[150px] '>
+                      <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>
+                     <a href="/dashboard/profile">View Profile</a>   
+                        </li>
+                      <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Settings</li>
+                      <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Log out</li>
+                    </ul>
+                  </div>
+                  }
+                </div>
 
-            <div onClick={handleClick}>
+
+            <div onClick={handleClick} className="">
               <FaBars className='text-white text-[1.5rem] cursor-pointer' /></div>
             <div>
 
