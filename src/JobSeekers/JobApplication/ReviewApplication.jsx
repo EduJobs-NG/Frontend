@@ -7,6 +7,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AuthContext from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { ThreeDots } from "react-loader-spinner";
+
+
 
 export const ReviewApplication = ({ formData, prevStep, setStep }) => {
   const { resume, why_work_with_us, email_address, cover_letter, phone_number, job } = formData;
@@ -16,7 +19,7 @@ export const ReviewApplication = ({ formData, prevStep, setStep }) => {
   const navigate = useNavigate()
 
   const handleSubmission = async () => {
-    
+    setIsLoading(true);
     const data = new FormData();
     data.append('resume', resume)
     data.append('email_address', email_address)
@@ -24,7 +27,6 @@ export const ReviewApplication = ({ formData, prevStep, setStep }) => {
     data.append('cover_letter', cover_letter)
     data.append('why_work_with_us', why_work_with_us)
     data.append('job', job)
-    setIsLoading(true);
     const response = await axios
       .post(
         `${process.env.REACT_APP_BASE_URL}jobseeker/jobs/application/`, data,
@@ -155,13 +157,24 @@ export const ReviewApplication = ({ formData, prevStep, setStep }) => {
                 BACK
               </button>
 
-              <button
+              {!isLoading &&<button
                 className="bg-blue uppercase opacity-100 px-[1rem]  text-white rounded-[5px] p-2"
                 type="submit"
                 onClick={() => handleSubmission()}
               >
                 SUBMIT
-              </button>
+              </button> }
+
+              {isLoading && (
+                          <div className="flex justify-center">
+                            <ThreeDots
+                              type="ThreeDots"
+                              width={100}
+                              height={20}
+                              color="blue"
+                            />
+                          </div>
+                        )}
             </div>
 
             <div className="pt-[3rem] hidden md:flex justify-evenly">
@@ -173,13 +186,24 @@ export const ReviewApplication = ({ formData, prevStep, setStep }) => {
                  <FaArrowLeft className="" /> BACK
               </button>
 
-              <button
+             { !isLoading &&  <button
                 className="bg-blue w-full flex justify-center gap-6 items-center max-w-[300px] uppercase opacity-100 px-[1rem]  text-white rounded-[5px] p-2"
                 type="submit"
                 onClick={() => handleSubmission()}
               >
                 SUBMIT <FaArrowRight />
-              </button>
+              </button> }
+
+              {isLoading && (
+                          <div className="flex justify-center">
+                            <ThreeDots
+                              type="ThreeDots"
+                              width={100}
+                              height={20}
+                              color="blue"
+                            />
+                          </div>
+                        )}
             </div>
       </div>
     </section>

@@ -4,7 +4,8 @@ import * as Yup from "yup";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 const validationSchema = Yup.object({
-  // resume: Yup.string().required('Required')
+  cover_letter: Yup.string().required('Required'),
+  why_work_with_us: Yup.string().required('Required')
 });
 
 export const ScreenerQuestions = ({
@@ -42,6 +43,8 @@ export const ScreenerQuestions = ({
                 cols="100"
                 rows="7"
               ></textarea>
+        {formik.touched.why_work_with_us && formik.errors.why_work_with_us ? (<small className="text-red-600">{formik.errors.why_work_with_us}</small>) : null}
+
             </div>
 
             <div className="">
@@ -54,6 +57,8 @@ export const ScreenerQuestions = ({
                 cols="100"
                 rows="7"
               ></textarea>
+        {formik.touched.cover_letter && formik.errors.cover_letter ? (<small className="text-red-600">{formik.errors.cover_letter}</small>) : null}
+
             </div>
 
             <div className="pt-[3rem] md:hidden flex justify-between">

@@ -6,7 +6,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 
 const validationSchema = Yup.object({
-  // resume: Yup.string().required('Required')
+  resume: Yup.string().required('Required')
 })
 
 export const SubmitResume = ({ formData, job, setFormData, nextStep}) => {

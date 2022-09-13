@@ -72,7 +72,6 @@ export const RecentJobs = () => {
       setJobs(response.data.results);
       setPrevURL(response.data.previous)
       setNextURL(response.data.next)
-      console.log('paginated data', response.data);
       setIsLoading(false);
     }
   }
@@ -135,11 +134,11 @@ export const RecentJobs = () => {
                       </p>
                       <div className="grid w-full  my-[2rem] md:mt-[3rem] place-items-center">
                         <Link to={`/dashboard/apply/job/${id}`}>
-                          <button
-                            className="bg-blue uppercase opacity-100 w-full md:w-[300px] px-[5rem] text-white rounded-[5px] p-2"
+                          <button disabled={job.applied === true}
+                            className={job.applied === true ? "bg-blue uppercase opacity-25 w-full md:w-[300px] px-[5rem] text-white rounded-[5px] p-2": "bg-blue uppercase opacity-100 w-full md:w-[300px] px-[5rem] text-white rounded-[5px] p-2"}
                             type="submit"
                           >
-                            APPLY
+                            {job.applied === true ? 'APPLIED' : 'APPLY'}
                           </button>
                         </Link>
                       </div>
