@@ -5,6 +5,8 @@ import AuthContext from '../../context/AuthContext';
 import { Circles } from 'react-loader-spinner';
 import { JobseekerNavbar } from "../components/JobseekerNavbar";
 import { UserForm } from "./UserForm";
+import { Markup } from 'interweave';
+
 
 
 
@@ -79,7 +81,11 @@ export const JobApplication = () => {
           <div className="my-[1rem]">
             <h1 className="font-[700]">Requirements</h1>
         
-                        <p>{job.requirements ? job.requirements : 'No requirements from the organization'}</p>
+            <div>
+                        {job.requirements
+                          ? <Markup content={job.requirements} />
+                          : "No requirements from the organization"}
+                      </div>
 
           </div>
         )}

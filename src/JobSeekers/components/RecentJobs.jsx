@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import AuthContext from "../../context/AuthContext";
 import { Circles } from "react-loader-spinner";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Error } from "../../components/Error";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { Markup } from 'interweave';
 
 export const RecentJobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -101,6 +101,7 @@ export const RecentJobs = () => {
           {jobs &&
             jobs.map((job) => {
               const { id } = job;
+
               return (
                 <div
                   key={job.id}
@@ -127,11 +128,11 @@ export const RecentJobs = () => {
                     <div className="my-[1rem]">
                       <h1 className="font-[700]">Requirements</h1>
 
-                      <p>
+                      <div>
                         {job.requirements
-                          ? job.requirements
+                          ? <Markup content={job.requirements} />
                           : "No requirements from the organization"}
-                      </p>
+                      </div>
                       <div className="grid w-full  my-[2rem] md:mt-[3rem] place-items-center">
                         <Link to={`/dashboard/apply/job/${id}`}>
                           <button disabled={job.applied === true}
@@ -151,7 +152,7 @@ export const RecentJobs = () => {
           <div className="flex flex-row justify-end">
             <div className="grid grid-cols-2 gap-4">
             {prevURL && 
-                <button onClick={() => handlePagination(prevURL)} className="bg-blue flex justify-center items-center text-white px-[1rem] rounded-md py-[0.3rem]">PREV <FaArrowLeft className="ml-1" /> </button>
+                <button onClick={() => handlePagination(prevURL)} className="bg-blue flex justify-center items-center text-white px-[1rem] rounded-md py-[0.3rem]">  <FaArrowLeft className="mr-1" />PREV </button>
             }
               {nextURL && 
               <button onClick={() => handlePagination(nextURL)} className="bg-blue flex justify-center items-center text-white px-[1rem] rounded-md py-[0.3rem]">NEXT <FaArrowRight className="ml-1" /></button>
