@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export const DeleteEducation = ({ setShowDelete, setActive, item }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const { authTokens, getUserMeHandler } = useContext(AuthContext);
+  const { authTokens, updateUser } = useContext(AuthContext);
 
   const handleDelete = async () => {
     setIsLoading(true)
@@ -28,7 +28,8 @@ export const DeleteEducation = ({ setShowDelete, setActive, item }) => {
     if (response) {
       setIsLoading(false)
       setShowDelete(false)
-      getUserMeHandler()
+      updateUser('professional_info', response.data)
+      
       setActive(1)
 
       console.log(response)
