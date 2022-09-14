@@ -213,10 +213,8 @@ export const IndividualRegistration = () => {
       </Formik>
       <div className="flex justify-center my-3">
         <p>
-          {" "}
           Already have an account?
           <Link className="underline text-blue" to="/employer/login">
-            {" "}
             Login
           </Link>
         </p>

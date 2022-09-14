@@ -142,7 +142,7 @@ export const RegisterForm = ({showModal, setShowRegister}) => {
             </Formik>
             <div className='flex justify-center my-3'>
                 <p> Already have an account?
-                    <Link className='underline text-blue' to="/login"> Login</Link>
+                    <Link className='underline text-blue' to="/jobseeker/login"> Login</Link>
                 </p>
             </div>
 

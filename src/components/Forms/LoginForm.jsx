@@ -1,3 +1,5 @@
+
+
 import React, {useContext, useState } from "react";
 import { FormInputBox } from "./FormInputBox";
 import {
@@ -19,7 +21,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 
-// auth/token/login/
+// 
 export const LoginForm = ({ setShowLogin, showModal }) => {
   const { setUser, setAuthTokens } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
@@ -27,7 +29,7 @@ export const LoginForm = ({ setShowLogin, showModal }) => {
   const onSubmit = async (values) => {
     setIsLoading(true);
     const response = await axios
-      .post(`${process.env.REACT_APP_BASE_URL}jobseeker/jwt/token/`, values)
+      .post(`${process.env.REACT_APP_BASE_URL}auth/token/login/`, values)
       .catch((err) => {
         if (err) {
           //   console.log(err)
@@ -46,11 +48,10 @@ export const LoginForm = ({ setShowLogin, showModal }) => {
 
     if (response && response.data) {
       // console.log(response.data.auth_token)
-      // setAuthTokens(response.data);
+      setAuthTokens(response.data);
       console.log(response.data)
-      // localStorage.setItem("authTokens", JSON.stringify(response.data));
-      // setUser(jwt_decode(response.data.access))
-      // navigate("/dashboard/find-jobs");
+      localStorage.setItem("authTokens", JSON.stringify(response.data));
+      navigate("/dashboard/find-jobs");
       setIsLoading(false);
     }
   };

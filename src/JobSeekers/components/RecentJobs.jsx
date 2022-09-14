@@ -24,7 +24,7 @@ export const RecentJobs = () => {
     }
     setSelectedJob(id);
   };
-  //  count 10 access 90 mins refresh 5 days
+  //   access 90 mins refresh 5 days
   const getJobs = async () => {
     setIsLoading(true);
     const response = await axios
@@ -46,7 +46,6 @@ export const RecentJobs = () => {
       setJobs(response.data.results);
       setPrevURL(response.data.previous)
       setNextURL(response.data.next)
-      console.log('normal data', response.data);
       setIsLoading(false);
     }
   };

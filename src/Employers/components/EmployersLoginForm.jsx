@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import jwtDecode from "jwt-decode";
 import { FormInputBox } from "../../components/Forms/FormInputBox";
 import {
   FaSignInAlt,
@@ -30,29 +31,39 @@ export const EmployersLoginForm = ({ setShowLogin, showModal }) => {
   const onSubmit = async (values) => {
     setIsLoading(true);
     const response = await axios
-      .post(`${process.env.REACT_APP_BASE_URL}token/login/`, values)
+      .post(`${process.env.REACT_APP_BASE_URL}employer/jwt/token/`, values)
       .catch((err) => {
         if (err) {
-          //   console.log(err)
           if (err.response.status === 400) {
             toast.error("Password or email incorrect");
             setIsLoading(false);
           } else if (err.response.status === 401) {
             toast.error("You are not registered.");
             setIsLoading(false);
-          } else {
+          } else if(err.message === 'Network Error') {
+            toast.error(err.message);
+            setIsLoading(false);
+          }
+           else {
             toast.error("Something went wrong");
+            console.log(err)
             setIsLoading(false);
           }
         }
       });
 
     if (response && response.data) {
-      // console.log(response.data.auth_token)
-      setAuthTokens(response.data);
+      console.log(response.data)
+      setAuthTokens(response.data.access);
       localStorage.setItem("authTokens", JSON.stringify(response.data));
-      // setUser(jwt_decode(response.data.access))
-      navigate("/dashboard/find-jobs");
+      const userType = jwtDecode(response.data.access)
+      console.log(userType)
+      if (userType.is_employee === true){
+      navigate('/employer/dashboard');
+      }
+      else {
+        toast.error('You are not registered as an employer')
+      }
       setIsLoading(false);
     }
   };

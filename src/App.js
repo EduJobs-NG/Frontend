@@ -26,6 +26,7 @@ import { EmployersLoginFormUI } from './Employers/pages/EmployersLoginFormUI';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { EmployersRegistration } from './Employers/pages/EmployersRegistration';
 import { ResetLink } from './pages/Authentication/ResendLink';
+import { EmployersDashboard } from './Employers/pages/EmployersDashboard';
 
 
 function App() {
@@ -40,7 +41,10 @@ function App() {
       <Route path="/dashboard/profile"  element={<JobseekerProfile />} />
       <Route path="/dashboard/find-jobs"   element={<JobseekerDashboard />} />
       <Route path="/dashboard/apply/job/:id"  element={<JobApplication />} />
-      <Route path="/dashboard/job-application-successful"  element={<JobApplication />} />
+
+      {/* employers */}
+      <Route path="/employer/dashboard"  element={<EmployersDashboard />} />
+
       </Route>
 
       <Route path="/login" element={<JobseekerLoginFormUI />}/>

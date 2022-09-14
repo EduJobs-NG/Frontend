@@ -12,9 +12,9 @@ export const Hero = () => {
             Save time and money on recruitment with EduJobs matchmaking
             technology and Candidates' assessement.
           </p>
-          <div className="mt-[1rem]">
-          <button className="bg-white opacity-100 font-[700] w-[250px]  text-blue hover:bg-blue hover:text-white transition-all rounded-sm p-2">START HIRING</button>
-
+          <div className="mt-[1rem] ">
+          <a href="/employer/register" className="bg-white opacity-100 font-[700] py-[0.6rem] px-[4rem]  text-blue hover:bg-blue hover:text-white transition-all rounded-md p-2">START HIRING</a>
+        
           </div>
         </div>
         <div className="absolute top-0 left-0 right-0 bottom-0 bg-blue opacity-60 "></div>
