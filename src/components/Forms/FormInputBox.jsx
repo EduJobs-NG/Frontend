@@ -2,8 +2,7 @@ import React, {useState} from 'react';
 import {FaEye, FaEyeSlash} from 'react-icons/fa'
 
 export const FormInputBox = (props) => {
-  const {label, placeholder, icon, className, accept,
-     maxLength, disabled, value, onBlur, onChange, name, id, type} = props;
+  const {label, icon, type, ...rest} = props;
 
   const [show, setShow] = useState(false);
   const handleClick = () =>{
@@ -16,20 +15,17 @@ export const FormInputBox = (props) => {
      {props.type!=='password' && props.type!=='tel' && (
       <>
       <input type={type}
-      placeholder={placeholder}
-      className={className} accept={accept}   disabled={disabled} 
-      value={value} onBlur={onBlur} name={name} id={id} onChange={onChange} />
-      <span className='i_absolute' >{icon}</span>
-     
+       {...rest}
+       />
+      <span className='i_absolute' >{icon}</span> 
     </>
      )}
 
        {
         props.type === 'password' && (
           <>
-          <input type={show?'text':'password'}
-          placeholder={placeholder}
-          className={className} value={value} name={name} id={id} onBlur={onBlur} onChange={onChange} />
+          <input {...rest} type={show?'text':'password'}
+          />
           <span className='i_absolute' >{icon}</span>
           </>
         )
@@ -44,9 +40,7 @@ export const FormInputBox = (props) => {
       <div className='flex'>
       <p className='flex items-center bg-[#d9d9d9] rounded-sm p-1'>+234</p>
       <input type={type}
-      placeholder={placeholder}
-      className={className} value={value} maxLength={maxLength} name={name} id={id} onBlur={onBlur} onChange={onChange}
-      />
+      {...rest} />
       </div>
       
     )}

@@ -4,23 +4,17 @@ import AuthContext from "../../context/AuthContext";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FaAppStoreIos } from "react-icons/fa";
+import useAxios from "../../utils/useAxios";
 
 export const DeleteCredential = ({ setShowDelete, item }) => {
   const [isLoading, setIsLoading] = useState(false);
   const { authTokens, updateUser, getUserMeHandler } = useContext(AuthContext);
-
+  const api = useAxios();
   const handleDelete = async () => {
     setIsLoading(true);
-    const response = await axios
-      .delete(
-        `${process.env.REACT_APP_BASE_URL}jobseeker/user-profile/me/credentials/${item.id}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Token ${authTokens.auth_token}`,
-          },
-        }
-      )
+  
+      const response = await api.delete(`/jobseeker/user-profile/me/credentials/${item.id}`)
       .catch((err) => {
         console.log(err);
         toast.error(err.message);

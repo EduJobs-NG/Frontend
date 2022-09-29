@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import AuthContext from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
+import useAxios from "../../utils/useAxios";
 
 
 
@@ -17,7 +18,7 @@ export const ReviewApplication = ({ formData, prevStep, setStep }) => {
   const [isLoading, setIsLoading] = useState(false);
   const { authTokens } = useContext(AuthContext);
   const navigate = useNavigate()
-
+  const api = useAxios();
   const handleSubmission = async () => {
     setIsLoading(true);
     const data = new FormData();
@@ -27,16 +28,8 @@ export const ReviewApplication = ({ formData, prevStep, setStep }) => {
     data.append('cover_letter', cover_letter)
     data.append('why_work_with_us', why_work_with_us)
     data.append('job', job)
-    const response = await axios
-      .post(
-        `${process.env.REACT_APP_BASE_URL}jobseeker/jobs/application/`, data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Token ${authTokens.auth_token}`,
-          },
-        }
-      )
+  
+      const response = api.post(`jobseeker/jobs/application/`, data)
       .catch((err) => {
         console.log(err);
         toast.error(err.message);

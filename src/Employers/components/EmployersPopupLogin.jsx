@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { EmployersLoginForm } from './EmployersLoginForm';
-import { LoginForm } from '../../components/Forms/LoginForm';
 
 export const EmployersPopupLogin = ({setShowLogin}) => {
     const [showModal, setShowModal] = useState(true);
@@ -23,7 +22,7 @@ export const EmployersPopupLogin = ({setShowLogin}) => {
           </div>
           {/*body*/}
           <div className="p-6 relative  flex-auto">
-                <LoginForm showModal={showModal} setShowLogin={setShowLogin}  />
+                <EmployersLoginForm showModal={showModal} setShowLogin={setShowLogin}  />
    </div>      
 
         </div>

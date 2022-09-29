@@ -9,7 +9,7 @@ import {navigation} from '../../data';
 import { FaCaretDown } from 'react-icons/fa';
 
 export const JobseekerNavbar = () => {
-  const {user} = useContext(AuthContext)
+  const {user, logOutUser} = useContext(AuthContext)
   const {logo} = navigation;
   useEffect(() => {
     Aos.init();
@@ -80,7 +80,7 @@ export const JobseekerNavbar = () => {
                      <a href="/dashboard/profile">View Profile</a>   
                         </li>
                       <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Settings</li>
-                      <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Log out</li>
+                      <li onClick={ logOutUser} className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Log out</li>
                     </ul>
                   </div>
                   }
@@ -103,7 +103,7 @@ export const JobseekerNavbar = () => {
                      <a href="/dashboard/profile">View Profile</a>   
                         </li>
                       <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Settings</li>
-                      <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Log out</li>
+                      <li onClick={ logOutUser} className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Log out</li>
                     </ul>
                   </div>
                   }

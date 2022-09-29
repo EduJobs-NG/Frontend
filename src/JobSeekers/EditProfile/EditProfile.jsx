@@ -24,7 +24,7 @@ export const EditProfile = () => {
             case 'credentials':
                 return (<Credentials setActive={setActive} />)
             case 'contact information':
-                return (<ContactInfo setActive={setActive}/>)
+                return (<ContactInfo setTitle={setTitle}/>)
             case 'personal information':
                 return (<PersonalInfo setActive={setActive} />)
             default:

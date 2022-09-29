@@ -4,26 +4,20 @@ import { ThreeDots } from "react-loader-spinner";
 import { FaBars, FaTimes } from "react-icons/fa";
 import AuthContext from "../../context/AuthContext";
 import axios from "axios";
+import useAxios from "../../utils/useAxios";
 
 export const EditBio = ({ setShowBio }) => {
   const { user, authTokens, getUserMeHandler } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
 
   const { bio } = user;
+  const api = useAxios();
 
   const onSubmit = async (values) => {
     setIsLoading(true);
-    const response = await axios
-      .put(
-        `${process.env.REACT_APP_BASE_URL}jobseeker/user-profile-update/`,
-        values,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Token ${authTokens.auth_token}`,
-          },
-        }
-      )
+
+    const response = await api
+      .put(`/jobseeker/user-profile-update/`)
       .catch((err) => {
         console.log(err);
         setIsLoading(false);
@@ -40,7 +34,6 @@ export const EditBio = ({ setShowBio }) => {
   const formik = useFormik({
     initialValues: {
       bio,
-      
     },
 
     onSubmit,
@@ -117,4 +110,3 @@ export const EditBio = ({ setShowBio }) => {
     </>
   );
 };
-

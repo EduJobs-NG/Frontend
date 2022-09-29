@@ -43,6 +43,9 @@ export const RecentJobs = () => {
       });
 
     if (response && response.data) {
+      setError(false);
+      console.log(response)
+      setErrorMessage('');
       setJobs(response.data.results);
       setPrevURL(response.data.previous)
       setNextURL(response.data.next)
@@ -68,6 +71,10 @@ export const RecentJobs = () => {
       });
 
     if (response && response.data) {
+      setError(false);
+      // console.log(response)
+
+      setErrorMessage('');
       setJobs(response.data.results);
       setPrevURL(response.data.previous)
       setNextURL(response.data.next)
@@ -96,7 +103,9 @@ export const RecentJobs = () => {
               <Circles type="ThreeDots" width={100} height={20} color="blue" />
             </div>
           )}
-
+          {(!isLoading && jobs.length) === 0 && (
+            <p>No Jobs</p>
+          )}
           {jobs &&
             jobs.map((job) => {
               const { id } = job;

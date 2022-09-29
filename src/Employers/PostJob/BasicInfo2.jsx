@@ -1,0 +1,153 @@
+import React, { useState, useRef, useEffect } from "react";
+import { FormInputBox } from "../../components/Forms/FormInputBox";
+import { Formik, Form, useFormik } from "formik";
+import * as Yup from "yup";
+import { Editor } from "react-draft-wysiwyg";
+import { EditorState, convertToRaw } from "draft-js";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import draftToHtml from "draftjs-to-html";
+// import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { PreviewJobPostPopUp } from "./PreviewJobPostPopUp";
+// import Editor from 'react-markdown-editor-lite';
+// import ReactMarkdown from 'react-markdown';
+// import 'react-markdown-editor-lite/lib/index.css';
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+
+
+const validationSchema = Yup.object({});
+
+export const BasicInfo2 = ({ formData, setFormData, prevStep, nextStep }) => {
+  const [direction, setDirection] = useState("back");
+  const editorState = EditorState.createEmpty();
+  const [description, setDescription] = useState(editorState);
+  const [showPreview, setShowPreview] = useState(false);
+  const onEditorStateChange = (editorState) => {
+    setDescription(editorState);
+  };
+  const [value, setValue] = useState("");
+
+
+  const onSubmit = (values) => {
+    setFormData(values);
+    console.log(values);
+
+    direction === "back" ? prevStep() : setShowPreview(true);
+  };
+  const formik = useFormik({
+    initialValues: formData,
+    validateOnBlur: true,
+    onSubmit,
+    validationSchema: validationSchema,
+  });
+
+  useEffect(() => {
+    formik.setFieldValue("requirements", value)
+  }, [value])
+
+  return (
+    <section>
+      {showPreview && (
+        <PreviewJobPostPopUp
+          setShowPreview={setShowPreview}
+          formData={formData}
+        />
+      )}
+      <Formik>
+        <Form onSubmit={formik.handleSubmit}>
+          <div className="my-[1rem]">
+            <label htmlFor="">Job Summary</label>
+            <textarea
+              name="summary"
+              value={formik.values.summary}
+              onChange={formik.handleChange}
+              className="w-full border border-solid outline-none rounded-md resize-none border-[#808080]  p-2 "
+              cols="100"
+              rows="7"
+              maxLength={300}
+              placeholder="Write a summary of what this job entails in less than 300 characters"
+            ></textarea>
+            {formik.touched.summary && formik.errors.summary ? (
+              <small className="text-red-600">{formik.errors.summary}</small>
+            ) : null}
+          </div>
+
+          <div>
+            <p>Job Requirements</p>
+         
+
+            <ReactQuill theme="snow" value={value} onChange={setValue} />
+          </div>
+
+          <div className="mt-[3rem]">
+            {/* <textarea
+              value={value}
+              name="requirements"
+              onChange={setValue}
+            ></textarea> */}
+            {formik.touched.cover_letter && formik.errors.cover_letter ? (
+              <small className="text-red-600">
+                {formik.errors.cover_letter}
+              </small>
+            ) : null}
+          </div>
+
+          <div className="w-full mt-[1rem]">
+            <FormInputBox
+              type="date"
+              label="Application Deadline"
+              className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
+              placeholder=""
+              name="deadline"
+              onChange={formik.handleChange}
+              value={formik.values.deadline}
+              onBlur={formik.handleBlur}
+            />
+            {formik.touched.deadline && formik.errors.deadline ? (
+              <small className="text-red-600">
+                {formik.errors.end_of_education}
+              </small>
+            ) : null}
+          </div>
+
+          <div className="py-[3rem] font-[700] flex justify-between">
+            <button
+              className="text-blue cursor-pointer"
+              onClick={() => setDirection("back")}
+              type="submit"
+            >
+              Back
+            </button>
+
+            <button
+              className="text-blue cursor-pointer"
+              type="submit"
+              onClick={() => setDirection("preview")}
+            >
+              Show Preview
+            </button>
+          </div>
+
+          {/* <div className="py-[3rem] hidden md:flex justify-evenly">
+              <button
+                className="bg-[#f0f0f0] flex justify-center gap-6 items-center w-full max-w-[300px] hover:bg-blue hover:text-white uppercase px-[1rem]  text-black rounded-[5px] p-2"
+                type="submit"
+                onClick={() => setDirection("back")}
+              >
+                 <FaArrowLeft className="" /> BACK
+              </button>
+
+              <button
+                className="bg-blue w-full flex justify-center gap-6 items-center max-w-[300px] uppercase  px-[1rem]  text-white rounded-[5px] p-2"
+                type="submit"
+                onClick={() => setDirection("forward")}
+              >
+                NEXT <FaArrowRight />
+              </button>
+            </div>
+             */}
+        </Form>
+      </Formik>
+    </section>
+  );
+};

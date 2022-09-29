@@ -9,14 +9,15 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import CustomSelect from "../../components/Forms/CustomSelect";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import useAxios from "../../utils/useAxios";
 
 const validationSchema = Yup.object({
   credential_type: Yup.string().required("Required"),
   file: Yup.string().required("Required"),
 });
 export const AddCredentials = ({ setShowAddCredentials }) => {
-  const { updateUser, authTokens } = useContext(AuthContext);
-
+  const api = useAxios()
+  const { updateUser } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const onSubmit = async (values) => {
     const data = new FormData();
@@ -24,17 +25,7 @@ export const AddCredentials = ({ setShowAddCredentials }) => {
     data.append("credential_type", values.credential_type);
     data.append("name", values.file.name);
     setIsLoading(true);
-    const response = await axios
-      .post(
-        `${process.env.REACT_APP_BASE_URL}jobseeker/user-profile/me/credentials/`,
-        data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Token ${authTokens.auth_token}`,
-          },
-        }
-      )
+    const response = await api.post(`/jobseeker/user-profile/me/credentials/`,data)
       .catch((err) => {
         console.log(err);
         toast.error(err);
@@ -45,6 +36,8 @@ export const AddCredentials = ({ setShowAddCredentials }) => {
       setIsLoading(false);
       setShowAddCredentials(false);
       toast.success("Your changes have been successfully saved");
+      let testData = {}
+      let testArray = [testData]
       updateUser("credentials", [response.data]);
       console.log(response.data);
 

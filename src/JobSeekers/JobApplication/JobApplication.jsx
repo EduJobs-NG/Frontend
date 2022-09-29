@@ -6,7 +6,8 @@ import { Circles } from 'react-loader-spinner';
 import { JobseekerNavbar } from "../components/JobseekerNavbar";
 import { UserForm } from "./UserForm";
 import { Markup } from 'interweave';
-
+import { Error } from "../../components/Error";
+import useAxios from "../../utils/useAxios";
 
 
 
@@ -14,22 +15,24 @@ export const JobApplication = () => {
   const {authTokens} = useContext(AuthContext)
   const [job, setJob] = useState({});
   const { id } = useParams();
+  const [error, setError] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
   const [viewMore, setViewMore] = useState(false);
   const handleView = () =>{
     setViewMore(!viewMore)
   }
   const [isLoading, setIsLoading] = useState(false)
+  const api = useAxios()
+  
   const getJob = async () =>{
 
     setIsLoading(true)
-    const response = await axios.get(`${process.env.REACT_APP_BASE_URL}jobseeker/job-list/${id}`, {
-      headers:{
-        'Content-Type':'application/json',
-        'Authorization':`Token ${authTokens.auth_token}`
-      }
-    }).catch(err =>{
+    const response = api.get(`/jobseeker/job-list/${id}`)
+    .catch(err =>{
       console.log(err)
       setIsLoading(false)
+      setError(true)
+      setErrorMessage(err.message)
     })
  
     if (response && response.data){
@@ -47,15 +50,16 @@ export const JobApplication = () => {
     <section className="bg-[#f5f5f5]">
         <JobseekerNavbar />
 
+        {error && <Error message={errorMessage} />}
 
-          {isLoading && (
+          {isLoading  && (
               <div className='flex mt-[1rem] pb-[1rem] justify-center'>
                 <Circles type="ThreeDots"
                   width={100} height={20} color="blue"
                 />
               </div>)}
 
-              {!isLoading && (
+              {!isLoading && !error && (
                 
       <div className="container py-[2rem] mx-auto">
       <h2 className="font-[700] text-2xl">Job Application</h2>
@@ -94,7 +98,7 @@ export const JobApplication = () => {
       </div>
         
        )}
-      {!isLoading && (
+      {!isLoading && !error && (
       <div className="pb-[2rem]">
         {<UserForm job={job} />}
       </div>

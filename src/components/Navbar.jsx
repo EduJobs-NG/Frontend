@@ -90,7 +90,7 @@ export const Navbar = () => {
     
               </ul>
               <div className=''>
-              <NavLink to="/login" className="bg-blue rounded-sm px-[3rem] py-[0.5rem] text-white ">Login</NavLink>
+              <NavLink to="/jobseeker/login" className="bg-blue rounded-sm px-[3rem] py-[0.5rem] text-white ">Login</NavLink>
 
               </div>
             </div>

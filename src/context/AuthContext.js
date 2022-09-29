@@ -2,62 +2,65 @@ import { createContext, useState, useEffect } from "react";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { getStoredUser, storeUser } from "../storage/localStorage";
-const AuthContext = createContext();
+import useAxios from "../utils/useAxios";
+import axiosInstance from "../utils/AxiosInstance";
+const AuthContext = createContext({authTokens:localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')):null, 
+setAuthTokens:(_) => {},
+ 
+user:'', setUser:(_) => {}, 
+logOutUser:(_) => {}, loading:'', setLoading:(_) => {},
+updateUser:(_) =>{}, getUserMeHandler:(_) => {}});
+
 export default AuthContext;
 
 
+
 export const AuthProvider = ({children}) => {
+  const api = useAxios();
     const navigate = useNavigate();
     const [user, setUser] = useState(getStoredUser())
     const [loading, setLoading] = useState(false)
     const [isError, setIsError] = useState(false)
     const [authTokens, setAuthTokens] = useState(localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')):null)
-  
-    const logOutUser = async () =>{
-        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}auth/users/me/`, {
-          headers:{
-            'Content-Type':'application/json',
-            'Authorization': `Token ${authTokens.auth_token}`
-          }
-        }).catch(err =>{
-          console.log(err)
-        })
-     
-        if (response){
-          console.log(response)
-          localStorage.removeItem('authTokens')
-          navigate('/login')
-        }
     
+    
+    const getUserMeHandler = async () =>{
+      setLoading(true)
+      setIsError(false)
+      const response = await api.get(`/jobseeker/user-profile-update/`)
+      .catch(err =>{
+        console.log(err)
+        setLoading(false)
+        setIsError(true)
+      })
+   
+      if (response && response.data){
+        setUser(response.data)
+        // console.log(user)
+        storeUser(response.data)
+        setLoading(false);
+        setIsError(false)
+        // console.log(response)
+        
       }
+    }
+
+    useEffect(() =>{
+      getUserMeHandler()
+    }, [])
+    
+
+    const logOutUser = () =>{
+          localStorage.removeItem('authTokens')
+          navigate('/jobseeker/login')
+      }
+      
       const updateUser = (updateKey, updateValue) =>{
         setUser({...user, [updateKey]:updateValue })
         storeUser({...user, [updateKey]:updateValue})
       }
     
-      const getUserMeHandler = async () =>{
-        setLoading(true)
-        setIsError(false)
-        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}jobseeker/user-profile-update/`, {
-          headers:{
-            'Content-Type':'application/json',
-            'Authorization':`Token ${authTokens.auth_token}`
-          }
-        }).catch(err =>{
-          console.log(err)
-          setLoading(false)
-          setIsError(true)
-        })
-     
-        if (response && response.data){
-          setUser(response.data)
-          storeUser(response.data)
-          setLoading(false);
-          setIsError(false)
-          // console.log(response.data)
-          
-        }
-      }
+    
   
     let contextData = {
         user:user,
@@ -80,3 +83,5 @@ export const AuthProvider = ({children}) => {
     
 
     }
+
+

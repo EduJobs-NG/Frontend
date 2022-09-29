@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 import google from "../../assets/google.png";
 import linkedin from "../../assets/linkedin.png";
 import { LoginSchema } from "./schema";
+import jwtDecode from "jwt-decode";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -23,13 +24,13 @@ import "react-toastify/dist/ReactToastify.css";
 
 // 
 export const LoginForm = ({ setShowLogin, showModal }) => {
-  const { setUser, setAuthTokens } = useContext(AuthContext);
+  const { setAuthTokens } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const onSubmit = async (values) => {
     setIsLoading(true);
     const response = await axios
-      .post(`${process.env.REACT_APP_BASE_URL}auth/token/login/`, values)
+      .post(`${process.env.REACT_APP_BASE_URL}jobseeker/jwt/token/`, values)
       .catch((err) => {
         if (err) {
           //   console.log(err)
@@ -46,14 +47,20 @@ export const LoginForm = ({ setShowLogin, showModal }) => {
         }
       });
 
-    if (response && response.data) {
-      // console.log(response.data.auth_token)
-      setAuthTokens(response.data);
-      console.log(response.data)
-      localStorage.setItem("authTokens", JSON.stringify(response.data));
-      navigate("/dashboard/find-jobs");
-      setIsLoading(false);
-    }
+      if (response && response.data) {
+        console.log(response.data)
+        setAuthTokens(response.data.access);
+        localStorage.setItem("authTokens", JSON.stringify(response.data));
+        const userType = jwtDecode(response.data.access)
+        console.log(userType)
+        if (userType.is_jobseeker === true){
+        navigate('/dashboard/find-jobs');
+        }
+        else {
+          toast.error('You are not registered as a job seeker')
+        }
+        setIsLoading(false);
+      }
   };
 
   const formik = useFormik({

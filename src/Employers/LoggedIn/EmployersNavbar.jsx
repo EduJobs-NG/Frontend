@@ -9,7 +9,7 @@ import {navigation} from '../../data';
 import { FaCaretDown } from 'react-icons/fa';
 
 export const EmployersNavbar = () => {
-  const {user} = useContext(AuthContext)
+  const {user, logOutUser} = useContext(AuthContext)
   const {logo} = navigation;
   useEffect(() => {
     Aos.init();
@@ -37,15 +37,15 @@ export const EmployersNavbar = () => {
         <div className="flex  py-[1rem] items-center flex-row justify-between">
           <ul className="flex gap-x-[3rem] text-white flex-row">
             <li className=''>
-            <NavLink to="/dashboard/find-jobs">
+            <NavLink to="/employer/dashboard">
                 <img src={logo} className='w-[150px]' alt="" />
                 </NavLink>
             </li>
             <div className='hidden uppercase xl:flex gap-x-[3rem]'>
 
-              <li className=''>
+              {/* <li className=''>
                 <NavLink to="/analytics" className={({isActive}) => (isActive ? activeLink : normalLink)} >Analytics</NavLink>
-              </li>
+              </li> */}
               {/* <li className=''>
                 <NavLink to="/dashboard/saved-jobs" className={({isActive}) => (isActive ? activeLink : normalLink)} >SAVED JOBS</NavLink>
               </li>
@@ -57,7 +57,11 @@ export const EmployersNavbar = () => {
           </ul>
 
           <ul className='hidden xl:flex flex-row items-center text-white gap-x-[2rem]'>
-
+          <a href='/employer/post-job'>
+          <li  className='p-1 cursor-pointer px-4 font-[700] border border-solid bg-white text-blue border-white rounded'>
+             POST JOB
+              </li>
+              </a> 
             <li>
               <img src={chat} alt="" />
             </li>
@@ -75,14 +79,13 @@ export const EmployersNavbar = () => {
                   <FaCaretDown />
                   {dropDown && 
                     <div className='absolute z-[9999] rounded-b-[15px] bg-[#f1f1f1] right-[0.2rem] top-[3.5rem]'>
-                        <p>Something's comming</p>
-                    {/* <ul className='text-black w-[150px] '>
+                    <ul className='text-black w-[150px] '>
                       <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>
-                     <a href="/dashboard/profile">View Profile</a>   
+                     <a>View Profile</a>   
                         </li>
                       <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Settings</li>
-                      <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Log out</li>
-                    </ul> */}
+                      <li onClick={logOutUser} className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Log out</li>
+                    </ul>
                   </div>
                   }
                 </div>

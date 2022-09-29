@@ -3,11 +3,9 @@ import { useFormik, Formik, Form } from "formik";
 import { ThreeDots } from "react-loader-spinner";
 import { FaBars, FaTimes } from "react-icons/fa";
 import AuthContext from "../../context/AuthContext";
-import axios from "axios";
-import Avatar from 'react-avatar-edit';
 import { FormInputBox } from '../../components/Forms/FormInputBox';
 import * as Yup from 'yup';
-
+import useAxios from "../../utils/useAxios";
 
 const validationSchema = Yup.object({
   avatar: Yup.string().required('Required')
@@ -15,24 +13,14 @@ const validationSchema = Yup.object({
 export const EditPic = ({ setShowPic }) => {
   const {authTokens, getUserMeHandler } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
- 
+ const api = useAxios();
 
   const onSubmit = async (values) => {
     setIsLoading(true);
     const data = new FormData();
     data.append('avatar', values.avatar);
     console.log(data)
-    const response = await axios
-      .put(
-        `${process.env.REACT_APP_BASE_URL}jobseeker/user-profile-update/`,
-        data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Token ${authTokens.auth_token}`,
-          },
-        }
-      )
+      const response = api.put(`/jobseeker/user-profile-update/`, data)
       .catch((err) => {
         console.log(err);
         setIsLoading(false);

@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import PrivateRoute from './utils/PrivateRoute';
+import JobseekerRoute from './utils/JobseekerRoute';
 import {JobseekersHome} from './JobSeekers/pages/JobseekersHome';
 import {JobseekerRegisterFormUI} from './JobSeekers/pages/JobseekerRegisterFormUI';
 import {JobseekerLoginFormUI} from './JobSeekers/pages/JobseekerLoginFormUI';
@@ -27,6 +27,9 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { EmployersRegistration } from './Employers/pages/EmployersRegistration';
 import { ResetLink } from './pages/Authentication/ResendLink';
 import { EmployersDashboard } from './Employers/pages/EmployersDashboard';
+import EmployerRoute from './utils/EmployerRoute';
+import { EmployerPostJob } from './Employers/PostJob/EmployerPostJob';
+import { EmployerViewJobs } from './Employers/pages/EmployerViewJobs';
 
 
 function App() {
@@ -37,17 +40,23 @@ function App() {
       <AuthProvider>
       <Routes>
       <Route path="/" exact  element={<JobseekersHome />} />
-      <Route element={<PrivateRoute />}>
-      <Route path="/dashboard/profile"  element={<JobseekerProfile />} />
-      <Route path="/dashboard/find-jobs"   element={<JobseekerDashboard />} />
-      <Route path="/dashboard/apply/job/:id"  element={<JobApplication />} />
-
-      {/* employers */}
-      <Route path="/employer/dashboard"  element={<EmployersDashboard />} />
-
+      <Route element={<JobseekerRoute />}>
+          <Route path="/dashboard/profile"  element={<JobseekerProfile />} />
+          <Route path="/dashboard/find-jobs"   element={<JobseekerDashboard />} />
+          <Route path="/dashboard/apply/job/:id"  element={<JobApplication />} />
       </Route>
 
-      <Route path="/login" element={<JobseekerLoginFormUI />}/>
+
+    {/* employers */}
+      <Route element={<EmployerRoute />}>
+        <Route path="/employer/dashboard/"  element={<EmployersDashboard />} />
+        <Route path="/employer/post-job"  element={<EmployerPostJob />} />
+        <Route path="/employer/view-jobs"  element={<EmployerViewJobs />} />
+        
+        
+      </Route>
+
+      <Route path="/jobseeker/login" element={<JobseekerLoginFormUI />}/>
       <Route path="/jobseeker/register" element={<JobseekerRegisterFormUI />}/>
       <Route path="/activate/:uid/:token" element={<ActivateAccount />}/>
       <Route path="/verify" element={<VerifyAccountUI />}/>

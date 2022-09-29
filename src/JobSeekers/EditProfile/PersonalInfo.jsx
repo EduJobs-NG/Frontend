@@ -8,7 +8,7 @@ import { ThreeDots } from 'react-loader-spinner';
 import CustomSelect from '../../components/Forms/CustomSelect';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import useAxios from '../../utils/useAxios';
 
 const validationSchema = Yup.object({
   email: Yup.string().email("Invalid email address"),
@@ -22,17 +22,11 @@ export const PersonalInfo = () => {
 
   const { user: { first_name, last_name, email }, middle_name, home_address, phone_number, city, state, gender, facebook_url,
     linkedin_url, twitter_url, instagram_url } = user;
-
-
+  const api = useAxios();
   const onSubmit = async (values) => {
     setIsLoading(true)
-    const response = await axios
-      .put(`${process.env.REACT_APP_BASE_URL}jobseeker/user-profile-update/`, {...values}, {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Token ${authTokens.auth_token}`
-        }
-      })
+    
+      const response = await api.put(`/jobseeker/user-profile-update/`, values)
       .catch(err => {
         console.log(err)
         toast.error(err.message)
@@ -48,7 +42,6 @@ export const PersonalInfo = () => {
 
     }
   }
-  // value={firstName ? firstName : ""}
   const formik = useFormik({
     initialValues: {
       first_name:first_name || "",
