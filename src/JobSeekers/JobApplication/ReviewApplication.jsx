@@ -29,7 +29,7 @@ export const ReviewApplication = ({ formData, prevStep, setStep }) => {
     data.append('why_work_with_us', why_work_with_us)
     data.append('job', job)
   
-      const response = api.post(`jobseeker/jobs/application/`, data)
+      const response = await api.post(`jobseeker/jobs/application/`, data)
       .catch((err) => {
         console.log(err);
         toast.error(err.message);

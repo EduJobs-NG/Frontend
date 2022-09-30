@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {FaEye, FaEyeSlash} from 'react-icons/fa'
+import {FaEye, FaEyeSlash} from 'react-icons/fa';
+import CustomSelect from './CustomSelect';
 
 export const FormInputBox = (props) => {
   const {label, icon, type, ...rest} = props;
@@ -12,7 +13,7 @@ export const FormInputBox = (props) => {
     <div className='relative'>
       <label>{label}</label>
       
-     {props.type!=='password' && props.type!=='tel' && (
+     {props.type!=='password' && (
       <>
       <input type={type}
        {...rest}
@@ -36,14 +37,15 @@ export const FormInputBox = (props) => {
     </span>
     }
 
-    {props.type === 'tel' && (
+    {/* {props.type === 'tel' && (
       <div className='flex'>
       <p className='flex items-center bg-[#d9d9d9] rounded-sm p-1'>+234</p>
+      <CustomSelect />
       <input type={type}
       {...rest} />
       </div>
       
-    )}
+    )} */}
       
     </div>
   )

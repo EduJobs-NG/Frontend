@@ -26,7 +26,6 @@ export const DeleteCredential = ({ setShowDelete, item }) => {
       setShowDelete(false);
       updateUser("credentials", response.data);
       
-      // getUserMeHandler()
       console.log(response);
     }
   };

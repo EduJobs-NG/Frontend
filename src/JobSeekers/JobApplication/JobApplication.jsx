@@ -1,6 +1,5 @@
 import React, {useState, useEffect, useContext} from "react";
 import { Link, useParams } from 'react-router-dom';
-import axios from 'axios';
 import AuthContext from '../../context/AuthContext';
 import { Circles } from 'react-loader-spinner';
 import { JobseekerNavbar } from "../components/JobseekerNavbar";
@@ -12,7 +11,6 @@ import useAxios from "../../utils/useAxios";
 
 
 export const JobApplication = () => {
-  const {authTokens} = useContext(AuthContext)
   const [job, setJob] = useState({});
   const { id } = useParams();
   const [error, setError] = useState(false)
@@ -23,11 +21,10 @@ export const JobApplication = () => {
   }
   const [isLoading, setIsLoading] = useState(false)
   const api = useAxios()
-  
   const getJob = async () =>{
 
     setIsLoading(true)
-    const response = api.get(`/jobseeker/job-list/${id}`)
+    const response = await api.get(`jobseeker/job-list/${id}`)
     .catch(err =>{
       console.log(err)
       setIsLoading(false)
@@ -39,6 +36,8 @@ export const JobApplication = () => {
       setJob(response.data)
       setIsLoading(false);
       console.log(job)
+      console.log(response.data)
+      setError(false)
  
     }
  
@@ -67,6 +66,8 @@ export const JobApplication = () => {
         key={job?.id}
         className="relative md:mx-[1rem] mt-[1.5rem]  py-[1.2rem] border bg-white border-[#d9d9d9] px-[1.2rem] rounded-[20px]"
       >
+       
+        
         <h2 className="font-[700] text-[1.2rem]">{job?.title}</h2>
         <p className="font-[500]">{job?.organization_name}</p>
         <p className="font-[500]">{job?.location}</p>

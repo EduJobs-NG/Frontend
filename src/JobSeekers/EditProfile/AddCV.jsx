@@ -4,8 +4,7 @@ import * as Yup from "yup";
 import { useFormik, Formik, Form } from "formik";
 import AuthContext from "../../context/AuthContext";
 import { ThreeDots } from "react-loader-spinner";
-import {FaTimes } from "react-icons/fa";
-import CustomSelect from "../../components/Forms/CustomSelect";
+import { FaBars, FaTimes } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useAxios from "../../utils/useAxios";
@@ -14,17 +13,13 @@ const validationSchema = Yup.object({
   credential_type: Yup.string().required("Required"),
   file: Yup.string().required("Required"),
 });
-export const AddCredentials = ({ setShowAddCredentials, credentials }) => {
+export const AddCV = ({ setShowAddCV}) => {
   const api = useAxios()
-  console.log(credentials)
-  
   const { updateUser } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const onSubmit = async (values) => {
     const data = new FormData();
     data.append("file", values.file);
-    data.append("credential_type", values.credential_type);
-    data.append("name", values.file.name);
     setIsLoading(true);
     const response = await api.post(`/jobseeker/user-profile/me/credentials/`,data)
       .catch((err) => {
@@ -35,19 +30,16 @@ export const AddCredentials = ({ setShowAddCredentials, credentials }) => {
 
     if (response && response.data) {
       setIsLoading(false);
-      setShowAddCredentials(false);
+      setShowAddCV(false);
       toast.success("Your changes have been successfully saved");
-      credentials.push(response.data)
+      updateUser("cv", response.data);
       console.log(response.data);
-
-      // console.log(response)
     }
   };
   const formik = useFormik({
     initialValues: {
-      credential_type: "",
       file: "",
-      name: "",
+      
     },
     validateOnBlur: true,
     onSubmit,
@@ -64,11 +56,11 @@ export const AddCredentials = ({ setShowAddCredentials, credentials }) => {
             {/*header*/}
             <div className="flex  items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
               <FaTimes
-                onClick={() => setShowAddCredentials(false)}
+                onClick={() => setShowAddCV(false)}
                 className="text-blue z-[900] text-[1.3rem] absolute right-5 mt-3 cursor-pointer"
               />
 
-              <h3 className="text-3xl font-semibold">Add Credentials</h3>
+              <h3 className="text-3xl font-semibold">Add CV</h3>
               <button className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none">
                 <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
                   ×
@@ -80,27 +72,7 @@ export const AddCredentials = ({ setShowAddCredentials, credentials }) => {
               <Formik>
                 <Form onSubmit={formik.handleSubmit}>
                   <div className="grid ">
-                    <div className="w-full  max-w-lg">
-                      <CustomSelect
-                        label="Credential Type"
-                        name="credential_type"
-                        id="credential_type"
-                        placeholder=""
-                        className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
-                        onChange={formik.handleChange}
-                      >
-                        <option value="">Select a credential type</option>
-                        <option value="Certificate">Certificate</option>
-                        <option value="Others">Others</option>
-                      </CustomSelect>
-
-                      {formik.touched.credential_type &&
-                      formik.errors.credential_type ? (
-                        <small className="text-red-600">
-                          {formik.errors.credential_type}
-                        </small>
-                      ) : null}
-                    </div>
+                   
                     <div className="w-full  max-w-lg">
                       <FormInputBox
                         name="file"

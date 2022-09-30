@@ -33,7 +33,7 @@ export const SubmitResume = ({ formData, job, setFormData, nextStep}) => {
     <p>Upload your resume for {job?.organization_name}</p>
       </div>
       <div className=' flex justify-center  mt-[2rem] md:mt-[1rem]'>
-      <label for="upload-resume" className='text-blue cursor-pointer bg-[#f0f0f0] px-[2rem] py-[1rem] md:px-[5rem] md:py-[1rem] uppercase font-[700] '>Upload Resume</label>
+      <label htmlFor="upload-resume" className='text-blue cursor-pointer bg-[#f0f0f0] px-[2rem] py-[1rem] md:px-[5rem] md:py-[1rem] uppercase font-[700] '>Upload Resume</label>
       </div>
       </div>
 

@@ -104,7 +104,7 @@ export const EmployersNavbar = () => {
                     <div className='absolute z-[9999] rounded-b-[15px] bg-[#f1f1f1] right-[0.2rem] top-[3.5rem]'>
                     <ul className='text-black w-[150px] '>
                       <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>
-                     <a href="/dashboard/profile">View Profile</a>   
+                     <a href="">View Profile</a>   
                         </li>
                       <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Settings</li>
                       <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Log out</li>

@@ -3,13 +3,13 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { getStoredUser, storeUser } from "../storage/localStorage";
 import useAxios from "../utils/useAxios";
-import axiosInstance from "../utils/AxiosInstance";
-const AuthContext = createContext({authTokens:localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')):null, 
+const AuthContext = createContext({
+  authTokens:localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')):null, 
 setAuthTokens:(_) => {},
  
-user:'', setUser:(_) => {}, 
-logOutUser:(_) => {}, loading:'', setLoading:(_) => {},
-updateUser:(_) =>{}, getUserMeHandler:(_) => {}});
+  user:'', setUser:(_) => {}, 
+  logOutUser:(_) => {}, loading:'', setLoading:(_) => {},
+  updateUser:(_) =>{}, getUserMeHandler:(_) => {}});
 
 export default AuthContext;
 
@@ -36,11 +36,9 @@ export const AuthProvider = ({children}) => {
    
       if (response && response.data){
         setUser(response.data)
-        // console.log(user)
         storeUser(response.data)
         setLoading(false);
         setIsError(false)
-        // console.log(response)
         
       }
     }

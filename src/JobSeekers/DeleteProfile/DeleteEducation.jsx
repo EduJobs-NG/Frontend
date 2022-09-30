@@ -5,9 +5,9 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useAxios from "../../utils/useAxios";
 
-export const DeleteEducation = ({ setShowDelete, setActive, item }) => {
+export const DeleteEducation = ({ setShowDelete, credentials, item }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const { authTokens, updateUser } = useContext(AuthContext);
+  const {updateUser } = useContext(AuthContext);
   const api = useAxios();
   const handleDelete = async () => {
     setIsLoading(true);
@@ -23,9 +23,7 @@ export const DeleteEducation = ({ setShowDelete, setActive, item }) => {
       setIsLoading(false);
       setShowDelete(false);
       updateUser("professional_info", response.data);
-
-      setActive(1);
-
+      // credential
       console.log(response);
     }
   };

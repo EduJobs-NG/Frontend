@@ -52,7 +52,7 @@ export const LoginForm = ({ setShowLogin, showModal }) => {
         setAuthTokens(response.data.access);
         localStorage.setItem("authTokens", JSON.stringify(response.data));
         const userType = jwtDecode(response.data.access)
-        console.log(userType)
+       
         if (userType.is_jobseeker === true){
         navigate('/dashboard/find-jobs');
         }

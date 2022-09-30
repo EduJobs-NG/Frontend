@@ -2,30 +2,26 @@ import React, { useState, useRef, useEffect } from "react";
 import { FormInputBox } from "../../components/Forms/FormInputBox";
 import { Formik, Form, useFormik } from "formik";
 import * as Yup from "yup";
-import { Editor } from "react-draft-wysiwyg";
-import { EditorState, convertToRaw } from "draft-js";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import draftToHtml from "draftjs-to-html";
 // import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { PreviewJobPostPopUp } from "./PreviewJobPostPopUp";
-// import Editor from 'react-markdown-editor-lite';
-// import ReactMarkdown from 'react-markdown';
-// import 'react-markdown-editor-lite/lib/index.css';
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import Moment from 'moment';
+
+const formatDate = Moment().format('DD-MMM-YYYY')
+console.log(formatDate)
 
 
-const validationSchema = Yup.object({});
+const validationSchema = Yup.object({
+  currentDate:Yup.date(),
+  deadline: Yup.string().required("Required").min(formatDate),
+});
+  
 
 export const BasicInfo2 = ({ formData, setFormData, prevStep, nextStep }) => {
   const [direction, setDirection] = useState("back");
-  const editorState = EditorState.createEmpty();
-  const [description, setDescription] = useState(editorState);
-  const [showPreview, setShowPreview] = useState(false);
-  const onEditorStateChange = (editorState) => {
-    setDescription(editorState);
-  };
   const [value, setValue] = useState("");
+  const [showPreview, setShowPreview] = useState(false);
 
 
   const onSubmit = (values) => {
@@ -40,9 +36,10 @@ export const BasicInfo2 = ({ formData, setFormData, prevStep, nextStep }) => {
     onSubmit,
     validationSchema: validationSchema,
   });
+ 
 
   useEffect(() => {
-    formik.setFieldValue("requirements", value)
+    formik.setFieldValue("requirements", value);
   }, [value])
 
   return (
@@ -80,11 +77,7 @@ export const BasicInfo2 = ({ formData, setFormData, prevStep, nextStep }) => {
           </div>
 
           <div className="mt-[3rem]">
-            {/* <textarea
-              value={value}
-              name="requirements"
-              onChange={setValue}
-            ></textarea> */}
+       
             {formik.touched.cover_letter && formik.errors.cover_letter ? (
               <small className="text-red-600">
                 {formik.errors.cover_letter}
@@ -105,7 +98,7 @@ export const BasicInfo2 = ({ formData, setFormData, prevStep, nextStep }) => {
             />
             {formik.touched.deadline && formik.errors.deadline ? (
               <small className="text-red-600">
-                {formik.errors.end_of_education}
+                {formik.errors.deadline}
               </small>
             ) : null}
           </div>

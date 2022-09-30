@@ -17,7 +17,7 @@ export const EditBio = ({ setShowBio }) => {
     setIsLoading(true);
 
     const response = await api
-      .put(`/jobseeker/user-profile-update/`)
+      .put(`/jobseeker/user-profile-update/`, values)
       .catch((err) => {
         console.log(err);
         setIsLoading(false);
