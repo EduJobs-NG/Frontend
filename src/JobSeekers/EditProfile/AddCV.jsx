@@ -1,16 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { FormInputBox } from "../../components/Forms/FormInputBox";
 import * as Yup from "yup";
 import { useFormik, Formik, Form } from "formik";
 import AuthContext from "../../context/AuthContext";
 import { ThreeDots } from "react-loader-spinner";
-import { FaBars, FaTimes } from "react-icons/fa";
+import {FaTimes } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useAxios from "../../utils/useAxios";
 
 const validationSchema = Yup.object({
-  credential_type: Yup.string().required("Required"),
   file: Yup.string().required("Required"),
 });
 export const AddCV = ({ setShowAddCV}) => {
@@ -18,10 +17,11 @@ export const AddCV = ({ setShowAddCV}) => {
   const { updateUser } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const onSubmit = async (values) => {
+    setIsLoading(true);
+
     const data = new FormData();
     data.append("file", values.file);
-    setIsLoading(true);
-    const response = await api.post(`/jobseeker/user-profile/me/credentials/`,data)
+    const response = await api.post(`/jobseeker/user-profile/me/cv/`,data)
       .catch((err) => {
         console.log(err);
         toast.error(err);

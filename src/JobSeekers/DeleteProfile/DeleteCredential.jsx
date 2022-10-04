@@ -1,16 +1,17 @@
 import React, { useState, useContext } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import AuthContext from "../../context/AuthContext";
-import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { FaAppStoreIos } from "react-icons/fa";
 import useAxios from "../../utils/useAxios";
 
-export const DeleteCredential = ({ setShowDelete, item }) => {
+export const DeleteCredential = ({ setShowDelete, credentials, item }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const { authTokens, updateUser, getUserMeHandler } = useContext(AuthContext);
+  const {  } = useContext(AuthContext);
   const api = useAxios();
+ 
+  
+  
   const handleDelete = async () => {
     setIsLoading(true);
   
@@ -24,11 +25,18 @@ export const DeleteCredential = ({ setShowDelete, item }) => {
     if (response) {
       setIsLoading(false);
       setShowDelete(false);
-      updateUser("credentials", response.data);
-      
+     
       console.log(response);
     }
   };
+
+  // const updatedCredential =  
+
+  // credentials.filter(credential => {
+  //   return credential.id !== item.id
+  // })
+
+  // console.log(updatedCredential)
 
   return (
     <>

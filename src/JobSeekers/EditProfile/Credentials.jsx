@@ -11,8 +11,6 @@ export const Credentials = () => {
   const certificates = credentials.filter(item => {
     return item.credential_type === 'Certificate';
   })
-  console.log(certificates)
-  const cv = user?.cv
   const [selectedItem, setSelectedItem] = useState({});
   const [showDelete, setShowDelete] = useState(false)
   const [showAddCredentials, setShowAddCredentials] = useState(false)
@@ -24,6 +22,7 @@ export const Credentials = () => {
     setSelectedItem(item);
     setShowDelete(true)
   }
+ 
 
   return (
     <section>

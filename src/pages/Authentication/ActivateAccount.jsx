@@ -47,12 +47,24 @@ export const ActivateAccount = () => {
       });
     if (response) {
       console.log(response)
+       
+
+
       setShow(true)
       setIsLoading(false)
       toast.success("Account activated successfully")
-      setTimeout(() => {
-        navigate('/login');
-      }, 2000)
+      const {is_jobseeker, is_employer} = response.data;
+      if (is_jobseeker = true){
+        setTimeout(() => {
+          navigate('/jobseeker/login');
+        }, 2000)
+      }
+      else if(is_employer = true){
+        setTimeout(() => {
+          navigate('/employer/login');
+        }, 2000)
+      }
+   
 
     }
 
