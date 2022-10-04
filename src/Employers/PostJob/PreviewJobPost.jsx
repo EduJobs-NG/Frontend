@@ -6,6 +6,7 @@ import Moment from 'moment';
 export const PreviewJobPost = ({formData, setShowPreview}) => {
   const {summary, title, organization_name, requirements, job_type, deadline, 
     min_pay_range, max_pay_range, location} = formData;
+    
     const deadlineDate = Moment(deadline).format('MMM DD YYYY')
   return (
     <section className='bg-white relative '>

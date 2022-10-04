@@ -108,7 +108,7 @@ export const BasicInfo1 = ({ formData, setFormData, prevStep, nextStep }) => {
               })}
             </div>
 
-            <div className="hidden">
+            <div className="">
               {jobTypeOptions.map((item) => {
                 const { option } = item;
                 return (
@@ -116,7 +116,7 @@ export const BasicInfo1 = ({ formData, setFormData, prevStep, nextStep }) => {
                     type="radio"
                     id={option}
                     key={item.id}
-                    label={option}
+                    label={item.option}
                     name="job_type"
                     onChange={() =>
                       formik.setFieldValue("job_type", `${option}`)

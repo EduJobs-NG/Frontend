@@ -97,6 +97,7 @@ export const BasicInfo2 = ({ formData, setFormData, prevStep, nextStep }) => {
               </small>
             ) : null}
           </div>
+          
 
           <div className="py-[3rem] font-[700] flex justify-between">
             <button
