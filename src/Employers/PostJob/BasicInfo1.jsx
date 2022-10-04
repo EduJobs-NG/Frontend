@@ -92,7 +92,7 @@ export const BasicInfo1 = ({ formData, setFormData, prevStep, nextStep }) => {
                         activeOption === index
                           ? "border border-[#808080] "
                           : "border-none"
-                      } bg-[#e6e6e6] flex flex-row justify-content items-center rounded-[10px] cursor-pointer p-[0.5rem] mr-[1rem]`}
+                      } bg-[#e6e6e6] flex flex-row justify-content items-center rounded-[10px] cursor-pointer p-[0.2rem]  md:p-[0.5rem] md:mr-[1rem]`}
                       htmlFor={item.option}
                     >
                       {" "}
@@ -130,8 +130,8 @@ export const BasicInfo1 = ({ formData, setFormData, prevStep, nextStep }) => {
           <div className="mt-[1rem]">
             <label htmlFor="">Salary Range(Optional)</label>
 
-            <div className="flex gap-x-[100px] flex-row">
-              <div className="flex flex-row items-baseline">
+            <div className="flex flex-col  md:gap-x-[100px] md:flex-row">
+              <div className="flex flex-row mb-[1rem] items-baseline">
                # <FormInputBox
                   type="text"
                   label=""
