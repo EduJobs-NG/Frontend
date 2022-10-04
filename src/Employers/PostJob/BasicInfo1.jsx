@@ -92,7 +92,7 @@ export const BasicInfo1 = ({ formData, setFormData, prevStep, nextStep }) => {
                         activeOption === index
                           ? "border border-[#808080] "
                           : "border-none"
-                      } bg-[#e6e6e6] flex flex-row justify-content items-center rounded-[10px] cursor-pointer p-[0.2rem]  md:p-[0.5rem] md:mr-[1rem]`}
+                      } bg-[#e6e6e6] flex flex-row justify-content items-center rounded-[10px] cursor-pointer p-[0.4rem]  md:p-[0.5rem] md:mr-[1rem]`}
                       htmlFor={item.option}
                     >
                       {" "}
