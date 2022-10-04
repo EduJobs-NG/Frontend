@@ -54,12 +54,12 @@ export const ActivateAccount = () => {
       setIsLoading(false)
       toast.success("Account activated successfully")
       const {is_jobseeker, is_employer} = response.data;
-      if (is_jobseeker = true){
+      if (is_jobseeker === true){
         setTimeout(() => {
           navigate('/jobseeker/login');
         }, 2000)
       }
-      else if(is_employer = true){
+      else if(is_employer === true){
         setTimeout(() => {
           navigate('/employer/login');
         }, 2000)

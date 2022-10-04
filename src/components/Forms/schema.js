@@ -16,3 +16,17 @@ export const LoginSchema = Yup.object({
         .oneOf([Yup.ref('password'), null], 'Passwords must match').required('Required'),
     acceptedTos: Yup.boolean().oneOf([true], "Please accept the terms and conditions")
 })
+
+export const CorporateSchema = Yup.object({
+    organization_name:Yup.string().required('Required'),
+    email: Yup.string().email("Invalid email address").required('Required'),
+    password: Yup.string().min(8).required('Required').matches(
+        /^(?=.*[a-z])(?=.*[0-9])/,
+        "Must Contain 8 Characters of letters & numbers"
+      ),
+    re_password: Yup.string()
+        .oneOf([Yup.ref('password'), null], 'Passwords must match').required('Required'),
+    acceptedTos: Yup.boolean().oneOf([true], "Please accept the terms and conditions")
+
+        
+})

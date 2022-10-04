@@ -15,14 +15,12 @@ import { ThreeDots } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
 import google from "../../assets/google.png";
 import linkedin from "../../assets/linkedin.png";
+import { LoginSchema } from "../../components/Forms/schema";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const validationSchema = Yup.object({
-  email: Yup.string().email("Invalid email address").required("Required"),
-  password: Yup.string().min(8, "Enter your password").required("Required"),
-});
+
 
 export const EmployersLoginForm = ({ setShowLogin, showModal }) => {
   const { setUser, setAuthTokens } = useContext(AuthContext);
@@ -54,11 +52,11 @@ export const EmployersLoginForm = ({ setShowLogin, showModal }) => {
 
     if (response && response.data) {
       console.log(response.data)
-      setAuthTokens(response.data.access);
-      localStorage.setItem("authTokens", JSON.stringify(response.data));
       const userType = jwtDecode(response.data.access)
       console.log(userType)
       if (userType.is_employee === true){
+      localStorage.setItem("authTokens", JSON.stringify(response.data));
+      setAuthTokens(response.data.access);
       navigate('/employer/dashboard');
       }
       else {
@@ -75,7 +73,7 @@ export const EmployersLoginForm = ({ setShowLogin, showModal }) => {
     },
     validateOnBlur: true,
     onSubmit,
-    validationSchema: validationSchema,
+    validationSchema: LoginSchema,
   });
 
   return (

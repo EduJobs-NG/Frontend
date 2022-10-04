@@ -12,27 +12,9 @@ import linkedin from "../../assets/linkedin.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CustomCheckbox from '../../components/Forms/CustomCheckbox';
+import { RegistrationSchema } from "../../components/Forms/schema";
 
 
-const validationSchema = Yup.object({
-  first_name: Yup.string()
-    .max(15, "Must be 15 characters or less")
-    .required("Required"),
-  last_name: Yup.string()
-    .max(15, "Must be 15 characters or less")
-    .required("Required"),
-  email: Yup.string().email("Invalid email address").required("Required"),
-  password: Yup.string()
-    .min(8)
-    .required("Required")
-    .matches(
-      /^(?=.*[a-z])(?=.*[0-9])/,
-      "Must Contain 8 Characters of letters & numbers"
-    ),
-  re_password: Yup.string()
-    .oneOf([Yup.ref("password"), null], "Passwords must match")
-    .required("Required"),
-});
 
 export const IndividualRegistration = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -76,7 +58,7 @@ export const IndividualRegistration = () => {
     },
     validateOnBlur: true,
     onSubmit,
-    validationSchema: validationSchema,
+    validationSchema: RegistrationSchema,
   });
 
   return (
