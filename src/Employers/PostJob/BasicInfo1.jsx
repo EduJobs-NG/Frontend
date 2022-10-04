@@ -39,13 +39,7 @@ export const BasicInfo1 = ({ formData, setFormData, prevStep, nextStep }) => {
 
   return (
     <section>
-      <div className="mb-[3rem]">
-        <h1 className="font-[700] text-2xl">Post Jobs</h1>
-        <p>
-          Kindly fill in the following fields to post available jobs on EduJobs
-          NG
-        </p>
-      </div>
+   
       <Formik>
         <Form onSubmit={formik.handleSubmit}>
           <div>
