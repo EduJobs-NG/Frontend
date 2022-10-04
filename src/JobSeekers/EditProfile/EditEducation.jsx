@@ -14,7 +14,7 @@ import useAxios from '../../utils/useAxios';
 const validationSchema = Yup.object({
   
   })
-export const EditEducation = ({setShowEdit, setActive, item}) => {
+export const EditEducation = ({setShowEdit, item}) => {
   const {authTokens, getUserMeHandler } = useContext(AuthContext);
   const {school_name, degree, grade, educational_level, start_of_education, study_summary, end_of_education} = item;
   const [isLoading, setIsLoading] = useState(false);
@@ -32,8 +32,7 @@ export const EditEducation = ({setShowEdit, setActive, item}) => {
       setIsLoading(false)
       setShowEdit(false)
       toast.success('Your changes have been successfully saved')
-      getUserMeHandler()
-      setActive(1)
+      
       console.log(response)
     
 

@@ -1,10 +1,12 @@
 import React from 'react';
 import { FaTimes } from 'react-icons/fa';
 import { Markup } from 'interweave';
+import Moment from 'moment';
 
 export const PreviewJobPost = ({formData, setShowPreview}) => {
   const {summary, title, organization_name, requirements, job_type, deadline, 
     min_pay_range, max_pay_range, location} = formData;
+    const deadlineDate = Moment(deadline).format('MMM DD YYYY')
   return (
     <section className='bg-white relative '>
       <FaTimes
@@ -29,7 +31,7 @@ export const PreviewJobPost = ({formData, setShowPreview}) => {
         <div className='mt-[1rem]'>
         <p>Job type: {job_type}</p>
         <p>Salary: #{min_pay_range} to #{max_pay_range} </p>
-        <p>Application Deadline: {deadline}</p>
+        <p>Application Deadline: {deadlineDate}</p>
         </div>
      
 

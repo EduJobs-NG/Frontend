@@ -49,6 +49,7 @@ export const AuthProvider = ({children}) => {
 
     const logOutUser = () =>{
           localStorage.removeItem('authTokens')
+          localStorage.removeItem('user')
           navigate('/jobseeker/login')
       }
       

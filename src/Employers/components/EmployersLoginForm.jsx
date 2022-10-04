@@ -6,7 +6,6 @@ import {
   FaEnvelope,
   FaTimes,
 } from "react-icons/fa";
-import * as Yup from "yup";
 import { useFormik, Formik, Form } from "formik";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
@@ -23,7 +22,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 export const EmployersLoginForm = ({ setShowLogin, showModal }) => {
-  const { setUser, setAuthTokens } = useContext(AuthContext);
+  const { setAuthTokens } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const onSubmit = async (values) => {

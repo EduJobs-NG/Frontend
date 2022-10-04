@@ -1,28 +1,25 @@
 import React, { useContext, useEffect, useState } from "react";
 import { FormInputBox } from "../../components/Forms/FormInputBox";
-import AuthContext from "../../context/AuthContext";
 import * as Yup from "yup";
 import { useFormik, Formik, Form } from "formik";
-import axios from "axios";
 import { ThreeDots } from "react-loader-spinner";
-import { FaBars, FaTimes } from "react-icons/fa";
+import {FaTimes } from "react-icons/fa";
 import CustomSelect from "../../components/Forms/CustomSelect";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useAxios from "../../utils/useAxios";
 
+const today = new Date();
 const validationSchema = Yup.object({
   school_name: Yup.string().required("Required"),
   degree: Yup.string().required("Required"),
   educational_level: Yup.string().required("Required"),
   grade: Yup.string().required("Required"),
-  start_of_education: Yup.date().required("Required"),
-  end_of_education: Yup.date().required("Required"),
+  start_of_education: Yup.date().required("Required").max(today, "Start date can't be in the fututre"),
+  end_of_education: Yup.date().required("Required").min(today, "End date can't be in the past"),
   study_summary: Yup.string().required("Required"),
 });
-export const AddEducation = ({ setShowEducation, setActive }) => {
-  const { user, authTokens, updateUser, getUserMeHandler } =
-    useContext(AuthContext);
+export const AddEducation = ({ setShowEducation, education }) => {
   const api = useAxios();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -41,8 +38,7 @@ export const AddEducation = ({ setShowEducation, setActive }) => {
       setIsLoading(false);
       setShowEducation(false);
       toast.success("Your changes have been successfully saved");
-      updateUser("professional_info", [response.data]);
-      setActive(1);
+      education.push(response.data);
       console.log(response);
     }
   };
@@ -62,9 +58,10 @@ export const AddEducation = ({ setShowEducation, setActive }) => {
   });
   return (
     <>
-      <ToastContainer />
+     
 
       <div className="justify-center items-center  flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+         <ToastContainer />
         <div className="relative w-full mt-[20rem] md:mt-[4rem] my-6 mx-3 max-w-5xl">
           {/*content*/}
           <div className="border-0  rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">

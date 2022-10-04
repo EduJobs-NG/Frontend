@@ -64,10 +64,7 @@ export const ActivateAccount = () => {
           navigate('/employer/login');
         }, 2000)
       }
-   
-
     }
-
 
   }
 

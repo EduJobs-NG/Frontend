@@ -6,7 +6,7 @@ import EditIcon2 from '../../assets/EditIcon2.png'
 import DeleteIcon from '../../assets/DeleteIcon.png';
 import { DeleteEducation } from '../DeleteProfile/DeleteEducation';
 import { EditEducation } from './EditEducation';
-
+import Moment from 'moment'
 
 export const ProfessionalInfo = ({setActive}) => {
   const [showEducation, setShowEducation] = useState(false)
@@ -27,9 +27,9 @@ export const ProfessionalInfo = ({setActive}) => {
 
   return (
     <section>
-      {showEducation && <AddEducation setActive={setActive} getUserMeHandler={getUserMeHandler} showEducation={showEducation} setShowEducation={setShowEducation} />}
-      {showDelete && <DeleteEducation setActive={setActive}  setShowDelete={setShowDelete} getUserMeHandler={getUserMeHandler} item={selectedItem} />}
-      {showEdit && <EditEducation setActive={setActive}  setShowEdit={setShowEdit} getUserMeHandler={getUserMeHandler} item={selectedItem} />}
+      {showEducation && <AddEducation  education={education} showEducation={showEducation} setShowEducation={setShowEducation} />}
+      {showDelete && <DeleteEducation  setShowDelete={setShowDelete} getUserMeHandler={getUserMeHandler} item={selectedItem} />}
+      {showEdit && <EditEducation  setShowEdit={setShowEdit} getUserMeHandler={getUserMeHandler} item={selectedItem} />}
 
 
       <h1 className='text-xl font-[700]'>Your Education</h1>
@@ -37,7 +37,9 @@ export const ProfessionalInfo = ({setActive}) => {
 
 
       {education && education.map((item) => {
-        const { id, degree, school_name, start_of_education, end_of_education, grade } = item
+        const { id, degree, school_name, start_of_education, end_of_education, grade } = item;
+        const start_education = Moment(start_of_education).format('MMM YYYY')
+        const end_education = Moment(end_of_education).format('MMM YYYY')
         return (
           <div key={id} className='relative border mt-[1rem] px-[0.5rem] md:px-[2rem] py-[1rem] rounded-lg border-[#808080]'>
             <div className='absolute right-5'>
@@ -49,7 +51,7 @@ export const ProfessionalInfo = ({setActive}) => {
             </div>
             <h1 className='text-xl font-[700]'>{degree}</h1>
             <p className='text-[1rem] font-[500]'>{school_name}</p>
-            <p className='text-[1rem] font-[500]'>{start_of_education} - {end_of_education}</p>
+            <p className='text-[1rem] font-[500]'>{start_education} - {end_education}</p>
             <p className='text-[1rem] font-[500]'>{grade}</p>
             <p>{item.study_summary}</p>
 

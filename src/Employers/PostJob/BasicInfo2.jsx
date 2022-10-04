@@ -6,15 +6,10 @@ import * as Yup from "yup";
 import { PreviewJobPostPopUp } from "./PreviewJobPostPopUp";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import Moment from 'moment';
 
-const formatDate = Moment().format('DD-MMM-YYYY')
-console.log(formatDate)
-
-
+const today = new Date()
 const validationSchema = Yup.object({
-  currentDate:Yup.date(),
-  deadline: Yup.string().required("Required").min(formatDate),
+  deadline: Yup.date().required("Required").min(today, "End date can't be in the past"),
 });
   
 
