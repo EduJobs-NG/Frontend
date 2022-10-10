@@ -64,7 +64,7 @@ export const Credentials = () => {
         )
       })}
 
-      <div className='mt-[3rem] items-baseline gap-3 text-center flex flex-row justify-center'>
+      <div className={credentials.length === 3 ? 'hidden': 'mt-[3rem] items-baseline gap-3 text-center flex flex-row justify-center'}>
         <div>
           <img src={AddIcon} alt="" />
         </div>
