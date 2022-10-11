@@ -4,7 +4,7 @@ import { getStoredUser, storeUser } from "../storage/localStorage";
 import useAxios from "../utils/useAxios";
 const AuthContext = createContext({
   authTokens:localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')):null, 
-setAuthTokens:(_) => {},
+    setAuthTokens:(_) => {},
  
   user:'', setUser:(_) => {}, 
   logOutUser:(_) => {}, loading:'', setLoading:(_) => {},
@@ -15,13 +15,17 @@ export default AuthContext;
 
 
 export const AuthProvider = ({children}) => {
-  const api = useAxios();
+    const api = useAxios();
     const navigate = useNavigate();
     const [user, setUser] = useState(getStoredUser())
     const [loading, setLoading] = useState(false)
     const [isError, setIsError] = useState(false)
     const [authTokens, setAuthTokens] = useState(localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')):null)
     
+
+    // const getCV = async () =>{
+
+    // }
     
     const getUserMeHandler = async () =>{
       setLoading(true)
