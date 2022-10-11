@@ -48,13 +48,13 @@ export const LoginForm = ({ setShowLogin, showModal }) => {
       });
 
       if (response && response.data) {
-        console.log(response.data)
-        setAuthTokens(response.data.access);
         localStorage.setItem("authTokens", JSON.stringify(response.data));
         const userType = jwtDecode(response.data.access)
        
         if (userType.is_jobseeker === true){
         navigate('/dashboard/find-jobs');
+        setAuthTokens(response.data.access);
+
         }
         else {
           toast.error('You are not registered as a job seeker')

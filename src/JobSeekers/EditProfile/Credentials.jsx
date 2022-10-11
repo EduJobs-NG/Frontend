@@ -57,9 +57,8 @@ export const Credentials = () => {
         <div className="border relative mt-[0.5rem] px-[2rem] py-[1rem] rounded-lg border-[#808080]">
         <div className="absolute right-5">
                 <div className="flex flex-row justify-end gap-6 ">
-               
-                  <FaPencilAlt onClick={()=> editCVHandler()} className="text-blue cursor-pointer"
-                    />
+               <p onClick={()=> editCVHandler()} className="text-blue cursor-pointer">Edit</p>
+                  {/* <FaPencilAlt onClick={()=> editCVHandler()} className="text-blue cursor-pointer"/> */}
                   {/* <FaTrash
                     className="cursor-pointer text-blue ml-5 md:ml-0"
                     

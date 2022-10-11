@@ -46,9 +46,9 @@ export const AuthProvider = ({children}) => {
       }
     }
 
-    useEffect(() =>{
-      getUserMeHandler()
-    }, [])
+    // useEffect(() =>{
+    //   getUserMeHandler()
+    // }, [])
     
 
     const logOutUser = () =>{
