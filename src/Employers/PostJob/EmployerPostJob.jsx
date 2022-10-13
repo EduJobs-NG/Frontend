@@ -1,5 +1,5 @@
 import React from "react";
-import { EmployersNavbar } from "../LoggedIn/EmployersNavbar";
+import { EmployersNavbar } from "../LoggedInComponents/EmployersNavbar";
 import img from "../../assets/post-job.png";
 import { JobForm } from "./JobForm";
 

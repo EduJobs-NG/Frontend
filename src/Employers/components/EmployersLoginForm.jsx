@@ -54,7 +54,7 @@ export const EmployersLoginForm = ({ setShowLogin, showModal }) => {
       if (userType.is_employee === true){
       localStorage.setItem("authTokens", JSON.stringify(response.data));
       setAuthTokens(response.data.access);
-      navigate('/employer/dashboard');
+      navigate('/employer/dashboard/view-jobs');
       }
       else {
         toast.error('You are not registered as an employer')

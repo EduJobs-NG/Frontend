@@ -24,10 +24,10 @@ export const JobseekerProfile = () => {
     }
   }
   
-  // useEffect(() =>{
-  //     getUserMeHandler();
+  useEffect(() =>{
+      getUserMeHandler();
      
-  //   }, [])
+    }, [])
 
   return (
     <>

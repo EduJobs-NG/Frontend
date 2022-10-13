@@ -108,7 +108,7 @@ export const BasicInfo1 = ({ formData, setFormData, prevStep, nextStep }) => {
               })}
             </div>
 
-            <div className="">
+            <div className="hidden">
               {jobTypeOptions.map((item) => {
                 const { option } = item;
                 return (

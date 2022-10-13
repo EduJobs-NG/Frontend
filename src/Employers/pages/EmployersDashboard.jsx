@@ -1,6 +1,6 @@
 import React from 'react'
-import { EmployersNavbar } from '../LoggedIn/EmployersNavbar'
-import { EmployerHeader } from '../LoggedIn/EmployerHeader'
+import { EmployersNavbar } from '../LoggedInComponents/EmployersNavbar'
+import { EmployerHeader } from '../LoggedInComponents/EmployerHeader'
 export const EmployersDashboard = () => {
 
   return (

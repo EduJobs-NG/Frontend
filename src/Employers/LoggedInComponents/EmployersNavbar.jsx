@@ -37,7 +37,7 @@ export const EmployersNavbar = () => {
         <div className="flex  py-[1rem] items-center flex-row justify-between">
           <ul className="flex gap-x-[3rem] text-white flex-row">
             <li className=''>
-            <NavLink to="/employer/dashboard">
+            <NavLink to="/employer/dashboard/view-jobs">
                 <img src={logo} className='w-[150px]' alt="" />
                 </NavLink>
             </li>
@@ -57,7 +57,7 @@ export const EmployersNavbar = () => {
           </ul>
 
           <ul className='hidden xl:flex flex-row items-center text-white gap-x-[2rem]'>
-          <a href='/employer/post-job'>
+          <a href='/employer/dashboard/post-job'>
           <li  className='p-1 cursor-pointer px-4 font-[700] border border-solid bg-white text-blue border-white rounded'>
              POST JOB
               </li>

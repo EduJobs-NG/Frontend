@@ -19,7 +19,8 @@ module.exports = {
        feature:' 4px 4px 8px 0px #62626240'
       },
       colors:{
-        blue: "#02378B"
+        blue: "#02378B",
+        gray: '#808080'
       },
       backgroundImage:{
         hero:'url("/src/assets/homeImage.png")',

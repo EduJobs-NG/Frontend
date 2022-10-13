@@ -50,8 +50,8 @@ function App() {
     {/* employers */}
       <Route element={<EmployerRoute />}>
         <Route path="/employer/dashboard/"  element={<EmployersDashboard />} />
-        <Route path="/employer/post-job"  element={<EmployerPostJob />} />
-        <Route path="/employer/view-jobs"  element={<EmployerViewJobs />} />
+        <Route path="/employer/dashboard/post-job"  element={<EmployerPostJob />} />
+        <Route path="/employer/dashboard/view-jobs"  element={<EmployerViewJobs />} />
         
         
       </Route>

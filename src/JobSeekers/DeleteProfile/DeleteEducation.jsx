@@ -7,7 +7,7 @@ import useAxios from "../../utils/useAxios";
 
 export const DeleteEducation = ({ setShowDelete, credentials, item }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const {updateUser } = useContext(AuthContext);
+  const {updateUser, getUserMeHandler } = useContext(AuthContext);
   const api = useAxios();
   const handleDelete = async () => {
     setIsLoading(true);
@@ -22,8 +22,6 @@ export const DeleteEducation = ({ setShowDelete, credentials, item }) => {
     if (response) {
       setIsLoading(false);
       setShowDelete(false);
-      updateUser("professional_info", response.data);
-      // credential
       console.log(response);
     }
   };
