@@ -4,22 +4,32 @@ import useAxios from '../../utils/useAxios';
 import { ThreeDots } from "react-loader-spinner";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {Formik, Form, Field, ErrorMessage} from 'formik'
+import { Markup } from 'interweave';
+import { Link } from "react-router-dom";
 
-export const SearchJobs = () => {
+
+export const SearchJobs = ({setShowSearchJobs, setShowRecentJobs}) => {
     const [jobs, setJobs] = useState([]);
-    const[searchKeyword, setSearchKeyword] = useState('')
+    const [selectedJob, setSelectedJob] = useState(null);
+    const [searchKeyword, setSearchKeyword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
     const [nextURL, setNextURL] = useState();
     const [prevURL, setPrevURL] = useState();
-    const api = useAxios()
+    const api = useAxios();
+    const handleView = (id) => {
+        if (selectedJob === id) {
+          return setSelectedJob(null);
+        }
+        setSelectedJob(id);
+      };
     const handleJobSearch = async () => {
         if(searchKeyword.trim().length === 0){
             toast.error('Please enter a search keyword')
         }
         else{
+        setShowRecentJobs(false)
         setIsLoading(true);
         const response = await api
           .get(`jobseeker/job-list?search=${searchKeyword}`)
@@ -37,6 +47,8 @@ export const SearchJobs = () => {
           });
     
         if (response && response.data) {
+          setShowRecentJobs(false)
+          setShowSearchJobs(true)
           setError(false);
           setSearchKeyword('');
           console.log(response)
@@ -88,6 +100,64 @@ export const SearchJobs = () => {
               </div>}
            
           </div>
+          {jobs &&
+          <h2 className="text-blue my-[1rem] font-[700] text-[1.5rem]">
+            Search results for {searchKeyword}
+          </h2>}
+
+          {(!isLoading && jobs.length) === 0 && (
+            <p>No Jobs</p>
+          )}
+          {jobs &&
+            jobs.map((job) => {
+              const { id } = job;
+              // console.log(job.applied)
+              return (
+                <div
+                  key={job.id}
+                  className="relative md:mx-[1rem] my-[2rem]  py-[1.2rem] border bg-white border-[#d9d9d9] px-[1.2rem] rounded-[20px]"
+                >
+                  <h2 className="font-[700] text-[1.2rem]">{job.title}</h2>
+                  <p className="font-[500]">{job.organization_name}</p>
+                  <p className="font-[500]">{job.location}</p>
+                  <p className="mt-[0.5rem] mb-[1.2rem]">
+                    {selectedJob === id
+                      ? `${job.summary}`
+                      : `${job.summary.substring(0, 250)}...`}
+                  </p>
+                  <p className="absolute  left-5 bottom-[0.5rem]">
+                    {job.posted_time}
+                  </p>
+                  <p
+                    onClick={() => handleView(id)}
+                    className="cursor-pointer font-[600] absolute text-blue right-5 bottom-[0.5rem]"
+                  >
+                    {selectedJob === id ? "View Less" : "View More"}
+                  </p>
+                  {selectedJob === id && (
+                    <div className="my-[1rem]">
+                      <h1 className="font-[700]">Requirements</h1>
+
+                      <div>
+                        {job.requirements
+                          ? <Markup content={job.requirements} />
+                          : "No requirements from the organization"}
+                      </div>
+                      <div className="grid w-full  my-[2rem] md:mt-[3rem] place-items-center">
+                        <Link to={`/dashboard/apply/job/${id}`}>
+                          <button disabled={job.applied === true}
+                            className={job.applied === true ? "bg-blue uppercase opacity-25 w-full md:w-[300px] px-[5rem] text-white rounded-[5px] p-2": "bg-blue uppercase opacity-100 w-full md:w-[300px] px-[5rem] text-white rounded-[5px] p-2"}
+                            type="submit"
+                          >
+                            {job.applied === true ? 'APPLIED' : 'APPLY'}
+                          </button>
+                        </Link>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
 
     </div>
     </section>

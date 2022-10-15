@@ -8,7 +8,8 @@ import { Error } from "../../components/Error";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { Markup } from 'interweave';
 
-export const RecentJobs = () => {
+
+export const RecentJobs = ({setShowRecentJobs}) => {
   const [jobs, setJobs] = useState([]);
   const [selectedJob, setSelectedJob] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
