@@ -51,6 +51,7 @@ export const EmployersLoginForm = ({ setShowLogin, showModal }) => {
 
     if (response && response.data) {
       const userType = jwtDecode(response.data.access)
+      console.log(userType)
       if (userType.is_employee === true){
       localStorage.setItem("authTokens", JSON.stringify(response.data));
       setAuthTokens(response.data.access);

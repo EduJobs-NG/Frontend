@@ -20,7 +20,8 @@ module.exports = {
       },
       colors:{
         blue: "#02378B",
-        gray: '#808080'
+        grey: '#808080',
+        ash:'#f5f5f5'
       },
       backgroundImage:{
         hero:'url("/src/assets/homeImage.png")',

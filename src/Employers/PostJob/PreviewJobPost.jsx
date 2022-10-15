@@ -1,11 +1,50 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { FaTimes } from 'react-icons/fa';
 import { Markup } from 'interweave';
 import Moment from 'moment';
+import useAxios from '../../utils/useAxios'
+import { useNavigate } from "react-router-dom";
+import { ThreeDots } from "react-loader-spinner";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const PreviewJobPost = ({formData, setShowPreview}) => {
   const {summary, title, organization_name, requirements, job_type, deadline, 
     min_pay_range, max_pay_range, location} = formData;
+  const [isLoading, setIsLoading] = useState(false);
+  const api = useAxios()
+
+
+  const navigate = useNavigate();
+  const handleSubmission = async () => {
+      setIsLoading(true);
+      const data = new FormData();
+      data.append('title', title)
+      data.append('summary', summary)
+      data.append('requirements', requirements)
+      data.append('job_type', job_type)
+      data.append('deadline', deadline)
+      data.append('min_pay_range', min_pay_range)
+      data.append('max_pay_range', max_pay_range)
+      data.append('location', location)
+      // data.append('job', job)
+    
+        const response = await api.post(`/employer/jobs/{id}/application/`, data)
+        .catch((err) => {
+          console.log(err);
+          toast.error(err.message);
+          setIsLoading(false);
+        });
+  
+      if (response) {
+        setIsLoading(false);
+        console.log(response);
+        setShowPreview(true)
+        setTimeout(() => {
+          navigate('/dashboard/find-jobs')
+        }, 5000)
+      }
+    }
     
     const deadlineDate = Moment(deadline).format('MMM DD YYYY')
   return (
@@ -35,6 +74,7 @@ export const PreviewJobPost = ({formData, setShowPreview}) => {
         <p>Application Deadline: {deadlineDate}</p>
         </div>
      
+     <button onClick={handleSubmission}>Submit</button>
 
       </div>
     </section>

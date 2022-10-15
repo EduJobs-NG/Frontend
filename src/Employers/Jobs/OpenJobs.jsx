@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import img from "../../assets/jobs-2.png";
 import useAxios from "../../utils/useAxios";
 import {JobDetailPopup} from './JobDetailPopup'
 import { SearchJobs } from "./SearchJobs";
+import AuthContext from "../../context/AuthContext";
 
 export const OpenJobs = () => {
+  const {employerUser} = useContext(AuthContext)
   const [isLoading, setIsLoading] = useState(false);
   const [openJobs, setOpenJobs] = useState([]);
   const [showJobDetail, setShowJobDetail] = useState(false)
   const api = useAxios();
   const getOpenJobs = async () => {
     setIsLoading(true);
-    const response = await api.get(`/employer/jobs/open/`).catch((err) => {
+    const response = await api.get(`/employer/users/me/`).catch((err) => {
       console.log(err);
     });
 
@@ -27,6 +29,7 @@ export const OpenJobs = () => {
 
   return (
     <section className="container pt-[4rem] mx-auto">
+      {employerUser.first_name}
       <SearchJobs />
       {showJobDetail && <JobDetailPopup setShowJobDetail={setShowJobDetail} />}
       <div className="bg-white rounded-[1rem] px-[2rem] py-[1rem] grid lg:grid-cols-4 gap-[2rem]">

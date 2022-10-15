@@ -26,7 +26,7 @@ export const EmployerHeader = () => {
                 <a href="/employer/candidates">Candidates</a>
               </li>
               <li className="">
-                <a href="/employer/interview">Candidates</a>
+                <a href="/employer/interview">Interviews</a>
               </li>
             </ul>
           </div>

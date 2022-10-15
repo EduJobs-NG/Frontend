@@ -9,11 +9,12 @@ import {navigation} from '../../data';
 import { FaCaretDown } from 'react-icons/fa';
 
 export const JobseekerNavbar = () => {
-  const {user, logOutUser} = useContext(AuthContext)
+  const {user, logOutUser, getUserMeHandler} = useContext(AuthContext)
   const {logo} = navigation;
   useEffect(() => {
     Aos.init();
     Aos.refresh();
+    getUserMeHandler();
   }, []);
   const [menu, setMenu] = useState(false);
   const [active, setActive] = useState(false);
@@ -37,9 +38,9 @@ export const JobseekerNavbar = () => {
         <div className="flex  py-[1rem] items-center flex-row justify-between">
           <ul className="flex gap-x-[3rem] text-white flex-row">
             <li className=''>
-            <NavLink to="/dashboard/find-jobs">
+            <a href="/dashboard/find-jobs">
                 <img src={logo} className='w-[150px]' alt="" />
-                </NavLink>
+                </a>
             </li>
             <div className='hidden uppercase xl:flex gap-x-[3rem]'>
 

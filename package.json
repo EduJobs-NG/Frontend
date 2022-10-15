@@ -1,6 +1,7 @@
 {
   "name": "edujobs",
   "version": "0.1.0",
+  "homepage":"http://test.edujobsng.com",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",

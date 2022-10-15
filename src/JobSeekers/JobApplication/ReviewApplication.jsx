@@ -60,7 +60,7 @@ export const ReviewApplication = ({ formData, prevStep, setStep }) => {
           >
             Edit
           </p>
-          <a className="text-blue underline">
+          <a href={resume.name} className="text-blue underline">
             {resume.name}
           </a>
         </div>

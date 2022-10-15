@@ -9,11 +9,12 @@ import {navigation} from '../../data';
 import { FaCaretDown } from 'react-icons/fa';
 
 export const EmployersNavbar = () => {
-  const {user, logOutUser} = useContext(AuthContext)
+  const {user, logOutEmployerUser, getEmployerUser} = useContext(AuthContext)
   const {logo} = navigation;
   useEffect(() => {
     Aos.init();
     Aos.refresh();
+    getEmployerUser();
   }, []);
   const [menu, setMenu] = useState(false);
   const [active, setActive] = useState(false);
@@ -84,7 +85,7 @@ export const EmployersNavbar = () => {
                      <a>View Profile</a>   
                         </li>
                       <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Settings</li>
-                      <li onClick={logOutUser} className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Log out</li>
+                      <li onClick={ logOutEmployerUser} className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Log out</li>
                     </ul>
                   </div>
                   }
@@ -107,7 +108,7 @@ export const EmployersNavbar = () => {
                      <a href="">View Profile</a>   
                         </li>
                       <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Settings</li>
-                      <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Log out</li>
+                      <li onClick={logOutEmployerUser} className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Log out</li>
                     </ul>
                   </div>
                   }
