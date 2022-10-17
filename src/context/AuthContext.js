@@ -59,7 +59,7 @@ export const AuthProvider = ({children}) => {
       })
    
       if (response && response.data){
-        console.log(response.data)
+        // console.log(response.data)
         setEmployerUser(response.data)
         storeEmployerUser(response.data)
         setLoading(false);

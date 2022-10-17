@@ -1,10 +1,9 @@
 import React from "react";
 import { SearchCandidate } from "../candidates/SearchCandidate";
-import {NavLink} from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
-
-const activeLink = 'border-b border-b-4 font-[700] border-b-blue text-blue';
-  const normalLink = 'border-none text-gray';
+const activeLink = "border-b border-b-4 font-[700] border-b-blue text-blue";
+const normalLink = "border-none text-gray";
 export const EmployerHeader = () => {
   return (
     <section className="bg-white">
@@ -13,29 +12,40 @@ export const EmployerHeader = () => {
           <div>
             <ul className="flex  gap-[3rem] flex-row">
               <li className="">
-              <a href="/employer/dashboard/view-jobs">
-                <NavLink className={({isActive}) => (isActive ? activeLink : normalLink)} to="/employer/dashboard/view-jobs">
-                Jobs
-                </NavLink>
-                
+                <a href="/employer/dashboard/view-jobs">
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? activeLink : normalLink
+                    }
+                    to="/employer/dashboard/view-jobs"
+                  >
+                    Jobs
+                  </NavLink>
                 </a>
-
-                
               </li>
-              <li className="">
+              {/* <li className="">
                 <a href="/employer/candidates">Candidates</a>
               </li>
               <li className="">
                 <a href="/employer/interview">Interviews</a>
-              </li>
+              </li> */}
             </ul>
           </div>
 
-          <div>
+          {/* <div>
            <SearchCandidate />
+          </div> */}
+
+          <div>
+
+          <a href="/employer/dashboard/post-job">
+            <li className="p-1 cursor-pointer px-4 font-[700] border border-solid bg-white text-blue border-white rounded">
+              POST JOB
+            </li>
+          </a>
           </div>
+
         </div>
-   
       </div>
     </section>
   );

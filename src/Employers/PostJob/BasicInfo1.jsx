@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 import { FormInputBox } from "../../components/Forms/FormInputBox";
-import { Formik, Field, Form, useFormik } from "formik";
+import { Formik, Field, ErrorMessage, Form, useFormik } from "formik";
 import * as Yup from "yup";
 import {  FaArrowRight, FaPlus, FaCheck } from "react-icons/fa";
 
 const validationSchema = Yup.object({
-  // title: Yup.string().required("Required"),
-  // organization_name: Yup.string().required("Required"),
-  // location: Yup.string().required("Required"),
-  // job_type: Yup.string().required("Required"),
+  title: Yup.string().required("Required"),
+  organization_name: Yup.string().required("Required"),
+  location: Yup.string().required("Required"),
+  job_type: Yup.string().required("Required"),
+  min_pay_range: Yup.string().required("Required"),
+  max_pay_range: Yup.string().required("Required"),
 });
 
 const jobTypeOptions = [
-  { id: 1, option: "Full time" },
-  { id: 2, option: "Part time" },
+  { id: 1, option: "Full-time" },
+  { id: 2, option: "Part-time" },
   { id: 3, option: "Contract" },
   { id: 4, option: "Temporary" },
   { id: 5, option: "Permanent" },
@@ -53,6 +55,9 @@ export const BasicInfo1 = ({ formData, setFormData, prevStep, nextStep }) => {
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
             />
+                        {formik.touched.title && formik.errors.title ? (
+              <small className="text-red-600">{formik.errors.title}</small>
+            ) : null}
           </div>
           <div className="mt-[1rem]">
             <FormInputBox
@@ -65,6 +70,9 @@ export const BasicInfo1 = ({ formData, setFormData, prevStep, nextStep }) => {
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
             />
+                         {formik.touched.organization_name && formik.errors.organization_name ? (
+              <small className="text-red-600">{formik.errors.organization_name}</small>
+            ) : null}
           </div>
 
           <div className="mt-[1rem]">
@@ -78,6 +86,9 @@ export const BasicInfo1 = ({ formData, setFormData, prevStep, nextStep }) => {
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
             />
+                         {formik.touched.location && formik.errors.location ? (
+              <small className="text-red-600">{formik.errors.location}</small>
+            ) : null}
           </div>
           <div className="mt-[1rem]">
             <p>Job Type</p>
@@ -106,6 +117,9 @@ export const BasicInfo1 = ({ formData, setFormData, prevStep, nextStep }) => {
                   </div>
                 );
               })}
+                         {formik.touched.job_type && formik.errors.job_type ? (
+              <small className="text-red-600">{formik.errors.job_type}</small>
+            ) : null}
             </div>
 
             <div className="hidden">
@@ -142,7 +156,12 @@ export const BasicInfo1 = ({ formData, setFormData, prevStep, nextStep }) => {
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
                 />
+                
+                      {formik.touched.min_pay_range && formik.errors.min_pay_range ? (
+              <small className=" text-red-600">{formik.errors.min_pay_range}</small>
+            ) : null}
                 <p className="ml-[1rem]">to</p>
+          
               </div>
 
               <div className="flex flex-row items-baseline">
@@ -156,6 +175,9 @@ export const BasicInfo1 = ({ formData, setFormData, prevStep, nextStep }) => {
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
                 />
+                  {formik.touched.max_pay_range && formik.errors.max_pay_range ? (
+              <small className="text-red-600">{formik.errors.max_pay_range}</small>
+            ) : null}
                 <p className="ml-[1rem]">/month</p>
               </div>
             </div>

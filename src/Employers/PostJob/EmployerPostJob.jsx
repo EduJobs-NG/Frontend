@@ -15,7 +15,20 @@ export const EmployerPostJob = () => {
             <div className="absolute top-0 left-0 right-0 bottom-0 bg-blue opacity-50 "></div>
           </div>
 
-          <div className=" mt-[2rem] hidden md:block md:w-1/2">
+          <div className=" mt-[2rem]  md:w-1/2">
+            <div className="mb-[3rem] container mx-auto">
+              <h1 className="font-[700] text-2xl">Post Jobs</h1>
+              <p>
+                Kindly fill in the following fields to post available jobs on
+                EduJobs NG
+              </p>
+            </div>
+            <div className="container mx-auto md:mx-0">
+            <JobForm />
+
+            </div>
+          </div>
+          {/* <div className="container my-[1rem] mx-auto md:hidden">
             <div className="mb-[3rem]">
               <h1 className="font-[700] text-2xl">Post Jobs</h1>
               <p>
@@ -24,17 +37,7 @@ export const EmployerPostJob = () => {
               </p>
             </div>
             <JobForm />
-          </div>
-          <div className="container my-[1rem] mx-auto md:hidden">
-            <div className="mb-[3rem]">
-              <h1 className="font-[700] text-2xl">Post Jobs</h1>
-              <p>
-                Kindly fill in the following fields to post available jobs on
-                EduJobs NG
-              </p>
-            </div>
-            <JobForm />
-          </div>
+          </div> */}
         </div>
       </section>
     </>

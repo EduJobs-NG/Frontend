@@ -11,7 +11,7 @@ export const PreviewJobPostPopUp = ({ formData, setShowPreview }) => {
           <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
             {/*header*/}
             <div className="flex items-start justify-between p-1  rounded-t">
-            <div className="p-6 relative   flex-auto">
+            <div className="p-[3rem] relative   flex-auto">
               <PreviewJobPost formData={formData} setShowPreview={setShowPreview}  />
             </div>
           </div>

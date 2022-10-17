@@ -8,7 +8,7 @@ import { Markup } from 'interweave';
 import { Link } from "react-router-dom";
 
 
-export const SearchJobs = ({setShowSearchJobs, setShowRecentJobs}) => {
+export const SearchJobs = ({setShowSearchJobs, showSearchJobs, setShowRecentJobs}) => {
     const [jobs, setJobs] = useState([]);
     const [selectedJob, setSelectedJob] = useState(null);
     const [searchKeyword, setSearchKeyword] = useState('');
@@ -80,15 +80,6 @@ export const SearchJobs = ({setShowSearchJobs, setShowRecentJobs}) => {
         </div>
         
       </div>
-
-      {/* <div className='bg-white  hover:border-[#fff]  transition-all px-[2rem] py-[0.3rem] w-full border rounded-[5px] border-[#808080] flex flex-row justify-start items-center gap-2 '>
-        <p className='text-blue font-[700]'>Location</p>
-        <div className='bg-[#000] ml-[0.5rem] h-[2rem] w-[3px]'></div>
-        <div>
-        <FormInputBox placeholder='Search keyword' className="border-none p-2.5 block w-full    border-[#808080] outline-none" />
-        </div>
-        
-      </div> */}
       </div>
       <div className='grid mt-[2rem] md:mt-[3rem]  place-items-center'>
            {!isLoading && <button onClick={handleJobSearch} className='bg-blue uppercase opacity-100 w-full md:w-[300px] px-[5rem] text-white rounded-[5px] p-2' type="submit">Search Jobs</button> }
@@ -100,12 +91,15 @@ export const SearchJobs = ({setShowSearchJobs, setShowRecentJobs}) => {
               </div>}
            
           </div>
-          {jobs &&
+
+          {showSearchJobs && (<>
+          
+          
           <h2 className="text-blue my-[1rem] font-[700] text-[1.5rem]">
             Search results for {searchKeyword}
-          </h2>}
+          </h2>
 
-          {(!isLoading && jobs.length) === 0 && (
+          {( jobs.length) === 0 && (
             <p>No Jobs</p>
           )}
           {jobs &&
@@ -158,6 +152,7 @@ export const SearchJobs = ({setShowSearchJobs, setShowRecentJobs}) => {
                 </div>
               );
             })}
+            </>)}
 
     </div>
     </section>

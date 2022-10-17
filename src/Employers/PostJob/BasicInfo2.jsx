@@ -10,6 +10,9 @@ import "react-quill/dist/quill.snow.css";
 const today = new Date()
 const validationSchema = Yup.object({
   deadline: Yup.date().required("Required").min(today, "End date can't be in the past"),
+  summary: Yup.string().required("Required"),
+  requirements: Yup.string().required("Required"),
+
 });
   
 
@@ -69,6 +72,9 @@ export const BasicInfo2 = ({ formData, setFormData, prevStep, nextStep }) => {
          
 
             <ReactQuill theme="snow" value={value} onChange={setValue} />
+            {formik.touched.requirements && formik.errors.requirements ? (
+              <small className="text-red-600">{formik.errors.requirements}</small>
+            ) : null}
           </div>
 
           <div className="mt-[3rem]">

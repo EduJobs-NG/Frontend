@@ -1,41 +1,36 @@
 import React from 'react'
-import { FaTimes } from 'react-icons/fa'
-export const JobDetail = ({setShowJobDetail}) => {
+import { FaTimes } from 'react-icons/fa';
+import { Markup } from 'interweave';
+
+export const JobDetail = ({job, setShowJobDetail}) => {
   return (
     <section className='bg-white relative '>
       <FaTimes
               onClick={() => setShowJobDetail(false)}
               className="text-blue text-[1.3rem]  cursor-pointer absolute right-5 top-"
             />
-      <h1 className='font-[700] text-2xl'>Job Preview</h1>
-      <p className='pb-[1rem]'>Here’s a preview of how people might view your job</p>
+      <h1 className='font-[700] text-2xl'>Job Details</h1>
+      {/* <p className='pb-[1rem]'>Here’s a preview of how people might view your job</p> */}
       <hr  className='text-[#808080] '/>
 
       <div className='mt-[1rem]'>
-        <h1 className='font-[700] text-xl'>Chemistry Teacher</h1>
-        <p>Stars College</p>
-        <p>Ikorodu, Lagos.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Malesuada neque, dolor in nibh aliquet donec lectus sapien. Ultricies gravida egestas diam risus phasellus. Ipsum sit tortor ultrices quam. Ipsum nunc sed lorem nunc, in odio amet.</p>
+        <h1 className='font-[700] text-xl'>{job?.title}</h1>
+        <p>{job?.organization_name}</p>
+        <p>{job?.location}</p>
+        <p>{job?.summary}</p>
 
 
         <div className='mt-[1rem]'>
             <p className='font-[700]'>Requirements:</p>
-            {/* <Markup content={requirements} />  */}
-            <ol>
-                <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi ratione, ipsum eligendi nisi aut inventore. Perferendis inventore veritatis fuga reiciendis.
-
-                </li>
-                <li>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, officiis.
-                </li>
-            </ol>
+            <Markup content={job?.requirements} /> 
+        
 
              </div>
 
         <div className='mt-[1rem]'>
-        <p>Job type:Full Time </p>
-        <p>Salary: 500,000 </p>
-        <p>Application Deadline: Oct 20 2002</p>
+        <p>Job type: {job?.job_type} </p>
+        <p>Salary: #{job?.min_pay_range} - #{job?.max_pay_range} </p>
+        <p>Application Deadline: {job?.deadline}</p>
         </div>
      
 

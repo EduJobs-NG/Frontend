@@ -1,7 +1,7 @@
 import React from "react";
 import { JobDetail } from "./JobDetail";
 
-export const JobDetailPopup = ({ setShowJobDetail }) => {
+export const JobDetailPopup = ({ job, setShowJobDetail }) => {
   return (
     <>
       <div className="justify-center  items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-[99999] outline-none focus:outline-none">
@@ -12,7 +12,7 @@ export const JobDetailPopup = ({ setShowJobDetail }) => {
             {/*header*/}
             <div className="flex items-start justify-between p-1  rounded-t">
             <div className="p-6 relative   flex-auto">
-              <JobDetail setShowJobDetail={setShowJobDetail} />
+              <JobDetail job={job} setShowJobDetail={setShowJobDetail} />
             </div>
           </div>
         </div>
