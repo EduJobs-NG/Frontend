@@ -36,14 +36,14 @@ export const EmployerHeader = () => {
            <SearchCandidate />
           </div> */}
 
-          <div>
+          <ul>
 
           <a href="/employer/dashboard/post-job">
-            <li className="p-1 cursor-pointer px-4 font-[700] border border-solid bg-white text-blue border-white rounded">
+            <li className="xl:hidden p-1 cursor-pointer px-4 font-[700] border border-solid bg-blue text-white border-white rounded-[8px]">
               POST JOB
             </li>
           </a>
-          </div>
+          </ul>
 
         </div>
       </div>

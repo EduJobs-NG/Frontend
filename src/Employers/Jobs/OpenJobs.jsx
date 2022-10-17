@@ -25,7 +25,7 @@ export const OpenJobs = () => {
     });
 
     if (response && response.data) {
-      console.log(response);
+      // console.log(response);
       setOpenJobs(response.data);
       setIsLoading(false);
 
@@ -38,9 +38,8 @@ export const OpenJobs = () => {
   useEffect(() => {
     getOpenJobs();
   }, []);
-  console.log(jobItem)
   return (
-    <section className="container  py-[4rem] mx-auto">
+    <section className="container py-[4rem] mx-auto">
         <ToastContainer />
 
          {isLoading && (
