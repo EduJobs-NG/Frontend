@@ -25,7 +25,7 @@ export const ClosedJobs = () => {
     });
 
     if (response && response.data) {
-      console.log(response);
+      // console.log(response);
       setOpenJobs(response.data);
       setIsLoading(false);
 
@@ -38,7 +38,6 @@ export const ClosedJobs = () => {
   useEffect(() => {
     getOpenJobs();
   }, []);
-  console.log(jobItem)
   return (
     <section className="container pt-[4rem] mx-auto">
         <ToastContainer />
@@ -107,7 +106,7 @@ export const ClosedJobs = () => {
       <div className="flex flex-row text-center h-screen justify-center items-center">
         <div>
           <img src={img} alt="" />
-          <p className="mt-[1rem]">No Jobs posted yet</p>
+          <p className="mt-[1rem]">No Closed jobs yet</p>
         </div>
       </div>
 

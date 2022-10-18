@@ -13,8 +13,20 @@ export const JobForm = () => {
         deadline:'',
         min_pay_range:'',
         max_pay_range:'',
-        location:''
+        location:'',
+        value:''
     })
+    // const[title, setTitle] = useState('');
+    // const[organization_name, setOrganizationName] = useState('');
+    // const[summary, setSummary] = useState('');
+    // const[requirements, setRequirements] = useState('');
+    // const[job_type, setJobType] = useState('');
+    // const[deadline, setDeadline] = useState('');
+    // const[minPayRange, setMinPayRange] = useState('');
+    // const[maxPayRange, setMaxPayRange] = useState('');
+    // const[location, setLocation] = useState('');
+    // const[value, setValue] = useState('');
+
 
     const nextStep = () => setStep(prev => prev + 1)
     const prevStep = () => setStep(prev => prev - 1)
@@ -28,6 +40,7 @@ export const JobForm = () => {
          prevStep={prevStep} nextStep={nextStep} step={step} />
       case 2: 
       return <BasicInfo2
+      //  value={value} setValue={setValue}
       setStep={setStep} formData={formData} setFormData={setFormData}
        prevStep={prevStep} nextStep={nextStep} step={step} />
     

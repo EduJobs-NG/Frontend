@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { FormInputBox } from "../../components/Forms/FormInputBox";
 import * as Yup from "yup";
 import { useFormik, Formik, Form } from "formik";
@@ -8,17 +8,16 @@ import CustomSelect from "../../components/Forms/CustomSelect";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useAxios from "../../utils/useAxios";
-import { countryCode } from "../../utils/country-code";
-import { PhoneNumber } from "../../components/Forms/PhoneNumber";
-import PhoneInput from "react-phone-number-input";
-import 'react-phone-number-input/style.css'
+
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/bootstrap.css";
 const validationSchema = Yup.object({
   email: Yup.string().email("Invalid email address"),
-  phone_number: Yup.string().max(12, "Not more than 12 numbers"),
+  // phone_number: Yup.string().max(12, "Not more than 12 numbers"),
 });
 
 export const PersonalInfo = () => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { user, getUserMeHandler } = useContext(AuthContext);
 
@@ -35,33 +34,37 @@ export const PersonalInfo = () => {
     twitter_url,
     instagram_url,
   } = user;
+
+  // useEffect(() =>{
+
+  // }, [])
   const api = useAxios();
   const onSubmit = async (values) => {
-    console.log(values)
+    console.log(values);
 
-    // setIsLoading(true);
+    setIsLoading(true);
 
-    // const response = await api
-    //   .put(`/jobseeker/user-profile-update/`, values)
-    //   .catch((err) => {
-    //     console.log(err);
-    //     toast.error(err.message);
-    //     setIsLoading(false);
-    //   });
+    const response = await api
+      .put(`/jobseeker/user-profile-update/`, values)
+      .catch((err) => {
+        console.log(err);
+        toast.error(err.message);
+        setIsLoading(false);
+      });
 
-    // if (response) {
-    //   setIsLoading(false);
-    //   toast.success("Your changes have been successfully saved");
-    //   console.log(response);
-    //   getUserMeHandler();
-    // }
+    if (response) {
+      setIsLoading(false);
+      toast.success("Your changes have been successfully saved");
+      console.log(response);
+      getUserMeHandler();
+    }
   };
   const formik = useFormik({
     initialValues: {
       first_name: first_name || "",
       middle_name: middle_name || "",
       last_name: last_name || "",
-      phone_number: phone_number || '',
+      phone_number: phone_number || "",
       email: email || "",
       gender: gender || "",
       home_address: home_address || "",
@@ -83,9 +86,8 @@ export const PersonalInfo = () => {
 
       <Formik>
         <Form onSubmit={formik.handleSubmit}>
-          <div>
-           
-          </div>
+      
+
           <div className="grid md:grid-cols-2 md:gap-3">
             <div className="w-full  max-w-lg">
               <FormInputBox
@@ -145,72 +147,31 @@ export const PersonalInfo = () => {
             </div>
           </div>
 
-          <div className="grid  md:grid-cols-2 md:gap-3 mt-[1rem]">
-            <div className="grid grid-cols-2">
-              <div>
-              {/*<CustomSelect
-                name="code"
-                // placeholder="Please select a job"
-                className="w-[200px]"
-                onChange={formik.handleChange}
-              >
-               {countryCode.map((item) => {
-                  return (
-                    <option
-                      selected={item.dial_code === "+234"}
-                      value={item.dial_code}
-                    >
-                      {" "}
-                      ({item.dial_code})  {item.name} 
-                    </option>
-                  );
-                })}
-              </CustomSelect>
+          <div className="grid w-full md:grid-cols-2 md:gap-3 mt-[1rem]">
+            <div className=" ">
+              <div className=" w-full max-w-lg ">
+                <label htmlFor="phone_number">Phone Number</label>
+                <PhoneInput
+                  inputProps={{
+                    name: "phone_number",
+                    // required: true,
+                    // autoFocus: true,
+                  }}
+                  // containerClass="phone_number_style"
+                  country={"ng"}
+                  value={formik.values.phone_number}
+                  onChange={(event) => {
+                    formik.setFieldValue("phone_number", event);
+                  }}
+                />
+                {formik.touched.phone_number && formik.errors.phone_number ? (
+                  <small className="text-red-600">
+                    {formik.errors.phone_number}
+                  </small>
+                ) : null}
               </div>
-              <div>
-              <FormInputBox
-                type="tel"
-                label="Phone Number"
-                maxLength="12"
-                className="border p-2.5 block w-full border-solid border-[#808080] rounded-lg outline-none"
-                placeholder="Phone Number"
-                id="phone_number"
-                name="phone_number"
-                onChange={formik.handleChange}
-                value={formik.values.phone_number}
-                onBlur={formik.handleBlur}
-              /> */}
-               {/* <PhoneInput defaultCountry="NG"
-                value={formik.values.phone_number} 
-                onChange={(event) => {
-                  formik.setFieldValue('phone_number', event.target.value)
-                }}
-           
-            /> */}
-            <FormInputBox
-                type="tel"
-                label="Phone Number"
-                maxLength="12"
-                className="border p-2.5 block w-full border-solid border-[#808080] rounded-lg outline-none"
-                placeholder="Phone Number"
-                id="phone_number"
-                name="phone_number"
-                onChange={formik.handleChange}
-                value={formik.values.phone_number}
-                onBlur={formik.handleBlur}
-              /> 
-              {formik.touched.phone_number && formik.errors.phone_number ? (
-                <small className="text-red-600">
-                  {formik.errors.phone_number}
-                </small>
-              ) : null}
-              </div>
-              
             </div>
 
-            <div>
-              
-            </div>
             <div disabled className="w-full md:mt-0 mt-[1rem]  max-w-lg">
               <FormInputBox
                 disabled
@@ -218,7 +179,6 @@ export const PersonalInfo = () => {
                 label="Email"
                 className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
                 placeholder="Email"
-                id=""
                 name="email"
                 onChange={formik.handleChange}
                 value={formik.values.email}
@@ -230,7 +190,7 @@ export const PersonalInfo = () => {
             </div>
           </div>
 
-          <div className=" grid  mt-[1rem]">
+          <div className=" grid   mt-[1rem]">
             <label>Home Address</label>
             <textarea
               value={formik.values.home_address}

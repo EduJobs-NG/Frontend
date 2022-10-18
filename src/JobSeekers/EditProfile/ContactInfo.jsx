@@ -3,18 +3,20 @@ import { FormInputBox } from "../../components/Forms/FormInputBox";
 import * as Yup from "yup";
 import { useFormik, Formik, Form } from "formik";
 import AuthContext from "../../context/AuthContext";
-import axios from "axios";
 import { ThreeDots } from "react-loader-spinner";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useAxios from "../../utils/useAxios";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/bootstrap.css";
 
 const validationSchema = Yup.object({
   next_kin_email: Yup.string().email("Invalid email address"),
-  // phone_number: Yup.string().phone(null, true, "Has to be a number").min(11,'Has to be up to digits long').max(12, "Can't be more than 12 digits"),
-  // next_kin_phone: Yup.string().max(12, "Not more than 12 numbers"),
-  first_ref_phone: Yup.string().max(12, "Not more than 12 numbers"),
-  second_ref_phone: Yup.string().max(12, "Not more than 12 numbers"),
+  // phone_number: Yup.number().required('Required'),
+  // next_kin_phone: Yup.string().required('Required'),
+  // first_ref_phone: Yup.string().required('Required'),
+  // second_ref_phone: Yup.string().required('Required'),
+
 });
 export const ContactInfo = ({ setTitle }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -120,14 +122,31 @@ export const ContactInfo = ({ setTitle }) => {
 
               <div className="grid md:grid-cols-2 md:gap-3 mt-[1rem]">
                 <div className="w-full max-w-lg">
-                  {/* <PhoneInput className='border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none'
-      placeholder="Enter phone number"
-      value={formik.values.next_kin_phone}
-      onChange={formik.handleChange}/> 
-{/*  */}
+        
 
-                  {/* <FormInputBox type="tel" label="Phone Number" maxLength="12" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
-                  placeholder="Phone" id="next_kin_phone" name="next_kin_phone" onChange={formik.handleChange} value={formik.values.next_kin_phone} onBlur={formik.handleBlur} /> */}
+                <div className=" ">
+              <div className=" w-full max-w-lg ">
+                <label htmlFor="phone_number">Phone Number</label>
+                <PhoneInput
+                  inputProps={{
+                    name: "next_kin_phone",
+                    // required: true,
+                    // autoFocus: true,
+                  }}
+                  // containerClass="phone_number_style"
+                  country={"ng"}
+                  value={formik.values.next_kin_phone}
+                  onChange={(event) => {
+                    formik.setFieldValue("next_kin_phone", event);
+                  }}
+                />
+                {formik.touched.next_phone_ && formik.errors.next_kin_phone ? (
+                  <small className="text-red-600">
+                    {formik.errors.next_kin_phone}
+                  </small>
+                ) : null}
+              </div>
+            </div>
 
                   {formik.touched.next_kin_phone &&
                   formik.errors.next_kin_phone ? (
@@ -204,18 +223,20 @@ export const ContactInfo = ({ setTitle }) => {
                   />
                 </div>
                 <div className="w-full  mt-[1rem]  max-w-lg">
-                  <FormInputBox
-                    type="tel"
-                    label="Phone Number"
-                    maxLength="12"
-                    className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
-                    placeholder="Phone Number"
-                    id="first_ref_phone"
-                    name="first_ref_phone"
-                    onChange={formik.handleChange}
-                    value={formik.values.first_ref_phone}
-                    onBlur={formik.handleBlur}
-                  />
+                <label htmlFor="phone_number">Phone Number</label>
+                <PhoneInput
+                  inputProps={{
+                    name: "first_ref_phone",
+                    // required: true,
+                    // autoFocus: true,
+                  }}
+                  // containerClass="phone_number_style"
+                  country={"ng"}
+                  value={formik.values.first_ref_phone}
+                  onChange={(event) => {
+                    formik.setFieldValue("first_ref_phone", event);
+                  }}
+                />
                   {formik.touched.first_ref_phone &&
                   formik.errors.first_ref_phone ? (
                     <small className="text-red-600">
@@ -270,18 +291,23 @@ export const ContactInfo = ({ setTitle }) => {
                   />
                 </div>
                 <div className="w-full  mt-[1rem]  max-w-lg">
-                  <FormInputBox
-                    type="tel"
-                    label="Phone Number"
-                    maxLength="12"
-                    className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
-                    placeholder="Phone Number"
-                    id="second_ref_phone"
-                    name="second_ref_phone"
-                    onChange={formik.handleChange}
-                    value={formik.values.second_ref_phone}
-                    onBlur={formik.handleBlur}
-                  />
+                <div className="w-full  mt-[1rem]  max-w-lg">
+                <label htmlFor="phone_number">Phone Number</label>
+                <PhoneInput
+                  inputProps={{
+                    name: "second_ref_phone",
+                    // required: true,
+                    // autoFocus: true,
+                  }}
+                  // containerClass="phone_number_style"
+                  country={"ng"}
+                  value={formik.values.second_ref_phone}
+                  onChange={(event) => {
+                    formik.setFieldValue("second_ref_phone", event);
+                  }}
+                />
+               
+                </div>
                   {formik.touched.second_ref_phone &&
                   formik.errors.second_ref_phone ? (
                     <small className="text-red-600">

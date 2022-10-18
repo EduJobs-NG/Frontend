@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {FaEye, FaEyeSlash} from 'react-icons/fa';
-import CustomSelect from './CustomSelect';
 
 export const FormInputBox = (props) => {
   const {label, icon, type, ...rest} = props;

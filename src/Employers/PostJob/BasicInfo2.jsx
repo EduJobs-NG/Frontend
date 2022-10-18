@@ -16,9 +16,9 @@ const validationSchema = Yup.object({
 });
   
 
-export const BasicInfo2 = ({ formData, setFormData, prevStep, nextStep }) => {
+export const BasicInfo2 = ({ formData, value, setValue, setFormData, prevStep, nextStep }) => {
   const [direction, setDirection] = useState("back");
-  const [value, setValue] = useState("");
+  // const [value, setValue] = useState("");
   const [showPreview, setShowPreview] = useState(false);
 
 
@@ -34,11 +34,15 @@ export const BasicInfo2 = ({ formData, setFormData, prevStep, nextStep }) => {
     onSubmit,
     validationSchema: validationSchema,
   });
+
+  const handleRequirements = (requirements) =>{
+    setFormData({...formData, requirements:requirements})
+}
  
 
   useEffect(() => {
-    formik.setFieldValue("requirements", value);
-  }, [value])
+    formik.setFieldValue("requirements", formData.requirements);
+  }, [formData.requirements])
 
   return (
     <section>
@@ -71,7 +75,10 @@ export const BasicInfo2 = ({ formData, setFormData, prevStep, nextStep }) => {
             <p>Job Requirements</p>
          
 
-            <ReactQuill theme="snow" value={value} onChange={setValue} />
+            <ReactQuill theme="snow"  value={formData.requirements}
+            //  onChange={setFormData({...formData, value:formData.value})}
+             onChange={(e) => handleRequirements(e)}
+              />
             {formik.touched.requirements && formik.errors.requirements ? (
               <small className="text-red-600">{formik.errors.requirements}</small>
             ) : null}
