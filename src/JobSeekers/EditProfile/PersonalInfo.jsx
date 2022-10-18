@@ -13,7 +13,7 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/bootstrap.css";
 const validationSchema = Yup.object({
   email: Yup.string().email("Invalid email address"),
-  // phone_number: Yup.string().max(12, "Not more than 12 numbers"),
+  phone_number: Yup.string().required('Required'),
 });
 
 export const PersonalInfo = () => {

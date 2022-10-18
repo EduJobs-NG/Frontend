@@ -13,9 +13,9 @@ import "react-phone-input-2/lib/bootstrap.css";
 const validationSchema = Yup.object({
   next_kin_email: Yup.string().email("Invalid email address"),
   // phone_number: Yup.number().required('Required'),
-  // next_kin_phone: Yup.string().required('Required'),
-  // first_ref_phone: Yup.string().required('Required'),
-  // second_ref_phone: Yup.string().required('Required'),
+  next_kin_phone: Yup.string().required('Required'),
+  first_ref_phone: Yup.string().required('Required'),
+  second_ref_phone: Yup.string().required('Required'),
 
 });
 export const ContactInfo = ({ setTitle }) => {
@@ -140,7 +140,7 @@ export const ContactInfo = ({ setTitle }) => {
                     formik.setFieldValue("next_kin_phone", event);
                   }}
                 />
-                {formik.touched.next_phone_ && formik.errors.next_kin_phone ? (
+                {formik.touched.next_kin_phone && formik.errors.next_kin_phone ? (
                   <small className="text-red-600">
                     {formik.errors.next_kin_phone}
                   </small>
@@ -148,12 +148,7 @@ export const ContactInfo = ({ setTitle }) => {
               </div>
             </div>
 
-                  {formik.touched.next_kin_phone &&
-                  formik.errors.next_kin_phone ? (
-                    <small className="text-red-600">
-                      {formik.errors.next_kin_phone}
-                    </small>
-                  ) : null}
+                 
                 </div>
                 <div className="w-full md:mt-0 mt-[1rem]  max-w-lg">
                   <FormInputBox
