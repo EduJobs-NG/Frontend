@@ -14,7 +14,7 @@ const validationSchema = Yup.object({
 });
 export const EditCV = ({ setShowEditCV, cv}) => {
   const api = useAxios()
-  const { updateUser } = useContext(AuthContext);
+  const { updateUse, getUserMeHandler } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const onSubmit = async (values) => {
     setIsLoading(true);
@@ -32,8 +32,7 @@ export const EditCV = ({ setShowEditCV, cv}) => {
       setIsLoading(false);
       setShowEditCV(false);
       toast.success("Your changes have been successfully saved");
-      updateUser("cv", response.data);
-      console.log(response.data);
+     getUserMeHandler()
     }
   };
   const formik = useFormik({

@@ -32,7 +32,7 @@ export const EditEducation = ({setShowEdit, item}) => {
       setIsLoading(false)
       setShowEdit(false)
       toast.success('Your changes have been successfully saved')
-      
+      getUserMeHandler()
       console.log(response)
     
 

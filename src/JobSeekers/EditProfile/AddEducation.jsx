@@ -8,6 +8,7 @@ import CustomSelect from "../../components/Forms/CustomSelect";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useAxios from "../../utils/useAxios";
+import AuthContext from "../../context/AuthContext";
 
 const today = new Date();
 const validationSchema = Yup.object({
@@ -21,6 +22,7 @@ const validationSchema = Yup.object({
 });
 export const AddEducation = ({ setShowEducation, education }) => {
   const api = useAxios();
+  const {getUserMeHandler} = useContext(AuthContext)
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -38,7 +40,8 @@ export const AddEducation = ({ setShowEducation, education }) => {
       setIsLoading(false);
       setShowEducation(false);
       toast.success("Your changes have been successfully saved");
-      education.push(response.data);
+      getUserMeHandler()
+
       console.log(response);
     }
   };

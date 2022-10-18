@@ -21,6 +21,7 @@ export const DeleteEducation = ({ setShowDelete, credentials, item }) => {
 
     if (response) {
       setIsLoading(false);
+      getUserMeHandler()
       setShowDelete(false);
       console.log(response);
     }
