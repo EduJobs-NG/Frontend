@@ -30,6 +30,7 @@ import { EmployersDashboard } from './Employers/pages/EmployersDashboard';
 import EmployerRoute from './utils/EmployerRoute';
 import { EmployerPostJob } from './Employers/PostJob/EmployerPostJob';
 import { EmployerViewJobs } from './Employers/pages/EmployerViewJobs';
+import { EditJob } from './Employers/Jobs/EditJob';
 
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
         <Route path="/employer/dashboard/"  element={<EmployersDashboard />} />
         <Route path="/employer/dashboard/post-job"  element={<EmployerPostJob />} />
         <Route path="/employer/dashboard/view-jobs"  element={<EmployerViewJobs />} />
+        <Route path="/employer/dashboard/edit-job/:id"  element={<EditJob />} />
         
         
       </Route>

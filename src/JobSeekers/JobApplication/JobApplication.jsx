@@ -1,6 +1,5 @@
 import React, {useState, useEffect, useContext} from "react";
 import { Link, useParams } from 'react-router-dom';
-import AuthContext from '../../context/AuthContext';
 import { Circles } from 'react-loader-spinner';
 import { JobseekerNavbar } from "../components/JobseekerNavbar";
 import { UserForm } from "./UserForm";

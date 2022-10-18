@@ -87,7 +87,10 @@ export const OpenJobs = () => {
 
         <div className="flex flex-row  justify-between md:justify-center items-center  gap-[1rem]">
           <div>
-            <p className="text-blue cursor-pointer">Edit job</p>
+            <p className="text-blue cursor-pointer">
+              <a href={`/employer/dashboard/edit-job/${job.id}`}> Edit job</a>
+             
+              </p>
           </div>
           <div>
           <p onClick={() => handleJobDetail(job)} className="bg-blue cursor-pointer px-[1rem] py-[0.4rem] text-white rounded-[5px]">
