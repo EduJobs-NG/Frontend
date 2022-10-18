@@ -116,9 +116,13 @@ export const PreviewJobPost = ({ formData, setShowPreview }) => {
       ) }
 
         {jobSucess && (
-          <div className="flex flex-col text-center justify-center">
+          <div className="flex flex-col text-center items-center justify-center">
+            <div>
             <img src={jobPosted} alt="" />
+            </div>
             <p>Job Posted Successfully!</p>
+            <p>Your job is pending review. 
+You will be notified when it is posted.</p>
           </div>
         )}
       

@@ -7,7 +7,7 @@ import useAxios from "../../utils/useAxios";
 
 export const DeleteCredential = ({ setShowDelete, credentials, item }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const {  } = useContext(AuthContext);
+  const { getUserMeHandler } = useContext(AuthContext);
   const api = useAxios();
  
   
@@ -25,7 +25,7 @@ export const DeleteCredential = ({ setShowDelete, credentials, item }) => {
     if (response) {
       setIsLoading(false);
       setShowDelete(false);
-     
+     getUserMeHandler()
       console.log(response);
     }
   };

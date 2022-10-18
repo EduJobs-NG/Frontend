@@ -1,7 +1,7 @@
 import Feature1 from './assets/features1.png';
 import Feature2 from './assets/features2.png';
 import Feature3 from './assets/features3.png';
-import {FaFacebookF, FaLinkedinIn, FaTwitter} from 'react-icons/fa'
+import {FaFacebookF, FaInstagram, FaTwitter} from 'react-icons/fa'
 import logo1 from './assets/logo1.png'
 
 
@@ -73,13 +73,16 @@ export const footer = {
     logo:'EduJobs NG',
     socials:[
         {
-            name:<FaFacebookF />
+            name:<FaFacebookF />,
+            link:'https://facebook.com/edujobsofficial'
         }, 
         {
-            name:<FaLinkedinIn />
+            name:<FaInstagram />,
+            link:'https://twitter.com/edujobsofficial'
         }, 
         {
-            name:<FaTwitter />
+            name:<FaTwitter />,
+            link:"https://twitter.com/edujobsofficial"
         }
       
     ],
@@ -107,7 +110,7 @@ export const footer = {
         },
         {
             name:'Post jobs',
-            href:''
+            href:'/dashboard/employer/post-job'
 
         },
     ],

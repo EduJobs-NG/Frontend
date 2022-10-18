@@ -17,7 +17,7 @@ const validationSchema = Yup.object({
 export const AddCredentials = ({ setShowAddCredentials, credentials }) => {
   const api = useAxios()
   
-  const { updateUser } = useContext(AuthContext);
+  const { updateUser, getUserMeHandler } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const onSubmit = async (values) => {
     const data = new FormData();
@@ -36,10 +36,8 @@ export const AddCredentials = ({ setShowAddCredentials, credentials }) => {
       setIsLoading(false);
       setShowAddCredentials(false);
       toast.success("Your changes have been successfully saved");
-      // credentials.push(response.data)
-      let updatedCredentials = [...credentials]
-      updatedCredentials.push(response.data)
-      updateUser('credentials', updatedCredentials)
+      getUserMeHandler()
+      
     }
   };
   const formik = useFormik({
@@ -151,3 +149,7 @@ export const AddCredentials = ({ setShowAddCredentials, credentials }) => {
     </>
   );
 };
+// // credentials.push(response.data)
+// let updatedCredentials = [...credentials]
+// updatedCredentials.push(response.data)
+// updateUser('credentials', updatedCredentials)

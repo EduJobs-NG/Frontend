@@ -16,7 +16,7 @@ export const Footer = () => {
                 <div className='flex flex-row gap-x-5'>
                 {socials.map((social, index) =>{
                     return(
-                    <a key={index} className='bg-white rounded-full text-blue p-1 cursor-pointer' href={social.href}>{social.name}</a>
+                    <a target="_blank" key={index} className='bg-white rounded-full text-blue p-1 cursor-pointer' href={social.link}>{social.name}</a>
                     )     
                 })}
                 </div>
