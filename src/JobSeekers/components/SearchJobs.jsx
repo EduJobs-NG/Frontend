@@ -8,8 +8,9 @@ import { Markup } from 'interweave';
 import { Link } from "react-router-dom";
 
 
-export const SearchJobs = ({setShowSearchJobs, showSearchJobs, setShowRecentJobs}) => {
+export const SearchJobs = ({setShowSearchJobs, setShowRecentJobs}) => {
     const [jobs, setJobs] = useState([]);
+    const [showFoundJobs, setShowFoundJobs] = useState(false)
     const [selectedJob, setSelectedJob] = useState(null);
     const [searchKeyword, setSearchKeyword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -49,8 +50,8 @@ export const SearchJobs = ({setShowSearchJobs, showSearchJobs, setShowRecentJobs
         if (response && response.data) {
           setShowRecentJobs(false)
           setShowSearchJobs(true)
+          setShowFoundJobs(true)
           setError(false);
-          setSearchKeyword('');
           console.log(response)
           setErrorMessage('');
           setJobs(response.data.results);
@@ -92,7 +93,7 @@ export const SearchJobs = ({setShowSearchJobs, showSearchJobs, setShowRecentJobs
            
           </div>
 
-          {showSearchJobs && (<>
+          {showFoundJobs && (<>
           
           
           <h2 className="text-blue my-[1rem] font-[700] text-[1.5rem]">
@@ -100,12 +101,11 @@ export const SearchJobs = ({setShowSearchJobs, showSearchJobs, setShowRecentJobs
           </h2>
 
           {( jobs.length) === 0 && (
-            <p>No Jobs</p>
+            <p>No Jobs for the search keyword</p>
           )}
           {jobs &&
             jobs.map((job) => {
               const { id } = job;
-              // console.log(job.applied)
               return (
                 <div
                   key={job.id}
