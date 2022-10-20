@@ -47,14 +47,15 @@ export const Navbar = () => {
 
             <ul className='hidden xl:flex flex-row text-white gap-x-[2rem]'>
               
-              <li>
-              <NavLink to="#" onClick={() => setShowRegister(true)} className='p-1 cursor-pointer uppercase px-2'>I'm a job seeker</NavLink>
-              </li>
+             
               <li>
               <NavLink to="/employer" className='p-1 cursor-pointer uppercase px-2'>I'm an employer</NavLink>
               </li>
               <li>
               <NavLink to="#" onClick={() => setShowLogin(true)}  className='p-1 cursor-pointer px-4 border border-solid bg-white text-blue border-white rounded'>LOGIN</NavLink>
+              </li>
+              <li>
+              <NavLink to="#" onClick={() => setShowRegister(true)}  className='p-1 cursor-pointer px-4 border border-solid bg-white text-blue border-white rounded'>SIGNUP</NavLink>
               </li>
              
 
@@ -77,15 +78,12 @@ export const Navbar = () => {
               <ul className='py-[2rem] flex flex-col '>
                 <NavLink data-aos-delay="300" data-aos="fade-left"  className="text-[1rem] font-[700] mb-[33px]"  to="#">JOBS</NavLink>
                 <NavLink data-aos-delay="300" data-aos="fade-left" className="text-[1rem] font-[700] mb-[33px]" to="#">ABOUT US</NavLink>
-                <NavLink data-aos-delay="300" data-aos="fade-left" className="text-[1rem] font-[700] mb-[33px]" to="#">TRENDING</NavLink>
-                <NavLink data-aos-delay="300" data-aos="fade-left" className="text-[1rem] font-[700] mb-[33px]" to="#">PRICING</NavLink>
               </ul>
               <div className='container mx-auto'>
                 <hr className=' text-[#808080]' />
               </div>
 
               <ul className='py-[2rem] flex flex-col'>
-                <NavLink data-aos-delay="300" data-aos="fade-left" className="text-blue text-[1.2rem] uppercase mb-[33px] font-[700]" to="/jobseeker/register">I'm a job seeker</NavLink>
                 <NavLink data-aos-delay="300" data-aos="fade-left" className="text-blue text-[1.2rem] uppercase mb-[45px] font-[700]" to="/employer">I'm an employer</NavLink>
     
               </ul>

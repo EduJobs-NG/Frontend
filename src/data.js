@@ -2,7 +2,7 @@ import Feature1 from './assets/features1.png';
 import Feature2 from './assets/features2.png';
 import Feature3 from './assets/features3.png';
 import {FaFacebookF, FaInstagram, FaTwitter} from 'react-icons/fa'
-import logo1 from './assets/logo1.png'
+import logo1 from './assets/logo.png'
 
 
 export const navigation = {
@@ -17,14 +17,7 @@ export const navigation = {
                 name: 'jobs',
                 href: "#"
             },
-            {
-                name: 'Trending',
-                href: "#"
-            },
-            {
-                name: 'Pricing',
-                href: "#"
-            },
+          
         ]
     ,
 
@@ -70,7 +63,7 @@ export const features = [
 ]
 
 export const footer = {
-    logo:'EduJobs NG',
+    logo:logo1,
     socials:[
         {
             name:<FaFacebookF />,

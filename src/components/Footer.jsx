@@ -1,9 +1,10 @@
 import React from 'react';
-import { footer } from '../data';
+import { footer, navigation } from '../data';
 
 
 export const Footer = () => {
-    const {logo, socials, candidates, employees, company, support} = footer;
+    const {logo} = navigation
+    const { socials, candidates, employees, company, support} = footer;
     const date = new Date();
     const year = date.getFullYear();
   return (
@@ -12,8 +13,12 @@ export const Footer = () => {
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-[1rem] gap-y-[1rem]'>
 
             <div>
-                <h4 className='text-2xl font-[700] text-white mb-3'>{logo}</h4>
-                <div className='flex flex-row gap-x-5'>
+                <a className=''
+                href="/">
+                    <img src={logo} alt="" />
+                </a>
+            
+                <div className='mt-[1rem] flex flex-row gap-x-5'>
                 {socials.map((social, index) =>{
                     return(
                     <a target="_blank" key={index} className='bg-white rounded-full text-blue p-1 cursor-pointer' href={social.link}>{social.name}</a>
