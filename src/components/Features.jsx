@@ -7,7 +7,7 @@ export const Features = () => {
     const [showModal, setShowModal] = useState(false)
     return (
         <>
-      {/* {showModal && <JoinNowModal />} */}
+      {showModal && <JoinNowModal setShowModal={setShowModal} showModal={showModal} />}
         <section className='section  bg-[#F5F5F5]'>
             <div className='container mx-auto'>
 

@@ -43,7 +43,7 @@ export const ScreenerQuestions = ({
                 cols="100"
                 rows="7"
               ></textarea>
-        {formik.touched.why_work_with_us && formik.errors.why_work_with_us ? (<small className="text-red-600">{formik.errors.why_work_with_us}</small>) : null}
+        {formik.touched.why_work_with_us && formik.errors.why_work_with_us ? (<small className="text-red-600 text-[1rem]">{formik.errors.why_work_with_us}</small>) : null}
 
             </div>
 
@@ -57,7 +57,7 @@ export const ScreenerQuestions = ({
                 cols="100"
                 rows="7"
               ></textarea>
-        {formik.touched.cover_letter && formik.errors.cover_letter ? (<small className="text-red-600">{formik.errors.cover_letter}</small>) : null}
+        {formik.touched.cover_letter && formik.errors.cover_letter ? (<small className="text-red-600 text-[1rem]">{formik.errors.cover_letter}</small>) : null}
 
             </div>
 

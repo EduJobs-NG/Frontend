@@ -123,7 +123,7 @@ export const RecentJobs = ({setShowRecentJobs}) => {
                       : `${job.summary.substring(0, 250)}...`}
                   </p>
                   <p className="absolute  left-5 bottom-[0.5rem]">
-                    {job.posted_time}
+                    {job.posted_time} ago
                   </p>
                   <p
                     onClick={() => handleView(id)}

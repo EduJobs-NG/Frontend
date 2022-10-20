@@ -74,7 +74,7 @@ export const JobApplication = () => {
           {/* {viewMore ? `${job?.summary}` || '' : `${job && job.summary.substring(0, 250)}...` || ''} */}
           {job?.summary}
         </p>
-        <p className="absolute  left-5 bottom-[0.5rem]">{job.posted_time}</p>
+        <p className="absolute  left-5 bottom-[0.5rem]">{job.posted_time} ago</p>
         <p
           onClick={() => handleView()}
           className="cursor-pointer font-[600] absolute text-blue right-5 bottom-[0.5rem]"
