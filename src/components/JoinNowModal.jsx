@@ -7,7 +7,7 @@ export const JoinNowModal = ({setShowModal, showModal}) => {
         
     <div 
       className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-[9999999] outline-none focus:outline-none">
-      <div className="relative  w-full  mx-3 md:mx-0 max-w-[500px]">
+      <div className="relative  w-full   md:mx-0 max-w-[500px]">
 
         {/*content*/}
         <div className="">
@@ -21,7 +21,7 @@ export const JoinNowModal = ({setShowModal, showModal}) => {
             </button>
           </div>
           {/*body*/}
-          <div className="p-6 relative  flex-auto">
+          <div className=" relative  flex-auto">
                 <JoinNow showModal={showModal} setShowModal={setShowModal}  />
    </div>      
 
