@@ -156,7 +156,7 @@ export const RecentJobs = ({setShowRecentJobs}) => {
               );
             })}
 
-          <div className="flex flex-row justify-end">
+          <div className="container mx-auto flex flex-row justify-end">
             <div className="grid grid-cols-2 gap-4">
             {prevURL && 
                 <button onClick={() => handlePagination(prevURL)} className="bg-blue flex justify-center items-center text-white px-[1rem] rounded-md py-[0.3rem]">  <FaArrowLeft className="mr-1" />PREV </button>

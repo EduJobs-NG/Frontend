@@ -26,7 +26,7 @@ export const SuccessfulApplication = ({ email }) => {
                 type="submit"
                 
               >
-                Return to Find Jobs
+                 Find More Jobs
               </a>
               </div>
             </div>{" "}

@@ -8,11 +8,13 @@ import { Link, NavLink, useSearchParams } from "react-router-dom";
 
 export const EditProfile = () => {
   const [title, setTitle] = useState("personal info");
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState('0');
   const { user, getUserMeHandler } = useContext(AuthContext);
   const [searchParams] = useSearchParams();
   console.log(searchParams.get("tab"));
   const tabIndex = searchParams.get("tab");
+  console.log(typeof(tabIndex))
+  console.log(active)
   const titles = [
     "personal information",
     "education",
@@ -53,7 +55,7 @@ export const EditProfile = () => {
               <Link to={`?tab=${index}`}>
                 <li
                   className={`${
-                    active === index
+                    active == tabIndex
                       ? "text-blue text-[1.2rem]  border-b-[0.2rem] border-b-blue"
                       : "text-black"
                   } cursor-pointer capitalize mr-[3rem] text-[1.1rem] font-[700] `}

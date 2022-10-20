@@ -164,7 +164,7 @@ export const EmployersLoginForm = ({ setShowLogin, showModal }) => {
                 </small>
               </div>
 
-              <div className="flex justify-between gap-x-5 items-baseline">
+              {/* <div className="flex justify-between gap-x-5 items-baseline">
                 <hr className="bg-blue border-[0.1px] w-[35%] " />
                 <span>OR</span>
                 <hr className="bg-blue border-[0.1px]  w-[35%]" />
@@ -181,7 +181,7 @@ export const EmployersLoginForm = ({ setShowLogin, showModal }) => {
                   src={linkedin}
                   alt=""
                 />
-              </div>
+              </div> */}
 
              
             </Form>

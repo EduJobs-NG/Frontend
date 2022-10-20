@@ -8,7 +8,7 @@ export const JobseekerRegisterFormUI = () => {
   return (
     <>
 {/* hidden md:flex */}
-    <section className=" bg-blue flex justify-center items-center">
+    <section className=" bg-blue flex h-screen justify-center items-center">
       <div className="w-full py-[2rem]  max-w-[500px]">
       
       <RegisterForm />

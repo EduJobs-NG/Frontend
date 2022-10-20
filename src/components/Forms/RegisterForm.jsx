@@ -146,7 +146,7 @@ export const RegisterForm = ({showModal, setShowRegister}) => {
                 </p>
             </div>
 
-            <div className='flex justify-between gap-x-5 items-baseline'>
+            {/* <div className='flex justify-between gap-x-5 items-baseline'>
                 <hr className='bg-blue border-[0.1px] w-[35%] ' />
                 <span>OR</span>
                 <hr className='bg-blue border-[0.1px]  w-[35%]' />
@@ -155,7 +155,7 @@ export const RegisterForm = ({showModal, setShowRegister}) => {
             <div className='mt-4 flex justify-center flex-row gap-x-[1rem]'>
                 <img className='border rounded-full p-[0.3rem]  border-[#808080]' src={google} alt="" />
                 <img className='border p-[0.4rem] rounded-full ml-[1rem] border-[#808080]' src={linkedin} alt="" />
-            </div>
+            </div> */}
 
             
         </div>
