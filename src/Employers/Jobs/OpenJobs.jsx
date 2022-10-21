@@ -78,7 +78,7 @@ export const OpenJobs = () => {
           <p className="text-blue">Job status</p>
           <select
             name="status"
-            className="border p-2.5   border-solid border-[#808080] rounded-lg outline-none"
+            className="border p-2.5 border-solid border-[#808080] rounded-lg outline-none"
           >
             <option value={job.open_status}>{job.open_status}</option>
             {/* <option value={job.open_status}>Close</option> */}
@@ -88,7 +88,7 @@ export const OpenJobs = () => {
         <div className="flex flex-row  justify-between md:justify-center items-center  gap-[1rem]">
           <div>
             <p className="text-blue cursor-pointer">
-              <a href={`/employer/dashboard/edit-job/${job.id}`}> Edit job</a>
+              {/* <a href={`/employer/dashb oard/edit-job/${job.id}`}> Edit job</a> */}
              
               </p>
           </div>
