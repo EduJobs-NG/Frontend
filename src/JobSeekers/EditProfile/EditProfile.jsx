@@ -4,17 +4,15 @@ import { ProfessionalInfo } from "./ProfessionalInfo";
 import { ContactInfo } from "./ContactInfo";
 import { Credentials } from "./Credentials";
 import AuthContext from "../../context/AuthContext";
-import { Link, NavLink, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 export const EditProfile = () => {
-  const [title, setTitle] = useState("0");
+  const [title, setTitle] = useState("personal information");
   const [active, setActive] = useState(0);
   const { user, getUserMeHandler } = useContext(AuthContext);
   const [searchParams] = useSearchParams();
-  console.log(searchParams.get("tab"));
   const tabIndex = searchParams.get("tab");
-  console.log(typeof(tabIndex))
-  console.log(active)
+  
   const titles = [
     "personal information",
     "education",
@@ -44,7 +42,6 @@ export const EditProfile = () => {
 
   useEffect(() => {
     setTitle(tabIndex);
-    // setActive(tabIndex)
   }, [tabIndex]);
   return (
     <>

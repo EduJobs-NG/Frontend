@@ -21,7 +21,7 @@ export const OpenJobs = () => {
     const response = await api.get(`/employer/jobs/open/`).catch((err) => {
       console.log(err);
       setIsLoading(false);
-      toast.error(err.message)
+      toast.error(`${err.message}. Please refresh`)
     });
 
     if (response && response.data) {

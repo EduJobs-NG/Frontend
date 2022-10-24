@@ -6,7 +6,6 @@ export const Jobs = () => {
   const jobStatus = ["open jobs", "closed jobs"];
   const [job, setJob] = useState("open");
   const [active, setActive] = useState(0);
-  console.log(active)
   const handleTitle = (e, index) => {
     setJob(() => e.target.textContent.toLowerCase());
     setActive(index);
@@ -26,10 +25,12 @@ export const Jobs = () => {
     <section>
       <div className="pt-[2rem] flex flex-row  justify-center items-center">
         {jobStatus.map((job, index) => {
+          
           return (
             
-              <p className={`${active === index ? 'bg-blue text-white': 'bg-white text-blue'}  
-               bg-white px-[2rem] py-[0.6rem] cursor-pointer capitalize rounded-[15px] text-blue`} onClick={(e)=> handleTitle(e, index)}>{job}</p>
+              <p key={index} className={`${active === index ? 'bg-blue text-white': 'bg-white text-blue'}  
+                px-[2rem] py-[0.6rem] cursor-pointer capitalize rounded-[15px]`} 
+               onClick={(e)=> handleTitle(e, index)}>{job}</p>
             
           );
         })}
