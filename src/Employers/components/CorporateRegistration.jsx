@@ -48,7 +48,7 @@ export const CorporateRegistration = () => {
 
   const formik = useFormik({
     initialValues: {
-      organization_name: "",
+      org_name: "",
       email: "",
       password: "",
       re_password: "",
