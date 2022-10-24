@@ -22,7 +22,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 export const EmployersLoginForm = ({ setShowLogin, showModal }) => {
-  const { setAuthTokens } = useContext(AuthContext);
+  const { setAuthTokens, user } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const onSubmit = async (values) => {
@@ -50,6 +50,10 @@ export const EmployersLoginForm = ({ setShowLogin, showModal }) => {
       });
 
     if (response && response.data) {
+      if(user){
+        localStorage.removeItem("authTokens");
+        localStorage.removeItem('user')
+      }
       const userType = jwtDecode(response.data.access)
       console.log(userType)
       if (userType.is_employee === true){

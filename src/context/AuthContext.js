@@ -68,9 +68,10 @@ export const AuthProvider = ({children}) => {
       }
     }
 
-    // useEffect(() =>{
-    //   getUserMeHandler()
-    // }, [])
+    useEffect(() =>{
+      getUserMeHandler()
+      getEmployerUser()
+    }, [])
     
 
     const logOutUser = () =>{

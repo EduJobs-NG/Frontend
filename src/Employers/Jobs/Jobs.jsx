@@ -6,7 +6,7 @@ export const Jobs = () => {
   const jobStatus = ["open jobs", "closed jobs"];
   const [job, setJob] = useState("open");
   const [active, setActive] = useState(0);
-
+  console.log(active)
   const handleTitle = (e, index) => {
     setJob(() => e.target.textContent.toLowerCase());
     setActive(index);

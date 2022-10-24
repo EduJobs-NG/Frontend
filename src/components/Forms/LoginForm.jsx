@@ -24,7 +24,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 // 
 export const LoginForm = ({ setShowLogin, showModal }) => {
-  const { setAuthTokens } = useContext(AuthContext);
+  const { setAuthTokens, employerUser } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const onSubmit = async (values) => {
@@ -48,9 +48,12 @@ export const LoginForm = ({ setShowLogin, showModal }) => {
       });
 
       if (response && response.data) {
+        if(employerUser){
+          localStorage.removeItem("authTokens", JSON.stringify(response.data));
+          localStorage.removeItem('employer_user')
+        }
         localStorage.setItem("authTokens", JSON.stringify(response.data));
         const userType = jwtDecode(response.data.access)
-       
         if (userType.is_jobseeker === true){
         navigate('/dashboard/find-jobs');
         setAuthTokens(response.data.access);
