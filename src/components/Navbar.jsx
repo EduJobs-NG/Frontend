@@ -52,10 +52,10 @@ export const Navbar = () => {
               <NavLink to="/employer" className='p-1 cursor-pointer uppercase px-2'>I'm an employer</NavLink>
               </li>
               <li>
-              <NavLink to="#" onClick={() => setShowLogin(true)}  className='p-1 cursor-pointer px-4 border border-solid bg-white text-blue border-white rounded'>LOGIN</NavLink>
+              <NavLink to="#" onClick={() => setShowLogin(true)}  className='p-1 cursor-pointer px-4 border border-solid bg-white text-blue hover:text-white hover:bg-blue border-white rounded'>LOGIN</NavLink>
               </li>
               <li>
-              <NavLink to="#" onClick={() => setShowRegister(true)}  className='p-1 cursor-pointer px-4 border border-solid bg-white text-blue border-white rounded'>SIGNUP</NavLink>
+              <NavLink to="#" onClick={() => setShowRegister(true)}  className='p-1 cursor-pointer px-4 border border-solid bg-white text-blue hover:text-white hover:bg-blue border-white rounded'>SIGNUP</NavLink>
               </li>
              
 

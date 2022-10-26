@@ -82,18 +82,20 @@ export const EmployersLoginForm = ({ setShowLogin, showModal }) => {
     <section>
       <ToastContainer />
       <div className="border relative bg-white p-2 py-[2rem] px-[20px] mx-[1.5rem] md:px-[42px] rounded-[30px] md:rounded-[50px] lg:w-[500px]">
-        <div className="flex my-4 gap-x-[1rem] justify-center ">
+      <div className="flex my-4 gap-x-[0.2rem] justify-center ">
           <FaSignInAlt className="text-[2rem] text-blue" />
-          <div className="h-[2.5rem] w-[3px] bg-black"></div>
+          <div className="h-[2.5rem] w-[3px] mr-[0.5rem] ml-[0.5rem] bg-black"></div>
           <h2 className="title text-blue  text-[24px] font-[700]">LOG IN</h2>
-          {showModal ? (
+          
+        </div>
+        <div>
+        {showModal ? (
             <FaTimes
               onClick={() => setShowLogin(false)}
               className="text-blue z-[99999] text-[1.3rem] absolute top-[1rem] right-[1.5rem] mt-3 cursor-pointer"
             />
           ) : null}
         </div>
-
         <Formik>
           {() => (
             <Form onSubmit={formik.handleSubmit}>

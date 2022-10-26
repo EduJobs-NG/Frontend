@@ -66,14 +66,17 @@ export const RegisterForm = ({showModal, setShowRegister}) => {
 
 
     return (
-        <div className=' border relative bg-white p-2 py-[2rem] px-[20px] mx-[1.5rem] md:px-[42px] rounded-[30px] md:rounded-[50px] max-w-[500px]'>
+        <div className=' border relative bg-white p-2 py-[2rem] px-[20px] mx-[1.5rem] md:px-[42px] rounded-[40px] max-w-[500px]'>
             <ToastContainer />
 
-            <div className=' flex my-4 gap-x-[1rem] justify-center '>
+            <div className=' flex my-4 gap-x-[0.2rem] justify-center '>
                 <FaUserPlus className='text-[2rem] text-blue' />
                 <div className='h-[2.5rem] w-[3px] mr-[0.5rem] ml-[0.5rem] bg-black'></div>
                 <h2 className="title text-blue  text-[24px] font-[700]">SIGN UP</h2>
-                {showModal ? <FaTimes onClick={() => setShowRegister(false)} className='text-blue z-[99999] text-[1.3rem] absolute top-[1rem] right-[1.5rem] mt-3 cursor-pointer' /> : null } 
+              
+            </div>
+            <div>
+            {showModal ? <FaTimes onClick={() => setShowRegister(false)} className='text-blue z-[99999] text-[1.3rem] absolute top-[2.5rem] right-[3rem] mt-3 cursor-pointer' /> : null } 
 
             </div>
             <Formik>
@@ -81,7 +84,7 @@ export const RegisterForm = ({showModal, setShowRegister}) => {
                 {() => (
 
                     <Form onSubmit={formik.handleSubmit}>
-                        <div className='flex flex-row w-full  gap-x-[0.4rem]'>
+                        <div className='grid grid-cols-2 gap-4'>
                             <div>
                                 <FormInputBox type="text" className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
                                     placeholder="First Name" icon={<FaUserCircle />} id="first_name" name="first_name" onChange={formik.handleChange} value={formik.values.first_name} onBlur={formik.handleBlur} />

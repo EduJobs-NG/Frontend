@@ -59,7 +59,7 @@ export const EditCV = ({ setShowEditCV, cv}) => {
                 className="text-blue z-[900] text-[1.3rem] absolute right-5 mt-3 cursor-pointer"
               />
 
-              <h3 className="text-3xl font-semibold">Edit CV</h3>
+              <h3 className="text-2xl font-semibold">Edit CV</h3>
               <button className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none">
                 <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
                   ×

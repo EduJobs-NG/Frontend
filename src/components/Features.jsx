@@ -34,16 +34,16 @@ export const Features = () => {
             </div>
 
             <div className='flex flex-col justify-center items-center'>
-                <div className='max-w-[500px]'>
-                <div onClick={() => setShowModal(true)} className='bg-blue cursor-pointer p-[0.4rem] mb-[1rem] font-[600] px-[2.5rem] text-center w-full rounded-lg text-white transition'>
+                <div className='w-full max-w-[300px]'>
+                <div onClick={() => setShowModal(true)} className='bg-blue cursor-pointer py-[0.6rem] mb-[1rem] font-[600]  px-[3.5rem] text-center  rounded-lg text-white transition'>
                 
-                    Join Now
+                    JOIN NOW
                 
                 </div>
             
                 <a href="#" >
-                <div className='text-blue p-[0.3rem] px-[1.5rem] bg-[#f0f0f0] hover:bg-blue hover:text-white transition-all text-center w-full font-[600] rounded-lg'>
-                Take A QUICK TOUR
+                <div className='text-blue py-[0.6rem] px-[3.5rem] bg-[#f0f0f0] hover:bg-blue hover:text-white transition-all text-center w-full font-[600] rounded-lg'>
+                TAKE A QUICK TOUR
                 </div>
                 </a>
                 </div>

@@ -29,8 +29,8 @@ export const Credentials = () => {
   };
   const editCVHandler = () => {
     setShowEditCV(true);
-    setSelectedItem(cv)
-  }
+    setSelectedItem(cv);
+  };
   return (
     <section>
       {showAddCredentials && (
@@ -49,52 +49,56 @@ export const Credentials = () => {
         />
       )}
       {showAddCV && <AddCV setShowAddCV={setShowAddCV} />}
-      {showEditCV && <EditCV cv={cv} setShowEditCV={setShowEditCV} item={selectedItem} />}
+      {showEditCV && (
+        <EditCV cv={cv} setShowEditCV={setShowEditCV} item={selectedItem} />
+      )}
 
       <div>
         <h1 className="text-xl font-[700]">CV/Resume</h1>
-        
-        <div className="border relative mt-[0.5rem] px-[2rem] py-[1rem] rounded-lg border-[#808080]">
-        <div className="absolute right-5">
-                <div className="flex flex-row justify-end gap-6 ">
-               <p onClick={()=> editCVHandler()} className="text-blue cursor-pointer">Edit</p>
-                  {/* <FaPencilAlt onClick={()=> editCVHandler()} className="text-blue cursor-pointer"/> */}
-                  {/* <FaTrash
-                    className="cursor-pointer text-blue ml-5 md:ml-0"
-                    
-                  /> */}
-                </div>
-              </div>
-                  <p>
-                    <a className="text-blue underline" href={cv.file}>
-                     MY CV
-                    </a>
-                  </p>
-                </div>
 
-        <div
-          className={
-            cv !== null
-              ? "hidden"
-              : "mt-[3rem] items-baseline gap-3 text-center flex flex-row justify-center"
-          }
-        >
-          <div>
-            <img src={AddIcon} alt="" />
+        {cv && (
+          <div className="border relative mt-[0.5rem] px-[2rem] py-[1rem] rounded-lg border-[#808080]">
+            <div className="absolute right-5">
+              <div className="flex flex-row justify-end gap-6 ">
+                <p
+                  onClick={() => editCVHandler()}
+                  className="text-blue cursor-pointer"
+                >
+                  Edit
+                </p>
+              </div>
+            </div>
+            <p>
+              <a className="text-blue underline" href={cv?.file}>
+                MY CV
+              </a>
+            </p>
           </div>
-          <span
-            className="text-blue font-[700] text-2xl cursor-pointer"
-            onClick={() => setShowAddCV(true)}
-          >
-            Add CV
-          </span>
+        )}
+      </div>
+
+      <div
+        className={
+          cv !== null
+            ? "hidden"
+            : "mt-[3rem] items-baseline gap-3 text-center flex flex-row justify-center"
+        }
+      >
+        <div>
+          <img src={AddIcon} alt="" />
         </div>
+        <span
+          className="text-blue font-[700] text-2xl cursor-pointer"
+          onClick={() => setShowAddCV(true)}
+        >
+          Add CV
+        </span>
       </div>
 
       <div className="mt-[4rem]">
-        <h1 className="text-xl font-[700]">Credentials</h1>
-        <p>Add all of your necessary credentials.</p>
-       {credentials && <p className="mt-[2rem] font-[700]">Certificates</p>}
+        <h1 className="text-xl font-[700]">Certificates</h1>
+        <p>Add maximum of 3 of your necessary certificate.</p>
+        {/* {credentials && <p className="mt-[2rem] font-[700]">Certificates</p>} */}
         {certificates &&
           certificates.map((item) => {
             return (
@@ -130,15 +134,15 @@ export const Credentials = () => {
             className="text-blue font-[700] text-2xl cursor-pointer"
             onClick={() => addCredentialsHandler()}
           >
-            Add Credentials
+            Add Certificate
           </span>
         </div>
 
         {credentials.length === 0 && (
           <div className="bg-[#f0f0f0] px-2 mt-[2rem] flex items-end justify-center text-center  rounded-md pb-[1rem] pt-[5rem]">
             <p>
-              Please click on “Add Credentials” to record your credentials and
-              CV.
+              Please click on “Add Certificate” to record your certificate
+              
             </p>
           </div>
         )}

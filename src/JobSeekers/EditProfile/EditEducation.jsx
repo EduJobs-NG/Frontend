@@ -70,7 +70,7 @@ export const EditEducation = ({setShowEdit, item}) => {
 
           <FaTimes  onClick={()=> setShowEdit(false)} className='text-blue z-[900] text-[1.3rem] absolute right-5 mt-3 cursor-pointer' />
 
-                <h3 className="text-3xl font-semibold">
+                <h3 className="text-2xl font-semibold">
                    Edit Degree {item.degree} 
                 </h3>
                 <button
