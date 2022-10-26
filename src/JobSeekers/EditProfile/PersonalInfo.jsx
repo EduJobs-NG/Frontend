@@ -14,6 +14,11 @@ import "react-phone-input-2/lib/bootstrap.css";
 const validationSchema = Yup.object({
   email: Yup.string().email("Invalid email address"),
   phone_number: Yup.string().required('Required'),
+  facebook_url: Yup.string().url('URL must begin with https://'),
+  linkedin_url: Yup.string().url('URL must begin with https://'),
+  twitter_url: Yup.string().url('URL must begin with https://'),
+  instagram_url: Yup.string().url('URL must begin with https://'),
+  
 });
 
 export const PersonalInfo = () => {
@@ -247,7 +252,7 @@ export const PersonalInfo = () => {
           <div className="grid md:grid-cols-2 md:gap-3 mt-[1rem]">
             <div className="w-full max-w-lg">
               <FormInputBox
-                type="url"
+                type="text"
                 label="Facebook"
                 className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
                 placeholder="Facebook"
@@ -257,6 +262,9 @@ export const PersonalInfo = () => {
                 value={formik.values.facebook_url}
                 onBlur={formik.handleBlur}
               />
+              {formik.touched.facebook_url && formik.errors.facebook_url ? (
+                <small className="text-red-600">{formik.errors.facebook_url}</small>
+              ) : null}
             </div>
             <div className="w-full md:mt-0 mt-[1rem]  max-w-lg">
               <FormInputBox
@@ -270,6 +278,9 @@ export const PersonalInfo = () => {
                 value={formik.values.linkedin_url}
                 onBlur={formik.handleBlur}
               />
+               {formik.touched.linkedin_url && formik.errors.linkedin_url ? (
+                <small className="text-red-600">{formik.errors.linkedin_url}</small>
+              ) : null}
             </div>
           </div>
 
@@ -286,6 +297,9 @@ export const PersonalInfo = () => {
                 value={formik.values.twitter_url}
                 onBlur={formik.handleBlur}
               />
+               {formik.touched.twitter_url && formik.errors.twitter_url ? (
+                <small className="text-red-600">{formik.errors.twitter_url}</small>
+              ) : null}
             </div>
             <div className="w-full md:mt-0 mt-[1rem]  max-w-lg">
               <FormInputBox
@@ -299,6 +313,9 @@ export const PersonalInfo = () => {
                 value={formik.values.instagram_url}
                 onBlur={formik.handleBlur}
               />
+               {formik.touched.instagram_url && formik.errors.instagram_url ? (
+                <small className="text-red-600">{formik.errors.instagram_url}</small>
+              ) : null}
             </div>
           </div>
 
