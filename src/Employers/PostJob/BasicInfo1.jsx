@@ -5,12 +5,12 @@ import * as Yup from "yup";
 import {  FaArrowRight, FaPlus, FaCheck } from "react-icons/fa";
 
 const validationSchema = Yup.object({
-  // title: Yup.string().required("Required"),
-  // organization_name: Yup.string().required("Required"),
-  // location: Yup.string().required("Required"),
-  // job_type: Yup.string().required("Required"),
-  // min_pay_range: Yup.string().required("Required"),
-  // max_pay_range: Yup.string().required("Required"),
+  title: Yup.string().required("Required"),
+  organization_name: Yup.string().required("Required"),
+  location: Yup.string().required("Required"),
+  job_type: Yup.string().required("Required"),
+  min_pay_range: Yup.string().required("Required"),
+  max_pay_range: Yup.string().required("Required"),
 });
 
 const jobTypeOptions = [
@@ -103,7 +103,7 @@ export const BasicInfo1 = ({ formData, setFormData, prevStep, nextStep }) => {
                         activeOption === index
                           ? "border border-[#808080] "
                           : "border-none"
-                      } bg-[#e6e6e6] flex flex-row justify-content items-center rounded-[10px] cursor-pointer p-[0.4rem]  md:p-[0.5rem] mr-[0.5rem] md:mr-[1rem]`}
+                      } bg-[#e6e6e6] flex flex-row justify-content items-center rounded-[10px] cursor-pointer p-[0.4rem] mb-[0.5rem]  md:p-[0.5rem] mr-[0.5rem] md:mr-[1rem]`}
                       htmlFor={item.option}
                     >
                       {" "}
@@ -183,7 +183,7 @@ export const BasicInfo1 = ({ formData, setFormData, prevStep, nextStep }) => {
             </div>
           </div>
 
-          <div className="flex mt-[3rem] justify-center">
+          <div className="flex my-[3rem] justify-center">
             <button
               className="bg-blue w-full flex justify-center gap-6 items-center max-w-[300px] uppercase opacity-100 px-[1rem]  text-white rounded-[5px] p-2"
               type="submit"

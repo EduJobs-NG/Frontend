@@ -51,7 +51,7 @@ export const PreviewJobPost = ({ formData, setShowPreview }) => {
       setShowPreview(true);
       setTimeout(() => {
         navigate("/employer/dashboard/view-jobs");
-      }, 2000);
+      }, 9000);
     }
   };
 
@@ -117,12 +117,19 @@ export const PreviewJobPost = ({ formData, setShowPreview }) => {
 
         {jobSucess && (
           <div className="flex flex-col text-center items-center justify-center">
-            <div>
+            <div className="mb-[1rem]">
             <img src={jobPosted} alt="" />
             </div>
-            <p>Job Posted Successfully!</p>
-            <p>Your job is pending review. 
+            <p className="px-[1rem] font-[700]">Job Posted Successfully!</p>
+            <p className="px-[1rem] font-[700]">Your job is pending review. 
 You will be notified when it is posted.</p>
+<a href='/employer/dashboard/view-jobs'
+                className="bg-blue mt-[2rem] w-full flex justify-center gap-6 items-center  uppercase opacity-100 px-[1rem]  text-white rounded-[5px] p-2"
+                type="submit"
+                
+              >
+                RETURN TO HOME
+              </a>
           </div>
         )}
       
