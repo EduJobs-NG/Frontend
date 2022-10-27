@@ -11,6 +11,7 @@ import useAxios from "../../utils/useAxios";
 
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/bootstrap.css";
+
 const validationSchema = Yup.object({
   email: Yup.string().email("Invalid email address"),
   phone_number: Yup.string().required('Required'),
@@ -245,7 +246,7 @@ export const PersonalInfo = () => {
             </div>
           </div>
 
-          <h1 className="text-2xl mt-[2.3rem] font-[700]">
+          <h1 className="text-[1.1rem] mt-[2.3rem] font-[700]">
             Social Media Links
           </h1>
 
@@ -322,7 +323,7 @@ export const PersonalInfo = () => {
           <div className="mt-[3rem] flex justify-center">
             {!isLoading && (
               <button
-                className="bg-blue opacity-100  px-[5rem] text-white rounded-[5px] p-2"
+                className="bg-blue opacity-100  font-[800] px-[5rem] text-white rounded-[5px] p-2"
                 type="submit"
               >
                 SAVE

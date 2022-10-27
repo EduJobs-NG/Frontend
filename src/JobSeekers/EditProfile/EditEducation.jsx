@@ -70,7 +70,7 @@ export const EditEducation = ({setShowEdit, item}) => {
 
           <FaTimes  onClick={()=> setShowEdit(false)} className='text-blue z-[900] text-[1.3rem] absolute right-5 mt-3 cursor-pointer' />
 
-                <h3 className="text-2xl font-semibold">
+                <h3 className="text-[1.2rem] font-semibold">
                    Edit Degree {item.degree} 
                 </h3>
                 <button
@@ -179,7 +179,7 @@ export const EditEducation = ({setShowEdit, item}) => {
           </div>
 
           <div className='mt-[3rem] flex justify-center'>
-            {!isLoading && <button className='bg-blue opacity-100  px-[5rem] text-white rounded-[5px] p-2' type="submit">SAVE</button>}
+            {!isLoading && <button className='bg-blue opacity-100  font-[800] px-[5rem] text-white rounded-[5px] p-2' type="submit">SAVE</button>}
             {isLoading && (
               <div className='flex justify-center'>
                 <ThreeDots type="ThreeDots"

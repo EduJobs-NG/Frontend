@@ -75,7 +75,7 @@ export const AddEducation = ({ setShowEducation, education }) => {
                 className="text-blue z-[900] text-[1.3rem] absolute right-5 mt-3 cursor-pointer"
               />
 
-              <h3 className="text-2xl font-semibold">Add Education</h3>
+              <h3 className="text-[1.2rem] font-semibold">Add Education</h3>
               <button className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none">
                 <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
                   ×
@@ -244,7 +244,7 @@ export const AddEducation = ({ setShowEducation, education }) => {
                   <div className="mt-[3rem] flex justify-center">
                     {!isLoading && (
                       <button
-                        className="bg-blue opacity-100  px-[5rem] text-white rounded-[5px] p-2"
+                        className="bg-blue opacity-100 font-[800]  px-[5rem] text-white rounded-[5px] p-2"
                         type="submit"
                       >
                         SAVE

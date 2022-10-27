@@ -54,7 +54,7 @@ export const Credentials = () => {
       )}
 
       <div>
-        <h1 className="text-xl font-[700]">CV/Resume</h1>
+        <h1 className="text-[1.2rem]  font-[700]">CV/Resume</h1>
 
         {cv && (
           <div className="border relative mt-[0.5rem] px-[2rem] py-[1rem] rounded-lg border-[#808080]">
@@ -96,7 +96,7 @@ export const Credentials = () => {
       </div>
 
       <div className="mt-[4rem]">
-        <h1 className="text-xl font-[700]">Certificates</h1>
+        <h1 className="text-[1.2rem] font-[700]">Certificates</h1>
         <p>Add maximum of 3 of your necessary certificate.</p>
         {/* {credentials && <p className="mt-[2rem] font-[700]">Certificates</p>} */}
         {certificates &&
@@ -131,7 +131,7 @@ export const Credentials = () => {
             <img src={AddIcon} alt="" />
           </div>
           <span
-            className="text-blue font-[700] text-2xl cursor-pointer"
+            className="text-blue font-[700] text-[1.2rem] cursor-pointer"
             onClick={() => addCredentialsHandler()}
           >
             Add Certificate

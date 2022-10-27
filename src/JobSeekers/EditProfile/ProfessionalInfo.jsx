@@ -97,7 +97,7 @@ export const ProfessionalInfo = ({ setActive }) => {
           <img src={AddIcon} alt="" />
         </div>
         <span
-          className="text-blue font-[700] text-2xl cursor-pointer"
+          className="text-blue font-[700] text-[1.2rem] cursor-pointer"
           onClick={() => setShowEducation(true)}
         >
           Add Education

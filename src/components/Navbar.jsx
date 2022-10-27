@@ -39,7 +39,7 @@ export const Navbar = () => {
               {navigation.leftNav.map((nav, index) =>{
                 return (
                   <li className='hidden uppercase xl:flex' key={index}>
-                     <NavLink className="" to="#"> {nav.name}</NavLink>
+                     <NavLink className="hover:underline transition-all" to="#"> {nav.name}</NavLink>
                   </li>
                 )
               })}
@@ -49,13 +49,13 @@ export const Navbar = () => {
               
              
               <li>
-              <NavLink to="/employer" className='p-1 cursor-pointer uppercase px-2'>I'm an employer</NavLink>
+              <NavLink to="/employer" className='p-1 cursor-pointer hover:underline uppercase px-2'>I'm an employer</NavLink>
               </li>
               <li>
-              <NavLink to="#" onClick={() => setShowLogin(true)}  className='p-1 cursor-pointer px-4 border border-solid bg-white text-blue hover:text-white hover:bg-blue border-white rounded'>LOGIN</NavLink>
+              <NavLink to="#" onClick={() => setShowLogin(true)}  className='py-[0.6rem] px-[2.5rem] cursor-pointer  border border-solid bg-white text-blue hover:text-white hover:bg-blue text-[1.1rem] font-[800] border-white rounded-[4px]'>LOGIN</NavLink>
               </li>
               <li>
-              <NavLink to="#" onClick={() => setShowRegister(true)}  className='p-1 cursor-pointer px-4 border border-solid bg-white text-blue hover:text-white hover:bg-blue border-white rounded'>SIGNUP</NavLink>
+              <NavLink to="#" onClick={() => setShowRegister(true)}  className='py-[0.6rem] px-[2.5rem] cursor-pointer  border border-solid bg-white text-blue hover:text-white hover:bg-blue text-[1.1rem] font-[800] border-white rounded-[4px]'>SIGNUP</NavLink>
               </li>
              
 
@@ -76,19 +76,19 @@ export const Navbar = () => {
             <div data-aos="fade-up" className='bg-white  transition duration-1000 ease-in-out h-screen flex flex-col align-items justify-center  text-center '>
               <FaTimes onClick={handleClick} className='text-blue text-[1.3rem] mt-3 cursor-pointer absolute right-5 top-5' />
               <ul className='py-[2rem] flex flex-col '>
-                <NavLink data-aos-delay="300" data-aos="fade-left"  className="text-[1rem] font-[700] mb-[33px]"  to="#">JOBS</NavLink>
-                <NavLink data-aos-delay="300" data-aos="fade-left" className="text-[1rem] font-[700] mb-[33px]" to="#">ABOUT US</NavLink>
+                <NavLink data-aos-delay="300" data-aos="fade-left"  className="text-[1.2rem] font-[700] mb-[33px]"  to="#">JOBS</NavLink>
+                <NavLink data-aos-delay="300" data-aos="fade-left" className="text-[1.2rem] font-[700] mb-[33px]" to="#">ABOUT US</NavLink>
               </ul>
               <div className='container mx-auto'>
                 <hr className=' text-[#808080]' />
               </div>
 
               <ul className='py-[2rem] flex flex-col'>
-                <NavLink data-aos-delay="300" data-aos="fade-left" className="text-blue text-[1.2rem] uppercase mb-[45px] font-[700]" to="/employer">I'm an employer</NavLink>
+                <NavLink data-aos-delay="300" data-aos="fade-left" className="text-blue text-[1.2rem] hover:underline transition-all uppercase mb-[45px] font-[700]" to="/employer">I'm an employer</NavLink>
     
               </ul>
               <div className=''>
-              <NavLink to="/jobseeker/login" className="bg-blue rounded-sm px-[3rem] py-[0.5rem] text-white ">Login</NavLink>
+              <NavLink to="/jobseeker/login" className="bg-blue rounded-sm px-[3rem] py-[0.5rem]  text-white ">Login</NavLink>
 
               </div>
             </div>

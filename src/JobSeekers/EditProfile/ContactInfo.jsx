@@ -329,7 +329,7 @@ export const ContactInfo = ({ setTitle }) => {
             <div className="mt-[3rem] flex justify-center">
               {!isLoading && (
                 <button
-                  className="bg-blue opacity-100  px-[5rem] text-white rounded-[5px] p-2"
+                  className="bg-blue opacity-100 font-[800]  px-[5rem] text-white rounded-[5px] p-2"
                   type="submit"
                 >
                   SAVE
