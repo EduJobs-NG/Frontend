@@ -1,7 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import Aos from 'aos';
+import "aos/dist/aos.css";
 import { SearchJobs } from '../JobSeekers/components/SearchJobs';
 
 export const Hero = () => {
+  useEffect(() => {
+    Aos.init();
+    
+  }, []);
   return (
     <>
     <section className='relative bg-hero h-full py-[150px] lg:py-[150px] max-h-[700px] bg-top bg-cover bg-no-repeat'>

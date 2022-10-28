@@ -64,10 +64,10 @@ export const EmployersRegistration = ({ setShowRegister, showModal }) => {
         <section className=" bg-blue py-[1rem] flex h-screen justify-center items-center">
           {/* className=" */}
           <div className=" border relative bg-white p-2 py-[2rem] px-[20px] mx-[1.5rem] md:px-[42px] rounded-[30px] md:rounded-[50px] max-w-[500px]">
-            <div className="flex my-4 md:gap-x-[0.2rem] justify-center ">
+            <div className="flex my-4 md:gap-x-[0.2rem] justify-center items-center ">
               <FaUserPlus className="text-[2rem] text-blue" />
               <div className="h-[2.5rem] ml-[1rem] mr-[1rem] w-[3px] bg-black"></div>
-              <h2 className="title text-blue  text-[24px] font-[700]">
+              <h2 className="title text-blue  text-[1.5rem] font-[700]">
                 SIGN UP
               </h2>
             </div>

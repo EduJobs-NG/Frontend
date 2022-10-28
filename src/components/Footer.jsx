@@ -34,7 +34,7 @@ export const Footer = () => {
 
                 {candidates.map((item, index) =>{
                     return (
-                        <li key={index} className='mb-[0.5rem]'>
+                        <li key={index} className='mb-[0.5rem] hover:underline'>
                            <a href={item.href}>{item.name}</a> 
                             </li>
 
@@ -51,7 +51,7 @@ export const Footer = () => {
 
                 {employees.map((item,index) =>{
                     return (
-                        <li key={index} className='mb-[0.5rem]'>
+                        <li key={index} className='mb-[0.5rem] hover:underline'>
                            <a href={item.href}>{item.name}</a> 
                             </li>
 
@@ -67,7 +67,7 @@ export const Footer = () => {
 
                 {support.map((item, index) =>{
                     return (
-                        <li key={index} className='mb-[0.5rem]'>
+                        <li key={index} className='mb-[0.5rem] hover:underline'>
                         <a href={item.href}>{item.name}</a> 
                          </li>
 
@@ -83,7 +83,7 @@ export const Footer = () => {
 
                 {company.map((item, index) =>{
                     return (
-                        <li key={index} className='mb-[0.5rem]'>
+                        <li key={index} className='mb-[0.5rem] hover:underline'>
                         <a href={item.href}>{item.name}</a> 
                          </li>
 

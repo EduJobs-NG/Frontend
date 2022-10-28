@@ -163,8 +163,8 @@ export const CorporateRegistration = () => {
                 disabled={!formik.isValid}
                 className={
                   !formik.isValid
-                    ? "bg-blue block w-full text-white opacity-25 rounded-sm p-2"
-                    : "bg-blue opacity-100 block w-full text-white rounded-sm p-2"
+                    ? "bg-blue block w-full text-white font-[700] opacity-25 rounded-sm p-2"
+                    : "bg-blue opacity-100 block w-full font-[700] text-white rounded-sm p-2"
                 }
                 type="submit"
               >

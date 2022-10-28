@@ -59,7 +59,7 @@ export const EmployersNavbar = () => {
 
           <ul className='hidden xl:flex flex-row items-center text-white gap-x-[2rem]'>
           <a href='/employer/dashboard/post-job'>
-          <li  className='p-1 cursor-pointer px-4 font-[700] border border-solid bg-white text-blue border-white rounded'>
+          <li  className='p-1 cursor-pointer px-4 font-[700] border border-solid bg-white text-blue hover:bg-blue hover:text-white border-white rounded'>
              POST JOB
               </li>
               </a> 

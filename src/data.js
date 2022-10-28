@@ -46,13 +46,13 @@ export const navigation = {
 export const features = [
     {
         img:<Feature1 />,
-        title:'Create Your Profile',
-        subtitle: 'Take a bold step to create an outstanding profile on our platform'
+        title:'Create your profile',
+        subtitle: 'Take a bold step to create an outstanding profile on our platform.'
     },
 
     {
         img:<Feature2 />,
-        title:"Describe Your interests and qualifications",
+        title:"Describe your qualifications",
         subtitle:"Follow our interest-flow to create a very interesting interest and get Your dream job."
     },
     
