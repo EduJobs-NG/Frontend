@@ -3,10 +3,7 @@ module.exports = {
   content: ["./src/**/*.{html,jsx,js}"],
   theme: {
     container: {
-      padding: {
-        DEFAULT: '1.5rem',
-        // lg: '3rem',
-      },
+      padding: { DEFAULT: '1.5em' },
     },
     screens: {
       sm: '640px',
@@ -16,19 +13,19 @@ module.exports = {
     },
     extend: {
       dropShadow: {
-       feature:' 4px 4px 8px 0px #62626240'
+        feature: ' 4px 4px 8px 0px #62626240'
       },
-      colors:{
+      colors: {
+        ash: '#f5f5f5',
         blue: "#02378B",
         grey: '#808080',
-        ash:'#f5f5f5'
       },
-      backgroundImage:{
-        hero:'url("/src/assets/homeImage.png")',
-        jobs:'url("/src/assets/jobs.png")',
-        employers:'url("/src/assets/employers-hero.png")'
+      backgroundImage: {
+        jobs: 'url("/src/assets/jobs.png")',
+        hero: 'url("/src/assets/homeImage.png")',
+        employers: 'url("/src/assets/employers-hero.png")',
       }
     },
   },
   plugins: [],
-}
+};

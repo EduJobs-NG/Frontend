@@ -1,104 +1,66 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { footer, navigation } from '../data';
 
 
 export const Footer = () => {
-    const {logo} = navigation
-    const { socials, candidates, employees, company, support} = footer;
+    // objects
     const date = new Date();
+    const { logo } = navigation;
     const year = date.getFullYear();
-  return (
-    <footer className='bg-blue py-[2.2rem]  '>
-        <div className='container mx-auto text-white  '>
-            <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-[1rem] gap-y-[1rem]'>
+    const { socials, candidates, employees, company, support } = footer;
 
-            <div>
-                <a className=''
-                href="/">
-                    <img src={logo} alt="" />
-                </a>
-            
-                <div className='mt-[1rem] flex flex-row gap-x-5'>
-                {socials.map((social, index) =>{
-                    return(
-                    <a target="_blank" key={index} className='bg-white rounded-full text-blue p-1 cursor-pointer' href={social.link}>{social.name}</a>
-                    )     
-                })}
+    // methods
+    const navLink = (item, id) => <li key={id}><Link to={item.href} className='capitalize font-thin'>{item.name}</Link></li>;
+
+    return (
+        <footer className='bg-blue px-8 py-2 flex flex-col'>
+            <div className="flex items-start justify-evenly flex-wrap gap-4 py-8 text-white">
+                <div className="flex flex-col items-start justify-start gap-2 my-auto">
+                    <img src={logo} alt="" className='' />
+                    <div className="flex items-center justify-start gap-1 -mt-1 self-center">
+                        {socials.map((item, id) => (
+                            <a
+                                children={item.name}
+                                key={id} href={item.link}
+                                className="bg-grey rounded-full flex items-center justify-center p-2 py-2 scale-75"
+                            />
+                        ))}
+                    </div>
                 </div>
-
+                <div className="flex flex-col items-start justify-start gap-2">
+                    <h3 className="uppercase font-bold">candidates</h3>
+                    <ul>
+                        {candidates.map(navLink)}
+                    </ul>
+                </div>
+                <div className="flex flex-col items-start justify-start gap-2">
+                    <h3 className="uppercase font-bold">employees</h3>
+                    <ul>
+                        {employees.map(navLink)}
+                    </ul>
+                </div>
+                <div className="flex flex-col items-start justify-start gap-2">
+                    <h3 className="uppercase font-bold">company</h3>
+                    <ul>
+                        {company.map(navLink)}
+                    </ul>
+                </div>
+                <div className="flex flex-col items-start justify-start gap-2">
+                    <h3 className="uppercase font-bold">support</h3>
+                    <ul>
+                        {support.map(navLink)}
+                    </ul>
+                </div>
             </div>
-
-            <div>
-                <h4 className='font-[700] mb-[0.5rem]'>CANDIDATES</h4>
-                <ul>
-
-                {candidates.map((item, index) =>{
-                    return (
-                        <li key={index} className='mb-[0.5rem] hover:underline'>
-                           <a href={item.href}>{item.name}</a> 
-                            </li>
-
-                    )
-                })}
-                </ul>
-
-
+            <div
+                className="border-white border-1 pt-5 flex items-center justify-center p-1 relative before:absolute before:top-0 
+                before:w-full before:h-[.04em] before:bg-white before:opacity-40"
+            >
+                <span className='text-white text-center font-bold uppercase leading-[1em] text-sm sm:text-md'>
+                    &copy; {year} edujobs ng. all rights reserved
+                </span>
             </div>
-
-            <div>
-                <h4 className='font-[700] mb-[0.5rem]'>EMPLOYEES</h4>
-                <ul>
-
-                {employees.map((item,index) =>{
-                    return (
-                        <li key={index} className='mb-[0.5rem] hover:underline'>
-                           <a href={item.href}>{item.name}</a> 
-                            </li>
-
-                    )
-                })}
-                </ul>
-
-            </div>
-
-            <div>
-                <h4 className='font-[700] mb-[0.5rem]'>SUPPORT</h4>
-                <ul>
-
-                {support.map((item, index) =>{
-                    return (
-                        <li key={index} className='mb-[0.5rem] hover:underline'>
-                        <a href={item.href}>{item.name}</a> 
-                         </li>
-
-                    )
-                })}
-                </ul>
-
-            </div>
-
-            <div>
-                <h4 className='font-[700] mb-[0.5rem]'>COMPANY</h4>
-                <ul>
-
-                {company.map((item, index) =>{
-                    return (
-                        <li key={index} className='mb-[0.5rem] hover:underline'>
-                        <a href={item.href}>{item.name}</a> 
-                         </li>
-
-                    )
-                })}
-                </ul>
-
-            </div>
-
-        </div>
-        <hr className='my-4 text-[#f0f0f0] ' />
-        <p className='text-center'>&copy; {year} EduJobs NG. All rights reserved.</p>
-        </div>
-
-
-    </footer>
-  )
+        </footer>
+    )
 }
