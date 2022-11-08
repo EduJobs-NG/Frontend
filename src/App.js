@@ -1,22 +1,21 @@
+import { Pricing } from './pages/Pricing';
 import { Terms } from './components/Terms';
 import JobseekerRoute from './utils/JobseekerRoute';
 import { PageNotFound } from './pages/PageNotFound';
 import { AuthProvider } from './context/AuthContext';
+import { NewEmail } from './pages/Authentication/NewEmail';
+import { ResetEmail } from './pages/Authentication/ResetEmail';
 import { JobseekersHome } from './JobSeekers/pages/JobseekersHome';
+import { ResetPassword } from './pages/Authentication/ResetPassword';
+import { ForgotPassword } from './pages/Authentication/ForgotPassword';
 import { JobseekerProfile } from './JobSeekers/pages/JobseekerProfile';
 import { ActivateAccount } from './pages/Authentication/ActivateAccount';
+import { VerifyAccountUI } from './pages/Authentication/VerifyAccountUI';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { JobseekerDashboard } from './JobSeekers/pages/JobseekerDashboard';
+import { JobApplication } from './JobSeekers/JobApplication/JobApplication';
 import { JobseekerLoginFormUI } from './JobSeekers/pages/JobseekerLoginFormUI';
 import { JobseekerRegisterFormUI } from './JobSeekers/pages/JobseekerRegisterFormUI';
-import { ForgotPassword } from './pages/Authentication/ForgotPassword';
-import { ResetPassword } from './pages/Authentication/ResetPassword';
-import { ResetEmail } from './pages/Authentication/ResetEmail';
-import { NewEmail } from './pages/Authentication/NewEmail';
-import { VerifyAccountUI } from './pages/Authentication/VerifyAccountUI';
-import { JobApplication } from './JobSeekers/JobApplication/JobApplication';
-import { JobseekerSavedjobs } from './JobSeekers/pages/JobseekerSavedjobs';
-import { Pricing } from './pages/Pricing';
 
 // employers import
 import { EmployersHome } from './Employers/pages/EmployersHome';
@@ -24,14 +23,14 @@ import { EmployersLoginFormUI } from './Employers/pages/EmployersLoginFormUI';
 
 
 //loader css
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import { EmployersRegistration } from './Employers/pages/EmployersRegistration';
-import { ResetLink } from './pages/Authentication/ResendLink';
-import { EmployersDashboard } from './Employers/pages/EmployersDashboard';
+import { EditJob } from './Employers/Jobs/EditJob';
 import EmployerRoute from './utils/EmployerRoute';
+import { ResetLink } from './pages/Authentication/ResendLink';
 import { EmployerPostJob } from './Employers/PostJob/EmployerPostJob';
 import { EmployerViewJobs } from './Employers/pages/EmployerViewJobs';
-import { EditJob } from './Employers/Jobs/EditJob';
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import { EmployersDashboard } from './Employers/pages/EmployersDashboard';
+import { EmployersRegistration } from './Employers/pages/EmployersRegistration';
 
 
 function App() {
@@ -55,8 +54,6 @@ function App() {
               <Route path="/employer/dashboard/post-job" element={<EmployerPostJob />} />
               <Route path="/employer/dashboard/view-jobs" element={<EmployerViewJobs />} />
               <Route path="/employer/dashboard/edit-job/:id" element={<EditJob />} />
-
-
             </Route>
 
             <Route path="/jobseeker/login" element={<JobseekerLoginFormUI />} />
