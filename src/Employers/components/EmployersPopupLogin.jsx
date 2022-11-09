@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { EmployersLoginForm } from './EmployersLoginForm';
+import { EmployersLoginForm } from './LoginForm';
 
 export const EmployersPopupLogin = ({setShowLogin}) => {
     const [showModal, setShowModal] = useState(true);

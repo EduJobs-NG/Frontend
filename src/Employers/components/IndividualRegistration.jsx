@@ -1,64 +1,53 @@
-import React, { useState } from "react";
-import { FormInputBox } from "../../components/Forms/FormInputBox";
-import { useFormik } from "formik";
-import * as Yup from "yup";
 import axios from "axios";
-import { FaUserPlus, FaUserCircle, FaEnvelope } from "react-icons/fa";
-import { ThreeDots } from "react-loader-spinner";
+import { useFormik } from "formik";
 import { Formik, Form } from "formik";
-import { Link, useNavigate } from "react-router-dom";
-import google from "../../assets/google.png";
-import linkedin from "../../assets/linkedin.png";
-import { ToastContainer, toast } from "react-toastify";
+import React, { useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
+import { ThreeDots } from "react-loader-spinner";
+import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import { FaUserCircle, FaEnvelope } from "react-icons/fa";
+import { FormInputBox } from "../../components/Forms/FormInputBox";
 import CustomCheckbox from '../../components/Forms/CustomCheckbox';
-import { RegistrationSchema } from "../../components/Forms/schema";
+import { RegistrationSchema as validationSchema } from "../../components/Forms/schema";
 
 
 
 export const IndividualRegistration = () => {
-  const [isLoading, setIsLoading] = useState(false);
-
+  // hooks
   const navigate = useNavigate();
+
+  // states hooks
+  const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async (values) => {
     setIsLoading(true);
     const response = await axios
       .post(`${process.env.REACT_APP_BASE_URL}employer/account/individual-employer/`, values)
-      .catch((err) => {
-        if (err && err.response) {
-          if (err.message === "Request failed with status code 400") {
-            setIsLoading(false);
-            toast.error("User with this email already exists");
-          } else {
-            setIsLoading(false);
-            toast.error("An error occured. Try again");
-
-            console.log(err)
-          }
-        }
+      .catch(err => {
+        if (err?.message === 'Request failed with status code 400') toast.error('user with this email already exists');
+        else toast.error('an error occured, try again');
+        console.error(err);
+        setIsLoading(false);
       });
 
-    if (response && response.data) {
-      // console.log(response)
-      toast.success("Account created successfully.");
-      setTimeout(() => {
-        navigate("/verify");
-      }, 1000);
+    if (response?.data) {
+      setIsLoading(false);
+      toast.success("Account created successfully.", { onClose: () => navigate('/verify'), onClick: () => navigate('/verify') });
     }
   };
 
   const formik = useFormik({
+    onSubmit,
+    validationSchema,
+    validateOnBlur: true,
     initialValues: {
-      first_name: "",
-      last_name: "",
       email: "",
       password: "",
+      last_name: "",
+      first_name: "",
       re_password: "",
     },
-    validateOnBlur: true,
-    onSubmit,
-    validationSchema: RegistrationSchema,
   });
 
   return (
@@ -66,112 +55,112 @@ export const IndividualRegistration = () => {
       <ToastContainer />
 
       <Formik>
-        {({  }) => (
-          <Form onSubmit={formik.handleSubmit}>
+        {() => (
+          <Form onSubmit={formik?.handleSubmit}>
             <div className="grid grid-cols-2 gap-4 ">
               <div>
                 <FormInputBox
                   type="text"
-                  className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
-                  placeholder="First Name"
-                  icon={<FaUserCircle />}
                   id="first_name"
                   name="first_name"
-                  onChange={formik.handleChange}
-                  value={formik.values.first_name}
-                  onBlur={formik.handleBlur}
+                  icon={<FaUserCircle />}
+                  placeholder="First Name"
+                  onBlur={formik?.handleBlur}
+                  onChange={formik?.handleChange}
+                  value={formik?.values?.first_name}
+                  className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
                 />
 
-                {formik.touched.first_name && formik.errors.first_name ? (
+                {formik?.touched?.first_name && formik?.errors?.first_name ?
                   <small className="text-red-600">
-                    {formik.errors.first_name}
-                  </small>
-                ) : null}
+                    {formik?.errors.first_name}
+                  </small> : null}
               </div>
 
               <div>
                 <FormInputBox
                   type="text"
-                  className="border p-2.5 block  w-full  border-solid border-[#808080] rounded-lg outline-none"
-                  placeholder="Last  Name"
-                  icon={<FaUserCircle />}
                   id="last_name"
                   name="last_name"
-                  onChange={formik.handleChange}
-                  value={formik.values.last_name}
-                  onBlur={formik.handleBlur}
+                  icon={<FaUserCircle />}
+                  placeholder="Last  Name"
+                  onBlur={formik?.handleBlur}
+                  onChange={formik?.handleChange}
+                  value={formik?.values.last_name}
+                  className="border p-2.5 block  w-full  border-solid border-[#808080] rounded-lg outline-none"
                 />
-                {formik.touched.last_name && formik.errors.last_name ? (
+                {formik?.touched?.last_name && formik?.errors?.last_name ?
                   <small className="text-red-600">
-                    {formik.errors.last_name}
-                  </small>
-                ) : null}
+                    {formik?.errors.last_name}
+                  </small> : null}
               </div>
             </div>
 
             <FormInputBox
-              type="email"
-              className="border p-2.5 mt-[1rem]  block w-full border-solid border-[#808080] rounded-lg outline-none"
-              icon={<FaEnvelope />}
-              placeholder="Email"
               id="email"
+              type="email"
               name="email"
-              onChange={formik.handleChange}
-              value={formik.values.email}
-              onBlur={formik.handleBlur}
+              placeholder="Email"
+              icon={<FaEnvelope />}
+              onBlur={formik?.handleBlur}
+              value={formik?.values.email}
+              onChange={formik?.handleChange}
+              className="border p-2.5 mt-[1rem]  block w-full border-solid border-[#808080] rounded-lg outline-none"
             />
 
-            {formik.touched.email && formik.errors.email ? (
-              <small className="text-red-600">{formik.errors.email}</small>
+            {formik?.touched.email && formik?.errors.email ? (
+              <small className="text-red-600">{formik?.errors.email}</small>
             ) : null}
 
             <FormInputBox
-              type="password"
-              className=" border p-2.5 mt-[1rem]  block w-full border-solid border-[#808080] rounded-lg outline-none"
-              placeholder="Password"
               id="password"
               name="password"
-              onChange={formik.handleChange}
+              type="password"
+              placeholder="Password"
+              onBlur={formik?.handleBlur}
               autoComplete="new-password"
-              value={formik.values.password}
-              onBlur={formik.handleBlur}
+              onChange={formik?.handleChange}
+              value={formik?.values.password}
+              className=" border p-2.5 mt-[1rem]  block w-full border-solid border-[#808080] rounded-lg outline-none"
             />
-            {formik.touched.password && formik.errors.password ? (
-              <small className="text-red-600">{formik.errors.password}</small>
-            ) : null}
+            {
+              formik?.touched?.password && formik?.errors?.password ?
+                <small className="text-red-600">{formik?.errors.password}</small> : null
+            }
 
             <FormInputBox
               type="password"
-              className=" border p-2.5 mt-[1rem]  block w-full border-solid border-[#808080] rounded-lg outline-none"
-              placeholder="Confirm Password"
               id="re_password"
-              onBlur={formik.handleBlur}
               name="re_password"
-              onChange={formik.handleChange}
               autoComplete="new-password"
-              value={formik.values.re_password}
+              onBlur={formik?.handleBlur}
+              placeholder="Confirm Password"
+              onChange={formik?.handleChange}
+              value={formik?.values.re_password}
+              className=" border p-2.5 mt-[1rem]  block w-full border-solid border-[#808080] rounded-lg outline-none"
             />
 
-            {formik.touched.re_password && formik.errors.re_password ? (
+            {formik?.touched?.re_password && formik?.errors?.re_password ?
               <small className="text-red-600">
-                {formik.errors.re_password}
-              </small>
-            ) : null}
+                {formik?.errors.re_password}
+              </small> : null}
             <div className='my-3'>
-                        <CustomCheckbox type="checkbox" id="acceptedTos"  name="acceptedTos" value={formik.values.acceptedTos} onChange={formik.handleChange} />
-                       <label for="acceptedTos"> By signing up on this platform,
-                         you agree to EduJobs NG’s</label> <Link className='text-blue underline' to="terms-and-condition"> Terms & Conditions.</Link>
-                         <div>
-                         {formik.touched.acceptedTos && formik.errors.acceptedTos ? (<small className="text-red-600">{formik.errors.acceptedTos}</small>) : null}
+              <CustomCheckbox type="checkbox" id="acceptedTos" name="acceptedTos" value={formik?.values?.acceptedTos} onChange={formik?.handleChange} />
+              <label htmlFor="acceptedTos"> By signing up on this platform,
+                you agree to EduJobs NG’s</label> <Link className='text-blue underline' to="terms-and-condition"> Terms & Conditions.</Link>
+              <div>
+                {
+                  formik?.touched?.acceptedTos && formik?.errors?.acceptedTos ?
+                    <small className="text-red-600">{formik?.errors.acceptedTos}</small> : null
+                }
+              </div>
 
-                         </div>
-                      
-                        </div>
+            </div>
             {!isLoading && (
               <button
-                disabled={!formik.isValid}
+                disabled={!formik?.isValid}
                 className={
-                  !formik.isValid 
+                  !formik?.isValid
                     ? "bg-blue block w-full text-white opacity-25 rounded-sm p-2"
                     : "bg-blue opacity-100 block w-full text-white rounded-sm p-2"
                 }
@@ -183,10 +172,10 @@ export const IndividualRegistration = () => {
             {isLoading && (
               <div className="flex justify-center">
                 <ThreeDots
-                  type="ThreeDots"
                   width={100}
                   height={20}
                   color="blue"
+                  type="ThreeDots"
                 />
               </div>
             )}
@@ -201,26 +190,6 @@ export const IndividualRegistration = () => {
           </Link>
         </p>
       </div>
-
-      {/* <div className="flex justify-between gap-x-5 items-baseline">
-        <hr className="bg-blue border-[0.1px] w-[35%] " />
-        <span>OR</span>
-        <hr className="bg-blue border-[0.1px]  w-[35%]" />
-      </div>
-
-      <div className="mt-4 flex justify-center flex-row gap-x-[1rem]">
-        <img
-          className="border rounded-full p-[0.3rem]  border-[#808080]"
-          src={google}
-          alt=""
-        />
-        <img
-          className="border p-[0.4rem] rounded-full border-[#808080]"
-          src={linkedin}
-          alt=""
-        />
-      </div> */}
-     
     </div>
   );
 };
