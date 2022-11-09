@@ -1,4 +1,4 @@
-import logo1 from './assets/logo.png'
+import logo from './assets/logo.png'
 import Feature1 from './assets/features1.png';
 import Feature2 from './assets/features2.png';
 import Feature3 from './assets/features3.png';
@@ -7,33 +7,18 @@ import { FaFacebookF, FaInstagram, FaTwitter } from 'react-icons/fa'
 
 export const navigation = {
 
-    logo: logo1,
+    logo,
     leftNav: [
-        {
-            name: 'About us',
-            href: "#"
-        },
-        {
-            name: 'jobs',
-            href: "#"
-        },
+        { name: 'About us', href: "#" },
+        { name: 'jobs', href: "#" },
     ]
     ,
 
 
     rightNav: [
-        {
-            name: 'job seekers',
-            href: '#'
-        },
-        {
-            name: 'employees',
-            href: '#'
-        },
-        {
-            name: 'login',
-            href: '#'
-        },
+        { name: 'job seekers', href: '#' },
+        { name: 'employees', href: '#' },
+        { name: 'login', href: '#' },
     ]
 };
 
@@ -59,7 +44,7 @@ export const features = [
 ];
 
 export const footer = {
-    logo: logo1,
+    logo,
     socials: [
         {
             name: <FaFacebookF />,
@@ -89,34 +74,23 @@ export const footer = {
             name: 'Sign up',
             href: '/employer/register'
         },
-        {
-            name: 'Find candidate',
-            href: '#'
-        },
-        {
-            name: 'Post jobs',
-            href: '/dashboard/employer/post-job'
-        },
+        { name: 'Find candidate', href: '#' },
+        { name: 'Post jobs', href: '/dashboard/employer/post-job' },
     ],
     company: [
-        {
-            name: 'About us',
-            href: '#'
-        },
-        {
-            name: 'Careers',
-            href: '#'
-        },
-        {
-            name: 'Contact us',
-            href: '#'
-        },
+        { name: 'About us', href: '#' },
+        { name: 'Careers', href: '#' },
+        { name: 'Contact us', href: '#' },
     ],
 
     support: [
         {
             name: 'General FAQs',
             href: '/faqs'
+        },
+        {
+            name: 'Terms and Conditions',
+            href: '/terms'
         },
     ],
 };

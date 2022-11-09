@@ -1,10 +1,11 @@
 import { Pricing } from './pages/Pricing';
-import { Terms } from './components/Terms';
 import JobseekerRoute from './utils/JobseekerRoute';
 import { PageNotFound } from './pages/PageNotFound';
 import { AuthProvider } from './context/AuthContext';
 import { NewEmail } from './pages/Authentication/NewEmail';
 import { ResetEmail } from './pages/Authentication/ResetEmail';
+import { TermsAndConditions } from './pages/TermsAndConditions';
+import { Profile } from './JobSeekers/pages/JobseekerViewProfile';
 import { JobseekersHome } from './JobSeekers/pages/JobseekersHome';
 import { ResetPassword } from './pages/Authentication/ResetPassword';
 import { ForgotPassword } from './pages/Authentication/ForgotPassword';
@@ -42,7 +43,8 @@ function App() {
           <Routes>
             <Route path="/" exact element={<JobseekersHome />} />
             <Route element={<JobseekerRoute />}>
-              <Route path="/dashboard/profile" element={<JobseekerProfile />} />
+              <Route path="/dashboard/profile" element={<Profile />} />
+              <Route path="/dashboard/profile/edit" element={<JobseekerProfile />} />
               <Route path="/dashboard/find-jobs" element={<JobseekerDashboard />} />
               <Route path="/dashboard/apply/job/:id" element={<JobApplication />} />
             </Route>
@@ -68,7 +70,7 @@ function App() {
             <Route path="/pricing" element={<Pricing />} />
             <Route path="*" element={<PageNotFound />} />
 
-            <Route path="/terms" element={<Terms />} />
+            <Route path="/terms" element={<TermsAndConditions />} />
             <Route path="/employer" element={<EmployersHome />} />
             <Route path="/employer/register" element={<EmployersRegistration />} />
             <Route path="/employer/login" element={<EmployersLoginFormUI />} />
