@@ -22,7 +22,7 @@ export const Navbar = () => {
   const handleClick = () => { setMenu(!menu); setActive(!active); };
 
   return (
-    <section className='bg-[#02378B] z-[999]'>
+    <section className='bg-[#02378B] z-30 sticky top-0'>
       {showRegister && <PopupRegistration setShowRegister={setShowRegister} />}
       {showLogin && <PopupLogin setShowLogin={setShowLogin} />}
 

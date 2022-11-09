@@ -5,12 +5,12 @@ import { FaBars, FaTimes } from 'react-icons/fa';
 import chat from '../../assets/chat.png'
 import notification from '../../assets/notification.png'
 import Aos from 'aos'
-import {navigation} from '../../data';
+import { navigation } from '../../data';
 import { FaCaretDown } from 'react-icons/fa';
 
 export const JobseekerNavbar = () => {
-  const {user, logOutUser, getUserMeHandler} = useContext(AuthContext)
-  const {logo} = navigation;
+  const { user, logOutUser, getUserMeHandler } = useContext(AuthContext)
+  const { logo } = navigation;
   useEffect(() => {
     Aos.init();
     Aos.refresh();
@@ -26,32 +26,32 @@ export const JobseekerNavbar = () => {
   }
 
 
-  
-  const activeLink = 'border-b border-b-white';
+
   const normalLink = 'border-none';
   const normalMobile = 'text-[1.3rem]';
-  const activeMobile = 'text-blue text-[1.3rem] font-[700]'
+  const activeLink = 'border-b border-b-white';
+  const activeMobile = 'text-blue text-[1.3rem] font-[700]';
 
   return (
-    <nav className='bg-[#02378B] z-[999]'>
+    <nav className='bg-[#02378B] z-30 sticky top-0'>
       <div className="container mx-auto">
         <div className="flex  py-[1rem] items-center flex-row justify-between">
           <ul className="flex gap-x-[3rem] text-white flex-row">
             <li className=''>
-            <a href="/dashboard/find-jobs">
+              <a href="/dashboard/find-jobs">
                 <img src={logo} className='w-[150px]' alt="" />
-                </a>
+              </a>
             </li>
             <div className='hidden uppercase xl:flex gap-x-[3rem]'>
 
               <li className=''>
-                <NavLink to="/dashboard/find-jobs" className={({isActive}) => (isActive ? activeLink : normalLink)} >FIND JOBS</NavLink>
+                <NavLink to="/dashboard/find-jobs" className={({ isActive }) => (isActive ? activeLink : normalLink)} >FIND JOBS</NavLink>
               </li>
               <li className=''>
-                <NavLink to="/dashboard/saved-jobs" className={({isActive}) => (isActive ? activeLink : normalLink)} >SAVED JOBS</NavLink>
+                <NavLink to="/dashboard/saved-jobs" className={({ isActive }) => (isActive ? activeLink : normalLink)} >SAVED JOBS</NavLink>
               </li>
               <li className=''>
-                <NavLink to="/pricing" className={({isActive}) => (isActive ? activeLink : normalLink)} >PRICING</NavLink>
+                <NavLink to="/pricing" className={({ isActive }) => (isActive ? activeLink : normalLink)} >PRICING</NavLink>
               </li>
             </div>
 
@@ -71,21 +71,21 @@ export const JobseekerNavbar = () => {
             <li>
               <div onClick={() => setDropDown(!dropDown)} className='flex relative cursor-pointer flex-row items-center '>
                 <div className='w-[40px] h-[40px]'>
-                <img className='rounded-full' src={user?.avatar} alt="" />
+                  <img className='rounded-full' src={user?.avatar} alt="" />
                 </div>
-                  <FaCaretDown />
-                  {dropDown && 
-                    <div className='absolute z-[9999] rounded-b-[15px] bg-[#f1f1f1] right-[0.2rem] top-[3.5rem]'>
+                <FaCaretDown />
+                {dropDown &&
+                  <div className='absolute z-[9999] rounded-b-[15px] bg-[#f1f1f1] right-[0.2rem] top-[3.5rem]'>
                     <ul className='text-black w-[150px] '>
                       <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>
-                     <a href="/dashboard/profile">View Profile</a>   
-                        </li>
+                        <a href="/dashboard/profile">View Profile</a>
+                      </li>
                       <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Settings</li>
-                      <li onClick={ logOutUser} className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Log out</li>
+                      <li onClick={logOutUser} className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Log out</li>
                     </ul>
                   </div>
-                  }
-                </div>
+                }
+              </div>
             </li>
 
 
@@ -93,22 +93,22 @@ export const JobseekerNavbar = () => {
           </ul>
           <div className='xl:hidden flex flex-row items-center h-[35px] gap-[1rem]'>
             <div onClick={() => setDropDown(!dropDown)} className='flex relative cursor-pointer flex-row items-center '>
-                <div className='w-[40px] h-[40px]'>
+              <div className='w-[40px] h-[40px]'>
                 <img className='rounded-full' src={user?.avatar} alt="" />
+              </div>
+              <FaCaretDown className='text-white' />
+              {dropDown &&
+                <div className='absolute z-[9999] rounded-b-[15px] bg-[#f1f1f1] right-[0.2rem] top-[3.5rem]'>
+                  <ul className='text-black w-[150px] '>
+                    <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>
+                      <a href="/dashboard/profile">View Profile</a>
+                    </li>
+                    <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Settings</li>
+                    <li onClick={logOutUser} className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Log out</li>
+                  </ul>
                 </div>
-                  <FaCaretDown className='text-white' />
-                  {dropDown && 
-                    <div className='absolute z-[9999] rounded-b-[15px] bg-[#f1f1f1] right-[0.2rem] top-[3.5rem]'>
-                    <ul className='text-black w-[150px] '>
-                      <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>
-                     <a href="/dashboard/profile">View Profile</a>   
-                        </li>
-                      <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Settings</li>
-                      <li onClick={ logOutUser} className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Log out</li>
-                    </ul>
-                  </div>
-                  }
-                </div>
+              }
+            </div>
 
 
             <div onClick={handleClick} className="ml-[0.4rem]">
@@ -132,19 +132,19 @@ export const JobseekerNavbar = () => {
             <FaTimes onClick={handleClick} className='text-blue text-[1.3rem] mt-3 cursor-pointer absolute right-5 top-5' />
             <ul className='py-[2rem] flex flex-col '>
               <li className='mb-[33px]'>
-                <NavLink to="/dashboard/find-jobs" className={({isActive}) => (isActive ? activeMobile : normalMobile)}  >FIND JOBS</NavLink>
+                <NavLink to="/dashboard/find-jobs" className={({ isActive }) => (isActive ? activeMobile : normalMobile)}  >FIND JOBS</NavLink>
               </li>
               <li className='mb-[33px]'>
-                <NavLink to="/dashboard/saved-jobs" className={({isActive}) => (isActive ? activeMobile : normalMobile)} >SAVED JOBS</NavLink>
+                <NavLink to="/dashboard/saved-jobs" className={({ isActive }) => (isActive ? activeMobile : normalMobile)} >SAVED JOBS</NavLink>
               </li>
               <li className='mb-[33px]'>
-                <NavLink   to="/pricing" className={({isActive}) => (isActive ? activeMobile : normalMobile)}>PRICING</NavLink>
+                <NavLink to="/pricing" className={({ isActive }) => (isActive ? activeMobile : normalMobile)}>PRICING</NavLink>
               </li>
               <li className='mb-[33px]'>
-                <NavLink  to="/messages" className={({isActive}) => (isActive ? activeMobile : normalMobile)}>MESSAGES</NavLink>
+                <NavLink to="/messages" className={({ isActive }) => (isActive ? activeMobile : normalMobile)}>MESSAGES</NavLink>
               </li>
               <li className='mb-[33px]'>
-                <NavLink  to="/notification" className={({isActive}) => (isActive ? activeMobile : normalMobile)}>NOTIFICATION</NavLink>
+                <NavLink to="/notification" className={({ isActive }) => (isActive ? activeMobile : normalMobile)}>NOTIFICATION</NavLink>
               </li>
             </ul>
 
