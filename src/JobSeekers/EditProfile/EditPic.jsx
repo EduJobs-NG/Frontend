@@ -1,46 +1,53 @@
-import React, { useState, useContext } from "react";
+import * as Yup from 'yup';
+import { FaTimes } from "react-icons/fa";
+import useAxios from "../../utils/useAxios";
 import { useFormik, Formik, Form } from "formik";
 import { ThreeDots } from "react-loader-spinner";
-import { FaBars, FaTimes } from "react-icons/fa";
 import AuthContext from "../../context/AuthContext";
+import React, { useState, useContext } from "react";
 import { FormInputBox } from '../../components/Forms/FormInputBox';
-import * as Yup from 'yup';
-import useAxios from "../../utils/useAxios";
 
 const validationSchema = Yup.object({
   avatar: Yup.string().required('Required')
 });
 
 export const EditPic = ({ setShowPic }) => {
+  // axios instance
   const api = useAxios();
-  const [isLoading, setIsLoading] = useState(false);
-  const { authTokens, getUserMeHandler } = useContext(AuthContext);
 
+  // context and state hooks
+  const [isLoading, setIsLoading] = useState(false);
+  const { getUserMeHandler } = useContext(AuthContext);
+
+/**
+ * Making a PUT request to the server with the data from the form.
+ */
   const onSubmit = async (values) => {
     setIsLoading(true);
     const data = new FormData();
     data.append('avatar', values.avatar);
-    console.log(data)
-    const response = api.put(`/jobseeker/user-profile-update/`, data)
-      .catch((err) => {
-        console.log(err);
-        setIsLoading(false);
-      });
+
+/* Making a PUT request to the server with the data from the form. */
+    const response = api
+      .put(`/jobseeker/user-profile-update/`, data)
+      .catch((err) => { console.error(err); setIsLoading(false); });
 
     if (response) {
-      setIsLoading(false);
       setShowPic(false);
       getUserMeHandler();
+      setIsLoading(false);
       console.log(response);
     }
   };
 
+/* A hook that is used to validate the form. */
   const formik = useFormik({
     onSubmit,
     validateOnBlur: true,
     initialValues: { avatar: '' },
     validationSchema: validationSchema,
   });
+
   return <>
     <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
       <div className="relative w-auto my-6 mx-3 max-w-3xl">

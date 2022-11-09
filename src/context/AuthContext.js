@@ -1,7 +1,8 @@
-import { createContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { getStoredUser, storeUser, getStoredEmployerUser, storeEmployerUser } from "../storage/localStorage";
 import useAxios from "../utils/useAxios";
+import { useNavigate } from "react-router-dom";
+import { createContext, useState, useEffect } from "react";
+import { getStoredUser, storeUser, getStoredEmployerUser, storeEmployerUser } from "../storage/localStorage";
+
 const AuthContext = createContext({
   authTokens: localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null,
   setAuthTokens: (_) => { },
