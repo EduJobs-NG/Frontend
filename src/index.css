@@ -110,3 +110,21 @@ body,
   position: static !important;
   top     : 0;
 }
+
+#portal {
+  top             : 0;
+  left            : 0;
+  z-index         : 1000;
+  display         : grid;
+  position        : fixed;
+  width           : 100vw;
+  height          : 100vh;
+  place-items     : center;
+  transition      : 400ms ease;
+  background-color: rgb(0, 0, 0, 0.8);
+}
+
+#portal:empty {
+  opacity       : 0;
+  pointer-events: none;
+}
