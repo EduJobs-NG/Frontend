@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import Error from '../error';
 import { Job } from '../cards';
 import { useApi } from '../../hooks';
 import { useEffect, useState } from 'react';
@@ -11,9 +12,9 @@ const JobSection = ({ title = "", location = "", Title, Location }) => {
     const [data, error, load] = useApi('/jobseeker/job-list');
 
     useEffect(() => {
-        setResult(_ => data?.data?.results || []);
-        // setResult(_ => data?.results?.filter(d => d?.title?.contains(title) || d?.location?.contains(location)) || []);
-        console.log(data?.results);
+        setResult(_ => data?.results?.filter(
+            ({ title: t, location: l }) => l.includes(location) || t.includes(title) || false)
+        );
     }, [title, location, data]);
 
     // methods
@@ -32,8 +33,8 @@ const JobSection = ({ title = "", location = "", Title, Location }) => {
         <div className="flex flex-col gap-8 items-center justify-start w-full p-14">
             {load ?
                 <Circles type="ThreeDots" width={100} height={20} color="blue" /> :
-                error ? <p>Error Loading Jobs, Refresh The Page</p> :
-                    result.length !== 0 ? result?.map(Job) : <p >There are no jobs </p>
+                error ? <Error /> :
+                    result?.length !== 0 ? result?.map(Job) : <p >There are no jobs </p>
             }
         </div>
     </section>;

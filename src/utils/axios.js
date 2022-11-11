@@ -11,17 +11,17 @@ const api = axios.create({
     },
 });
 
-api.interceptors.request.use(async (request) => {
-    console.log(token.key);
-    const user = jwt_decode(token.object?.access);
+// api.interceptors.request.use(async (request) => {
+//     console.log(token.key);
+//     const user = jwt_decode(token.key);
 
-    const isExpired = dayjs.unix(user.exp).diff(dayjs()) < 1;
-    if (isExpired) return request;
+//     const isExpired = dayjs.unix(user.exp).diff(dayjs()) < 1;
+//     if (isExpired) return request;
 
-    const response = await api.post("/jobseeker/jwt/token/refresh/", { refresh: token.object?.refresh });
+//     const response = await api.post("/jobseeker/jwt/token/refresh/", { refresh: token.object?.refresh });
 
-    token.key = response.data;
-    request.headers.Authorization = token.key;
-});
+//     token.key = response.data;
+//     request.headers.Authorization = token.key;
+// });
 
 export default api;

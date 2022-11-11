@@ -11,6 +11,7 @@ const Routes = () => {
             <$.Routes>
                 {
                     routes.map((obj, key) => (<$.Route path={obj.path}
+                        key={key}
                         element={
                             // obj.protected ?
                             // <Protected children={<obj.element />} /> :

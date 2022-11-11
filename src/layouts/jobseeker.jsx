@@ -17,16 +17,16 @@ const headerElements = {
     ],
 };
 
-const Layout = (Component) => (() => (
+const Layout = (Component, showhero = true) => (() => (
     <>
         <Header {...headerElements} />
-        <Hero>
+        {showhero ?<Hero>
             <div className="flex flex-col items-start justify-center p-8 z-10 w-full">
                 <h2 className='text-left capitalize font-bold text-[clamp(2em,5vw,6em)] leading-[1em] w-[50%] min-w-[12em] whitespace-pre-line'>
                     find job that best suits you
                 </h2>
             </div>
-        </Hero>
+        </Hero>:null}
         <Component />
         <Footer />
     </>

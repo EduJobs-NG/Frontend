@@ -2,9 +2,9 @@
 import Aos from 'aos';
 import { navigation } from '../../data';
 import { Link } from 'react-router-dom';
-import { Login, Register } from '../form';
 import { useEffect, useState } from "react";
 import { AiOutlineMenu } from 'react-icons/ai';
+import { LoginPortal, RegisterPortal } from '../form';
 
 const Header = ({ main = [], aside = [], buttons = [] }) => {
     // object variables
@@ -20,8 +20,8 @@ const Header = ({ main = [], aside = [], buttons = [] }) => {
 
     // events
     const events = ({
-        login: () => { setLogin(val => true); console.log('login') },
-        register: () => { setRegister(val => true); console.log('register') },
+        login: () => { setLogin(val => true); },
+        register: () => { setRegister(val => true); },
     });
 
     // methods
@@ -29,11 +29,12 @@ const Header = ({ main = [], aside = [], buttons = [] }) => {
     const link = (obj, key) => (<li key={key} className="uppercase hover:underline cursor-pointer"><Link to={obj.to}>{obj.name}</Link></li>);
     const btn = (obj, key) => (<li key={key} className=""><button onClick={events[obj.event]} className="py-[0.3em] px-[2.4em] cursor-pointer  border border-solid bg-white text-blue hover:text-white hover:bg-blue text-[1.1rem] font-[800] border-white rounded-[4px] uppercase">{obj.name}</button></li>);
 
-    return <header className="flex text-white bg-blue w-screen top-0 sticky z-50 p-16 py-4 gap-4 items-center">
-        {login ? <Login close={() => setLogin(_ => false)} /> : register ? <Register close={() => setRegister(_ => false)} /> : null}
+    return <header className="flex justify-between text-white bg-blue w-screen top-0 sticky z-50 p-16 py-4 gap-4 items-center">
+        {
+            login ? <LoginPortal close={() => setLogin(_ => false)} /> : register ? <RegisterPortal close={() => setRegister(_ => false)} /> : null
+        }
         <Link to='/'><img src={logo} alt="" className='' /></Link>
-        <nav className="flex justify-center gap-12 md:justify-between item-center md:flex-row flex-col grow w-[80vw] absolute md:top-0 top-5 
-        md:left-0 left-1/2 md:relative md:bg-transparent bg-white md:h-auto h-96 text-black md:text-white md:translate-x-0 -translate-x-1/2">
+        <nav className="lg:flex justify-between items-center grow hidden">
             <ul className=" flex-col md:flex-row flex items-center gap-2 md:gap-4 font-bold uppercase">
                 {main.map(link)}
             </ul>
@@ -41,7 +42,7 @@ const Header = ({ main = [], aside = [], buttons = [] }) => {
                 {aside.map(link)} {buttons.map(btn)}
             </ul>
         </nav>
-        <AiOutlineMenu className="text-xl font-bold cursor-pointer md:hidden" onClick={toggleMenu} />
+        <AiOutlineMenu className="text-xl font-bold cursor-pointer flex lg:hidden" onClick={toggleMenu} />
     </header>;
 };
 

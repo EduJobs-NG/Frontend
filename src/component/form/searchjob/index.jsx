@@ -29,7 +29,6 @@ const SearchJob = ({ Title, Location, t, l, style = {} }) => {
                 before:absolute before:h-full before:w-[.05em] before:bg-blue before:right-0'
             />
             <input
-                required
                 name="title"
                 type="search"
                 value={title}
@@ -46,7 +45,6 @@ const SearchJob = ({ Title, Location, t, l, style = {} }) => {
                 before:absolute before:h-full before:w-[.05em] before:bg-blue before:right-0'
             />
             <input
-                required
                 type="search"
                 name="location"
                 value={location}
