@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import error from '../../assets/error.svg';
 
 const Error = () => {
-    return <div className="flex flex-col h-screen text-center justify-center items-center">
+    return <div className="flex flex-col h-screen text-center justify-center items-center gap-8">
         <img src={error} alt="" />
         <p className="font-bold capitalize text-center">
             an error has occured. refresh or go back to the homepage

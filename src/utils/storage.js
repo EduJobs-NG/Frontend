@@ -22,6 +22,13 @@ export const token = {
     get key() {
         let tokenValue = getItem(this.tokenName);
         console.log('token requested', tokenValue);
-        return tokenValue ? `Bearer ${tokenValue?.auth_token}` : '';
+        return tokenValue ? `Bearer ${tokenValue?.access}` : '';
     },
+    /**
+     * If the tokenName is not null, then return the object.
+     * @returns The getItem() function is being returned.
+     */
+    get object() {
+        return getItem(this.tokenName);
+    }
 };

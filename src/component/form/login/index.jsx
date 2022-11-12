@@ -8,7 +8,7 @@ import { ThreeDots } from 'react-loader-spinner';
 import { Link, useNavigate } from 'react-router-dom';
 import { AiFillMail, AiFillEye, AiFillEyeInvisible as Hidden } from 'react-icons/ai';
 
-const Login = ({ close }) => {
+const Login = ({ close, hideBtn = false }) => {
     // hooks
     const nav = useNavigate();
 
@@ -19,9 +19,26 @@ const Login = ({ close }) => {
     const [visible, setVisible] = useState(false);
 
     // methods
-    const getEmail = ({ target }) => setEmail(_ => target?.value || "");
-    const getPassword = ({ target }) => setPassword(_ => target?.value || "");
+    /**
+     * "If the user is logged in, log them out, then close the window and navigate to the home page."
+     * 
+     * The first thing we do is check if the user is logged in. If they are, we call the logout
+     * function
+     */
     const endAll = () => { close(); nav("/") };
+    /**
+     * `getEmail` is a function that takes an object with a `target` property, and returns a function
+     * that sets the `email` state to the value of the `target` property, or an empty string if the
+     * `target` property is undefined
+     */
+    const getEmail = ({ target }) => setEmail(_ => target?.value || "");
+    /**
+     * GetPassword is a function that takes an object with a target property, and returns a function
+     * that sets the password state to the value of the target property, or an empty string if the
+     * target property is undefined.
+     */
+    const getPassword = ({ target }) => setPassword(_ => target?.value || "");
+    /* A function that is called when the form is submitted. */
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoad(true);
@@ -42,7 +59,7 @@ const Login = ({ close }) => {
         className="flex flex-col gap-4 bg-white p-8 rounded-lg relative w-[clamp(20em,30vw,50em)]"
     >
         <div className="flex w-full items-center justify-center">
-            <IoMdClose className="absolute top-4 right-4 cursor-pointer text-xl" onClick={close} />
+            {hideBtn ? null : <IoMdClose className="absolute top-4 right-4 cursor-pointer text-xl" onClick={close} />}
             <h2 className="uppercase font-black text-blue text-2xl flex gap-2 items-center">
                 <img src={login} alt="" />
                 <i className="h-8 w-1 bg-blue inline-block" />
@@ -65,9 +82,9 @@ const Login = ({ close }) => {
             <button className="rounded cursor-pointer hover:brightness-150 transition-all w-full flex items-center justify-center h-12 mt-4 bg-blue text-white uppercase">
                 {load ? <ThreeDots radius={5} color={"white"} /> : 'login'}
             </button>
-            <span className="-mt-4 flex items-center justify-between text-sm">
-                <Link to='/' className="text-sm">forgot password</Link>
-                <span>Don't have an account? <Link to='/'>sign up</Link></span>
+            <span className="mt-4 flex items-center justify-between text-sm">
+                <Link to='/' className="text-sm text-blue capitalize">forgot password</Link>
+                <span>Don't have an account? <Link to='/auth/register' className='text-blue font-bold capitalize'>sign up</Link></span>
             </span>
         </div>
     </form>;

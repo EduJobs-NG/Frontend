@@ -15,12 +15,13 @@ const headerElements = {
     ],
 };
 
-const Layout = (Component) => (() => (
-    <>
-        <Header {...headerElements} />
+const Layout = (Component, setElements = true) => (() => {
+    const elements = setElements ? headerElements : { buttons: [{ event: '', name: 'post jobs' }] };
+    return <>
+        <Header {...elements} />
         <Component />
         <Footer />
     </>
-));
+});
 
 export default Layout;

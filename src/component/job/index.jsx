@@ -1,10 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import Error from '../error';
 import { Job } from '../cards';
+import Boundary from '../boundary';
 import { useApi } from '../../hooks';
 import { useEffect, useState } from 'react';
 import { FaWindowClose } from 'react-icons/fa';
-import { Circles } from 'react-loader-spinner';
 
 const JobSection = ({ title = "", location = "", Title, Location }) => {
     // hooks
@@ -18,10 +17,7 @@ const JobSection = ({ title = "", location = "", Title, Location }) => {
     }, [title, location, data]);
 
     // methods
-    const handleClick = () => {
-        Title(_ => "");
-        Location(_ => "");
-    };
+    const handleClick = () => { Title(_ => ""); Location(_ => ""); };
 
     return <section>
         <div className="w-full flex items-center justify-between p-8">
@@ -31,11 +27,10 @@ const JobSection = ({ title = "", location = "", Title, Location }) => {
             {(title || location) ? <FaWindowClose onClick={handleClick} className="cursor-pointer" /> : null}
         </div>
         <div className="flex flex-col gap-8 items-center justify-start w-full p-14">
-            {load ?
-                <Circles type="ThreeDots" width={100} height={20} color="blue" /> :
-                error ? <Error /> :
-                    result?.length !== 0 ? result?.map(Job) : <p >There are no jobs </p>
-            }
+            <Boundary error={error} load={load}>
+                {result?.map(Job) || <p >There are no jobs </p>}
+                <Job />
+            </Boundary>
         </div>
     </section>;
 };

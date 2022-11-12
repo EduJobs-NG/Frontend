@@ -4,6 +4,7 @@
   "homepage": "http://test.edujobsng.com",
   "private": true,
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
@@ -28,6 +29,7 @@
     "react-phone-number-input": "^3.2.11",
     "react-quill": "^2.0.0",
     "react-read-more-read-less": "^1.0.7",
+    "react-redux": "^8.0.5",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "react-toastify": "^9.0.8",
