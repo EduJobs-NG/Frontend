@@ -17,7 +17,7 @@ const Edit = () => {
     // methods
     const setLocation = ({currentTarget}) => void nav(`/jobseeker/profile/edit?tab=${currentTarget.name || 'personal'}`);
 
-    return <section className="w-screen flex flex-col h-screen">
+    return <section className="w-screen flex flex-col">
         <div className="w-full flex flex-col relative p-8 pb-2">
             <h2 className="capitalize font-bold absolute top-4 left-4">profile</h2>
             <div className="grid"></div>

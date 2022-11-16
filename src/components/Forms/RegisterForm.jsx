@@ -10,14 +10,14 @@ import google from '../../assets/google.png'
 import linkedin from '../../assets/linkedin.png'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {  FaTimes } from 'react-icons/fa';
+import { FaTimes } from 'react-icons/fa';
 import CustomCheckbox from './CustomCheckbox';
 import { RegistrationSchema } from './schema';
 
 
 
-export const RegisterForm = ({showModal, setShowRegister}) => {
-   
+export const RegisterForm = ({ showModal, setShowRegister }) => {
+
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
@@ -30,11 +30,11 @@ export const RegisterForm = ({showModal, setShowRegister}) => {
                     if (err.message === 'Request failed with status code 400') {
                         setIsLoading(false)
                         toast.error("User with this email already exists")
-                        
+
                     } else {
                         setIsLoading(false)
                         toast.error("An error occured. Try again")
-                     
+
                     }
                 }
             });
@@ -56,7 +56,7 @@ export const RegisterForm = ({showModal, setShowRegister}) => {
             email: '',
             password: '',
             re_password: '',
-            acceptedTos:false
+            acceptedTos: false
         },
         validateOnBlur: true,
         onSubmit,
@@ -73,10 +73,10 @@ export const RegisterForm = ({showModal, setShowRegister}) => {
                 <FaUserPlus className='text-[2rem] text-blue' />
                 <div className='h-[2.5rem] w-[3px] mr-[0.5rem] ml-[0.5rem] bg-black'></div>
                 <h2 className="title text-blue  text-[1.5rem] font-[700]">SIGN UP</h2>
-              
+
             </div>
             <div>
-            {showModal ? <FaTimes onClick={() => setShowRegister(false)} className='text-blue z-[99999] text-[1.3rem] absolute top-[2.5rem] right-[3rem] mt-3 cursor-pointer' /> : null } 
+                {showModal ? <FaTimes onClick={() => setShowRegister(false)} className='text-blue z-[99999] text-[1.3rem] absolute top-[2.5rem] right-[3rem] mt-3 cursor-pointer' /> : null}
 
             </div>
             <Formik>
@@ -119,17 +119,17 @@ export const RegisterForm = ({showModal, setShowRegister}) => {
 
                         {formik.touched.re_password && formik.errors.re_password ? (<small className="text-red-600">{formik.errors.re_password}</small>) : null}
                         <div className='my-3'>
-                        <CustomCheckbox type="checkbox" id="acceptedTos"  name="acceptedTos" value={formik.values.acceptedTos} onChange={formik.handleChange} />
-                       <label for="acceptedTos"> By signing up on this platform,
-                         you agree to EduJobs NG’s</label> <Link className='text-blue underline' to="terms-and-condition"> Terms & Conditions.</Link>
-                         <div>
-                         {formik.touched.acceptedTos && formik.errors.acceptedTos ? (<small className="text-red-600">{formik.errors.acceptedTos}</small>) : null}
+                            <CustomCheckbox type="checkbox" id="acceptedTos" name="acceptedTos" value={formik.values.acceptedTos} onChange={formik.handleChange} />
+                            <label for="acceptedTos"> By signing up on this platform,
+                                you agree to EduJobs NG’s</label> <Link className='text-blue underline' to="terms-and-condition"> Terms & Conditions.</Link>
+                            <div>
+                                {formik.touched.acceptedTos && formik.errors.acceptedTos ? (<small className="text-red-600">{formik.errors.acceptedTos}</small>) : null}
 
-                         </div>
-                      
+                            </div>
+
                         </div>
 
-                        {!isLoading && <button disabled={!formik.isValid} className={!formik.isValid  ? 'bg-blue block w-full text-white opacity-25 font-[700] rounded-[6px] p-2' : 'bg-blue opacity-100 block w-full text-white font-[700] rounded-[6px] p-2'} type="submit">SIGN UP</button>}
+                        {!isLoading && <button disabled={!formik.isValid} className={!formik.isValid ? 'bg-blue block w-full text-white opacity-25 font-[700] rounded-[6px] p-2' : 'bg-blue opacity-100 block w-full text-white font-[700] rounded-[6px] p-2'} type="submit">SIGN UP</button>}
                         {isLoading && (
                             <div className='flex justify-center'>
                                 <ThreeDots type="ThreeDots"
@@ -160,7 +160,7 @@ export const RegisterForm = ({showModal, setShowRegister}) => {
                 <img className='border p-[0.4rem] rounded-full ml-[1rem] border-[#808080]' src={linkedin} alt="" />
             </div> */}
 
-            
+
         </div>
     )
 }

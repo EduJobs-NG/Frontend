@@ -1,6 +1,6 @@
+import Boundary from '../boundary';
 import { Pricing } from '../cards';
 import { useApi } from '../../hooks';
-import { Circles } from 'react-loader-spinner';
 
 const PricingSection = () => {
     // api hook
@@ -13,10 +13,9 @@ const PricingSection = () => {
             </h2>
         </div>
         <div className="flex flex-wrap gap-8 items-center justify-center">
-            {load ?
-                <Circles type="ThreeDots" width={100} height={20} color="blue" /> :
-                error ? <p>Error Loading Plans, Refresh The Page</p> : data?.map(Pricing)
-            }
+            <Boundary error={error} load={load}>
+                {data?.map(Pricing)}
+            </Boundary>
         </div>
     </section>;
 };

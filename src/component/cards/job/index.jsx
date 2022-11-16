@@ -5,11 +5,13 @@ const Job = (item) => {
                 <h3 className="font-bold capitalize">{item?.title}</h3>
             </div>
         </div>
-        <p className="transition-all overflow-hidden">{item?.summary}</p>
-        <div className="transition-all flex items-center justify-center overflow-hidden bg-red">
-            <button className="flex items-center justify-center text-white bg-blue font-bold uppercase py-2 px-24 rounded-md">
-                apply
-            </button>
+        <div className="flex flex-col items-center gap-4">
+            <p className="transition-all overflow-hidden">{item?.summary}</p>
+            <div className="transition-all flex items-center justify-center overflow-hidden bg-red">
+                <button className="flex items-center justify-center text-white bg-blue font-bold uppercase py-2 px-24 rounded-md">
+                    apply
+                </button>
+            </div>
         </div>
         <div className="flex items-center justify-between w-full">
             <span className="">{item?.posted_time} ago</span>

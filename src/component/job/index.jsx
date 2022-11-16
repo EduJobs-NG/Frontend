@@ -2,22 +2,27 @@
 import { Job } from '../cards';
 import Boundary from '../boundary';
 import { useApi } from '../../hooks';
+import { useSelector } from 'react-redux';
+import { useMyDispatch } from '../../store';
 import { useEffect, useState } from 'react';
 import { FaWindowClose } from 'react-icons/fa';
 
 const JobSection = ({ title = "", location = "", Title, Location }) => {
     // hooks
+    const { jobs: $jobs } = useMyDispatch();
     const [result, setResult] = useState([]);
-    const [data, error, load] = useApi('/jobseeker/job-list');
+    const { data, error, load } = useSelector(state => state.jobs);
 
+    // effects
+    useEffect(() => { if (!data.length) $jobs(); }, []);
     useEffect(() => {
-        setResult(_ => data?.results?.filter(
-            ({ title: t, location: l }) => l.includes(location) || t.includes(title) || false)
+        setResult(() => data?.results?.filter(
+            ({ title: t, location: l }) => l?.toLowerCase().includes(location?.toLowerCase()) || t?.toLowerCase().includes(title?.toLowerCase()) || false)
         );
     }, [title, location, data]);
 
     // methods
-    const handleClick = () => { Title(_ => ""); Location(_ => ""); };
+    const handleClick = () => { Title(() => ""); Location(() => ""); };
 
     return <section>
         <div className="w-full flex items-center justify-between p-8">

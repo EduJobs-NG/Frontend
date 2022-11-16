@@ -1,5 +1,5 @@
 const Portfolio = (item, key) => {
-    return <div key={item.key}
+    return <div key={item.id}
         style={{ flexDirection: key % 2 ? 'row' : 'row-reverse' }}
         className="flex flex-wrap gap-8 w-screen px-12 py-6 justify-center"
     >

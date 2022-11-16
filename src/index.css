@@ -57,7 +57,6 @@ body,
 .react-tel-input {
   margin     : 0.25rem 0 1.5rem 0 !important;
   font-family: 'Sofia Pro', sans-serif !important;
-  /* position: relative; */
   position   : static !important;
   width      : 100%;
   display    : flex;

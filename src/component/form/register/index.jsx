@@ -1,4 +1,4 @@
-import * as form from './tab';
+import * as $ from './tab';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { createPortal } from 'react-dom';
@@ -15,7 +15,7 @@ const Register = ({ close = null, hideBtn = false }) => {
     const writeAuth = ({ currentTarget }) => void setAuth(v => currentTarget?.name);
 
     return <div
-        className="flex flex-col bg-white p-8 rounded-lg gap-12 relative w-[clamp(20em,30vw,50em)]"
+        className="flex flex-col bg-white p-8 rounded-lg gap-4 relative w-[clamp(24em,30vw,50em)]"
     >
         <div className="flex w-full items-center justify-center">
             {hideBtn ? null : <IoMdClose className="absolute top-4 right-4 cursor-pointer text-xl" onClick={close} />}
@@ -25,7 +25,7 @@ const Register = ({ close = null, hideBtn = false }) => {
                 <span className=''>register</span>
             </h2>
         </div>
-        {auth === 'jobseeker' ? <form.jobseeker close={remAuth} /> : auth === 'employer' ? <form.employer close={remAuth} /> : <div className="flex flex-col gap-4 w-full">
+        {auth ? <$.Form close={remAuth} name={auth} /> : <div className="flex flex-col gap-4 w-full">
             <button name="jobseeker" onClick={writeAuth} className="w-full h-16 border text-gray-300 border-gray-300 rounded-md cursor-pointer relative flex items-center justify-center px-8" >
                 <img src={jobseeker} alt="" className="absolute left-8" />
                 I'm a job seeker

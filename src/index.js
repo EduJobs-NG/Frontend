@@ -1,5 +1,4 @@
 import './index.css';
-/* Importing the AuthContext and the auth function from the auth.js file. */
 import store from './store';
 import Router from './router';
 import { StrictMode } from 'react';

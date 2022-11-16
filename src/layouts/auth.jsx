@@ -1,10 +1,12 @@
 import Header from '../component/header';
-import Footer from '../component/footer';
+// import Footer from '../component/footer';
 
 const headerElements = {
     main: [
-        { to: '/dashboard', name: 'dashboard' },
-        { to: '/analytics', name: 'analytics' },
+        { to: '/dashboard', name: 'jobs' },
+        { to: '/analytics', name: 'trending' },
+        { to: '/analytics', name: 'about us' },
+        { to: '/analytics', name: 'pricing' },
     ],
     aside: [
         { to: '/jobseeker', name: 'i\'m a jobseeker' },
@@ -18,7 +20,7 @@ const headerElements = {
 const Layout = (Component, setElements = true) => (() => (<>
     <Header {...headerElements} />
     <Component />
-    <Footer />
+    {/* <Footer /> */}
 </>));
 
 export default Layout;
