@@ -52,7 +52,7 @@ export const ClosedJobs = () => {
       {openJobs && !isLoading &&  openJobs.map((job) => {
         return (
       
-      <div className="bg-white rounded-[1rem] mb-[2rem] px-[2rem] py-[1rem] grid lg:grid-cols-4 gap-[2rem]">
+      <div key={job} className="bg-white rounded-[1rem] mb-[2rem] px-[2rem] py-[1rem] grid lg:grid-cols-4 gap-[2rem]">
         <div>
           <h1 className="text-blue font-[700] ">{job.title}</h1>
           <p>{job.location}</p>
