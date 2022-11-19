@@ -33,7 +33,7 @@ const JobSection = ({ title = "", location = "", Title, Location }) => {
         </div>
         <div className="flex flex-col gap-8 items-center justify-start w-full p-14">
             <Boundary error={error} load={load}>
-                {result?.map(Job) || <p >There are no jobs </p>}
+                {result?.map(item => <Job key={item?.id} {...item} />) || <p >There are no jobs </p>}
                 <Job />
             </Boundary>
         </div>

@@ -1,13 +1,12 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import { createPortal } from 'react-dom';
 import { useSelector } from 'react-redux';
 import { IoMdClose } from 'react-icons/io';
+import { useState, useEffect } from 'react';
 import login from '../../../assets/login.svg';
 import { useMyDispatch } from '../../../store';
 import { ThreeDots } from 'react-loader-spinner';
+import { Link, useNavigate } from 'react-router-dom';
 import { AiFillMail, AiFillEye, AiFillEyeInvisible as Hidden } from 'react-icons/ai';
-import { useEffect } from 'react';
 
 const Login = ({ close, hideBtn = false }) => {
     // hooks
@@ -60,7 +59,7 @@ const Login = ({ close, hideBtn = false }) => {
                 {load ? <ThreeDots radius={5} color={"white"} /> : 'login'}
             </button>
             <span className="mt-4 flex items-center justify-between text-[12px]">
-                <Link to='/' className="text-sm text-blue capitalize">forgot password</Link>
+                <Link to='/' className="text-blue font-bold capitalize">forgot password</Link>
                 <span className="leading-[1em]">Don't have an account? <Link to='/auth/register' className='text-blue font-bold capitalize'>sign up</Link></span>
             </span>
         </div>

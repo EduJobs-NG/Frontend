@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import jwt from 'jwt-decode';
 import { toast } from 'react-toastify';
 import { api, token } from '../../utils';
@@ -37,7 +38,6 @@ const authSlice = createSlice({
             state.user = user;
             sessionStorage.setItem('edujobs:userdata',JSON.stringify(user));
 
-            // eslint-disable-next-line no-restricted-globals
             location.replace('/');
         });
 
@@ -51,7 +51,10 @@ const authSlice = createSlice({
         addCase($register.fulfilled, (state, { payload }) => {
             state.load = false;
             console.log(payload.data);
-            toast.success('registered successfully');
+            toast.success('registered successfully', {
+                onClick: () => location.replace('/auth/verify'),
+                onClose: () => location.replace('/auth/verify'),
+            });
         });
 
         // /* Adding a case to the reducer. */

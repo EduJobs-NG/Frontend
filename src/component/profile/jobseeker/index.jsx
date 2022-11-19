@@ -38,37 +38,37 @@ const Profile = () => {
                     <div className="flex flex-col grow basis-52">
                         <label htmlFor="first_name" className="font-thinbold capitalize text-grey" children='first name' />
                         <span className="mx-1 shrink grow">
-                            <input name="first_name" type="text" disabled className='rounded-md text-sm p-2 w-full border border-grey' value={data?.user?.first_name || "..."} />
+                            <input readOnly={true} name="first_name" type="text" disabled className='rounded-md text-sm p-2 w-full border border-grey' value={data?.user?.first_name || "..."} />
                         </span>
                     </div>
                     <div className="flex flex-col grow basis-52">
                         <label htmlFor="middle_name" className="font-thinbold capitalize text-grey" children='middle name' />
                         <span className="mx-1 shrink grow">
-                            <input name="middle_name" type="text" disabled className='rounded-md text-sm p-2 w-full border border-grey' value={data?.user?.middle_name || "..."} />
+                            <input readOnly={true} name="middle_name" type="text" disabled className='rounded-md text-sm p-2 w-full border border-grey' value={data?.user?.middle_name || "..."} />
                         </span>
                     </div>
                     <div className="flex flex-col grow basis-52">
                         <label htmlFor="last_name" className="font-thinbold capitalize text-grey" children='last name' />
                         <span className="mx-1 shrink grow">
-                            <input name="last_name" type="text" disabled className='rounded-md text-sm p-2 w-full border border-grey' value={data?.user?.last_name || "..."} />
+                            <input readOnly={true} name="last_name" type="text" disabled className='rounded-md text-sm p-2 w-full border border-grey' value={data?.user?.last_name || "..."} />
                         </span>
                     </div>
                     <div className="flex flex-col grow basis-52">
                         <label htmlFor="gender" className="font-thinbold capitalize text-grey" children='gender' />
                         <span className="mx-1 shrink grow">
-                            <input name="gender" type="text" disabled className='rounded-md text-sm p-2 w-full border border-grey' value={data?.gender || "..."} />
+                            <input readOnly={true} name="gender" type="text" disabled className='rounded-md text-sm p-2 w-full border border-grey' value={data?.gender || "..."} />
                         </span>
                     </div>
                     <div className="flex flex-col grow basis-52">
                         <label htmlFor="phone_number" className="font-thinbold capitalize text-grey" children='phone number' />
                         <span className="mx-1 shrink grow">
-                            <input name="phone_number" type="text" disabled className='rounded-md text-sm p-2 w-full border border-grey' value={data?.user?.phone_number || "..."} />
+                            <input readOnly={true} name="phone_number" type="text" disabled className='rounded-md text-sm p-2 w-full border border-grey' value={data?.user?.phone_number || "..."} />
                         </span>
                     </div>
                     <div className="flex flex-col grow basis-52">
                         <label htmlFor="email" className="font-thinbold capitalize text-grey" children='email address' />
                         <span className="mx-1 shrink grow">
-                            <input name="email" type="text" disabled className='rounded-md text-sm p-2 w-full border border-grey' value={data?.user?.email || "..."} />
+                            <input readOnly={true} name="email" type="text" disabled className='rounded-md text-sm p-2 w-full border border-grey' value={data?.user?.email || "..."} />
                         </span>
                     </div>
                 </div>
@@ -115,19 +115,19 @@ const Profile = () => {
                     <div className="flex flex-col grow basis-52">
                         <label htmlFor="first_name" className="font-thinbold capitalize text-grey" children='first name' />
                         <span className="mx-1 shrink grow">
-                            <input name="first_name" type="text" disabled className='rounded-md text-sm p-2 w-full border border-grey' value={data?.contact_info?.next_kin_fname} />
+                            <input readOnly={true} name="first_name" type="text" disabled className='rounded-md text-sm p-2 w-full border border-grey' value={data?.contact_info?.next_kin_fname} />
                         </span>
                     </div>
                     <div className="flex flex-col grow basis-52">
                         <label htmlFor="last_name" className="font-thinbold capitalize text-grey" children='last name' />
                         <span className="mx-1 shrink grow">
-                            <input name="last_name" type="text" disabled className='rounded-md text-sm p-2 w-full border border-grey' value={data?.contact_info?.next_kin_lname} />
+                            <input readOnly={true} name="last_name" type="text" disabled className='rounded-md text-sm p-2 w-full border border-grey' value={data?.contact_info?.next_kin_lname} />
                         </span>
                     </div>
                     <div className="flex flex-col grow basis-52">
                         <label htmlFor="phone_number" className="font-thinbold capitalize text-grey" children='last name' />
                         <span className="mx-1 shrink grow">
-                            <input name="phone_number" type="nutextmber" disabled className='rounded-md text-sm p-2 w-full border border-grey' value={data?.contact_info?.next_kin_phone} />
+                            <input readOnly={true} name="phone_number" type="nutextmber" disabled className='rounded-md text-sm p-2 w-full border border-grey' value={data?.contact_info?.next_kin_phone} />
                         </span>
                     </div>
                 </div>

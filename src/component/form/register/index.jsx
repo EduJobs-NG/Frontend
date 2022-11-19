@@ -12,7 +12,7 @@ const Register = ({ close = null, hideBtn = false }) => {
 
     // methods
     const remAuth = () => setAuth(_ => null);
-    const writeAuth = ({ currentTarget }) => void setAuth(v => currentTarget?.name);
+    const writeAuth = ({ currentTarget: target }) => void setAuth(() => target?.name);
 
     return <div
         className="flex flex-col bg-white p-8 rounded-lg gap-4 relative w-[clamp(24em,30vw,50em)]"

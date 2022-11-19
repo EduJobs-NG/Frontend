@@ -32,37 +32,37 @@ export const personal = () => {
         <div className="flex flex-col grow basis-96">
             <label htmlFor="first_name" className="font-thinbold capitalize text-grey" children='first name' />
             <span className="mx-1 shrink grow">
-                <input name="first_name" type="text" className='rounded-md text-sm p-2 w-full border border-grey' onChange={updateData} />
+                <input name="first_name" type="text" className='outline-none rounded-md text-sm p-2 w-full border border-grey' onChange={updateData} />
             </span>
         </div>
         <div className="flex flex-col grow basis-96">
             <label htmlFor="middle_name" className="font-thinbold capitalize text-grey" children='middle name' />
             <span className="mx-1 shrink grow">
-                <input name="middle_name" type="text" className='rounded-md text-sm p-2 w-full border border-grey' onChange={updateData} />
+                <input name="middle_name" type="text" className='outline-none rounded-md text-sm p-2 w-full border border-grey' onChange={updateData} />
             </span>
         </div>
         <div className="flex flex-col grow basis-96">
             <label htmlFor="last_name" className="font-thinbold capitalize text-grey" children='last name' />
             <span className="mx-1 shrink grow">
-                <input name="last_name" type="text" className='rounded-md text-sm p-2 w-full border border-grey' onChange={updateData} />
+                <input name="last_name" type="text" className='outline-none rounded-md text-sm p-2 w-full border border-grey' onChange={updateData} />
             </span>
         </div>
         <div className="flex flex-col grow basis-96">
             <label htmlFor="gender" className="font-thinbold capitalize text-grey" children='gender' />
             <span className="mx-1 shrink grow">
-                <input name="gender" type="text" className='rounded-md text-sm p-2 w-full border border-grey' onChange={updateData} />
+                <input name="gender" type="text" className='outline-none rounded-md text-sm p-2 w-full border border-grey' onChange={updateData} />
             </span>
         </div>
         <div className="flex flex-col grow basis-96">
             <label htmlFor="phone_number" className="font-thinbold capitalize text-grey" children='phone number' />
             <span className="mx-1 shrink grow">
-                <input name="phone_number" type="text" className='rounded-md text-sm p-2 w-full border border-grey' onChange={updateData} />
+                <input name="phone_number" type="text" className='outline-none rounded-md text-sm p-2 w-full border border-grey' onChange={updateData} />
             </span>
         </div>
         <div className="flex flex-col grow basis-96">
             <label htmlFor="email" className="font-thinbold capitalize text-grey" children='email address' />
             <span className="mx-1 shrink grow">
-                <input name="email" type="text" className='rounded-md text-sm p-2 w-full border border-grey' onChange={updateData} />
+                <input name="email" type="text" className='outline-none rounded-md text-sm p-2 w-full border border-grey' onChange={updateData} />
             </span>
         </div>
         <div className="flex flex-col grow basis-11/12">
@@ -74,32 +74,32 @@ export const personal = () => {
         <div className="flex flex-col grow basis-96">
             <label htmlFor="city" className="font-thinbold capitalize text-grey" children='city' />
             <span className="mx-1 shrink grow">
-                <input name="city" type="text" className='rounded-md text-sm p-2 w-full border border-grey' onChange={updateData} />
+                <input name="city" type="text" className='outline-none rounded-md text-sm p-2 w-full border border-grey' onChange={updateData} />
             </span>
         </div>
         <div className="flex flex-col grow basis-96">
             <label htmlFor="state" className="font-thinbold capitalize text-grey" children='state' />
             <span className="mx-1 shrink grow">
-                <input name="state" type="text" className='rounded-md text-sm p-2 w-full border border-grey' onChange={updateData} />
+                <input name="state" type="text" className='outline-none rounded-md text-sm p-2 w-full border border-grey' onChange={updateData} />
             </span>
         </div>
         <div className="flex flex-col grow basis-11/12 my-8 gap-4">
             <span className="w-full capitalize">social media links</span>
             <div className="mx-6 flex items-center justify-start gap-4 w-full">
                 <label htmlFor="facebook" className="capitalize font-bold w-20">facebook</label>
-                <input type="text" name="facebook" className="grow-1 border border-grey w-full p-2 py-1 rounded-md" />
+                <input type="text" name="facebook" className="outline-none grow-1 border border-grey w-full p-2 py-1 rounded-md" />
             </div>
             <div className="mx-6 flex items-center justify-start gap-4 w-full">
                 <label htmlFor="twitter" className="capitalize font-bold w-20">twitter</label>
-                <input type="text" name="twitter" className="grow-1 border border-grey w-full p-2 py-1 rounded-md" />
+                <input type="text" name="twitter" className="outline-none grow-1 border border-grey w-full p-2 py-1 rounded-md" />
             </div>
             <div className="mx-6 flex items-center justify-start gap-4 w-full">
                 <label htmlFor="instagram" className="capitalize font-bold w-20">instagram</label>
-                <input type="text" name="instagram" className="grow-1 border border-grey w-full p-2 py-1 rounded-md" />
+                <input type="text" name="instagram" className="outline-none grow-1 border border-grey w-full p-2 py-1 rounded-md" />
             </div>
             <div className="mx-6 flex items-center justify-start gap-4 w-full">
                 <label htmlFor="linkedin" className="capitalize font-bold w-20">linkedin</label>
-                <input type="text" name="linkedin" className="grow-1 border border-grey w-full p-2 py-1 rounded-md" />
+                <input type="text" name="linkedin" className="outline-none grow-1 border border-grey w-full p-2 py-1 rounded-md" />
             </div>
         </div>
         <div className="w-full basis-11/22 flex items-centr justify-center">

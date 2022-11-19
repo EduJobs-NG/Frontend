@@ -36,9 +36,7 @@ const Edit = () => {
                 </button>
             </div>
         </div>
-        <div className="w-full flex">
-            <Tab></Tab>
-        </div>
+        <div className="w-full flex"><Tab /></div>
     </section>;
 };
 
