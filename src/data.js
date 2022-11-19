@@ -94,3 +94,14 @@ export const footer = {
         },
     ],
 };
+
+export const updater = {
+    email: {
+        endpoint: '',
+        elements: [
+            { name: 'email', type: 'email', placeholder:'new email address' },
+            { name: 'password', type: 'password', placeholder:'enter password' },
+        ]
+    },
+    password: {}
+};

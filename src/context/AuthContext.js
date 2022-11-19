@@ -95,20 +95,20 @@ export const AuthProvider = ({ children }) => {
 
 
   let contextData = {
-    user: user,
-    setUser: setUser,
-    authTokens: authTokens,
-    setAuthTokens: setAuthTokens,
-    logOutUser: logOutUser,
-    getUserMeHandler: getUserMeHandler,
-    loading: loading,
-    setLoading: setLoading,
-    updateUser: updateUser,
-    getEmployerUser: getEmployerUser,
-    employerUser: employerUser,
-    setEmployerUser: setEmployerUser,
-    logOutEmployerUser: logOutEmployerUser,
-    storeEmployerUser: storeEmployerUser
+    user,
+    setUser,
+    loading,
+    authTokens,
+    setLoading,
+    updateUser,
+    logOutUser,
+    employerUser,
+    setAuthTokens,
+    setEmployerUser,
+    getEmployerUser,
+    getUserMeHandler,
+    storeEmployerUser,
+    logOutEmployerUser,
 
 
   }

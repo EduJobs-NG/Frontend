@@ -4,15 +4,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
 
-/* html{
-    font-size:62.5%;
-  } */
-/* @layer base {
-  .section {
-    @apply py-[50px] lg:py-[70px];
-  }
-} */
-
 * {
   margin    : 0;
   padding   : 0;
@@ -57,7 +48,6 @@ body,
 .react-tel-input {
   margin     : 0.25rem 0 1.5rem 0 !important;
   font-family: 'Sofia Pro', sans-serif !important;
-  /* position: relative; */
   position   : static !important;
   width      : 100%;
   display    : flex;
@@ -109,4 +99,8 @@ body,
 .react-tel-input .flag-dropdown {
   position: static !important;
   top     : 0;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> bd3c57606bbf268b6570839118cee5263b5342f1

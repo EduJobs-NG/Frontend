@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+#root,
+#portal,
+#loader {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden auto;
+}
+
+#portal,
+#loader {
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: grid;
+    position: fixed;
+    place-items: center;
+    transition: 400ms ease;
+    background: rgba(0 0 0 / .8);
+}
+
+#portal:empty {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#portal>* {
+    display: none;
+}
+
+#portal> :is(*:last-child, *:only-child) {
+    display: flex;
+}
+
+#loader {
+    background: white;
+}
