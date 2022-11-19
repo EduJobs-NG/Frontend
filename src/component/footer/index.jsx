@@ -54,7 +54,7 @@ const Footer = () => {
                 before:w-full before:h-[.04em] before:bg-white before:opacity-40"
             >
                 <span className='text-white text-center font-bold uppercase leading-[1em] text-sm sm:text-md'>
-                    &copy; {year} edujobs ng. all rights reserved
+                    &copy; {year} edujobs. all rights reserved
                 </span>
             </div>
         </footer>;

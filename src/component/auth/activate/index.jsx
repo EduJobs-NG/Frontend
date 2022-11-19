@@ -22,15 +22,16 @@ const Activate = () => {
     // methods
     const activateAccount = async () => {
         setLoad(prev => true);
-        await api.post('', { uid, token })
+        await api.post('jobseeker/user/email/activate/', { uid, token })
             .then(data => {
                 console.log(data);
                 toast.success('account activated successfully', {
-                    onClick: () => nav('/'),fonClose: () => nav('/'),
+                    onClick: () => nav('/auth/login', { replace: true }),
+                    fonClose: () => nav('/auth/login', { replace: true }),
                 });
             })
-            .catch(err => { 
-                setLoad(prev => false); 
+            .catch(err => {
+                setLoad(prev => false);
                 toast.error('It seems something went wrong');
             });
         setLoad(prev => false);
