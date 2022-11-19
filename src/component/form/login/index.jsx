@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { createPortal } from 'react-dom';
 import { useSelector } from 'react-redux';
 import { IoMdClose } from 'react-icons/io';
@@ -7,15 +7,22 @@ import login from '../../../assets/login.svg';
 import { useMyDispatch } from '../../../store';
 import { ThreeDots } from 'react-loader-spinner';
 import { AiFillMail, AiFillEye, AiFillEyeInvisible as Hidden } from 'react-icons/ai';
+import { useEffect } from 'react';
 
 const Login = ({ close, hideBtn = false }) => {
     // hooks
+    const nav = useNavigate();
     const { login: $login } = useMyDispatch();
-    const { load } = useSelector(state => state.auth);
+    const { load, user } = useSelector(state => state.auth);
 
     // states
     const [data, setData] = useState({});
     const [visible, setVisible] = useState(false);
+
+    // effects
+    useEffect(() => {
+        if (!load && user) nav('/');
+    },[]);
 
     // methods
     const getData = ({ currentTarget: target }) => setData(prev => ({ ...prev, [target.name]: target.value }));

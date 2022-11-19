@@ -20,16 +20,14 @@ const Header = (props) => {
     // hooks
 
     // states
-    const [menu, setMenu] = useState(true);
+    const [menu, setMenu] = useState(false);
 
     // effects
     useEffect(() => {
-        console.log(token.key);
+        changeMenu();
         Aos.init(); Aos.refresh();
-        window.addEventListener('load', changeMenu);
         window.addEventListener('resize', changeMenu);
         return () => {
-            window.removeEventListener('load', changeMenu);
             window.removeEventListener('resize', changeMenu);
         };
     }, []);
@@ -38,7 +36,7 @@ const Header = (props) => {
     const changeMenu = () => setMenu(() => window.innerWidth > 1024);
     const toggleMenu = () => void setMenu(_ => !menu);
 
-    return <header className="flex justify-between text-white bg-blue w-screen top-0 sticky z-50 p-16 py-2 gap-4 items-center">
+    return <header className="flex justify-between text-white bg-blue w-screen top-0 sticky z-50 p-16 py-4 gap-4 items-center">
         <Link to='/'><img src={logo} alt="" className='' /></Link>
         <Nav {...props} menu={menu} close={toggleMenu} />
         {user && <User />}

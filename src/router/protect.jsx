@@ -1,19 +1,20 @@
 /* eslint-disable no-unused-vars */
-import { useApi } from '../hooks';
-import { useEffect } from "react";
+import { useEffect } from 'react';
+import Loader from '../component/loader';
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const Protect = ({ children }) => {
     // hooks
     const nav = useNavigate();
-    const [data, error] = useApi('/login');
+    const { user, load } = useSelector(state => state.auth);
 
     // effects
-    // useEffect(() => {
-    //     nav('/login');
-    // }, [nav]);
+    useEffect(() => {
+        if (!load && !user) nav('/auth/login', { replace: true });
+    }, [nav, load, user]);
 
-    return children;
+    return load ? <Loader /> : children;
 };
 
 export default Protect;

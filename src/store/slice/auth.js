@@ -1,6 +1,6 @@
 import jwt from 'jwt-decode';
-import { api } from '../../utils';
 import { toast } from 'react-toastify';
+import { api, token } from '../../utils';
 import { createSlice, createAsyncThunk as $ } from '@reduxjs/toolkit';
 
 /* Creating a thunk that will be used to make an API call. */
@@ -13,11 +13,11 @@ export const $logout = $('auth/$logout', async (data = {}) => await api.post('',
 export const $register = $('auth/$register', async ({ url, data = {} }) => await api.post(url, data).then(({ data, status }) => ({ data, status })));
 
 /* Creating a thunk that will be used to make an API call to the server. */
-export const $login = $('auth/$login', async (data = {}) => await api.post('/auth/token/login/', data).then(({ data, status }) => ({ data, status })));
+export const $login = $('auth/$login', async (data = {}) => await api.post('/employer/jwt/token/', data).then(({ data, status }) => ({ data, status })));
 
 const authSlice = createSlice({
     name: 'auth',
-    initialState: { load: null, error: null, user: null },
+    initialState: { load: null, error: null, user: JSON.parse(sessionStorage.getItem('edujobs:userdata')) || null },
     extraReducers: ({ addCase }) => {
         /* Adding a case to the reducer. */
         addCase($login.pending, (state) => { state.load = true; });
@@ -29,8 +29,16 @@ const authSlice = createSlice({
         });
         addCase($login.fulfilled, (state, { payload }) => {
             state.load = false;
-            console.log(payload);
-            toast.success('logged in successfully')
+            token.key = payload.data;
+            toast.success('logged in successfully');
+
+            const user = jwt(payload.data.access);
+            console.log(user);
+            state.user = user;
+            sessionStorage.setItem('edujobs:userdata',JSON.stringify(user));
+
+            // eslint-disable-next-line no-restricted-globals
+            location.replace('/');
         });
 
         // /* Adding a case to the reducer. */

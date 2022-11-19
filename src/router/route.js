@@ -17,17 +17,18 @@ const jobseeker_profile = lazy(() => import('../component/profile/jobseeker'));
 const jobseeker_profile_edit = lazy(() => import('../component/profile/jobseeker/edit'));
 
 const routes = [
-    { path: '/', element: main(home) },
-    { path: '/auth/login', element: login },
-    { path: '/auth/register', element: register },
-    { path: '/auth/verify', element: auth(verify) },
-    { path: '/faqs', element: jobseeker(faq, false) },
-    { path: '/employer', element: employer(employer_home) },
-    { path: '/jobseeker', element: jobseeker(jobseeker_home) },
-    { path: '/employer/account', element: main(account, false) },
-    { path: '/jobseeker/profile', element: jobseeker(jobseeker_profile, false) },
-    { path: '/jobseeker/profile/edit', element: jobseeker(jobseeker_profile_edit, false) },
-    { path: '*', element: main(notfound) },
+    { protected: false, path: '/', element: main(home) },
+    { protected: false, path: '/auth/login', element: login },
+    { protected: false, path: '/auth/register', element: register },
+    { protected: false, path: '/auth/verify', element: auth(verify) },
+    { protected: false, path: '/faqs', element: jobseeker(faq, false) },
+    { protected: false, path: '/employer', element: employer(employer_home) },
+    { protected: false, path: '/jobseeker', element: jobseeker(jobseeker_home) },
+    { protected: true, path: '/employer/account', element: main(account, false) },
+    { protected: true, path: '/jobseeker/profile', element: jobseeker(jobseeker_profile, false) },
+    { protected: true, path: '/jobseeker/profile/edit', element: jobseeker(jobseeker_profile_edit, false) },
+
+    { protected: false, path: '*', element: main(notfound) },
 ];
 
 export default routes;

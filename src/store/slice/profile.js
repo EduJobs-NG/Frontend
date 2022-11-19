@@ -6,7 +6,7 @@ export const $profile = $('profile/$profile', async () => await api.get('/jobsee
 
 const profileSlice = createSlice({
     name: 'profile',
-    initialState: { load: null, error: null, data: {} },
+    initialState: { load: null, error: null, data: null },
     extraReducers: ({ addCase }) => {
         addCase($profile.pending, (state) => {
             state.load = true;

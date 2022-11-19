@@ -22,9 +22,9 @@ export const User = () => {
             <img src={chat} alt="" /><img src={notification} alt="" />
         </div>
         <div className="flex gap-2 h-full relative before:absolute before:h-full before:w-[1px] before:bg-white before:left-0 pl-4">
-            <img src="" alt="" className="w-8 h-8 rounded-full object-cover bg-white cursor-pointer" onClick={toggleMenu} />
-            <nav className="absolute top-[150%] right-0 text-black text-md capitalize rounded p-2 bg-white flex flex-col items-start justify-center gap-2" style={{ display: show ? 'flex' : 'none' }}>
-                <Link to='/' className="w-40 font-bold px-2">profile</Link>
+            <img src={user?.avatar} alt="" className="w-10 h-10 rounded-full object-cover bg-white cursor-pointer" onClick={toggleMenu} />
+            <nav className="absolute top-[150%] right-0 text-black text-md capitalize rounded p-2 bg-white flex flex-col items-start justify-center gap-2 shadow-md" style={{ display: show ? 'flex' : 'none' }}>
+                <Link to="/jobseeker/profile" className="w-40 font-bold px-2">profile</Link>
                 <Link to='/employer/account' className="w-40 font-bold px-2">settings</Link>
                 <Link to='/auth/logout' className="w-40 font-bold px-2" onClick={logout}>log out</Link>
             </nav>

@@ -1,4 +1,4 @@
-import './index.css';
+import './main.css';
 import store from './store';
 import Router from './router';
 import { StrictMode } from 'react';

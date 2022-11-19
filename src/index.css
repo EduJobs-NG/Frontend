@@ -4,15 +4,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
 
-/* html{
-    font-size:62.5%;
-  } */
-/* @layer base {
-  .section {
-    @apply py-[50px] lg:py-[70px];
-  }
-} */
-
 * {
   margin    : 0;
   padding   : 0;
@@ -108,31 +99,4 @@ body,
 .react-tel-input .flag-dropdown {
   position: static !important;
   top     : 0;
-}
-
-#portal {
-  top             : 0;
-  left            : 0;
-  z-index         : 1000;
-  display         : grid;
-  position        : fixed;
-  width           : 100vw;
-  height          : 100vh;
-  place-items     : center;
-  transition      : 400ms ease;
-  background-color: rgb(0, 0, 0, 0.8);
-}
-
-#portal>* {
-  display: none;
-}
-
-#portal>*:last-child,
-*:only-child {
-  display: flex;
-}
-
-#portal:empty {
-  opacity       : 0;
-  pointer-events: none;
 }

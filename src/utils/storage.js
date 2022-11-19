@@ -1,5 +1,3 @@
-import jwt_decode from 'jwt-decode';
-
 /**
  * It removes an item from localStorage
  * @param key - The key of the item you want to remove.
@@ -24,7 +22,7 @@ export const token = {
     get key() {
         let tokenValue = getItem(this.tokenName);
         console.log('token requested', tokenValue);
-        return tokenValue ? `Bearer ${tokenValue?.auth_token || tokenValue}` : '';
+        return tokenValue ? `Bearer ${tokenValue?.access}` : '';
     },
     /**
      * If the tokenName is not null, then return the object.
@@ -32,5 +30,8 @@ export const token = {
      */
     get object() {
         return getItem(this.tokenName);
+    },
+    empty(){
+        remItem(this.tokenName);
     }
 };
