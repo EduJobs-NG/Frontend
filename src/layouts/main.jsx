@@ -3,7 +3,7 @@ import Footer from '../component/footer';
 
 const headerElements = {
     main: [
-        { to: '/dashboard', name: 'dashboard' },
+        { to: '/employer/dashboard', name: 'dashboard' },
         { to: '/analytics', name: 'analytics' },
     ],
     aside: [

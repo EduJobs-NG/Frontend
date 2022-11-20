@@ -18,9 +18,9 @@ const Pricing = (item) => {
             <span className="capitalize -mb-2">from</span>
             <h3 className="font-bold text-3xl">N10,000/<span className="text-xl">month</span></h3>
         </div>
-        <button className="mt-4 bg-blue text-white uppercase font-bold w-[70%] mx-auto py-2 flex items-center justify-center rounded">
+        <Link to='#' className="mt-4 bg-blue text-white uppercase font-bold w-[70%] mx-auto py-2 flex items-center justify-center rounded">
             select plan
-        </button>
+        </Link>
         <Link to='/' className="mx-auto capitalize text-blue font-bold">learn more</Link>
     </div>;
 };

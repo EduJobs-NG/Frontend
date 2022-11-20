@@ -7,7 +7,7 @@ const headerElements = {
     main: [
         { name: 'find jobs', to: '/' },
         { name: 'saved jobs', to: '/' },
-        { name: 'pricing', to: '/' },
+        { name: 'pricing', to: '/pricing' },
     ],
     aside: [
         { name: '', to: '/' },

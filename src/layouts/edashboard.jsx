@@ -2,13 +2,9 @@ import Header from '../component/header';
 import Footer from '../component/footer';
 
 const headerElements = {
-    main: [
-        { to: '/analytics', name: 'about us' },
-        { to: '/pricing', name: 'pricing' },
-    ],
-    aside: [],
+    main: [], aside: [],
     buttons: [
-        { event: 'post', name: 'post job', navigate: '/' },
+        { event: 'post', name: 'post job', navigate: '#' },
     ],
 };
 

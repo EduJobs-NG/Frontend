@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { createPortal } from 'react-dom';
 import { useSelector } from 'react-redux';
 import { IoMdClose } from 'react-icons/io';
@@ -59,7 +60,7 @@ const Login = ({ close, hideBtn = false }) => {
                 {load ? <ThreeDots radius={5} color={"white"} /> : 'login'}
             </button>
             <span className="mt-4 flex items-center justify-between text-[12px]">
-                <Link to='/' className="text-blue font-bold capitalize">forgot password</Link>
+                <Link to='/auth/forgot' className="text-blue font-bold capitalize">forgot password?</Link>
                 <span className="leading-[1em]">Don't have an account? <Link to='/auth/register' className='text-blue font-bold capitalize'>sign up</Link></span>
             </span>
         </div>

@@ -27,9 +27,7 @@ const Header = (props) => {
         changeMenu();
         Aos.init(); Aos.refresh();
         window.addEventListener('resize', changeMenu);
-        return () => {
-            window.removeEventListener('resize', changeMenu);
-        };
+        return () => { window.removeEventListener('resize', changeMenu); };
     }, []);
 
     // methods

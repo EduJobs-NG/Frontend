@@ -17,7 +17,7 @@ export const Verify = () => {
                     </p>
 
                     <p className='mt-[2rem]'>Wrong email address?
-                        <Link className='text-blue' to="/auth/reset-email">Change email</Link>
+                        <Link className='text-blue' to="/auth/forgot">Change email</Link>
                     </p>
 
                     <p className='mt-[2rem]'>
