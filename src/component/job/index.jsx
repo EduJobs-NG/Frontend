@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Job } from '../cards';
 import Boundary from '../boundary';
-import { useApi } from '../../hooks';
 import { useSelector } from 'react-redux';
 import { useMyDispatch } from '../../store';
 import { useEffect, useState } from 'react';
@@ -16,13 +15,24 @@ const JobSection = ({ title = "", location = "", Title, Location }) => {
     // effects
     useEffect(() => { if (!data.length) $jobs(); }, []);
     useEffect(() => {
+        console.log(data);
         setResult(() => data?.results?.filter(
-            ({ title: t, location: l }) => l?.toLowerCase().includes(location?.toLowerCase()) || t?.toLowerCase().includes(title?.toLowerCase()) || false)
+            ({ title: t, location: l }) => {
+                if(title.length && location.length) {
+                    return t?.toLowerCase()?.includes(title.toLowerCase()) ||
+                        l?.toLowerCase()?.includes(location.toLowerCase());
+                } else if (title.length) return t?.toLowerCase()?.includes(title.toLowerCase());
+                else if (location.length) return l?.toLowerCase()?.includes(location.toLowerCase());
+                else if (!title.length && !location.length) return true;
+                else return false;
+            })
         );
     }, [title, location, data]);
 
     // methods
     const handleClick = () => { Title(() => ""); Location(() => ""); };
+    const handleNext = () => $jobs(data?.next);
+    const handlePrev = () => $jobs(data?.previous);
 
     return <section>
         <div className="w-full flex items-center justify-between p-8">
@@ -34,7 +44,12 @@ const JobSection = ({ title = "", location = "", Title, Location }) => {
         <div className="flex flex-col gap-8 items-center justify-start w-full p-14">
             <Boundary error={error} load={load}>
                 {result?.map(item => <Job key={item?.id} {...item} />) || <p >There are no jobs </p>}
-                <Job />
+                {data?.previous && <button onClick={handlePrev} className="text-white bg-blue flex item-center justify-center p-4 py-1 rounded uppercase">
+                    prev
+                </button>}
+                {data?.next && <button onClick={handleNext} className="text-white bg-blue flex item-center justify-center p-4 py-1 rounded uppercase">
+                    next
+                </button>}
             </Boundary>
         </div>
     </section>;

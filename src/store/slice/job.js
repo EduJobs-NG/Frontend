@@ -2,7 +2,7 @@ import { api } from '../../utils';
 import { createSlice, createAsyncThunk as $ } from '@reduxjs/toolkit';
 
 /* Creating a thunk that will be used to make an API call to the server. */
-export const $jobs = $('job/$jobs', async () => await api.get('/jobseeker/job-list').then(({ data, status }) => ({ data, status })));
+export const $jobs = $('job/$jobs', async (url = '/jobseeker/job-list') => await api.get(url).then(({ data, status }) => ({ data, status })));
 
 const jobSlice = createSlice({
     name: 'jobs',
