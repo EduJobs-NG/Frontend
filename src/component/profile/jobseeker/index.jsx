@@ -19,7 +19,7 @@ const Profile = () => {
             <div className="flex flex-col item-start gap-2">
                 <h3 className='capitalize font-bold text-3xl'>welcome, {data?.user?.first_name}</h3>
                 <div className="flex items-center justify-start px-4 gap-4">
-                    <img src={data?.avatar} alt='profile' className="w-14 bg-grey" />
+                    <img src={data?.avatar} alt='profile' className="w-14" />
                     <div className="flex grow-[1] flex-col items-start">
                         <h4 className='font-bold text-xl'>{data?.user?.first_name} {data?.user?.last_name || "..."}</h4>
                         <span className="flex gap-2">
@@ -79,12 +79,12 @@ const Profile = () => {
                     <Link to='/jobseeker/profile/edit?tab=professional'><AiFillEdit className='w-8' /></Link>
                 </header>
                 <div className="grow-1 w-full flex flex-col items-start">
-                    <h3 classname="font-thin text-sm leading-[1em]">{data?.professional_info?.degree}</h3>
-                    <span className="font-thin text-sm leading-[1em]">{data?.professional_info?.school_name}</span>
-                    <span className="font-thin text-sm leading-[1em]">{data?.professional_info?.start_of_education} - {data?.professional_info?.end_of_education}</span>
+                    <h3 className="font-thin text-sm leading-[1em]">{data?.professional_info?.degree || "..."}</h3>
+                    <span className="font-thin text-sm leading-[1em]">{data?.professional_info?.school_name || "..."}</span>
+                    <span className="font-thin text-sm leading-[1em]">{data?.professional_info?.start_of_education || "..."} - {data?.professional_info?.end_of_education || "..."}</span>
                     <span className="font-thin text-sm leading-[1em]">First Class</span>
                     <p className="leading-[1em] text-md">
-                        {data?.professional_info?.study_summary}
+                        {data?.professional_info?.study_summary || "..."}
                     </p>
                 </div>
             </div>
@@ -115,19 +115,19 @@ const Profile = () => {
                     <div className="flex flex-col grow basis-52">
                         <label htmlFor="first_name" className="font-thinbold capitalize text-grey" children='first name' />
                         <span className="mx-1 shrink grow">
-                            <input readOnly={true} name="first_name" type="text" disabled className='rounded-md text-sm p-2 w-full border border-grey' value={data?.contact_info?.next_kin_fname} />
+                            <input readOnly={true} name="first_name" type="text" disabled className='rounded-md text-sm p-2 w-full border border-grey' value={data?.contact_info?.next_kin_fname || "..."} />
                         </span>
                     </div>
                     <div className="flex flex-col grow basis-52">
                         <label htmlFor="last_name" className="font-thinbold capitalize text-grey" children='last name' />
                         <span className="mx-1 shrink grow">
-                            <input readOnly={true} name="last_name" type="text" disabled className='rounded-md text-sm p-2 w-full border border-grey' value={data?.contact_info?.next_kin_lname} />
+                            <input readOnly={true} name="last_name" type="text" disabled className='rounded-md text-sm p-2 w-full border border-grey' value={data?.contact_info?.next_kin_lname || "..."} />
                         </span>
                     </div>
                     <div className="flex flex-col grow basis-52">
                         <label htmlFor="phone_number" className="font-thinbold capitalize text-grey" children='last name' />
                         <span className="mx-1 shrink grow">
-                            <input readOnly={true} name="phone_number" type="nutextmber" disabled className='rounded-md text-sm p-2 w-full border border-grey' value={data?.contact_info?.next_kin_phone} />
+                            <input readOnly={true} name="phone_number" type="nutextmber" disabled className='rounded-md text-sm p-2 w-full border border-grey' value={data?.contact_info?.next_kin_phone || "..."} />
                         </span>
                     </div>
                 </div>

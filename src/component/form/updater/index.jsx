@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { api } from '../../../utils';
+import { toast } from 'react-toastify';
 import { createPortal } from 'react-dom';
 import { IoMdClose } from 'react-icons/io';
 import { ThreeDots } from 'react-loader-spinner';
@@ -10,11 +12,20 @@ const Updater = ({ close, object: d }) => {
 
   // methods
   const setInfo = ({ currentTarget: ele }) => void setData(prev => ({ ...prev, [ele.name]: ele.value || "" }));
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(data);
+    console.log(data, d?.endpoint);
     setLoad(() => true);
-    setTimeout(() => { setLoad(() => false); }, 5000);
+    await api.post(d?.endpoint, data)
+      .then(data => {
+        console.log(data);
+        toast.success(`${d?.name} updated successfully`);
+      })
+      .catch(err => {
+        console.error(err);
+        toast.error('something went wrong, please check your inputs and try again');
+      });
+    setLoad(() => false);
   };
 
   return createPortal(<form onSubmit={handleSubmit} className="flex flex-col gap-4 bg-white p-8 rounded-lg relative w-[clamp(20em,30vw,50em)]">

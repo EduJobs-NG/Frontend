@@ -15,7 +15,6 @@ const JobSection = ({ title = "", location = "", Title, Location }) => {
     // effects
     useEffect(() => { if (!data.length) $jobs(); }, []);
     useEffect(() => {
-        console.log(data);
         setResult(() => data?.results?.filter(
             ({ title: t, location: l }) => {
                 if(title.length && location.length) {

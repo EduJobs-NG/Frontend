@@ -1,13 +1,13 @@
 import { } from '../../hooks';
 import { useState } from 'react';
 import { Update } from '../form';
-import { AiFillMail, AiFillEye } from 'react-icons/ai';
 import { useSelector } from 'react-redux';
+import { AiFillMail, AiFillEye } from 'react-icons/ai';
 
 const modelInput = {
   email: {
     name: 'email',
-    endpoint: '',
+    endpoint: 'employer/account/individual-employer/set_email/',
     inputs: [
       { placeholder: 'new email address', type: 'email', name: 'new_email', icon: AiFillMail },
       { placeholder: 'enter password', type: 'password', name: 'current_password', icon: AiFillEye },
@@ -15,11 +15,11 @@ const modelInput = {
   },
   password: {
     name: 'password',
-    endpoint: '',
+    endpoint: 'employer/account/individual-employer/set_password/',
     inputs: [
-      { placeholder: 'current password', type: 'password', name: 'new_password', icon: AiFillEye },
-      { placeholder: 'new password', type: 'password', name: 're_new_password', icon: AiFillEye },
-      { placeholder: 'confirm new password', type: 'password', name: 'current_password', icon: AiFillEye },
+      { placeholder: 'current password', type: 'password', name: 'current_password', icon: AiFillEye },
+      { placeholder: 'new password', type: 'password', name: 'new_password', icon: AiFillEye },
+      { placeholder: 'confirm new password', type: 'password', name: 're_new_password', icon: AiFillEye },
     ]
   }
 };

@@ -25,20 +25,21 @@ const authSlice = createSlice({
         addCase($login.rejected, (state, { error }) => {
             state.load = false;
             state.error = error;
-            console.error(error);
-            toast.error(error.message.toLowerCase());
+            console.error(error, error.code);
+            toast.error(error.message.includes('Network') ? 'Network Error' : 'Invalid Credentials');
         });
         addCase($login.fulfilled, (state, { payload }) => {
             state.load = false;
             token.key = payload.data;
-            toast.success('logged in successfully');
 
             const user = jwt(payload.data.access);
-            console.log(user);
             state.user = user;
             sessionStorage.setItem('edujobs:userdata',JSON.stringify(user));
 
-            location.replace('/');
+            toast.success('logged in successfully', {
+                onClose:() => location.replace(user?.is_employee ? '/employer':'/jobseeker'),
+                closeOnClick:() => location.replace(user?.is_employee ? '/employer':'/jobseeker'),
+            });
         });
 
         // /* Adding a case to the reducer. */

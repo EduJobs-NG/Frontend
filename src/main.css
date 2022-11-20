@@ -24,7 +24,7 @@ body,
 #loader {
     top: 0;
     left: 0;
-    z-index: 10;
+    z-index: 100;
     display: grid;
     position: fixed;
     place-items: center;

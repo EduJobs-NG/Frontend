@@ -9,7 +9,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 const Edit = () => {
     // location hook
     const nav = useNavigate();
-    const location = useLocation();
+    const {search} = useLocation();
     const { profile: $profile } = useMyDispatch();
     const { data } = useSelector(state => state.profile);
 
@@ -18,11 +18,12 @@ const Edit = () => {
 
     // memo
     const Tab = useMemo(() => {
-        const tab = location?.search.substring(location?.search?.indexOf("=") + 1);
+        const tab = search.substring(search?.indexOf("=") + 1);
         return tabs[tab] || tabs.personal;
-    }, [location.search]);
+    }, [search]);
 
     // methods
+    const setBorder = (name) => ({ borderBottom: search.includes(name) ? '2px solid blue' : '' });
     const setLocation = ({currentTarget}) => void nav(`/jobseeker/profile/edit?tab=${currentTarget.name || 'personal'}`);
 
     return <section className="w-screen flex flex-col">
@@ -44,16 +45,16 @@ const Edit = () => {
                 </div>
             </div>
             <div className="flex items-center justify-evenly flex-wrap gap-4 w-full">
-                <button name="personal" onClick={setLocation} className="font-bold capitalize">
+                <button name="personal" onClick={setLocation} className="font-bold capitalize" style={setBorder('personal')}>
                     personal information
                 </button>
-                <button name="professional" onClick={setLocation} className="font-bold capitalize">
+                <button name="professional" onClick={setLocation} className="font-bold capitalize" style={setBorder('professional')}>
                     professional information
                 </button>
-                <button name="credential" onClick={setLocation} className="font-bold capitalize">
+                <button name="credential" onClick={setLocation} className="font-bold capitalize" style={setBorder('credential')}>
                     credentials
                 </button>
-                <button name="contact" onClick={setLocation} className="font-bold capitalize">
+                <button name="contact" onClick={setLocation} className="font-bold capitalize" style={setBorder('contact')}>
                     contact information
                 </button>
             </div>

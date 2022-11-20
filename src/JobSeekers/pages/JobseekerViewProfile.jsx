@@ -78,7 +78,7 @@ export const Profile = () => {
                         <Link to='/dashboard/profile/edit?tab=1'><AiFillEdit className='w-8' /></Link>
                     </header>
                     <div className="grow-1 w-full flex flex-col items-start">
-                        <h3 classname="font-thin text-sm leading-[1em]">Bsc Elect/Elect</h3>
+                        <h3 className="font-thin text-sm leading-[1em]">Bsc Elect/Elect</h3>
                         <span className="font-thin text-sm leading-[1em]">University of Lagos</span>
                         <span className="font-thin text-sm leading-[1em]">Aug. 2016 - June 2021</span>
                         <span className="font-thin text-sm leading-[1em]">First Class</span>
