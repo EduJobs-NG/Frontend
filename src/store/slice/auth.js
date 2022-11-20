@@ -8,7 +8,7 @@ import { createSlice, createAsyncThunk as $ } from '@reduxjs/toolkit';
 export const $user = $('auth/$user', async () => await api.post('').then(({ data, status }) => ({ data, status })));
 
 /* Creating a thunk that will be used to make an API call. */
-export const $logout = $('auth/$logout', async (data = {}) => await api.post('', data).then(({ data, status }) => ({ data, status })));
+export const $logout = $('auth/$logout', async (data = {}) => await api.post('auth/token/logout/', data).then(({ data, status }) => ({ data, status })));
 
 /* Creating a thunk that will be used to make an API call to the server. */
 export const $register = $('auth/$register', async ({ url, data = {} }) => await api.post(url, data).then(({ data, status }) => ({ data, status })));
@@ -64,7 +64,12 @@ const authSlice = createSlice({
 
         // /* Adding a case to the reducer. */
         addCase($logout.rejected, () => { toast.error('It seems there was an error'); });
-        addCase($logout.fulfilled, (state) => { state.user = state.load = state.error = null; });
+        addCase($logout.fulfilled, (state) => {
+            token.empty();
+            state.user = state.load = state.error = null;
+            sessionStorage.removeItem('edujobs:userdata');
+            location.href = '/';
+        });
     },
 });
 

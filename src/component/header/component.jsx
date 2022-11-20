@@ -1,21 +1,23 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import chat from '../../assets/chat.png';
 import { useSelector } from "react-redux";
 import notification from '../../assets/notification.png';
 import { AiOutlineClose as Close } from 'react-icons/ai';
 import { LoginPortal as Login, RegisterPortal as Register } from '../form';
+import { useMyDispatch } from "../../store";
 
 export const User = () => {
     // hooks
+    const { logout: $logout } = useMyDispatch();
     const { user } = useSelector(state => state.auth);
 
     // states
     const [show, setShow] = useState(false);
 
     // methods
-    const logout = (e) => { e.preventDefault(); };
     const toggleMenu = () => setShow(prev => !prev);
+    const logout = (e) => { e.preventDefault(); $logout() };
 
     return <div className="h-full flex items-centr justify-center gap-8 ml-auto">
         <div className="flex gap-2 h-full relative items-center my-auto">
@@ -35,6 +37,7 @@ export const User = () => {
 export const Nav = ({ main = [], aside = [], buttons = [], menu, close }) => {
     // states
     const [auth, setAuth] = useState(null);
+    const nav = useNavigate();
     const { user } = useSelector(state => state.auth);
 
     // methods
@@ -59,8 +62,8 @@ export const Nav = ({ main = [], aside = [], buttons = [], menu, close }) => {
                     </li>))
                 }
                 {
-                    !user && buttons.map(({ name, event }, key) => (<li key={key} className="">
-                        <button name={event} onClick={setModal} className="px-10 py-1 bg-blue lg:bg-white text-white lg:text-blue uppercase font-black rounded">{name}</button>
+                    !user && buttons.map(({ name, event, navigate = null }, key) => (<li key={key} className="">
+                        <button name={event} onClick={navigate ? () => nav(navigate) : setModal} className="px-10 py-1 bg-blue lg:bg-white text-white lg:text-blue uppercase font-black rounded">{name}</button>
                     </li>))
                 }
             </ul>

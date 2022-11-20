@@ -11,15 +11,17 @@ const Job = (item) => {
     // effects
     useEffect(() => {
         setHeight(prev => (ele.current?.scrollHeight > height ? ele.current?.scrollHeight + 20 : height) || prev);
-    },[]);
+    }, []);
 
     // methods
     const toggleMore = () => setMore(prev => !prev);
-    
+
     return <div key={item?.id} className="flex flex-col border border-gray-600 rounded-md p-4 w-full gap-8">
         <div className="flex items-start justify-between">
             <div className="flex flex-col items-start justify-center">
                 <h3 className="font-bold capitalize">{item?.title}</h3>
+                <h4 className="text-sm capitalize">{item?.organization_name}</h4>
+                <h4 className="text-sm capitalize">{item?.location}</h4>
             </div>
         </div>
         <p className="transition-all overflow-hidden" style={{ height: 50 }}>{item?.summary}</p>

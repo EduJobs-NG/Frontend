@@ -1,25 +1,22 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useEffect } from "react";
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import { useMyDispatch } from "../../../store";
+import Loader from '../../loader';
+import { useApi } from '../../../hooks';
+import { useEffect, useState } from "react";
 
 export const personal = () => {
     // states
     const [data, setData] = useState({});
 
     // hooks
-    const { profile } = useMyDispatch();
-    const { data: user } = useSelector(state => state.profile);
+    const [user, _error, load] = useApi('/jobseeker/user-profile-update');
+    // const { data: user } = useSelector(state => state.profile);
 
     // effects
     useEffect(() => {
-        if (!user) {
-            profile();
-            setData(prev => ({...user?.personal_info}))
-        }
+        setData(() => ({ ...user }));
     }, []);
-    // useEffect(() => {  },[]);
+    useEffect(() => { }, []);
 
     // methods
     const updateData = ({ currentTarget: target }) => setData(prev => ({ ...prev, [target.name]: target.value }))
@@ -28,23 +25,23 @@ export const personal = () => {
         console.table(data);
     };
 
-    return <form onSubmit={handleSubmit} className="w-full flex flex-wrap items-center justify-center gap-4 p-8 px-12 lg:px-32">
+    return load ? <Loader /> : <form onSubmit={handleSubmit} className="w-full flex flex-wrap items-center justify-center gap-4 p-8 px-12 lg:px-32">
         <div className="flex flex-col grow basis-96">
             <label htmlFor="first_name" className="font-thinbold capitalize text-grey" children='first name' />
             <span className="mx-1 shrink grow">
-                <input name="first_name" type="text" className='outline-none rounded-md text-sm p-2 w-full border border-grey' onChange={updateData} />
+                <input name="first_name" type="text" value={data?.user?.first_name} className='outline-none rounded-md text-sm p-2 w-full border border-grey' onChange={updateData} />
             </span>
         </div>
         <div className="flex flex-col grow basis-96">
             <label htmlFor="middle_name" className="font-thinbold capitalize text-grey" children='middle name' />
             <span className="mx-1 shrink grow">
-                <input name="middle_name" type="text" className='outline-none rounded-md text-sm p-2 w-full border border-grey' onChange={updateData} />
+                <input name="middle_name" type="text" value={data?.middle_name} className='outline-none rounded-md text-sm p-2 w-full border border-grey' onChange={updateData} />
             </span>
         </div>
         <div className="flex flex-col grow basis-96">
             <label htmlFor="last_name" className="font-thinbold capitalize text-grey" children='last name' />
             <span className="mx-1 shrink grow">
-                <input name="last_name" type="text" className='outline-none rounded-md text-sm p-2 w-full border border-grey' onChange={updateData} />
+                <input name="last_name" type="text" value={data?.user?.first_name} className='outline-none rounded-md text-sm p-2 w-full border border-grey' onChange={updateData} />
             </span>
         </div>
         <div className="flex flex-col grow basis-96">
