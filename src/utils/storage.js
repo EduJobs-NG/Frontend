@@ -30,7 +30,7 @@ export const token = {
     get key() {
         // this.checkTokenExpiry();
         let tokenValue = getItem(this.tokenName);
-        console.log('token requested', tokenValue);
+        console.log('token requested');
         return tokenValue ? `Bearer ${tokenValue?.access}` : '';
     },
     /**
