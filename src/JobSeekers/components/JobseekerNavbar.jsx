@@ -48,10 +48,10 @@ export const JobseekerNavbar = () => {
                 <NavLink to="/dashboard/find-jobs" className={({ isActive }) => (isActive ? activeLink : normalLink)} >FIND JOBS</NavLink>
               </li>
               <li className=''>
-                <NavLink to="/dashboard/saved-jobs" className={({ isActive }) => (isActive ? activeLink : normalLink)} >SAVED JOBS</NavLink>
+                {/* <NavLink to="/dashboard/saved-jobs" className={({ isActive }) => (isActive ? activeLink : normalLink)} >SAVED JOBS</NavLink> */}
               </li>
               <li className=''>
-                <NavLink to="/pricing" className={({ isActive }) => (isActive ? activeLink : normalLink)} >PRICING</NavLink>
+                {/* <NavLink to="/pricing" className={({ isActive }) => (isActive ? activeLink : normalLink)} >PRICING</NavLink> */}
               </li>
             </div>
 
@@ -70,8 +70,8 @@ export const JobseekerNavbar = () => {
 
             <li>
               <div onClick={() => setDropDown(!dropDown)} className='flex relative cursor-pointer flex-row items-center '>
-                <div className='w-[40px] h-[40px]'>
-                  <img className='rounded-full' src={user?.avatar} alt="" />
+                <div className='rounded-full overflow-hidden w-[40px] h-[40px]'>
+                  <img className='' src={user?.avatar} alt="" />
                 </div>
                 <FaCaretDown />
                 {dropDown &&
@@ -92,8 +92,8 @@ export const JobseekerNavbar = () => {
           </ul>
           <div className='xl:hidden flex flex-row items-center h-[35px] gap-[1rem]'>
             <div onClick={() => setDropDown(!dropDown)} className='flex relative cursor-pointer flex-row items-center '>
-              <div className='w-[40px] h-[40px]'>
-                <img className='rounded-full' src={user?.avatar} alt="" />
+              <div className='overflow-hidden rounded-full w-[40px] h-[40px]'>
+                <img className='' src={user?.avatar} alt="" />
               </div>
               <FaCaretDown className='text-white' />
               {dropDown &&

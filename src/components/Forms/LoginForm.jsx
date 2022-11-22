@@ -50,7 +50,7 @@ export const LoginForm = ({ setShowLogin, showModal }) => {
       if (response && response.data) {
         if(employerUser){
           localStorage.removeItem("authTokens", JSON.stringify(response.data));
-          localStorage.removeItem('employer_user')
+          localStorage.removeItem('employer_user');
         }
         localStorage.setItem("authTokens", JSON.stringify(response.data));
         const userType = jwtDecode(response.data.access)

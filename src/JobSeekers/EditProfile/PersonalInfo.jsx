@@ -41,25 +41,30 @@ export const PersonalInfo = () => {
     instagram_url,
   } = user;
 
-  // useEffect(() =>{
 
-  // }, [])
   const api = useAxios();
   const onSubmit = async (values) => {
-    console.log(values);
+    // console.log('values', values);
 
     setIsLoading(true);
+    values.phone_number = `+${values.phone_number}`;
 
     const response = await api
+  
       .put(`/jobseeker/user-profile-update/`, values)
       .catch((err) => {
         console.log(err);
-        const {response} = err;
-        const {data} = response;
-        const {errMessage} = data;
-        console.log(errMessage);
-        toast.error(data);
-        setIsLoading(false);
+        if(err.response.status === 400){
+          toast.error('The phone number is invalid')
+          setIsLoading(false);
+
+        }
+        else{
+          toast.error("An error occured. Try again");
+          setIsLoading(false);
+        }
+     
+      
       });
 
     if (response) {
@@ -74,7 +79,7 @@ export const PersonalInfo = () => {
       first_name: first_name || "",
       middle_name: middle_name || "",
       last_name: last_name || "",
-      phone_number: `${phone_number}` || "",
+      phone_number: phone_number || "",
       email: email || "",
       gender: gender || "",
       home_address: home_address || "",
@@ -170,7 +175,6 @@ export const PersonalInfo = () => {
                   country={"ng"}
                   value={formik.values.phone_number}
                   onChange={(event) => {
-                    console.log('event', event)
                     formik.setFieldValue("phone_number", event);
                   }}
                 />
