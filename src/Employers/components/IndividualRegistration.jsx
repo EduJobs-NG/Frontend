@@ -147,7 +147,7 @@ export const IndividualRegistration = () => {
             <div className='my-3'>
               <CustomCheckbox type="checkbox" id="acceptedTos" name="acceptedTos" value={formik?.values?.acceptedTos} onChange={formik?.handleChange} />
               <label htmlFor="acceptedTos"> By signing up on this platform,
-                you agree to EduJobs NG’s</label> <Link className='text-blue underline' to="terms-and-condition"> Terms & Conditions.</Link>
+                you agree to EduJobs</label> <Link className='text-blue underline' to="/terms"> Terms & Conditions.</Link>
               <div>
                 {
                   formik?.touched?.acceptedTos && formik?.errors?.acceptedTos ?

@@ -33,7 +33,7 @@ export const JobseekerNavbar = () => {
   const activeMobile = 'text-blue text-[1.3rem] font-[700]';
 
   return (
-    <nav className='bg-[#02378B] z-30 sticky top-0'>
+    <nav className='bg-[#02378B] z-[999] sticky top-0'>
       <div className="container mx-auto">
         <div className="flex  py-[1rem] items-center flex-row justify-between">
           <ul className="flex gap-x-[3rem] text-white flex-row">
@@ -80,7 +80,6 @@ export const JobseekerNavbar = () => {
                       <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>
                         <a href="/dashboard/profile">View Profile</a>
                       </li>
-                      <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Settings</li>
                       <li onClick={logOutUser} className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Log out</li>
                     </ul>
                   </div>
@@ -103,7 +102,6 @@ export const JobseekerNavbar = () => {
                     <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>
                       <a href="/dashboard/profile">View Profile</a>
                     </li>
-                    <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Settings</li>
                     <li onClick={logOutUser} className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Log out</li>
                   </ul>
                 </div>
