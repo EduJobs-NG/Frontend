@@ -67,27 +67,36 @@ export const ProfessionalInfo = ({ setActive }) => {
           return (
             <div
               key={id}
-              className="relative border mt-[1rem] px-[0.5rem] md:px-[2rem] py-[1rem] rounded-lg border-[#808080]"
+              className="relative  border mt-[1rem] px-[0.5rem] md:px-[2rem] py-[1rem] rounded-lg border-[#808080]"
             >
-              <div className="absolute right-5">
-                <div className="flex flex-row justify-end gap-6 ">
-               
-                  <FaPencilAlt className="text-blue cursor-pointer"
-                    onClick={() => editSelectedItem(item)} />
+              {/* absolute right-5 */}
+             
+              <div className="flex flex-row justify-between">
+
+              <div>
+                <h1 className="text-xl font-[700]">{degree}</h1>
+                <p className="text-[1rem] font-[500]">{school_name}</p>
+                <p className="text-[1rem] font-[500]">
+                  {start_education} - {end_education}
+                </p>
+                <p className="text-[1rem] font-[500]">{grade}</p>
+                <p>{item.study_summary}</p>
+              </div>
+              <div className="flex flex-row justify-end gap-6 ">
+                  <FaPencilAlt
+                    className="text-blue cursor-pointer"
+                    onClick={() => editSelectedItem(item)}
+                  />
                   <FaTrash
-                    className="cursor-pointer text-blue ml-5 md:ml-0"
+                    className="cursor-pointer text-blue ml-2 md:ml-0"
                     onClick={() => deleteSelectedItem(item)}
                   />
-                </div>
+                
               </div>
-              <h1 className="text-xl font-[700]">{degree}</h1>
-              <p className="text-[1rem] font-[500]">{school_name}</p>
-              <p className="text-[1rem] font-[500]">
-                {start_education} - {end_education}
-              </p>
-              <p className="text-[1rem] font-[500]">{grade}</p>
-              <p>{item.study_summary}</p>
             </div>
+            </div>
+
+
             // </>
           );
         })}

@@ -17,11 +17,12 @@ export const EditPic = ({ setShowPic }) => {
   const { authTokens, getUserMeHandler } = useContext(AuthContext);
 
   const onSubmit = async (values) => {
+    console.log(values)
     setIsLoading(true);
     const data = new FormData();
     data.append('avatar', values.avatar);
     console.log(data)
-    const response = api.put(`/jobseeker/user-profile-update/`, data)
+    const response = await api.put(`/jobseeker/user-profile-update/`, data)
       .catch((err) => {
         console.log(err);
         setIsLoading(false);

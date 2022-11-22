@@ -54,7 +54,11 @@ export const PersonalInfo = () => {
       .put(`/jobseeker/user-profile-update/`, values)
       .catch((err) => {
         console.log(err);
-        toast.error(err.message);
+        const {response} = err;
+        const {data} = response;
+        const {errMessage} = data;
+        console.log(errMessage);
+        toast.error(data);
         setIsLoading(false);
       });
 
@@ -70,7 +74,7 @@ export const PersonalInfo = () => {
       first_name: first_name || "",
       middle_name: middle_name || "",
       last_name: last_name || "",
-      phone_number: phone_number || "",
+      phone_number: `${phone_number}` || "",
       email: email || "",
       gender: gender || "",
       home_address: home_address || "",
@@ -143,10 +147,12 @@ export const PersonalInfo = () => {
               <CustomSelect
                 label="Gender"
                 name="gender"
+                
                 placeholder="Please select a job"
                 className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
                 onChange={formik.handleChange}
               >
+                <option value="DEFAULT" disabled>Choose a gender</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
               </CustomSelect>
@@ -160,13 +166,11 @@ export const PersonalInfo = () => {
                 <PhoneInput
                   inputProps={{
                     name: "phone_number",
-                    // required: true,
-                    // autoFocus: true,
                   }}
-                  // containerClass="phone_number_style"
                   country={"ng"}
                   value={formik.values.phone_number}
                   onChange={(event) => {
+                    console.log('event', event)
                     formik.setFieldValue("phone_number", event);
                   }}
                 />

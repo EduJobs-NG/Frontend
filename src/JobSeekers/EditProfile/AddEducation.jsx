@@ -3,7 +3,7 @@ import { FormInputBox } from "../../components/Forms/FormInputBox";
 import * as Yup from "yup";
 import { useFormik, Formik, Form } from "formik";
 import { ThreeDots } from "react-loader-spinner";
-import {FaTimes } from "react-icons/fa";
+import { FaTimes } from "react-icons/fa";
 import CustomSelect from "../../components/Forms/CustomSelect";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -16,13 +16,17 @@ const validationSchema = Yup.object({
   degree: Yup.string().required("Required"),
   educational_level: Yup.string().required("Required"),
   grade: Yup.string().required("Required"),
-  start_of_education: Yup.date().required("Required").max(today, "Start date can't be in the fututre"),
-  end_of_education: Yup.date().required("Required").min(today, "End date can't be in the past"),
+  start_of_education: Yup.date()
+    .required("Required"),
+    // .max(today, "Start date can't be in the fututre"),
+  end_of_education: Yup.date()
+    .required("Required"),
+    // .min(today, "End date can't be in the past"),
   study_summary: Yup.string().required("Required"),
 });
 export const AddEducation = ({ setShowEducation, education }) => {
   const api = useAxios();
-  const {getUserMeHandler} = useContext(AuthContext)
+  const { getUserMeHandler } = useContext(AuthContext);
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -40,7 +44,7 @@ export const AddEducation = ({ setShowEducation, education }) => {
       setIsLoading(false);
       setShowEducation(false);
       toast.success("Your changes have been successfully saved");
-      getUserMeHandler()
+      getUserMeHandler();
 
       console.log(response);
     }
@@ -61,26 +65,23 @@ export const AddEducation = ({ setShowEducation, education }) => {
   });
   return (
     <>
-     
-
       <div className="justify-center items-center  flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-         <ToastContainer />
-        <div className="relative w-full mt-[20rem] md:mt-[4rem] my-6 mx-3 max-w-5xl">
+        <ToastContainer />
+        <div className="relative w-full mt-[20rem] md:mt-[8rem] my-6 mx-3 max-w-5xl">
           {/*content*/}
           <div className="border-0  rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
             {/*header*/}
-            <div className="flex  items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-              <FaTimes
-                onClick={() => setShowEducation(false)}
-                className="text-blue z-[900] text-[1.3rem] absolute right-5 mt-3 cursor-pointer"
-              />
+            <div className="flex  justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+              <div>
+                <h3 className="text-[1.2rem] font-semibold">Add Education</h3>
+              </div>
 
-              <h3 className="text-[1.2rem] font-semibold">Add Education</h3>
-              <button className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none">
-                <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
-                  ×
-                </span>
-              </button>
+              <div>
+                <FaTimes
+                  onClick={() => setShowEducation(false)}
+                  className="text-blue z-[900] text-[1.2rem]  cursor-pointer"
+                />
+              </div>
             </div>
             {/*body*/}
             <div className="relative p-6 flex-auto">

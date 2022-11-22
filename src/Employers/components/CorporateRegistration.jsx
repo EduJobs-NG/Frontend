@@ -143,12 +143,12 @@ export const CorporateRegistration = () => {
               />
               <label for="acceptedTos">
                 {" "}
-                By signing up on this platform, you agree to EduJobs NG’s
+                By signing up on this platform, you agree to EduJobs
               </label>{" "}
-              <Link className="text-blue underline" to="terms-and-condition">
-                {" "}
+              <a className="text-blue underline" href="/terms">
+                
                 Terms & Conditions.
-              </Link>
+              </a>
               <div>
                 {formik.touched.acceptedTos && formik.errors.acceptedTos ? (
                   <small className="text-red-600">
