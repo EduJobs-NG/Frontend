@@ -25,11 +25,11 @@ export const JobseekerProfile = () => {
           <div className='md:container md:mx-auto '>
             <div className='grid mt-[2rem] md:grid-cols-2 md:gap-6'>
               <div className='flex flex-col md:flex-row gap-x-[1rem]  items-center'>
-                <div className=' relative w-[130px] h-[130px]'>
+                <div className='  relative rounded-full overflow-hidden w-[130px] h-[130px]'>
 
                   {loading ? null :
-                    <div className=' absolute top-0 cursor-pointer ml-2' onClick={() => setShowPic(true)}>
-                      <img className='rounded-full ' src={user?.avatar} alt="" />
+                    <div className=' absolute top-0 cursor-pointer ' onClick={() => setShowPic(true)}>
+                      <img className=' ' src={user?.avatar} alt="" />
                     </div>
                   }
                 </div>

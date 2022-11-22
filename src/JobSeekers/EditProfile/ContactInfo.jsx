@@ -42,8 +42,10 @@ export const ContactInfo = ({ setTitle }) => {
   } = user;
 
   const onSubmit = async (values) => {
-    console.log(values);
     setIsLoading(true);
+    values.next_kin_phone = `+${values.next_kin_phone}`
+    values.first_ref_phone = `+${values.first_ref_phone}`
+    values.second_ref_phone = `+${values.second_ref_phone}`
     const response = await api.put(`jobseeker/user-profile/me/contact_info/{id}/`, values)
       .catch((err) => {
         console.log(err);
