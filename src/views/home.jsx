@@ -12,8 +12,6 @@ const Home = () => {
   const [title, setTitle] = useState("");
   const [location, setLocation] = useState("");
 
-  console.log(title, location, " outer update");
-
   return <>
     <Hero backgroundImage={image}>
       <div className="flex flex-col gap-2 z-10">

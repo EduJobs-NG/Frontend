@@ -9,11 +9,12 @@ import { AiFillMail, AiFillEye, AiFillEyeInvisible as Hidden } from 'react-icons
 export const Form = ({ close, name }) => {
   // hooks
   const [data, setData] = useState({});
-  const [visible, setVisible] = useState(false);
   const { register: $register } = useMyDispatch();
   const { load } = useSelector(state => state.auth);
+  const [visible, setVisible] = useState({password:false, re_password:false});
 
   // methods
+  const toggleVisible = ({ currentTarget: t }) => setVisible(prev => ({ ...prev, [t.name]: !prev[t.name] || false }));
   const getData = ({ currentTarget: target }) => void setData(prev => ({ ...prev, [target.name]: target.value }));
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,19 +38,19 @@ export const Form = ({ close, name }) => {
       <AiFillMail />
     </div>
     <div className="flex p-4 rounded relative w-full h-12 border border-grey">
-      <input onChange={getData} type={visible ? "text" : "password"} name="password" min="8" className="w-full outline-none mr-8 border-none placeholder:capitalize" placeholder="password" required />
+      <input onChange={getData} type={visible.password ? "text" : "password"} name="password" min="8" className="w-full outline-none mr-8 border-none placeholder:capitalize" placeholder="password" required />
       {
-        visible ?
-          <AiFillEye className="cursor-pointer" onClick={_ => setVisible(v => !v)} /> :
-          <Hidden className="cursor-pointer" onClick={_ => setVisible(v => !v)} />
+        visible?.password ?
+          <AiFillEye className="cursor-pointer" name="password" onClick={toggleVisible} /> :
+          <Hidden className="cursor-pointer" name="password" onClick={toggleVisible} />
       }
     </div>
     <div className="flex p-4 rounded relative w-full h-12 border border-grey">
-      <input onChange={getData} type={visible ? "text" : "password"} name="re_password" min="8" className="w-full outline-none mr-8 border-none placeholder:capitalize" placeholder="confirm password" required />
+      <input onChange={getData} type={visible.re_password ? "text" : "password"} name="re_password" min="8" className="w-full outline-none mr-8 border-none placeholder:capitalize" placeholder="confirm password" required />
       {
-        visible ?
-          <AiFillEye className="cursor-pointer" onClick={_ => setVisible(v => !v)} /> :
-          <Hidden className="cursor-pointer" onClick={_ => setVisible(v => !v)} />
+        visible?.re_password ?
+          <AiFillEye className="cursor-pointer" name="re_password" onClick={toggleVisible} /> :
+          <Hidden className="cursor-pointer" name="re_password" onClick={toggleVisible} />
       }
     </div>
     <button disabled={load} className="rounded cursor-pointer hover:brightness-150 transition-all w-full flex items-center justify-center h-12 mt-4 bg-blue text-white uppercase">
