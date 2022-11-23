@@ -42,7 +42,7 @@ const JobSection = ({ title = "", location = "", Title, Location }) => {
         </div>
         <div className="flex flex-col gap-8 items-center justify-start w-full p-14">
             <Boundary error={error} load={load}>
-                {result?.map(item => <Job key={item?.id} {...item} />) || <p >There are no jobs </p>}
+                {result?.length ? result?.map(item => <Job key={item?.id} {...item} />) : <p className="text-3xl text-center font-bold text-blue">There are no jobs </p>}
                 {data?.previous && <button onClick={handlePrev} className="text-white bg-blue flex item-center justify-center p-4 py-1 rounded uppercase">
                     prev
                 </button>}
