@@ -1,21 +1,19 @@
 import { useState } from "react";
 import { toast } from 'react-toastify';
 
-export const SearchJobs = ({ setPLocation, setPTitle }) => {
+export const SearchJobs = () => {
   // states hooks
   const [title, setTitle] = useState('');
-  // const [result, setResult] = useState([]);
   const [location, setLocation] = useState('');
 
   // methods
-  const handleTitle = (e) => void setTitle(p => e.target.value);
-  const handleLocation = (e) => void setLocation(p => e.target.value);
-  const handleClick = () => {
-    setPTitle(p => title);
-    setPLocation(l => location);
+  const handleTitle = (e) => null;
+  const handleLocation = (e) => null;
+  const handleSubmit = (e) => {
+    e.preventDefault();
   };
 
-  return <form className="z-10 flex flex-wrap ites-center justify-center gap-4 p-6 w-[70%]">
+  return <form onSubmit={handleSubmit} className="z-10 flex flex-wrap ites-center justify-center gap-4 p-6 w-[70%]">
     <div className="relative flex grow-2 shrink-0 basis-[18em] p-2 bg-white rounded gap-4">
       <label
         htmlFor="title"
@@ -35,7 +33,6 @@ export const SearchJobs = ({ setPLocation, setPTitle }) => {
       />
     </div>
     <div
-      onClick={handleClick}
       className="flex grow-2 shrink-0 basis-[18em] md:basis-[12em] p-2 bg-white rounded cursor-pointer text-blue hover:bg-transparent hover:border-white border-2 hover:text-white transition-all transition-500"
     >
       <span className="font-bold uppercase w-full h-full flex items-center justify-center ">search jobs</span>

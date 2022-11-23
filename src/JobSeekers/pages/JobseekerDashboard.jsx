@@ -1,9 +1,13 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import AuthContext from "../../context/AuthContext";
 import { JobseekerNavbar } from "../components/JobseekerNavbar";
 import { Footer } from "../../components/Footer";
 import { FindJobs } from "../components/FindJobs";
 export const JobseekerDashboard = () => {
+  // states
+  const [title, setTitle] = useState("");
+  const [location, setLocation] = useState("");
+
   return (
     <>
       <JobseekerNavbar />
@@ -18,7 +22,7 @@ export const JobseekerDashboard = () => {
       </section>
 
       <section>
-        <FindJobs />
+        <FindJobs title={title} location={location} Title={setTitle} Location={setLocation} />
       </section>
 
       <Footer />
