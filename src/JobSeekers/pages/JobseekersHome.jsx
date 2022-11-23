@@ -1,20 +1,20 @@
-import React, {useState} from 'react';
 import { Hero } from '../../components/Hero';
-import { Features } from '../../components/Features';
+import { Recent } from '../components/RecentJobs';
 import { Footer } from '../../components/Footer';
 import { Navbar } from '../../components/Navbar';
-import {RecentJobs} from '../components/RecentJobs'
+import React, { useState, useEffect } from 'react';
+import { Features } from '../../components/Features';
 
 export const JobseekersHome = () => {
-  
-  return (
-    <>
-    <Navbar  />
-    <Hero />
-    <RecentJobs />
+  // states
+  const [title, setTitle] = useState("");
+  const [location, setLocation] = useState("");
+
+  return <>
+    <Navbar />
+    <Hero title={title} location={location} Title={setTitle} Location={setLocation} />
+    <Recent title={title} location={location} Title={setTitle} Location={setLocation} />
     <Features />
     <Footer />
-    
-    </>
-  )
-}
+  </>;
+};

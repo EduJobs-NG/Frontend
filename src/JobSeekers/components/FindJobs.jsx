@@ -1,6 +1,6 @@
+import SearchJobs from './SearchJobs';
 import React, {useState} from 'react';
 import { RecentJobs } from './RecentJobs';
-import { SearchJobs } from './SearchJobs';
 
 
 export const FindJobs = (props) => {
