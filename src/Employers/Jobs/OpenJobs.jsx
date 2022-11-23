@@ -7,10 +7,11 @@ import { SearchJobs } from "./SearchJobs";
 import AuthContext from "../../context/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from 'axios';
 
 
 export const OpenJobs = () => {
-  const {employerUser} = useContext(AuthContext)
+  const {employerUser, authTokens} = useContext(AuthContext)
   const [isLoading, setIsLoading] = useState(false);
   const [openJobs, setOpenJobs] = useState([]);
   const [jobItem, setJobItem] = useState({});
@@ -18,18 +19,41 @@ export const OpenJobs = () => {
   const api = useAxios();
   const getOpenJobs = async () => {
     setIsLoading(true);
-    const response = await api.get(`/employer/jobs/open/`).catch((err) => {
-      console.log(err);
-      setIsLoading(false);
-      toast.error(`${err.message}. Please refresh`)
-    });
+    // const response = await api.get(`/employer/jobs/open/`).catch((err) => {
+    //   console.log(err, 'employer error');
+    //   setIsLoading(false);
+    //   toast.error(`${err.message}. Please refresh`);
+    // });
 
-    if (response && response.data) {
-      // console.log(response);
-      setOpenJobs(response.data);
-      setIsLoading(false);
+    const access = localStorage.getItem('authTokens');
+    authTokens = JSON.parse(access)
+    console.log(authTokens)
 
+    try{
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}employer/jobs/open/`,{
+        headers:{
+          Authorization: `Bearer ${access.access}`
+        }
+      } )
+      if (response && response.data) {
+        // console.log(response);
+        setOpenJobs(response.data);
+        setIsLoading(false);
+        
+  
+      }
+      console.log(response)
     }
+    catch(err){
+      console.log(err)
+    }
+
+    // if (response && response.data) {
+    //   // console.log(response);
+    //   setOpenJobs(response.data);
+    //   setIsLoading(false);
+
+    // }
   };
   const handleJobDetail = (job) =>{
     setShowJobDetail(true);
@@ -52,7 +76,7 @@ export const OpenJobs = () => {
       {openJobs && !isLoading &&  openJobs.map((job) => {
         return (
       
-      <div key={job} className="bg-white rounded-[1rem] my-[2rem] px-[2rem] py-[1rem] grid lg:grid-cols-3 gap-[2rem]">
+      <div className="bg-white rounded-[1rem] my-[2rem] px-[2rem] py-[1rem] grid lg:grid-cols-3 gap-[2rem]">
         <div>
           <h1 className="text-blue font-[700] ">{job.title}</h1>
           <p>{job.location}</p>

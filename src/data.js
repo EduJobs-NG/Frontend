@@ -1,26 +1,9 @@
-import logo from './assets/logo.svg'
+import logo from './assets/logo.png'
 import Feature1 from './assets/features1.png';
 import Feature2 from './assets/features2.png';
 import Feature3 from './assets/features3.png';
-import img1 from "./assets/employerfeature-1.png";
-import img2 from "./assets/employerfeature-2.png";
-import img3 from "./assets/employerfeature-3.png";
 import { FaFacebookF, FaInstagram, FaTwitter } from 'react-icons/fa'
 
-export const portfolio = [
-    {
-        id: 1, image: img1, title: '80% Faster Shortlising',
-        content: 'Utilize EduJobs to automatically rankCanddates and get rid of the never-ending staks of CV'
-    },
-    {
-        id: 2, image: img2, title: 'Validated Candidates',
-        content: 'Our platforms gives options to select validated candidates who have gone through our assessements.'
-    },
-    {
-        id: 3, image: img3, title: 'Simplified Access',
-        content: 'Post jobs, filter candidates, comment and benefit from our best-in-class customer support.'
-    },
-];
 
 export const navigation = {
 

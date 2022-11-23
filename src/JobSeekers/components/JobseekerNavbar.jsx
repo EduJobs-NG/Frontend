@@ -33,7 +33,7 @@ export const JobseekerNavbar = () => {
   const activeMobile = 'text-blue text-[1.3rem] font-[700]';
 
   return (
-    <nav className='bg-[#02378B] z-30 sticky top-0'>
+    <nav className='bg-[#02378B] z-[999] sticky top-0'>
       <div className="container mx-auto">
         <div className="flex  py-[1rem] items-center flex-row justify-between">
           <ul className="flex gap-x-[3rem] text-white flex-row">
@@ -48,10 +48,10 @@ export const JobseekerNavbar = () => {
                 <NavLink to="/dashboard/find-jobs" className={({ isActive }) => (isActive ? activeLink : normalLink)} >FIND JOBS</NavLink>
               </li>
               <li className=''>
-                <NavLink to="/dashboard/saved-jobs" className={({ isActive }) => (isActive ? activeLink : normalLink)} >SAVED JOBS</NavLink>
+                {/* <NavLink to="/dashboard/saved-jobs" className={({ isActive }) => (isActive ? activeLink : normalLink)} >SAVED JOBS</NavLink> */}
               </li>
               <li className=''>
-                <NavLink to="/pricing" className={({ isActive }) => (isActive ? activeLink : normalLink)} >PRICING</NavLink>
+                {/* <NavLink to="/pricing" className={({ isActive }) => (isActive ? activeLink : normalLink)} >PRICING</NavLink> */}
               </li>
             </div>
 
@@ -70,8 +70,8 @@ export const JobseekerNavbar = () => {
 
             <li>
               <div onClick={() => setDropDown(!dropDown)} className='flex relative cursor-pointer flex-row items-center '>
-                <div className='w-[40px] h-[40px]'>
-                  <img className='rounded-full' src={user?.avatar} alt="" />
+                <div className='rounded-full overflow-hidden w-[40px] h-[40px]'>
+                  <img className='' src={user?.avatar} alt="" />
                 </div>
                 <FaCaretDown />
                 {dropDown &&
@@ -80,7 +80,6 @@ export const JobseekerNavbar = () => {
                       <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>
                         <a href="/dashboard/profile">View Profile</a>
                       </li>
-                      <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Settings</li>
                       <li onClick={logOutUser} className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Log out</li>
                     </ul>
                   </div>
@@ -93,8 +92,8 @@ export const JobseekerNavbar = () => {
           </ul>
           <div className='xl:hidden flex flex-row items-center h-[35px] gap-[1rem]'>
             <div onClick={() => setDropDown(!dropDown)} className='flex relative cursor-pointer flex-row items-center '>
-              <div className='w-[40px] h-[40px]'>
-                <img className='rounded-full' src={user?.avatar} alt="" />
+              <div className='overflow-hidden rounded-full w-[40px] h-[40px]'>
+                <img className='' src={user?.avatar} alt="" />
               </div>
               <FaCaretDown className='text-white' />
               {dropDown &&
@@ -103,7 +102,6 @@ export const JobseekerNavbar = () => {
                     <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>
                       <a href="/dashboard/profile">View Profile</a>
                     </li>
-                    <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Settings</li>
                     <li onClick={logOutUser} className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Log out</li>
                   </ul>
                 </div>

@@ -14,7 +14,7 @@ export const Profile = () => {
     return <>
         <Navbar user={user} />
         <section className='flex felx-wrap w-screen items-start gap-4 mb-8'>
-            <div className="flex flex-col gap-8 justify-start grow p-4">
+            <div className="flex flex-col gap-8 justify-start min-w-[60%] grow-[1] p-4">
                 <div className="flex flex-col item-start gap-2">
                     <h3 className='capitalize font-bold text-3xl'>welcome, {user?.user?.first_name}</h3>
                     <div className="flex items-center justify-start px-4 gap-4">

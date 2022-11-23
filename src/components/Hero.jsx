@@ -21,7 +21,7 @@ export const Hero = () => {
         Have Great Jobs Find You!
       </h2>
       <p className='text-center text-[clamp(1em,2vw,6em)] leading-[1.2em]'>
-        Find Jobs that match Your interests on EduJobs NG
+        Find Jobs that match Your interests on EduJobs
       </p>
     </div>
     <SearchJobs setPTitle={setTitle} setPLocation={setLocation} />

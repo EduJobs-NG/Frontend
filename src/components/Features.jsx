@@ -11,7 +11,7 @@ export const Features = () => {
         <section className='section  bg-[#F5F5F5]'>
             <div className='container mx-auto'>
 
-            <h1 className='text-center mx-auto text-[1.5rem] md:text-[2rem] font-[700] max-w-[750px] text-blue px-3'>EduJobs NG brings the next
+            <h1 className='text-center mx-auto text-[1.5rem] md:text-[2rem] font-[700] max-w-[750px] text-blue px-3'>Edujobs brings the next
                 opportunities to you
                 with just a click.</h1>
 
@@ -38,7 +38,7 @@ export const Features = () => {
 
             </div>
 
-            <div className='flex flex-col justify-center items-center'>
+            <div className='flex flex-col my-[3rem] justify-center items-center'>
                 <div className='w-full max-w-[300px]'>
                 <div onClick={() => setShowModal(true)} className='bg-blue cursor-pointer py-[0.6rem] md:py-[0.8rem] mb-[1rem] font-[800]  px-[3.5rem] text-center  rounded-[6px] text-white transition'>
                 

@@ -41,21 +41,30 @@ export const PersonalInfo = () => {
     instagram_url,
   } = user;
 
-  // useEffect(() =>{
 
-  // }, [])
   const api = useAxios();
   const onSubmit = async (values) => {
-    console.log(values);
+    // console.log('values', values);
 
     setIsLoading(true);
+    values.phone_number = `+${values.phone_number}`;
 
     const response = await api
+  
       .put(`/jobseeker/user-profile-update/`, values)
       .catch((err) => {
         console.log(err);
-        toast.error(err.message);
-        setIsLoading(false);
+        if(err.response.status === 400){
+          toast.error('The phone number is invalid')
+          setIsLoading(false);
+
+        }
+        else{
+          toast.error("An error occured. Try again");
+          setIsLoading(false);
+        }
+     
+      
       });
 
     if (response) {
@@ -143,10 +152,12 @@ export const PersonalInfo = () => {
               <CustomSelect
                 label="Gender"
                 name="gender"
+                
                 placeholder="Please select a job"
                 className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
                 onChange={formik.handleChange}
               >
+                <option value="DEFAULT" disabled>Choose a gender</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
               </CustomSelect>
@@ -160,10 +171,7 @@ export const PersonalInfo = () => {
                 <PhoneInput
                   inputProps={{
                     name: "phone_number",
-                    // required: true,
-                    // autoFocus: true,
                   }}
-                  // containerClass="phone_number_style"
                   country={"ng"}
                   value={formik.values.phone_number}
                   onChange={(event) => {

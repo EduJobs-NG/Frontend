@@ -21,7 +21,7 @@ const validationSchema = Yup.object({
 export const ContactInfo = ({ setTitle }) => {
   const [isLoading, setIsLoading] = useState(false);
   const api = useAxios();
-  const { user, updateUser } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const {
     contact_info: {
@@ -42,8 +42,10 @@ export const ContactInfo = ({ setTitle }) => {
   } = user;
 
   const onSubmit = async (values) => {
-    console.log(values);
     setIsLoading(true);
+    values.next_kin_phone = `+${values.next_kin_phone}`
+    values.first_ref_phone = `+${values.first_ref_phone}`
+    values.second_ref_phone = `+${values.second_ref_phone}`
     const response = await api.put(`jobseeker/user-profile/me/contact_info/{id}/`, values)
       .catch((err) => {
         console.log(err);
@@ -54,8 +56,6 @@ export const ContactInfo = ({ setTitle }) => {
     if (response) {
       setIsLoading(false);
       toast.success("Your changes have been successfully saved.");
-      updateUser('contact_info', response.data)
-      console.log(response.data, "update response data");
     }
   };
 
