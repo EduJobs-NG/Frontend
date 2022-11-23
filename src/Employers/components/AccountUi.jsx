@@ -1,7 +1,6 @@
-import { } from '../../hooks';
-import { useState } from 'react';
-import { Update } from '../form';
-import { useSelector } from 'react-redux';
+import Update from './updater';
+import { useContext, useState } from 'react';
+import Auth from '../../context/AuthContext';
 import { AiFillMail, AiFillEye } from 'react-icons/ai';
 
 const modelInput = {
@@ -29,7 +28,9 @@ const Account = () => {
   const [show, setShow] = useState(false);
 
   // user store
-  const { user } = useSelector(state => state.auth);
+  const { user } = useContext(Auth);
+
+  console.log(user);
 
   // methods
   const getShow = ({ currentTarget: target }) => {

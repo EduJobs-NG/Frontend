@@ -24,8 +24,9 @@ import { EmployersLoginFormUI } from './Employers/pages/EmployersLoginFormUI';
 
 
 //loader css
-import { EditJob } from './Employers/Jobs/EditJob';
 import EmployerRoute from './utils/EmployerRoute';
+import { EditJob } from './Employers/Jobs/EditJob';
+import { Account } from './Employers/pages/Account';
 import { ResetLink } from './pages/Authentication/ResendLink';
 import { EmployerPostJob } from './Employers/PostJob/EmployerPostJob';
 import { EmployerViewJobs } from './Employers/pages/EmployerViewJobs';
@@ -52,6 +53,7 @@ function App() {
 
             {/* employers */}
             <Route element={<EmployerRoute />}>
+              <Route path="/employer/settings/" element={<Account />} />
               <Route path="/employer/dashboard/" element={<EmployersDashboard />} />
               <Route path="/employer/dashboard/post-job" element={<EmployerPostJob />} />
               <Route path="/employer/dashboard/view-jobs" element={<EmployerViewJobs />} />
