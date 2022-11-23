@@ -1,8 +1,8 @@
+import React, { useState } from 'react';
 import { Hero } from '../../components/Hero';
 import { Recent } from '../components/RecentJobs';
 import { Footer } from '../../components/Footer';
 import { Navbar } from '../../components/Navbar';
-import React, { useState, useEffect } from 'react';
 import { Features } from '../../components/Features';
 
 export const JobseekersHome = () => {

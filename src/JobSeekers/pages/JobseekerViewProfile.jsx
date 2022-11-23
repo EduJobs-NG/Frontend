@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import React, { useContext } from 'react';
 import { AiFillEdit } from 'react-icons/ai';
@@ -6,7 +8,6 @@ import { Footer } from '../../components/Footer';
 import photo from '../../assets/asideprofile.svg';
 import AuthContext from '../../context/AuthContext';
 import { JobseekerNavbar as Navbar } from '../components/JobseekerNavbar';
-import { useEffect } from 'react';
 
 export const Profile = () => {
     // hooks
