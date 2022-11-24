@@ -13,7 +13,7 @@ const useAxios = () => {
     ? localStorage.getItem("authTokens")
     : null;
   const tokens = JSON.parse(accessToken);
-  console.log("outside", tokens);
+  // console.log("outside", tokens);
   const axiosInstance = axios.create({
     baseURL,
     headers: {
@@ -23,11 +23,10 @@ const useAxios = () => {
   });
 
   // Create instance
-  let instance = axios.create(axiosInstance);
 
   // Set the AUTH token for any request
   axiosInstance.interceptors.request.use(async function (config) {
-    console.log("inside", tokens);
+    // console.log("inside", tokens);
     const user = jwtDecode(tokens?.access);
     const isExpired = dayjs.unix(user.exp).diff(dayjs()) < 1;
     if (isExpired) {

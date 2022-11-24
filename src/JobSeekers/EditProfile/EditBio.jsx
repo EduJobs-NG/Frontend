@@ -48,7 +48,7 @@ export const EditBio = ({ setShowBio }) => {
             <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
               <FaTimes
                 onClick={() => setShowBio(false)}
-                className="text-blue z-[900] text-[1.3rem] absolute right-5 mt-3 cursor-pointer"
+                className="text-blue z-[900] text-[1.3rem] absolute right-5  cursor-pointer"
               />
 
               <h3 className="text-[1.2rem] font-semibold">Edit Bio</h3>

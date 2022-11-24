@@ -18,7 +18,7 @@ export const DeleteCredential = ({ setShowDelete, credentials, item }) => {
       const response = await api.delete(`/jobseeker/user-profile/me/credentials/${item.id}`)
       .catch((err) => {
         console.log(err);
-        toast.error(err.message);
+        toast.error("An error occured. Try again or refresh.");
         setIsLoading(false);
       });
 

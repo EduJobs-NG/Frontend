@@ -28,7 +28,7 @@ export const JoinNowModal = ({setShowModal, showModal}) => {
         </div>
       </div>
     </div>
-    <div className="opacity-25 fixed  inset-0 z-40   backdrop-blur-[8px]  bg-blue"></div>
+    <div className="opacity-25 fixed  inset-0 z-40     bg-blue"></div>
   </>
   )
 }

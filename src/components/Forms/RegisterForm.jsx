@@ -76,7 +76,7 @@ export const RegisterForm = ({ showModal, setShowRegister }) => {
 
             </div>
             <div>
-                {showModal ? <FaTimes onClick={() => setShowRegister(false)} className='text-blue z-[99999] text-[1.3rem] absolute top-[2.5rem] right-[3rem] mt-3 cursor-pointer' /> : null}
+                {showModal ? <FaTimes onClick={() => setShowRegister(false)} className='text-blue z-[99999] text-[1.3rem] absolute top-[1rem] right-[1rem]  cursor-pointer' /> : null}
 
             </div>
             <Formik>
