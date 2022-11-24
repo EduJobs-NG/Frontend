@@ -6,10 +6,11 @@ module.exports = {
       padding: { DEFAULT: '1.5em' },
     },
     screens: {
-      sm: '640px',
+      sm: { min: '640px' },
       md: '768px',
       lg: '1024px',
       xl: '1280px',
+      max_sm: { max: '640px' }
     },
     extend: {
       dropShadow: {

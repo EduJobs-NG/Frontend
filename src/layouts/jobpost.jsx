@@ -3,15 +3,12 @@ import Footer from '../component/footer';
 
 const headerElements = {
     main: [
-        { to: '/employer/dashboard', name: 'dashboard' },
-        { to: '/analytics', name: 'analytics' },
+        { to: '/analytics', name: 'about us' },
+        { to: '/pricing', name: 'pricing' },
     ],
-    aside: [
-        { to: '/jobseeker', name: 'i\'m a jobseeker' },
-        { to: '/employer', name: 'i\'m an  employer' },
-    ],
+    aside: [],
     buttons: [
-        { event: 'login', name: 'login' },
+        { event: 'post', name: 'post job', navigate: '/' },
     ],
 };
 

@@ -1,173 +1,118 @@
-import React, { useState, useEffect, useContext } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import api from '../../utils/axios';
+import { Markup } from 'interweave';
 import { Link } from "react-router-dom";
-import axios from "axios";
+import {GrFormClose } from 'react-icons/gr';
 import { Circles } from "react-loader-spinner";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Error } from "../../components/Error";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { Markup } from 'interweave';
+import React, { useState, useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
+export const Recent = ({ title = "", location = "", Title, Location }) => {
+  // states
+  const [jobs, setJobs] = useState(null);
+  const [load, setLoad] = useState(null);
+  const [error, setError] = useState(null);
+  const [result, setResult] = useState(null);
+  const [selected, setSelected] = useState(null);
+  const [url, setUrl] = useState('jobseeker/job-list');
 
-export const RecentJobs = ({setShowRecentJobs}) => {
-  const [jobs, setJobs] = useState([]);
-  const [selectedJob, setSelectedJob] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [nextURL, setNextURL] = useState();
-  const [prevURL, setPrevURL] = useState();
-  
-
-  const handleView = (id) => {
-    if (selectedJob === id) {
-      return setSelectedJob(null);
-    }
-    setSelectedJob(id);
-  };
- 
-  const getJobs = async () => {
-    setIsLoading(true);
-    const response = await axios
-      .get( `${process.env.REACT_APP_BASE_URL}jobseeker/job-list`)
-      .catch((err) => {
-        if (err.message === "Network Error") {
-          toast.error(`${err.message}. Could not fetch jobs.`);
-          setErrorMessage(err.message);
-          setError(true);
-          setIsLoading(false);
-        }
-        console.log(err);
-        setIsLoading(false);
-        setErrorMessage(err.message);
-        setError(true);
-      });
-
-    if (response && response.data) {
-      setError(false);
-      console.log(response)
-      setErrorMessage('');
-      setJobs(response.data.results);
-      setPrevURL(response.data.previous)
-      setNextURL(response.data.next)
-      setIsLoading(false);
-    }
-  };
-
-  const handlePagination = async (url) =>{
-    setIsLoading(true);
-    const response = await axios
-      .get(url)
-      .catch((err) => {
-        if (err.message === "Network Error") {
-          toast.error(`${err.message}. Could not fetch jobs.`);
-          setErrorMessage(err.message);
-          setError(true);
-          setIsLoading(false);
-        }
-        console.log(err);
-        setIsLoading(false);
-        setErrorMessage(err.message);
-        setError(true);
-      });
-
-    if (response && response.data) {
-      setError(false);
-      setErrorMessage('');
-      setJobs(response.data.results);
-      setPrevURL(response.data.previous)
-      setNextURL(response.data.next)
-      setIsLoading(false);
-    }
-  }
-
+  // effects
+  useEffect(() => { handleRequest(); }, [url]);
   useEffect(() => {
-    getJobs();
-  }, []);
-  return (
-    <>
-      <section className="bg-[#f5f5f5]">
-        <ToastContainer />
+    setResult(() => jobs?.results?.filter(
+      ({ title: t, location: l }) => {
+        if (title.length && location.length) {
+          return t?.toLowerCase()?.includes(title.toLowerCase()) ||
+            l?.toLowerCase()?.includes(location.toLowerCase());
+        } else if (title.length) return t?.toLowerCase()?.includes(title.toLowerCase());
+        else if (location.length) return l?.toLowerCase()?.includes(location.toLowerCase());
+        else if (!title.length && !location.length) return true;
+        else return false;
+      }
+    ));
+  }, [title, location, jobs]);
 
-        <div className="container py-[4rem] mx-auto">
-          <hr className="text-[#d9d9d9]" />
-          <h2 className="text-blue my-[1rem] font-[700] text-[1.5rem]">
-            Recent Jobs
-          </h2>
+  // methods
+  const nextUrl = () => setUrl(prev => jobs?.next || prev);
+  const prevUrl = () => setUrl(prev => jobs?.previous || prev);
+  const clearSearch = () => { Title && Title(() => ""); Location && Location(() => ""); };
+  const handleSelected = ({ currentTarget: t }) => setSelected(() => Number(t.id) === selected ? null : Number(t.id));
+  const handleRequest = async () => {
+    setLoad(() => true);
+    await api.get(url, null, { Headers: { Authorization: "" } })
+      .then(res => {
+        setError(() => null);
+        setJobs(() => res.data);
+      })
+      .catch(({ message }) => {
+        setError(() => message);
+        if (message === 'Network Error') toast.error(`${message}. Could not fetch jobs`);
+      });
+    setLoad(() => false);
+  };
 
-          {error && <Error message={errorMessage} />}
-
-          {isLoading && (
-            <div className="flex justify-center">
-              <Circles type="ThreeDots" width={100} height={20} color="blue" />
-            </div>
-          )}
-          {(!isLoading && jobs.length) === 0 && (
-            <p>No Jobs</p>
-          )}
-          {jobs &&
-            jobs.map((job) => {
-              const { id } = job;
-              // console.log(job.applied)
-              return (
-                <div
-                  key={job.id}
-                  className="relative md:mx-[1rem] my-[2rem]  py-[1.2rem] border bg-white border-[#d9d9d9] px-[1.2rem] rounded-[20px]"
-                >
-                  <h2 className="font-[700] text-[1.2rem]">{job.title}</h2>
-                  <p className="font-[500]">{job.organization_name}</p>
-                  <p className="font-[500]">{job.location}</p>
-                  <p className="mt-[0.5rem] mb-[1.2rem]">
-                    {selectedJob === id
-                      ? `${job.summary}`
-                      : `${job.summary.substring(0, 250)}...`}
-                  </p>
-                  <p className="absolute  left-5 bottom-[0.5rem]">
-                    {job.posted_time} ago
-                  </p>
-                  <p
-                    onClick={() => handleView(id)}
-                    className="cursor-pointer font-[600] absolute text-blue right-5 bottom-[0.5rem]"
-                  >
-                    {selectedJob === id ? "View Less" : "View More"}
-                  </p>
-                  {selectedJob === id && (
-                    <div className="my-[1rem]">
-                      <h1 className="font-[700]">Requirements</h1>
-
-                      <div>
-                        {job.requirements
-                          ? <Markup content={job.requirements} />
-                          : "No requirements from the organization"}
-                      </div>
-                      <div className="grid w-full  my-[2rem] md:mt-[3rem] place-items-center">
-                        <Link to={`/dashboard/apply/job/${id}`}>
-                          <button disabled={job.applied === true}
-                            className={job.applied === true ? "bg-blue font-[700] uppercase opacity-25 w-full md:w-[300px] px-[5rem] text-white rounded-[5px] p-2": "bg-blue font-[700]  uppercase opacity-100 w-full md:w-[300px] px-[5rem] text-white rounded-[5px] p-2"}
-                            type="submit"
-                          >
-                            {job.applied === true ? 'APPLIED' : 'APPLY'}
+  return <section className="bg-[#f5f5f5] flex flex-col items-center justify-center pb-8">
+    <ToastContainer />
+    <div className="container">
+      <hr className="text-gray-200" />
+      <div className="flex items-center justify-between">
+        <h2 className="text-blue my-4 font-bold text-2xl capitalize">{(title || location) ? 'searched' : 'recent'} jobs</h2>
+        {(title || location) ? <GrFormClose className='cursor-pointer text-3xl' onClick={clearSearch} /> : null}
+      </div>
+      {
+        load ?
+          <div className="w-full flex items-center justify-center">
+            <Circles type="ThreeDots" width={100} color="blue" />
+          </div>
+          : error ? <Error message={error} /> :
+            result?.length ? result?.map((item, key) => (
+              <div
+                key={item?.id || key}
+                className="relative mx-0 md:mx-4 my-8 py-6 border bg-white border-gray-300 rounded-3xl p-8"
+              >
+                <h2 className="font-bold text-xl">{item?.title}</h2>
+                <p className="font-thinbold">{item?.organization_name}</p>
+                <p className="font-thinbold">{item?.location}</p>
+                <p className="font-thinbold">{item?.id === selected ? item?.summary : `${item?.summary.substring(0, 250)}...`}</p>
+                {
+                  selected === item?.id &&
+                  <div className="my-4">
+                    <h3 className="font-bold text-xl capitalize">requirements</h3>
+                    <div>
+                      {item?.requirements ? <Markup content={item?.requirements} /> : 'No requirements from the organization.'}
+                      <div className="grid w-full my-8 md:mt-12 items-center justify-center">
+                        <Link to={`/dashboard/apply/job/${item?.id}`} className="w-52">
+                          <button className="bg-blue font-bold uppercase w-full md:w-100 px-20 text-white rounded p-2">
+                            {item?.applied ? 'applied' : 'apply'}
                           </button>
                         </Link>
                       </div>
                     </div>
-                  )}
+                  </div>
+                }
+                <div className="w-full flex items-center justify-between">
+                  <p className="font-thinbold">{item?.posted_time} ago</p>
+                  <button id={item?.id} onClick={handleSelected} className="font-thinbold text-blue text-lg capitalize">view {item?.id === selected ? 'less' : 'more'}</button>
                 </div>
-              );
-            })}
-
-          <div className="container mx-auto flex flex-row justify-end">
-            <div className="grid grid-cols-2 gap-4">
-            {prevURL && 
-                <button onClick={() => handlePagination(prevURL)} className="bg-blue flex justify-center items-center text-white px-[1rem] rounded-md py-[0.3rem]">  <FaArrowLeft className="mr-1" />PREV </button>
-            }
-              {nextURL && 
-              <button onClick={() => handlePagination(nextURL)} className="bg-blue flex justify-center items-center text-white px-[1rem] rounded-md py-[0.3rem]">NEXT <FaArrowRight className="ml-1" /></button>
-              }
-            </div>
-          </div>
+              </div>
+            )) : <p className="text-3xl text-center font-bold text-blue">There are no jobs </p>
+      }
+      <div className="container mx-auto flex justify-end">
+        <div className="grid grid-cols-2 gap-4">
+          {
+            jobs?.previous ? <button onClick={prevUrl} className="bg-blue flex justify-center items-center text-white uppercase px-4 rounded-md py-1">
+              previous
+            </button> : null
+          }
+          {
+            jobs?.next ? <button onClick={nextUrl} className="bg-blue flex justify-center items-center text-white uppercase px-4 rounded-md py-1">
+              next
+            </button> : null
+          }
         </div>
-      </section>
-    </>
-  );
+      </div>
+    </div>
+  </section>;
 };

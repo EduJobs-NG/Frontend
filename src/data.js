@@ -39,7 +39,7 @@ export const features = [
     {
         img: <Feature3 />,
         title: "Be found",
-        subtitle: "EduJobs NG will align You to top recruiters who are breed for Your skills."
+        subtitle: "EduJobs will align You to top recruiters who are breed for Your skills."
     }
 ];
 

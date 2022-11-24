@@ -1,3 +1,4 @@
+import { Crop } from './Crop';
 import React, { useState, useContext } from "react";
 import { useFormik, Formik, Form } from "formik";
 import { ThreeDots } from "react-loader-spinner";
@@ -13,14 +14,17 @@ const validationSchema = Yup.object({
 
 export const EditPic = ({ setShowPic }) => {
   const api = useAxios();
+  const [pop, setPop] = useState(null);
+  const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const { authTokens, getUserMeHandler } = useContext(AuthContext);
+  const { getUserMeHandler } = useContext(AuthContext);
 
   const onSubmit = async (values) => {
     console.log(values)
     setIsLoading(true);
     const data = new FormData();
     data.append('avatar', values.avatar);
+    console.log(values)
     console.log(data)
     const response = await api.put(`/jobseeker/user-profile-update/`, data)
       .catch((err) => {
@@ -36,14 +40,25 @@ export const EditPic = ({ setShowPic }) => {
     }
   };
 
+  const onCancel = () => {
+    setPop(() => null);
+    setData(() => null);
+  };
+
+  const updater = (url) => {
+    setData(() => url);
+    setPop(() => false);
+  };
+
   const formik = useFormik({
     onSubmit,
+    validationSchema,
     validateOnBlur: true,
     initialValues: { avatar: '' },
-    validationSchema: validationSchema,
   });
   return <>
     <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+      {pop ? <Crop imageUrl={data} close={setPop} cancel={onCancel} update={updater} /> : null}
       <div className="relative w-auto my-6 mx-3 max-w-3xl">
         {/*content*/}
         <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
@@ -68,8 +83,14 @@ export const EditPic = ({ setShowPic }) => {
               <Form onSubmit={formik.handleSubmit}>
                 <div className="w-full max-w-xl grid  mt-[1rem]">
 
-                  <FormInputBox name="avatar" accept="image/*" onChange={(event) => {
-                    formik.setFieldValue("avatar", event.currentTarget.files[0])
+                  <FormInputBox name="avatar" accept="image/*" onChange={({ currentTarget: t }) => {
+                    // if (t.files && t.files[0]) {
+                    //   setPop(() => true);
+                    //   let reader = new FileReader();
+                    //   reader.onload = e => { setData(() => e.target.result); }
+                    //   reader.readAsDataURL(t.files[0]);
+                    // }
+                    formik.setFieldValue("avatar", t.files[0]);
                   }} className="border p-2.5 block w-full mt-[2rem]  border-solid border-[#808080] rounded-lg outline-none" type='file' />
                   {formik.touched.avatar && formik.errors.avatar ? (<small className="text-red-600">{formik.errors.avatar}</small>) : null}
 

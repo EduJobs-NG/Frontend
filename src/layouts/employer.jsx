@@ -6,7 +6,7 @@ import image from '../assets/employers-hero.png';
 
 const headerElements = {
     main: [
-        { to: '/dashboard', name: 'dashboard' },
+        { to: '/employer/dashboard', name: 'dashboard' },
         { to: '/analytics', name: 'analytics' },
     ],
     aside: [

@@ -1,5 +1,7 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import AuthContext from '../../context/AuthContext';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import chat from '../../assets/chat.png'
@@ -70,9 +72,11 @@ export const EmployersNavbar = () => {
                   <div className='absolute z-[9999] rounded-b-[15px] bg-[#f1f1f1] right-[0.2rem] top-[3.5rem]'>
                     <ul className='text-black w-[150px] '>
                       <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>
-                        <a href='#'>View Profile</a>
+                        <Link to='#'>View Profile</Link>
                       </li>
-                      <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Settings</li>
+                      <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>
+                        <Link to='/employer/settings'>Settings</Link>
+                      </li>
                       <li onClick={logOutEmployerUser} className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Log out</li>
                     </ul>
                   </div>
@@ -95,7 +99,9 @@ export const EmployersNavbar = () => {
                     <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>
                       <a href="#">View Profile</a>
                     </li>
-                    <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Settings</li>
+                    <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>
+                      <Link to='/employer/settings'>Settings</Link>
+                    </li>
                     <li onClick={logOutEmployerUser} className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Log out</li>
                   </ul>
                 </div>

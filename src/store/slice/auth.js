@@ -8,7 +8,7 @@ import { createSlice, createAsyncThunk as $ } from '@reduxjs/toolkit';
 export const $user = $('auth/$user', async () => await api.post('').then(({ data, status }) => ({ data, status })));
 
 /* Creating a thunk that will be used to make an API call. */
-export const $logout = $('auth/$logout', async (data = {}) => await api.post('', data).then(({ data, status }) => ({ data, status })));
+export const $logout = $('auth/$logout', async (data = {}) => await api.post('auth/token/logout/', data).then(({ data, status }) => ({ data, status })));
 
 /* Creating a thunk that will be used to make an API call to the server. */
 export const $register = $('auth/$register', async ({ url, data = {} }) => await api.post(url, data).then(({ data, status }) => ({ data, status })));
@@ -25,20 +25,21 @@ const authSlice = createSlice({
         addCase($login.rejected, (state, { error }) => {
             state.load = false;
             state.error = error;
-            console.error(error);
-            toast.error(error.message.toLowerCase());
+            console.error(error, error.code);
+            toast.error(error.message.includes('Network') ? 'Network Error' : 'Invalid Credentials');
         });
         addCase($login.fulfilled, (state, { payload }) => {
             state.load = false;
             token.key = payload.data;
-            toast.success('logged in successfully');
 
             const user = jwt(payload.data.access);
-            console.log(user);
             state.user = user;
             sessionStorage.setItem('edujobs:userdata',JSON.stringify(user));
 
-            location.replace('/');
+            toast.success('logged in successfully', {
+                onClose:() => location.replace(user?.is_employee ? '/employer':'/jobseeker'),
+                closeOnClick:() => location.replace(user?.is_employee ? '/employer':'/jobseeker'),
+            });
         });
 
         // /* Adding a case to the reducer. */
@@ -64,7 +65,12 @@ const authSlice = createSlice({
 
         // /* Adding a case to the reducer. */
         addCase($logout.rejected, () => { toast.error('It seems there was an error'); });
-        addCase($logout.fulfilled, (state) => { state.user = state.load = state.error = null; });
+        addCase($logout.fulfilled, (state) => {
+            token.empty();
+            state.user = state.load = state.error = null;
+            sessionStorage.removeItem('edujobs:userdata');
+            location.href = '/';
+        });
     },
 });
 

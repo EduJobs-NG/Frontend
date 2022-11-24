@@ -9,12 +9,9 @@ import { Link, useSearchParams } from "react-router-dom";
 export const EditProfile = () => {
   const [title, setTitle] = useState("0");
   const [active, setActive] = useState(0);
-  const { user, getUserMeHandler } = useContext(AuthContext);
   const [searchParams] = useSearchParams();
   const tabIndex = searchParams.get("tab");
-  console.log('tab index', tabIndex);
-  console.log('active', active);
-  console.log('title', title)
+  
   
   const titles = [
     "personal information",
