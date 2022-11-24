@@ -52,7 +52,7 @@ export const footer = {
         },
         {
             name: <FaInstagram />,
-            link: 'https://twitter.com/edujobsofficial'
+            link: 'https://instagram.com/edujobsofficial'
         },
         {
             name: <FaTwitter />,

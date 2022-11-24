@@ -11,7 +11,7 @@ export const JoinNow = ({ setShowModal }) => {
 
         <FaTimes
           onClick={() => setShowModal(false)}
-          className="text-blue z-[99999] text-[1.3rem] absolute top-[2.5rem] right-[1.5rem] md:right-[2.3rem]  cursor-pointer"
+          className="text-blue z-[99999] text-[1.3rem] font-[400] absolute top-[1rem] right-[1rem] md:right-[1rem]  cursor-pointer"
         />
       </div>
 
