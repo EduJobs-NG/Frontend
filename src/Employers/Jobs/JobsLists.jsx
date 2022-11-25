@@ -16,14 +16,14 @@ export const Jobslists = ({ url = "/employer/jobs/open/", title = "" }) => {
 
   // effects
   useEffect(() => { fetchData(); }, [url]);
-  useEffect(() => { setResult(() => data?.filter(item => title.length ? item?.title?.includes(title) : true) || []); }, [data, title]);
+  useEffect(() => { setResult(() => data?.filter(item => title.length ? item?.title?.toLowerCase()?.includes(title.toLowerCase()) : true) || []); }, [data, title]);
 
   // methods
   const handlePopup = (singleJob) => { setPop(() => true); setJob(() => singleJob) };
   const fetchData = async () => {
     setLoad(() => true);
     await api.get(url)
-      .then(res => { setData(() => res.data?.results) })
+      .then(res => { setData(() => res?.data || []); console.log(res) })
       .catch(err => { setError(() => err) });
     setLoad(() => false);
   };
