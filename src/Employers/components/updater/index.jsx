@@ -17,10 +17,11 @@ const Updater = ({ close, object: d }) => {
     e.preventDefault();
     setLoad(() => true);
     await api.post(d?.endpoint, data)
-      .then(data => {
+      .then(() => {
         toast.success(`${d?.name} updated successfully`);
       })
       .catch(err => {
+        console.error(err);
         toast.error('something went wrong, please check your inputs and try again');
       });
     setLoad(() => false);
