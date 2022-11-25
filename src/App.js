@@ -1,3 +1,4 @@
+import { Faq } from './pages/Faq';
 import { Pricing } from './pages/Pricing';
 import JobseekerRoute from './utils/JobseekerRoute';
 import { PageNotFound } from './pages/PageNotFound';
@@ -72,10 +73,11 @@ function App() {
             <Route path="/pricing" element={<Pricing />} />
             <Route path="*" element={<PageNotFound />} />
 
-            <Route path="/terms" element={<TermsAndConditions />} />
+            <Route path="/faqs" element={<Faq />} />
             <Route path="/employer" element={<EmployersHome />} />
-            <Route path="/employer/register" element={<EmployersRegistration />} />
+            <Route path="/terms" element={<TermsAndConditions />} />
             <Route path="/employer/login" element={<EmployersLoginFormUI />} />
+            <Route path="/employer/register" element={<EmployersRegistration />} />
 
           </Routes>
         </AuthProvider>
