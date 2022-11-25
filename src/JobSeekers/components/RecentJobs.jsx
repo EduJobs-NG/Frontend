@@ -2,14 +2,14 @@
 import api from '../../utils/axios';
 import { Markup } from 'interweave';
 import { Link } from "react-router-dom";
-import {GrFormClose } from 'react-icons/gr';
+import { GrFormClose } from 'react-icons/gr';
 import { Circles } from "react-loader-spinner";
 import "react-toastify/dist/ReactToastify.css";
 import { Error } from "../../components/Error";
-import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import React, { useState, useEffect, forwardRef } from "react";
 
-export const Recent = ({ title = "", location = "", Title, Location }) => {
+export const Recent = forwardRef(({ title = "", location = "", Title, Location }, ref) => {
   // states
   const [jobs, setJobs] = useState(null);
   const [load, setLoad] = useState(null);
@@ -53,7 +53,7 @@ export const Recent = ({ title = "", location = "", Title, Location }) => {
     setLoad(() => false);
   };
 
-  return <section className="bg-[#f5f5f5] flex flex-col items-center justify-center pb-8">
+  return <section className="bg-[#f5f5f5] flex flex-col items-center justify-center pb-8" ref={ref}>
     <ToastContainer />
     <div className="container">
       <hr className="text-gray-200" />
@@ -115,4 +115,4 @@ export const Recent = ({ title = "", location = "", Title, Location }) => {
       </div>
     </div>
   </section>;
-};
+});

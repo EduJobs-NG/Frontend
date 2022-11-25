@@ -33,7 +33,7 @@ const Account = () => {
 
   useEffect(() => {
     console.log(user);
-  },[])
+  }, [])
 
   // methods
   const getShow = ({ currentTarget: target }) => {

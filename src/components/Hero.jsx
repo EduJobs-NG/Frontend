@@ -3,7 +3,7 @@ import "aos/dist/aos.css";
 import React, { useEffect } from 'react';
 import SearchJobs from '../JobSeekers/components/SearchJobs';
 
-export const Hero = ({ title, location, Title, Location }) => {
+export const Hero = ({ title, location, Title, Location, scrollJob = null }) => {
   // effects
   useEffect(() => { Aos.init(); }, []);
 
@@ -20,6 +20,6 @@ export const Hero = ({ title, location, Title, Location }) => {
         Find Jobs that match Your interests on EduJobs
       </p>
     </div>
-    <SearchJobs Title={Title} Location={Location} t={title} l={location} />
+    <SearchJobs Title={Title} Location={Location} t={title} l={location} scrollJob={scrollJob} />
   </section>;
 };

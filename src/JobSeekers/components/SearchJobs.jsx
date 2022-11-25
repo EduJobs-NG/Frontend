@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const SearchJob = ({ Title, Location, t, l, style = {} }) => {
+const SearchJob = ({ Title, Location, t, l, style = {}, scrollJob = null }) => {
     // states
     const [title, setTitle] = useState("");
     const [location, setLocation] = useState("");
@@ -16,6 +16,7 @@ const SearchJob = ({ Title, Location, t, l, style = {} }) => {
     const getLocation = (e) => void setLocation(() => e?.target?.value || "");
     const handleSubmit = (e) => {
         e.preventDefault();
+        scrollJob && scrollJob();
         Title && Title(() => title);
         Location && Location(() => location);
     };
