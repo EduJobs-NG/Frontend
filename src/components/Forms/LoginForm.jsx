@@ -48,13 +48,16 @@ export const LoginForm = ({ setShowLogin, showModal }) => {
       });
 
       if (response && response.data) {
+        console.log(response.data)
         if(employerUser){
           localStorage.removeItem("authTokens", JSON.stringify(response.data));
           localStorage.removeItem('employer_user');
         }
-        localStorage.setItem("authTokens", JSON.stringify(response.data));
+        
         const userType = jwtDecode(response.data.access)
+        console.log(userType)
         if (userType.is_jobseeker === true){
+        localStorage.setItem("authTokens", JSON.stringify(response.data));
         navigate('/dashboard/find-jobs');
         setAuthTokens(response.data.access);
 
@@ -79,7 +82,7 @@ export const LoginForm = ({ setShowLogin, showModal }) => {
   return (
     <section>
       <ToastContainer />
-      <div className="border relative bg-white p-2 py-[2rem] px-[20px] mx-[1.5rem] md:px-[42px] rounded-[40px]  lg:w-[500px]">
+      <div className="border relative bg-white p-2 py-[2rem] px-[20px] mx-[1.5rem] md:px-[42px]  rounded-[30px]  lg:w-[500px]">
         <div className="flex my-4 gap-x-[0.2rem] justify-center items-center ">
           <FaSignInAlt className="text-[2rem] text-blue" />
           <div className="h-[2.5rem] w-[3px] mr-[0.5rem] ml-[0.5rem] bg-black"></div>
@@ -87,7 +90,7 @@ export const LoginForm = ({ setShowLogin, showModal }) => {
           {showModal ? (
             <FaTimes
               onClick={() => setShowLogin(false)}
-              className="text-blue z-[99999] text-[1.3rem] absolute top-[1rem] right-[1.5rem] mt-3 cursor-pointer"
+              className="text-blue z-[99999] text-[1.3rem] absolute top-[1rem] right-[1rem]  cursor-pointer"
             />
           ) : null}
         </div>
@@ -165,6 +168,12 @@ export const LoginForm = ({ setShowLogin, showModal }) => {
                   </Link>
                 </small>
               </div>
+
+              <small>
+                  <Link to="/employer/login" className="text-blue underline">
+                    Employer Login
+                  </Link>
+                </small>
 
               {/* <div className="flex justify-between gap-x-5 items-baseline">
                 <hr className="bg-blue border-[0.1px] w-[35%] " />

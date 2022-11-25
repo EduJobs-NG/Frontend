@@ -38,7 +38,7 @@ export const Features = () => {
 
             </div>
 
-            <div className='flex flex-col my-[3rem] justify-center items-center'>
+            <div className='flex flex-col mt-[3rem] pb-[3rem] justify-center items-center'>
                 <div className='w-full max-w-[300px]'>
                 <div onClick={() => setShowModal(true)} className='bg-blue cursor-pointer py-[0.6rem] md:py-[0.8rem] mb-[1rem] font-[800]  px-[3.5rem] text-center  rounded-[6px] text-white transition'>
                 

@@ -7,11 +7,13 @@ import AuthContext from "../../context/AuthContext";
 import { Link, useSearchParams } from "react-router-dom";
 
 export const EditProfile = () => {
+
+  const [title, setTitle] = useState("0");
   const [active, setActive] = useState(0);
   const [searchParams] = useSearchParams();
   const tabIndex = searchParams.get("tab");
   const { user, getUserMeHandler } = useContext(AuthContext);
-  const [title, setTitle] = useState("personal information");
+  
   
   const titles = [
     "personal information",
@@ -42,6 +44,7 @@ export const EditProfile = () => {
 
   useEffect(() => {
     setTitle(tabIndex);
+    setActive(tabIndex)
   }, [tabIndex]);
   return (
     <>
@@ -52,7 +55,7 @@ export const EditProfile = () => {
               <Link to={`?tab=${index}`}>
                 <li
                   className={`${
-                    active === index
+                    active === index.toString()
                       ? "text-blue text-[1.2rem]  border-b-[0.2rem] border-b-blue"
                       : "text-black"
                   } cursor-pointer capitalize mr-[3rem] text-[1.1rem] font-[700] `}

@@ -12,8 +12,6 @@ import AuthContext from "../../context/AuthContext";
 import axios from "axios";
 import { ThreeDots } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
-import google from "../../assets/google.png";
-import linkedin from "../../assets/linkedin.png";
 import { LoginSchema } from "../../components/Forms/schema";
 
 import { ToastContainer, toast } from "react-toastify";
@@ -30,12 +28,13 @@ export const EmployersLoginForm = ({ setShowLogin, showModal }) => {
     const response = await axios
       .post(`${process.env.REACT_APP_BASE_URL}employer/jwt/token/`, values)
       .catch((err) => {
+        console.log(err)
         if (err) {
           if (err.response.status === 400) {
             toast.error("Password or email incorrect");
             setIsLoading(false);
           } else if (err.response.status === 401) {
-            toast.error("You are not registered.");
+            toast.error("Password or email incorrect.");
             setIsLoading(false);
           } else if(err.message === 'Network Error') {
             toast.error(err.message);
@@ -55,7 +54,7 @@ export const EmployersLoginForm = ({ setShowLogin, showModal }) => {
         localStorage.removeItem('user')
       }
       const userType = jwtDecode(response.data.access)
-      console.log(userType)
+     
       if (userType.is_employee === true){
       localStorage.setItem("authTokens", JSON.stringify(response.data));
       setAuthTokens(response.data.access);
@@ -81,18 +80,18 @@ export const EmployersLoginForm = ({ setShowLogin, showModal }) => {
   return (
     <section>
       <ToastContainer />
-      <div className="border relative bg-white p-2 py-[2rem] px-[20px] mx-[1.5rem] md:px-[42px] rounded-[30px] md:rounded-[50px] lg:w-[500px]">
+      <div className="border relative bg-white p-2 py-[2rem] px-[20px] mx-[1.5rem] md:px-[42px] rounded-[30px]  lg:w-[500px]">
       <div className="flex my-4 gap-x-[0.2rem] justify-center items-center ">
           <FaSignInAlt className="text-[2rem] text-blue" />
           <div className="h-[2.5rem] w-[3px] mr-[0.5rem] ml-[0.5rem] bg-black"></div>
-          <h2 className="title text-blue  text-[1.5rem] font-[700]">LOG IN</h2>
+          <h2 className="title text-blue  text-[1.5rem] font-[800]">LOG IN</h2>
           
         </div>
         <div>
         {showModal ? (
             <FaTimes
               onClick={() => setShowLogin(false)}
-              className="text-blue z-[99999] text-[1.3rem] absolute top-[1rem] right-[1.5rem] mt-3 cursor-pointer"
+              className="text-blue z-[99999] text-[1.3rem] absolute top-[1rem] right-[1rem]  cursor-pointer"
             />
           ) : null}
         </div>
@@ -170,24 +169,11 @@ export const EmployersLoginForm = ({ setShowLogin, showModal }) => {
                 </small>
               </div>
 
-              {/* <div className="flex justify-between gap-x-5 items-baseline">
-                <hr className="bg-blue border-[0.1px] w-[35%] " />
-                <span>OR</span>
-                <hr className="bg-blue border-[0.1px]  w-[35%]" />
-              </div>
-
-              <div className="mt-4 flex justify-center flex-row gap-x-[1rem]">
-                <img
-                  className="border rounded-full p-[0.3rem]  border-[#808080]"
-                  src={google}
-                  alt=""
-                />
-                <img
-                  className="border p-[0.4rem] rounded-full border-[#808080]"
-                  src={linkedin}
-                  alt=""
-                />
-              </div> */}
+              <small>
+                  <Link to="/jobseeker/login" className="text-blue underline">
+                    Jobseeker Login
+                  </Link>
+                </small>
 
              
             </Form>

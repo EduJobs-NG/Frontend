@@ -15,7 +15,7 @@ export const DeleteEducation = ({ setShowDelete, credentials, item }) => {
       .delete(`/jobseeker/user-profile/me/professional_info/${item.id}`)
       .catch((err) => {
         console.log(err);
-        toast.error(err.message);
+        toast.error("An error occured. Try again or refresh.");
         setIsLoading(false);
       });
 

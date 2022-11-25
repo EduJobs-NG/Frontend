@@ -23,11 +23,9 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(false)
   const [isError, setIsError] = useState(false)
   const [authTokens, setAuthTokens] = useState(localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null)
+  // console.log(authTokens);
 
-
-  // const getCV = async () =>{
-
-  // }
+  
 
   const getUserMeHandler = async () => {
     setLoading(true);
@@ -70,8 +68,8 @@ export const AuthProvider = ({ children }) => {
   }
 
   useEffect(() => {
-    getUserMeHandler()
-    getEmployerUser()
+    getUserMeHandler();
+    getEmployerUser();
   }, [])
 
 
@@ -87,10 +85,6 @@ export const AuthProvider = ({ children }) => {
     navigate('/employer/login')
   }
 
-  const updateUser = (updateKey, updateValue) => {
-    setUser({ ...user, [updateKey]: updateValue })
-    storeUser({ ...user, [updateKey]: updateValue })
-  }
 
 
 
@@ -100,7 +94,6 @@ export const AuthProvider = ({ children }) => {
     loading,
     authTokens,
     setLoading,
-    updateUser,
     logOutUser,
     employerUser,
     setAuthTokens,

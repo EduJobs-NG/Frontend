@@ -44,7 +44,7 @@ export const ResetPassword = () => {
       setIsLoading(false)
       toast.success('Password has been reset successfully.')
       setTimeout(() => {
-        navigate('/login')
+        navigate('/jobseeker/login')
 
       }, 1000)
 
@@ -98,7 +98,7 @@ export const ResetPassword = () => {
 
               {formik.touched.re_new_password && formik.errors.re_new_password ? (<small className="text-red-600">{formik.errors.re_new_password}</small>) : null}
               <div className='mt-[1rem]'>
-                {!isLoading && <button disabled={!formik.isValid} className={!formik.isValid ? 'bg-blue block w-full text-white opacity-25 rounded-sm p-2' : 'bg-blue opacity-100 block w-full text-white rounded-sm p-2'} type="submit">SEND LINK</button>}
+                {!isLoading && <button disabled={!formik.isValid} className={!formik.isValid ? 'bg-blue block w-full text-white opacity-25 rounded-sm p-2' : 'bg-blue opacity-100 block w-full text-white rounded-sm p-2'} type="submit">RESET PASSWORD</button>}
                 {isLoading && (
                   <div className="flex justify-center">
                     <ThreeDots type="ThreeDots"

@@ -17,43 +17,30 @@ export const OpenJobs = () => {
   const [jobItem, setJobItem] = useState({});
   const [showJobDetail, setShowJobDetail] = useState(false)
   const api = useAxios();
+  
+  const accessToken = localStorage.getItem('authTokens');
+  const tokens = JSON.parse(accessToken);
+  const {access} = tokens;
+
   const getOpenJobs = async () => {
     setIsLoading(true);
-    // const response = await api.get(`/employer/jobs/open/`).catch((err) => {
-    //   console.log(err, 'employer error');
-    //   setIsLoading(false);
-    //   toast.error(`${err.message}. Please refresh`);
-    // });
+    const response = await api.get(`/employer/jobs/open/`).catch((err) => {
+      console.log('An error occured. Try again or refresh');
+      setIsLoading(false);
+      toast.error(`${err.message}. Please refresh`);
+    });
 
-    const access = localStorage.getItem('authTokens');
-    authTokens = JSON.parse(access)
-    console.log(authTokens)
-
-    try{
-      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}employer/jobs/open/`,{
-        headers:{
-          Authorization: `Bearer ${access.access}`
+    if (response && response.data) {
+          // console.log(response);
+          setOpenJobs(response.data);
+          setIsLoading(false);
+          
+    
         }
-      } )
-      if (response && response.data) {
-        // console.log(response);
-        setOpenJobs(response.data);
-        setIsLoading(false);
-        
-  
-      }
-      console.log(response)
-    }
-    catch(err){
-      console.log(err)
-    }
 
-    // if (response && response.data) {
-    //   // console.log(response);
-    //   setOpenJobs(response.data);
-    //   setIsLoading(false);
+    
 
-    // }
+
   };
   const handleJobDetail = (job) =>{
     setShowJobDetail(true);
@@ -112,7 +99,7 @@ export const OpenJobs = () => {
         <div className="flex flex-row  justify-between md:justify-center items-center  gap-[1rem]">
           <div>
             <p className="text-blue cursor-pointer">
-              <a href={`/employer/dashboard/edit-job/${job.id}`}> Edit job</a>
+              {/* <a href={`/employer/dashboard/edit-job/${job.id}`}> Edit job</a> */}
              
               </p>
           </div>

@@ -32,7 +32,7 @@ export const ReviewApplication = ({ formData, prevStep, setStep }) => {
       const response = await api.post(`jobseeker/jobs/application/`, data)
       .catch((err) => {
         console.log(err);
-        toast.error(err.message);
+        toast.error("An error occured. Try again.");
         setIsLoading(false);
       });
 

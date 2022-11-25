@@ -20,8 +20,8 @@ export const Footer = () => {
 
     return (
         <footer className='bg-blue px-8 py-2 flex flex-col'>
-            <div className="flex items-start justify-evenly flex-wrap gap-4 py-8 text-white">
-                <div className="flex flex-col items-start justify-start gap-2 my-auto">
+            <div className="grid grid-cols-2 md:grid-cols-5 py-[2rem] gap-[3rem] text-white">
+                <div className="flex flex-col items-center justify-start gap-2 md:my-auto">
                     <Link to='/'><img src={logo} alt="" className='' /></Link>
                     <div className="flex items-center justify-start gap-1 -mt-1 self-center">
                         {socials.map((item, id) => (
