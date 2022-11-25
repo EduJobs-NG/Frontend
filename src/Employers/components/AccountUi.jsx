@@ -50,7 +50,7 @@ const Account = () => {
       </div>
     </div>
     <div className="flex flex-col gap-4 w-full">
-      <div className="grid max_sm:grid-rows-3 grid-cols-1 sm:grid-cols-3 flex-wrap w-full px-4 pb-1 lg:flex-row flex-col items-center justify-between relative before:absolute before:bottom-0 py-4 before:opacity-40 before:w-full before:h-[1px] before:bg-grey">
+      <div className="grid max_sm:grid-rows-3 grid-cols-1 sm:grid-cols-3 flex-wrap w-full px-4 md:px-8 pb-1 lg:flex-row flex-col items-center justify-between relative before:absolute before:bottom-0 py-4 before:opacity-40 before:w-full before:h-[1px] before:bg-grey">
         <h3 className="max_sm:text-center capitalize">full name</h3>
         <input type="text" className="text-center capitalize pointer-events-none outline-none" readOnly={true} name="name" value={`${user?.user?.first_name || ''} ${user?.middle_name || ''} ${user?.user?.last_name || ''}`} />
         <button onClick={null} className="text-blue flex gap-2 justify-center sm:justify-end">
@@ -58,7 +58,7 @@ const Account = () => {
           <b className="hidden sm:flex">&gt;</b>
         </button>
       </div>
-      <div className="grid max_sm:grid-rows-3 grid-cols-1 sm:grid-cols-3 flex-wrap w-full px-4 pb-1 items-center justify-between relative before:absolute before:bottom-0 py-4 before:opacity-40 before:w-full before:h-[1px] before:bg-grey">
+      <div className="grid max_sm:grid-rows-3 grid-cols-1 sm:grid-cols-3 flex-wrap w-full px-4 md:px-8 pb-1 items-center justify-between relative before:absolute before:bottom-0 py-4 before:opacity-40 before:w-full before:h-[1px] before:bg-grey">
         <h3 className="max_sm:text-center ">email</h3>
         <input type="text" className="text-center capitalize pointer-events-none outline-none" readOnly={true} name="name" value={user?.user?.email} />
         <button name="email" onClick={getShow} className="text-blue flex gap-2 justify-center sm:justify-end">
@@ -66,7 +66,7 @@ const Account = () => {
           <b className="hidden sm:flex">&gt;</b>
         </button>
       </div>
-      <div className="grid max_sm:grid-rows-3 grid-cols-1 sm:grid-cols-3 flex-wrap w-full px-4 pb-1 items-center justify-between relative before:absolute before:bottom-0 py-4 before:opacity-40 before:w-full before:h-[1px] before:bg-grey">
+      <div className="grid max_sm:grid-rows-3 grid-cols-1 sm:grid-cols-3 flex-wrap w-full px-4 md:px-8 pb-1 items-center justify-between relative before:absolute before:bottom-0 py-4 before:opacity-40 before:w-full before:h-[1px] before:bg-grey">
         <h3 className="max_sm:text-center capitalize">password</h3>
         <input type="password" className="text-center capitalize pointer-events-none outline-none" readOnly={true} name="name" value="muhammad inuwa" />
         <button name="password" onClick={getShow} className="text-blue flex gap-2 justify-center sm:justify-end">
@@ -74,7 +74,7 @@ const Account = () => {
           <b className="hidden sm:flex">&gt;</b>
         </button>
       </div>
-      <div className="grid max_sm:grid-rows-3 grid-cols-1 sm:grid-cols-3 flex-wrap w-full px-4 pb-1 items-center justify-between relative before:absolute before:bottom-0 py-4 before:opacity-40 before:w-full before:h-[1px] before:bg-grey">
+      <div className="grid max_sm:grid-rows-3 grid-cols-1 sm:grid-cols-3 flex-wrap w-full px-4 md:px-8 pb-1 items-center justify-between relative before:absolute before:bottom-0 py-4 before:opacity-40 before:w-full before:h-[1px] before:bg-grey">
         <h3 className="max_sm:text-center capitalize">billing plan and information</h3>
         <input type="text" className="text-center capitalize pointer-events-none outline-none" readOnly={true} name="name" value="basic plan" />
         <button onClick={null} className="text-blue flex gap-2 justify-center sm:justify-end">
