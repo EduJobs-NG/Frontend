@@ -1,8 +1,8 @@
 import Update from './updater';
+import { useEffect } from 'react';
 import { useContext, useState } from 'react';
 import Auth from '../../context/AuthContext';
 import { AiFillMail, AiFillEye } from 'react-icons/ai';
-import { useEffect } from 'react';
 
 const modelInput = {
   email: {
@@ -60,7 +60,7 @@ const Account = () => {
       </div>
       <div className="grid max_sm:grid-rows-3 grid-cols-1 sm:grid-cols-3 flex-wrap w-full px-4 md:px-8 pb-1 items-center justify-between relative before:absolute before:bottom-0 py-4 before:opacity-40 before:w-full before:h-[1px] before:bg-grey">
         <h3 className="max_sm:text-center ">email</h3>
-        <input type="text" className="text-center capitalize pointer-events-none outline-none" readOnly={true} name="name" value={user?.user?.email} />
+        <input type="text" className="text-center pointer-events-none outline-none" readOnly={true} name="name" value={user?.user?.email} />
         <button name="email" onClick={getShow} className="text-blue flex gap-2 justify-center sm:justify-end">
           <b className="capitalize font-thin ">change email address</b>
           <b className="hidden sm:flex">&gt;</b>

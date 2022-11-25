@@ -97,7 +97,7 @@ export const Recent = forwardRef(({ title = "", location = "", Title, Location }
                   <button id={item?.id} onClick={handleSelected} className=" text-blue font-bold capitalize">view {item?.id === selected ? 'less' : 'more'}</button>
                 </div>
               </div>
-            )) : <p className="text-3xl text-center font-bold text-blue">There are no jobs </p>
+            )) : <p className="text-3xl text-center font-bold text-blue capitalize">{(title.length || location.length) ? 'could not find a job that match your search' : 'There are no jobs'} </p>
       }
       <div className="container mx-auto flex justify-end">
         <div className="grid grid-cols-2 gap-4">

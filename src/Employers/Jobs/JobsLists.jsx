@@ -70,7 +70,9 @@ export const Jobslists = ({ url = "/employer/jobs/open/", title = "" }) => {
           )) : (
             <div className="flex flex-col items-center justify-center gap-2">
               <img src={img} alt="" />
-              <p className="capitalize">No {url.includes('open') ? 'open' : 'closed'} jobs yet</p>
+              <p className="capitalize font-bold text-blue">
+                {title.length ? 'the search result was not fund' : `No ${url.includes('open') ? 'open' : 'closed'} jobs yet`}
+              </p>
             </div>
           )
     }
