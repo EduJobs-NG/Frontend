@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { Circles } from "react-loader-spinner";
 import { JobDetailPopup as Popup } from './JobDetailPopup';
 
-export const Jobslists = ({ url = "", title = "" }) => {
+export const Jobslists = ({ url = "/employer/jobs/open/", title = "" }) => {
   // states
   const [job, setJob] = useState(null);
   const [data, setData] = useState([]);

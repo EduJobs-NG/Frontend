@@ -25,7 +25,7 @@ export const Jobs = () => {
       <div className="flex item-center justify-start p-2 w-full">
         <div className="relative rounded-3xl bg-white h-10 w-96 overflow-hidden mr-auto">
           <input onChange={handleSearch} value={title} type="text" name="title" placeholder="search job titles" className="w-full h-full px-4 placeholder:capitalize outline-none border-none" />
-          <FaSearch className="absolute right-4 top-5 -translate-y-1/2 cursor-pointer" />
+          <FaSearch className="absolute right-4 top-5 -translate-y-1/2 cursor-pointer" color="blue" />
         </div>
       </div>
       <Jobslists url={url} title={title} />
