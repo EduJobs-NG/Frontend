@@ -1,8 +1,8 @@
 import Update from './updater';
+import { useEffect } from 'react';
 import { useContext, useState } from 'react';
 import Auth from '../../context/AuthContext';
 import { AiFillMail, AiFillEye } from 'react-icons/ai';
-import { useEffect } from 'react';
 
 const modelInput = {
   email: {
