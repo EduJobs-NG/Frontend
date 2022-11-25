@@ -133,16 +133,16 @@ export const JobseekerNavbar = () => {
                 <NavLink to="/dashboard/find-jobs" className={({ isActive }) => (isActive ? activeMobile : normalMobile)}  >FIND JOBS</NavLink>
               </li>
               <li className='mb-[33px]'>
-                <NavLink to="/dashboard/saved-jobs" className={({ isActive }) => (isActive ? activeMobile : normalMobile)} >SAVED JOBS</NavLink>
+                {/* <NavLink to="/dashboard/saved-jobs" className={({ isActive }) => (isActive ? activeMobile : normalMobile)} >SAVED JOBS</NavLink> */}
               </li>
               <li className='mb-[33px]'>
-                <NavLink to="/pricing" className={({ isActive }) => (isActive ? activeMobile : normalMobile)}>PRICING</NavLink>
+                {/* <NavLink to="/pricing" className={({ isActive }) => (isActive ? activeMobile : normalMobile)}>PRICING</NavLink> */}
               </li>
               <li className='mb-[33px]'>
-                <NavLink to="/messages" className={({ isActive }) => (isActive ? activeMobile : normalMobile)}>MESSAGES</NavLink>
+                {/* <NavLink to="/messages" className={({ isActive }) => (isActive ? activeMobile : normalMobile)}>MESSAGES</NavLink> */}
               </li>
               <li className='mb-[33px]'>
-                <NavLink to="/notification" className={({ isActive }) => (isActive ? activeMobile : normalMobile)}>NOTIFICATION</NavLink>
+                {/* <NavLink to="/notification" className={({ isActive }) => (isActive ? activeMobile : normalMobile)}>NOTIFICATION</NavLink> */}
               </li>
             </ul>
 
