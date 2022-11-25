@@ -7,10 +7,12 @@ import AuthContext from "../../context/AuthContext";
 import { Link, useSearchParams } from "react-router-dom";
 
 export const EditProfile = () => {
+
   const [title, setTitle] = useState("0");
   const [active, setActive] = useState(0);
   const [searchParams] = useSearchParams();
   const tabIndex = searchParams.get("tab");
+  const { user, getUserMeHandler } = useContext(AuthContext);
   
   
   const titles = [
