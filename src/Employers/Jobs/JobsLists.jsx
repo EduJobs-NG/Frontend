@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-// import {} from ''
 import api from '../../utils/axios';
 import img from "../../assets/jobs-2.png";
 import { useState, useEffect } from "react";
