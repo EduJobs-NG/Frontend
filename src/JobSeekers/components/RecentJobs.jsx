@@ -70,7 +70,7 @@ export const Recent = ({ title = "", location = "", Title, Location }) => {
             result?.length ? result?.map((item, key) => (
               <div
                 key={item?.id || key}
-                className="relative mx-0 md:mx-4 my-8 py-6 border bg-white border-gray-300 rounded-3xl p-8"
+                className="relative mx-0 md:mx-4 my-8 py-6 px-[1rem] border bg-white border-gray-300 rounded-3xl "
               >
                 <h2 className="font-bold text-xl">{item?.title}</h2>
                 <p className="font-thinbold">{item?.organization_name}</p>
@@ -92,9 +92,9 @@ export const Recent = ({ title = "", location = "", Title, Location }) => {
                     </div>
                   </div>
                 }
-                <div className="w-full flex items-center justify-between">
-                  <p className="font-thinbold">{item?.posted_time} ago</p>
-                  <button id={item?.id} onClick={handleSelected} className="font-thinbold text-blue text-lg capitalize">view {item?.id === selected ? 'less' : 'more'}</button>
+                <div className="pt-[1rem] w-full flex items-center justify-between">
+                  <small className="font-thinbold">{item?.posted_time} ago</small>
+                  <button id={item?.id} onClick={handleSelected} className=" text-blue font-bold capitalize">view {item?.id === selected ? 'less' : 'more'}</button>
                 </div>
               </div>
             )) : <p className="text-3xl text-center font-bold text-blue">There are no jobs </p>

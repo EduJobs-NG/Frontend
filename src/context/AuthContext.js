@@ -85,10 +85,6 @@ export const AuthProvider = ({ children }) => {
     navigate('/employer/login')
   }
 
-  const updateUser = (updateKey, updateValue) => {
-    setUser({ ...user, [updateKey]: updateValue })
-    storeUser({ ...user, [updateKey]: updateValue })
-  }
 
 
 
@@ -98,7 +94,6 @@ export const AuthProvider = ({ children }) => {
     loading,
     authTokens,
     setLoading,
-    updateUser,
     logOutUser,
     employerUser,
     setAuthTokens,

@@ -25,7 +25,7 @@ export const OpenJobs = () => {
   const getOpenJobs = async () => {
     setIsLoading(true);
     const response = await api.get(`/employer/jobs/open/`).catch((err) => {
-      console.log(err, 'employer error');
+      console.log('An error occured. Try again or refresh');
       setIsLoading(false);
       toast.error(`${err.message}. Please refresh`);
     });
@@ -40,20 +40,6 @@ export const OpenJobs = () => {
 
     
 
-
-    // try{
-    //   const response = await axios.get(`${process.env.REACT_APP_BASE_URL}employer/jobs/open/`,{
-    //     headers:{
-    //       Authorization: `Bearer ${access}`
-    //     }
-    //   } )
-     
-    //   setOpenJobs(response.data);
-    //   setIsLoading(false);
-    // }
-    // catch(err){
-    //   console.log(err)
-    // }
 
   };
   const handleJobDetail = (job) =>{
@@ -113,7 +99,7 @@ export const OpenJobs = () => {
         <div className="flex flex-row  justify-between md:justify-center items-center  gap-[1rem]">
           <div>
             <p className="text-blue cursor-pointer">
-              <a href={`/employer/dashboard/edit-job/${job.id}`}> Edit job</a>
+              {/* <a href={`/employer/dashboard/edit-job/${job.id}`}> Edit job</a> */}
              
               </p>
           </div>

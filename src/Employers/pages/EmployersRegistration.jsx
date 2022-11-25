@@ -35,7 +35,7 @@ export const EmployersRegistration = ({ setShowRegister, showModal }) => {
           {showModal ? (
             <FaTimes
               onClick={() => setShowRegister(false)}
-              className="text-blue z-[99999] text-[1.3rem] absolute top-[1rem] right-[1.5rem] mt-3 cursor-pointer"
+              className="text-blue z-[99999] text-[1.3rem] absolute top-[1rem] right-[1rem]  cursor-pointer"
             />
           ) : null}
 
