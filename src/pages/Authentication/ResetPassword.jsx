@@ -46,12 +46,21 @@ export const ResetPassword = () => {
       setIsLoading(false)
       console.log(response)
       toast.success('Password has been reset successfully.')
-      const userType = jwtDecode(response.data.access)
-      console.log(userType)
-      setTimeout(() => {
-        navigate('/jobseeker/login')
+      const {is_jobseeker, is_employer} =  response.data
+      if(is_jobseeker === true){
+        setTimeout(() => {
+          navigate('/jobseeker/login')
+  
+        }, 1000)
+      }
 
-      }, 1000)
+      if(is_employer === true){
+        setTimeout(() => {
+          navigate('/employer/login')
+  
+        }, 1000)
+      }
+     
 
     }
 
