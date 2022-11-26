@@ -9,6 +9,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import jwtDecode from "jwt-decode";
 
 
 const validationSchema = Yup.object({
@@ -40,9 +41,12 @@ export const ResetPassword = () => {
         console.log(err)
       })
 
-    if (response) {
+    if (response && response.data) {
+       
       setIsLoading(false)
       toast.success('Password has been reset successfully.')
+      const userType = jwtDecode(response.data.access)
+      console.log(userType)
       setTimeout(() => {
         navigate('/jobseeker/login')
 
