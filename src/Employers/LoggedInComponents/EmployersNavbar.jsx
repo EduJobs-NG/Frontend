@@ -130,9 +130,9 @@ export const EmployersNavbar = () => {
             <FaTimes onClick={handleClick} className='text-blue text-[1.3rem] mt-3 cursor-pointer absolute right-5 top-5' />
             <ul className='py-[2rem] flex flex-col '>
               <li className='mb-[33px]'>
-                <NavLink to="/dashboard/find-jobs" className={({ isActive }) => (isActive ? activeMobile : normalMobile)}  >FIND JOBS</NavLink>
+                <NavLink to="/" className={({ isActive }) => (isActive ? activeMobile : normalMobile)}  >Employer Home</NavLink>
               </li>
-              <li className='mb-[33px]'>
+              {/* <li className='mb-[33px]'>
                 <NavLink to="/dashboard/saved-jobs" className={({ isActive }) => (isActive ? activeMobile : normalMobile)} >SAVED JOBS</NavLink>
               </li>
               <li className='mb-[33px]'>
@@ -143,7 +143,7 @@ export const EmployersNavbar = () => {
               </li>
               <li className='mb-[33px]'>
                 <NavLink to="/notification" className={({ isActive }) => (isActive ? activeMobile : normalMobile)}>NOTIFICATION</NavLink>
-              </li>
+              </li> */}
             </ul>
 
 

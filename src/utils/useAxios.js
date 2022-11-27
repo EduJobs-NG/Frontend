@@ -8,17 +8,14 @@ const baseURL = "https://edujobsng.herokuapp.com/api/v1";
 
 const useAxios = () => {
   const { authTokens, setAuthTokens } = useContext(AuthContext);
-  // console.log(authTokens)
   const accessToken = localStorage.getItem("authTokens")
     ? localStorage.getItem("authTokens")
     : null;
   const tokens = JSON.parse(accessToken);
-  // console.log("outside", tokens);
   const axiosInstance = axios.create({
     baseURL,
     headers: {
       "Content-Type": "application/json",
-      // Authorization: `Bearer ${tokens?.access}`,
     },
   });
 
@@ -26,7 +23,6 @@ const useAxios = () => {
 
   // Set the AUTH token for any request
   axiosInstance.interceptors.request.use(async function (config) {
-    // console.log("inside", tokens);
     const user = jwtDecode(tokens?.access);
     const isExpired = dayjs.unix(user.exp).diff(dayjs()) < 1;
     if (isExpired) {

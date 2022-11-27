@@ -8,6 +8,8 @@ import { Footer } from '../../components/Footer';
 import photo from '../../assets/asideprofile.svg';
 import AuthContext from '../../context/AuthContext';
 import { JobseekerNavbar as Navbar } from '../components/JobseekerNavbar';
+import Moment from "moment";
+
 
 export const Profile = () => {
     // hooks
@@ -87,7 +89,7 @@ export const Profile = () => {
                     <div key={item?.id} className="grow-1 w-full flex flex-col items-start my-2">
                     <h3 className="font-thin text-sm leading-[1em]">{item?.degree}</h3>
                     <span className="font-thin text-sm leading-[1em]">{item?.school_name}</span>
-                    <span className="font-thin text-sm leading-[1em]">{item?.start_of_education} - {item?.end_of_education}</span>
+                    <span className="font-thin text-sm leading-[1em]">{Moment(item?.start_of_education).format("MMM DD YYYY")} - {Moment(item?.end_of_education).format("MMM DD YYYY")}</span>
                     <span className="font-thin text-sm leading-[1em]">{item?.grade}</span>
                     <p className="leading-[1em] text-md">
                         {item?.study_summary}
