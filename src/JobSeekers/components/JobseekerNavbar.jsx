@@ -27,8 +27,8 @@ export const JobseekerNavbar = () => {
 
 
 
-  const normalLink = 'border-none';
-  const normalMobile = 'text-[1.3rem]';
+  const normalLink = 'border-none font-[700]';
+  const normalMobile = 'text-[1.3rem] font-[700]';
   const activeLink = 'border-b border-b-white';
   const activeMobile = 'text-blue text-[1.3rem] font-[700]';
 

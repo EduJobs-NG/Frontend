@@ -50,7 +50,7 @@ export const Navbar = () => {
 
           <ul className='hidden xl:flex flex-row text-white gap-8 items-center'>
             <li>
-              <Link to="/employer" className='hover:underline cursor-pointer uppercase font-sm'>
+              <Link to="/employer" className='hover:underline cursor-pointer uppercase font-bold'>
                 I'm an employer
               </Link>
             </li>

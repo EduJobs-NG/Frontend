@@ -84,9 +84,12 @@ export const Recent = forwardRef(({ title = "", location = "", Title, Location }
                       {item?.requirements ? <Markup content={item?.requirements} /> : 'No requirements from the organization.'}
                       <div className="grid w-full my-8 md:mt-12 items-center justify-center">
                         <Link to={`/dashboard/apply/job/${item?.id}`} className="w-52">
-                          <button className="bg-blue font-bold uppercase w-full md:w-100 px-20 text-white rounded p-2">
-                            {item?.applied ? 'applied' : 'apply'}
-                          </button>
+                          {item?.applied === true ? <button disabled className="bg-blue opacity-25 font-bold uppercase w-full md:w-100 px-20 text-white rounded p-2">
+                            APPLIED
+                          </button> : <button className="bg-blue  font-bold uppercase w-full md:w-100 px-20 text-white rounded p-2">
+                            APPLY
+                          </button> }
+                          
                         </Link>
                       </div>
                     </div>

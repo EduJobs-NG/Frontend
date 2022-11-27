@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import api from '../../utils/axios';
 import img from "../../assets/jobs-2.png";
 import { useState, useEffect } from "react";
 import { Circles } from "react-loader-spinner";
 import { JobDetailPopup as Popup } from './JobDetailPopup';
+import useAxios from "../../utils/useAxios";
 
 export const Jobslists = ({ url = "/employer/jobs/open/", title = "" }) => {
   // states
@@ -13,6 +13,7 @@ export const Jobslists = ({ url = "/employer/jobs/open/", title = "" }) => {
   const [load, setLoad] = useState(false);
   const [result, setResult] = useState([]);
   const [error, setError] = useState(false);
+  const api = useAxios()
 
   // effects
   useEffect(() => { fetchData(); }, [url]);

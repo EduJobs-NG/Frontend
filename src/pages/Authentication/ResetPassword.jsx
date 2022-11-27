@@ -51,14 +51,14 @@ export const ResetPassword = () => {
         setTimeout(() => {
           navigate('/jobseeker/login')
   
-        }, 1000)
+        }, 2500)
       }
 
       if(is_employer === true){
         setTimeout(() => {
           navigate('/employer/login')
   
-        }, 1000)
+        }, 2500)
       }
      
 

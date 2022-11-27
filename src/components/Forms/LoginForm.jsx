@@ -38,13 +38,14 @@ export const LoginForm = ({ setShowLogin, showModal }) => {
             toast.error("Password or email incorrect");
             setIsLoading(false);
           } else if (err.response.status === 401) {
-            toast.error("Password or email incorrect");
+            toast.error("No active account found");
             setIsLoading(false);
           } else {
             toast.error("Something went wrong");
             setIsLoading(false);
           }
         }
+        console.log(err)
       });
 
       if (response && response.data) {

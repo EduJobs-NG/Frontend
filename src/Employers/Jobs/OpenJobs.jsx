@@ -99,7 +99,7 @@ export const OpenJobs = () => {
         <div className="flex flex-row  justify-between md:justify-center items-center  gap-[1rem]">
           <div>
             <p className="text-blue cursor-pointer">
-              {/* <a href={`/employer/dashboard/edit-job/${job.id}`}> Edit job</a> */}
+              <a href={`/employer/dashboard/edit-job/${job.id}`}> Edit job</a>
              
               </p>
           </div>

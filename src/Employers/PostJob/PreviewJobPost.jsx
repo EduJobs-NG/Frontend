@@ -57,16 +57,21 @@ export const PreviewJobPost = ({ formData, setShowPreview }) => {
 
   const deadlineDate = Moment(deadline).format("MMM DD YYYY");
   return (
-    <section className="bg-white relative ">
+    <section className="bg-white ">
 
       {!jobSucess && (
         <div> 
-      <FaTimes
+          <div className="flex justify-between">
+          <h1 className="font-[700] text-2xl">Job Preview</h1>
+          <div className="">
+          <FaTimes
         onClick={() => setShowPreview(false)}
-        className="text-blue text-[1.3rem]  cursor-pointer absolute right-5 top-"
+        className="text-blue text-[1.3rem]  cursor-pointer "
       />
-      <h1 className="font-[700] text-2xl">Job Preview</h1>
-      <p className="pb-[1rem]">
+          </div>
+          </div>
+      
+      <p className="py-[0.5rem]">
         Here’s a preview of how people might view your job
       </p>
       <hr className="text-[#808080] " />
