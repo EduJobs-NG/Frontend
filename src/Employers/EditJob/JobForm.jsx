@@ -29,7 +29,7 @@ export const JobForm = () => {
     }
     catch (err) {
       console.error(err);
-      toast.error('There was an error fetching data');
+      toast.error('Job ' + err?.response?.data?.detail || 'There was an error fetching data');
     };
   };
 
