@@ -7,7 +7,7 @@ import { DeleteEducation } from "../DeleteProfile/DeleteEducation";
 import { EditEducation } from "./EditEducation";
 import Moment from "moment";
 
-export const ProfessionalInfo = ({ setActive }) => {
+export const ProfessionalInfo = () => {
   const [showEducation, setShowEducation] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
@@ -102,7 +102,7 @@ export const ProfessionalInfo = ({ setActive }) => {
         })}
 
       <div className="mt-[3rem] items-baseline gap-3 text-center flex flex-row justify-center">
-        <div>
+        <div className="cursor-pointer" onClick={() => setShowEducation(true)}>
           <img src={AddIcon} alt="" />
         </div>
         <span

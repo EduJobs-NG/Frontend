@@ -166,7 +166,7 @@ export const AddEducation = ({ setShowEducation, education }) => {
                         type="text"
                         label="Degree"
                         className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
-                        placeholder="e.g. B.Sc Elect/Elect"
+                        placeholder="e.g. B.Sc, BTech, HND"
                         id="degree"
                         name="degree"
                         onChange={formik.handleChange}

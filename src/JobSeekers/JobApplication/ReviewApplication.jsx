@@ -9,6 +9,7 @@ import AuthContext from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
 import useAxios from "../../utils/useAxios";
+import { Link } from "react-router-dom";
 
 
 
@@ -42,7 +43,7 @@ export const ReviewApplication = ({ formData, prevStep, setStep }) => {
       setShowSuccess(true)
       setTimeout(() => {
         navigate('/dashboard/find-jobs')
-      }, 5000)
+      }, 7000)
     }
   }
   return (
@@ -133,7 +134,7 @@ export const ReviewApplication = ({ formData, prevStep, setStep }) => {
 
         <div className="md:mx-[1rem]">
           By pressing Submit:
-          <p>1) You agree to our Terms and Privacy Policies;</p>
+          <p>1) You agree to our <Link className="text-blue" to="/terms">Terms and Privacy Policies</Link> ;</p>
           <p>
             2) You consent to your application being transmitted to the Employer
             (EduJobs does not guarantee receipt), & processed & analyzed in

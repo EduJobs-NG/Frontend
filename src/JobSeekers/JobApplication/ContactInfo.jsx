@@ -34,7 +34,7 @@ export const ContactInfo = ({
     <section className="container mx-auto">
       <div className="md:mx-[1rem] my-[2rem]  py-[1.2rem] border bg-white border-[#d9d9d9] px-[1.2rem] rounded-[20px]">
         <h1 className="font-[700]">Step 3 of 3</h1>
-        <p>Answer the following screening questions.</p>
+        <p>Confirm your contact details.</p>
         <Formik>
 
           <Form onSubmit={formik.handleSubmit}>

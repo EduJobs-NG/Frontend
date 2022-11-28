@@ -80,7 +80,7 @@ export const footer = {
     company: [
         { name: 'About us', href: '#' },
         { name: 'Careers', href: '#' },
-        { name: 'Contact us', href: '#' },
+        { name: 'Contact us', href: '/contact-us' },
     ],
 
     support: [

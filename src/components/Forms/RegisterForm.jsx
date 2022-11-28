@@ -44,7 +44,7 @@ export const RegisterForm = ({ showModal, setShowRegister }) => {
             toast.success("Account created successfully.")
             setTimeout(() => {
                 navigate('/verify');
-            }, 1000)
+            }, 3000)
         }
 
 

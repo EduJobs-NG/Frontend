@@ -34,7 +34,7 @@ export const ActivateAccount = () => {
             toast.info('Your account has been activated.')
             setTimeout(() => {
               navigate('/login')
-            }, 2000)
+            }, 3000)
 
           }
           else {
@@ -57,12 +57,12 @@ export const ActivateAccount = () => {
       if (is_jobseeker === true){
         setTimeout(() => {
           navigate('/jobseeker/login');
-        }, 2000)
+        }, 3000)
       }
       else if(is_employer === true){
         setTimeout(() => {
           navigate('/employer/login');
-        }, 2000)
+        }, 3000)
       }
     }
 

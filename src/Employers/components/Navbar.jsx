@@ -50,15 +50,11 @@ export const Navbar = () => {
 
           <ul className='hidden xl:flex flex-row text-white gap-8 items-center'>
             <li>
-              <Link to="/" className='hover:underline cursor-pointer uppercase font-sm'>
+              <Link to="/" className='hover:underline cursor-pointer font-bold uppercase font-sm'>
                 I'm a jobseeker
               </Link>
             </li>
-            <li>
-              <Link to="/" className='hover:underline cursor-pointer uppercase font-sm'>
-                I'm an employer
-              </Link>
-            </li>
+            
 
             <li>
               <Link to="#" onClick={() => setShowLogin(true)} className='py-[0.3em] px-[2.4em] cursor-pointer  border border-solid bg-white text-blue hover:text-white hover:bg-blue text-[1.1rem] font-[800] border-white rounded-[4px]'>

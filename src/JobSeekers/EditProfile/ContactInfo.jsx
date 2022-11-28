@@ -18,10 +18,10 @@ const validationSchema = Yup.object({
   second_ref_phone: Yup.string().required('Required'),
 
 });
-export const ContactInfo = ({ setTitle }) => {
+export const ContactInfo = ({  }) => {
   const [isLoading, setIsLoading] = useState(false);
   const api = useAxios();
-  const { user } = useContext(AuthContext);
+  const { user, getUserMeHandler } = useContext(AuthContext);
 
   const {
     contact_info: {
@@ -55,6 +55,7 @@ export const ContactInfo = ({ setTitle }) => {
 
     if (response) {
       setIsLoading(false);
+      getUserMeHandler();
       toast.success("Your changes have been successfully saved.");
     }
   };

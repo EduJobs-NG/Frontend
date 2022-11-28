@@ -11,7 +11,7 @@ export const PageNotFound = () => {
           <div>
             <img src={pagenotfound} alt="" />
           </div>
-          <p className="font-[700] px-[1rem] pt-[1rem] max-w-[400px]">
+          <p className="font-[500] px-[1rem] pt-[1rem] max-w-[400px]">
             Oops! We’re sorry, the page you requested for could not be found
           </p>
           <NavLink to="/"
