@@ -34,6 +34,7 @@ import { EmployerViewJobs } from './Employers/pages/EmployerViewJobs';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { EmployersDashboard } from './Employers/pages/EmployersDashboard';
 import { EmployersRegistration } from './Employers/pages/EmployersRegistration';
+import { ContactUs } from './components/ContactUs';
 
 
 function App() {
@@ -71,6 +72,7 @@ function App() {
             <Route path="/email/reset/confirm/:uid/:token" element={<NewEmail />} />
             <Route path="resend-link" element={<ResetLink />} />
             <Route path="/pricing" element={<Pricing />} />
+            <Route path="/contact-us" element={<ContactUs />} />
             <Route path="*" element={<PageNotFound />} />
 
             <Route path="/faqs" element={<Faq />} />

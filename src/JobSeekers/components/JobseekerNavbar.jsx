@@ -58,15 +58,15 @@ export const JobseekerNavbar = () => {
           </ul>
 
           <ul className='hidden xl:flex flex-row items-center text-white gap-x-[2rem]'>
-
-            <li>
+            <li className=''>Hello, {user?.user.first_name}</li>
+            {/* <li>
               <img src={chat} alt="" />
             </li>
             <li>
               <img src={notification} alt="" />
             </li>
             <li className='h-[2rem] w-[1px] bg-white'>
-            </li>
+            </li> */}
 
             <li>
               <div onClick={() => setDropDown(!dropDown)} className='flex relative cursor-pointer flex-row items-center '>

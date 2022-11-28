@@ -25,16 +25,18 @@ export const IndividualRegistration = () => {
     const response = await axios
       .post(`${process.env.REACT_APP_BASE_URL}employer/account/individual-employer/`, values)
       .catch(err => {
-        if (err?.message === 'Request failed with status code 400') toast.error('user with this email already exists');
-        else toast.error('an error occured, try again');
+        if (err?.message === 'Request failed with status code 400') toast.error('User with this email already exists');
+        else toast.error('An error occured, try again');
         console.error(err);
         setIsLoading(false);
       });
 
-    if (response?.data) {
-      setIsLoading(false);
-      toast.success("Account created successfully.", { onClose: () => navigate('/verify'), onClick: () => navigate('/verify') });
-    }
+      if (response && response.data) {
+        toast.success("Account created successfully.");
+        setTimeout(() => {
+          navigate("/verify");
+        }, 3000);
+      }
   };
 
   const formik = useFormik({

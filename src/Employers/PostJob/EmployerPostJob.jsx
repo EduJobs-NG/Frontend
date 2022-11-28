@@ -2,6 +2,7 @@ import React from "react";
 import { EmployersNavbar } from "../LoggedInComponents/EmployersNavbar";
 import img from "../../assets/post-job.png";
 import { JobForm } from "./JobForm";
+import {Footer} from '../../components/Footer'
 
 export const EmployerPostJob = () => {
   return (
@@ -39,6 +40,7 @@ export const EmployerPostJob = () => {
             <JobForm />
           </div> */}
         </div>
+        <Footer />
       </section>
     </>
   );

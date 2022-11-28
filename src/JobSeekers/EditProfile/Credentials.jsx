@@ -11,9 +11,7 @@ export const Credentials = () => {
   const { user, getUserMeHandler } = useContext(AuthContext);
   const credentials = user?.credentials;
   const cv = user?.cv;
-  const certificates = credentials.filter((item) => {
-    return item.credential_type === "Certificate";
-  });
+
   const [selectedItem, setSelectedItem] = useState({});
   const [showDelete, setShowDelete] = useState(false);
   const [showAddCredentials, setShowAddCredentials] = useState(false);
@@ -99,8 +97,8 @@ export const Credentials = () => {
         <h1 className="text-[1.2rem] font-[700]">Certificates</h1>
         <p>Add maximum of 3 of your necessary certificate.</p>
         {/* {credentials && <p className="mt-[2rem] font-[700]">Certificates</p>} */}
-        {certificates &&
-          certificates.map((item) => {
+        {credentials &&
+          credentials.map((item) => {
             return (
               <div key={item.id} className="">
                 <div className="border relative mt-[0.5rem] px-[2rem] py-[1rem] rounded-lg border-[#808080]">
@@ -127,7 +125,7 @@ export const Credentials = () => {
               : "mt-[3rem] items-baseline gap-3 text-center flex flex-row justify-center"
           }
         >
-          <div>
+          <div className="cursor-pointer" onClick={() => addCredentialsHandler()}>
             <img src={AddIcon} alt="" />
           </div>
           <span

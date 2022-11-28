@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import { EmployerHeader } from '../LoggedInComponents/EmployerHeader';
 import { EmployersNavbar } from '../LoggedInComponents/EmployersNavbar';
 import { Jobs } from '../Jobs/Jobs';
+import {Footer} from '../../components/Footer'
 
 export const EmployerViewJobs = () => {
   // states
@@ -15,6 +16,7 @@ export const EmployerViewJobs = () => {
       <div className='bg-[#f5f5f5]'>
         <Jobs title={title} location={location} Title={setTitle} Location={setLocation} />
       </div>
+      <Footer />
     </section>
   )
 };

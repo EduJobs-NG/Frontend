@@ -37,7 +37,7 @@ export const NewEmail = () => {
       setTimeout(() =>{
         navigate('/login')
 
-      }, 1000)
+      }, 3000)
 
     }
 
