@@ -31,12 +31,13 @@ export const EditJob = ({}) => {
   useEffect(() => {
     getJob();
   }, []);
+  
   return (
     <section className="">
       <EmployersNavbar />
 
       <div className="container mx-auto">
-     <h1>Edit {job.title}</h1>   
+        <h1>Edit {job.title}</h1>   
       </div>
     </section>
   );
