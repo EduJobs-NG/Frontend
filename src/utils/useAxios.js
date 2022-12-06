@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import AuthContext from "../context/AuthContext";
 import { useContext } from "react";
 
-const baseURL = "https://edujobsng.herokuapp.com/api/v1";
+const baseURL = "https://edujobsng.up.railway.app/api/v1";
 
 const useAxios = () => {
   const { authTokens, setAuthTokens } = useContext(AuthContext);
