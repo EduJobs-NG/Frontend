@@ -59,9 +59,11 @@ export const Jobslists = ({ url = "/employer/jobs/open/", title = "" }) => {
               </div>
 
               <div className="flex flex-row  justify-between md:justify-center items-center  gap-[1rem]">
-                <div>
-                  <Link to={`/employer/dashboard/edit-job/${item?.id}`} className="text-blue cursor-pointer">Edit job</Link>
-                </div>
+
+                {/* <div>
+                  <p className="text-blue cursor-pointer">Edit job</p>
+                </div> */}
+             
                 <div>
                   <p onClick={() => handlePopup(item)} className="bg-blue cursor-pointer px-[1rem] py-[0.4rem] text-white rounded-[5px]">
                     View job details
