@@ -1,3 +1,7 @@
+// toastify css and component container
+import 'react-toastify/dist/ReactToastify.css';
+import {  ToastContainer } from 'react-toastify';
+
 import { Faq } from './pages/Faq';
 import { Pricing } from './pages/Pricing';
 import JobseekerRoute from './utils/JobseekerRoute';
@@ -26,21 +30,20 @@ import { EmployersLoginFormUI } from './Employers/pages/EmployersLoginFormUI';
 
 //loader css
 import EmployerRoute from './utils/EmployerRoute';
-import { EditJob } from './Employers/Jobs/EditJob';
+import { ContactUs } from './components/ContactUs';
 import { Account } from './Employers/pages/Account';
 import { ResetLink } from './pages/Authentication/ResendLink';
+import { EmployerEditJob } from './Employers/EditJob/EmployerEditJob';
 import { EmployerPostJob } from './Employers/PostJob/EmployerPostJob';
 import { EmployerViewJobs } from './Employers/pages/EmployerViewJobs';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { EmployersDashboard } from './Employers/pages/EmployersDashboard';
 import { EmployersRegistration } from './Employers/pages/EmployersRegistration';
-import { ContactUs } from './components/ContactUs';
 
 
 function App() {
   return (
     <Router>
-
       <div className="w-full mx-auto">
         <AuthProvider>
           <Routes>
@@ -59,7 +62,7 @@ function App() {
               <Route path="/employer/dashboard/" element={<EmployersDashboard />} />
               <Route path="/employer/dashboard/post-job" element={<EmployerPostJob />} />
               <Route path="/employer/dashboard/view-jobs" element={<EmployerViewJobs />} />
-              <Route path="/employer/dashboard/edit-job/:id" element={<EditJob />} />
+              <Route path="/employer/dashboard/edit-job/:id" element={<EmployerEditJob />} />
             </Route>
 
             <Route path="/jobseeker/login" element={<JobseekerLoginFormUI />} />
@@ -86,9 +89,9 @@ function App() {
 
 
       </div>
+      <ToastContainer position="top-right" />
     </Router>
-
   );
-}
+};
 
 export default App;
