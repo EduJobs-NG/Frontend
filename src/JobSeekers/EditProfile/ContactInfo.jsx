@@ -11,7 +11,7 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/bootstrap.css";
 
 const validationSchema = Yup.object({
-  next_kin_email: Yup.string().email("Invalid email address"),
+  next_kin_email: Yup.string().email("Invalid email address").nullable(),
   // phone_number: Yup.number().required('Required'),
   next_kin_phone: Yup.string().required('Required').nullable(),
   first_ref_phone: Yup.string().required('Required').nullable(),
