@@ -21,6 +21,7 @@ export const EditCV = ({ setShowEditCV, cv}) => {
 
     const data = new FormData();
     data.append("file", values.file);
+    data.append("name", values.file.name);
     const response = await api.put(`/jobseeker/user-profile/me/cv/${cv.id}/`,data)
       .catch((err) => {
         console.log(err);
@@ -38,6 +39,7 @@ export const EditCV = ({ setShowEditCV, cv}) => {
   const formik = useFormik({
     initialValues: {
       file: "",
+      name:''
       
     },
     validateOnBlur: true,

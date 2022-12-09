@@ -14,13 +14,14 @@ const validationSchema = Yup.object({
 });
 export const AddCV = ({ setShowAddCV}) => {
   const api = useAxios()
-  const { updateUser, getUserMeHandler } = useContext(AuthContext);
+  const { getUserMeHandler } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const onSubmit = async (values) => {
     setIsLoading(true);
 
     const data = new FormData();
     data.append("file", values.file);
+    data.append("name", values.file.name);
     const response = await api.post(`/jobseeker/user-profile/me/cv/`,data)
       .catch((err) => {
         console.log(err);
@@ -39,6 +40,7 @@ export const AddCV = ({ setShowAddCV}) => {
   const formik = useFormik({
     initialValues: {
       file: "",
+      name: "",
       
     },
     validateOnBlur: true,
