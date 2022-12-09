@@ -11,7 +11,7 @@ import { navigation } from '../../data';
 import { FaCaretDown } from 'react-icons/fa';
 
 export const EmployersNavbar = () => {
-  const { user, logOutEmployerUser, getEmployerUser } = useContext(AuthContext)
+  const { employerUser, user, logOutEmployerUser, getEmployerUser } = useContext(AuthContext)
   const { logo } = navigation;
   useEffect(() => {
     Aos.init();
@@ -47,20 +47,23 @@ export const EmployersNavbar = () => {
 
           </ul>
 
+
           <ul className='hidden xl:flex flex-row items-center text-white gap-x-[2rem]'>
+            <li className='text-whie'>Hello, {employerUser?.first_name || employerUser?.org_name}</li>
             <a href='/employer/dashboard/post-job'>
               <li className='p-1 cursor-pointer px-4 font-[700] border border-solid bg-white text-blue hover:bg-blue hover:text-white border-white rounded'>
                 POST JOB
               </li>
             </a>
-            <li>
+            {/* <li>
               <img src={chat} alt="" />
             </li>
             <li>
               <img src={notification} alt="" />
             </li>
             <li className='h-[2rem] w-[1px] bg-white'>
-            </li>
+            </li> */}
+
 
             <li>
               <div onClick={() => setDropDown(!dropDown)} className='flex relative cursor-pointer flex-row items-center '>
