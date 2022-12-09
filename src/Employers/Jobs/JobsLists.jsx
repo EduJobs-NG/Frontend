@@ -1,9 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { Link } from 'react-router-dom';
 import img from "../../assets/jobs-2.png";
 import { useState, useEffect } from "react";
+import useAxios from "../../utils/useAxios";
 import { Circles } from "react-loader-spinner";
 import { JobDetailPopup as Popup } from './JobDetailPopup';
-import useAxios from "../../utils/useAxios";
 
 export const Jobslists = ({ url = "/employer/jobs/open/", title = "" }) => {
   // states
@@ -58,9 +59,11 @@ export const Jobslists = ({ url = "/employer/jobs/open/", title = "" }) => {
               </div>
 
               <div className="flex flex-row  justify-between md:justify-center items-center  gap-[1rem]">
+
                 {/* <div>
                   <p className="text-blue cursor-pointer">Edit job</p>
                 </div> */}
+             
                 <div>
                   <p onClick={() => handlePopup(item)} className="bg-blue cursor-pointer px-[1rem] py-[0.4rem] text-white rounded-[5px]">
                     View job details
