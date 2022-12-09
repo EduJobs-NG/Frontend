@@ -68,7 +68,7 @@ export const Credentials = () => {
             </div>
             <p>
               <a className="text-blue underline" href={cv?.file}>
-                MY CV
+                {cv?.name}
               </a>
             </p>
           </div>

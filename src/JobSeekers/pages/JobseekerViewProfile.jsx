@@ -15,9 +15,9 @@ export const Profile = () => {
     // hooks
     const { user } = useContext(AuthContext);
 
-    useEffect(() => {
-        console.table(user);
-    },[]);
+    // useEffect(() => {
+    //     console.table(user);
+    // },[]);
 
     return <>
         <Navbar user={user} />
@@ -106,8 +106,10 @@ export const Profile = () => {
                         <div className="flex w-full gap-4 px-4">
                             <div className="w-12 h-14 flex-none bg-gray-400"></div>
                             <div className="flex flex-col items-start justify-center">
-                                <h4 className="font-bold capitalize">faith oluwafemi <span className="uppercase">cv</span></h4>
-                                <span className="capitalize leading-[1em] text-sm">added 7/4/2022</span>
+                                <a className="text-blue underline" href={user?.cv?.file}>
+                {user?.cv?.name}
+              </a>
+                                {/* <span className="capitalize leading-[1em] text-sm">added 7/4/2022</span> */}
                             </div>
                         </div>
                     </div>
