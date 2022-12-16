@@ -39,6 +39,7 @@ import { EmployerViewJobs } from './Employers/pages/EmployerViewJobs';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { EmployersDashboard } from './Employers/pages/EmployersDashboard';
 import { EmployersRegistration } from './Employers/pages/EmployersRegistration';
+import { AboutPage } from './Employers/pages/AboutPage';
 
 
 function App() {
@@ -79,6 +80,7 @@ function App() {
             <Route path="*" element={<PageNotFound />} />
 
             <Route path="/faqs" element={<Faq />} />
+            <Route path="/about" element={<AboutPage />} />
             <Route path="/employer" element={<EmployersHome />} />
             <Route path="/terms" element={<TermsAndConditions />} />
             <Route path="/employer/login" element={<EmployersLoginFormUI />} />
