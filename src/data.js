@@ -75,7 +75,7 @@ export const footer = {
             href: '/employer/register'
         },
         { name: 'Find candidate', href: '#' },
-        { name: 'Post jobs', href: '/dashboard/employer/post-job' },
+        { name: 'Post jobs', href: '/employer/dashboard/post-job' },
     ],
     company: [
         { name: 'About us', href: '#' },
