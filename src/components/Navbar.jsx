@@ -36,12 +36,12 @@ export const Navbar = () => {
             </li>
             <div className="hidden xl:flex flex-row text-white gap-10 text-sm items-center">
               <li>
-                <Link to="#" className="uppercase font-bold hover:underline cursor-pointer">
+                <Link to="/about" className="uppercase font-bold hover:underline cursor-pointer">
                   about us
                 </Link>
               </li>
               <li>
-                <Link to="#" className="uppercase font-bold hover:underline cursor-pointer">
+                <Link to="/dashboard/find-jobs" className="uppercase font-bold hover:underline cursor-pointer">
                   jobs
                 </Link>
               </li>
@@ -82,7 +82,7 @@ export const Navbar = () => {
             <FaTimes onClick={handleClick} className='text-blue text-[1.3rem] mt-3 cursor-pointer absolute right-5 top-5' />
             <ul className='py-[2rem] flex flex-col '>
               <NavLink data-aos-delay="300" data-aos="fade-left" className="text-[1.2rem] font-[700] mb-[33px]" to="#">JOBS</NavLink>
-              <NavLink data-aos-delay="300" data-aos="fade-left" className="text-[1.2rem] font-[700] mb-[33px]" to="#">ABOUT US</NavLink>
+              <NavLink data-aos-delay="300" data-aos="fade-left" className="text-[1.2rem] font-[700] mb-[33px]" to="/about">ABOUT US</NavLink>
             </ul>
             <div className='container mx-auto'>
               <hr className=' text-[#808080]' />
