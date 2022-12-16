@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Error } from "../../components/Error";
 import { ToastContainer, toast } from "react-toastify";
 import React, { useState, useEffect, forwardRef } from "react";
-
+import axios from 'axios';
 export const Recent = forwardRef(({ title = "", location = "", Title, Location }, ref) => {
   // states
   const [jobs, setJobs] = useState(null);
@@ -41,7 +41,7 @@ export const Recent = forwardRef(({ title = "", location = "", Title, Location }
   const handleSelected = ({ currentTarget: t }) => setSelected(() => Number(t.id) === selected ? null : Number(t.id));
   const handleRequest = async () => {
     setLoad(() => true);
-    await api.get(url, null, { Headers: { Authorization: "" } })
+    await axios.get(`${process.env.REACT_APP_BASE_URL}${url}`, null, { Headers: { Authorization: "" } })
       .then(res => {
         setError(() => null);
         setJobs(() => res.data);
