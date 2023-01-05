@@ -3,7 +3,7 @@ import { token } from './storage';
 
 /* Creating an axios instance with the base url and the headers. */
 const api = axios.create({
-    baseURL: 'https://edujobsng.up.railway.app/api/v1',
+    baseURL: 'hhttps://api.edujobsng.com/api/v1/1',
     headers: {
         Authorization: token.key,
         "Content-Type": "application/json",

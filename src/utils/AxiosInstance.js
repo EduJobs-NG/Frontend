@@ -3,7 +3,7 @@ import dayjs from 'dayjs'
 import axios from 'axios'
 
 
-const baseURL = 'https://edujobsng.up.railway.app/api/v1'
+const baseURL = 'https://api.edujobsng.com/api/v1/'
 let authTokens = localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')):null
 
 const axiosInstance = axios.create({
