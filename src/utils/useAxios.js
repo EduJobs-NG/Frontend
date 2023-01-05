@@ -27,7 +27,7 @@ const useAxios = () => {
     const isExpired = dayjs.unix(user.exp).diff(dayjs()) < 1;
     if (isExpired) {
       const response = await axios.post(
-        `${baseURL}/jobseeker/jwt/token/refresh/`,
+        `${baseURL}jobseeker/jwt/token/refresh/`,
         {
           refresh: tokens.refresh,
         }
