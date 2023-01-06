@@ -10,9 +10,9 @@ import { FormInputBox } from "../../components/Forms/FormInputBox";
 
 const today = new Date();
 const validationSchema = Yup.object({
-  summary: Yup.string().required("Required"),
-  requirements: Yup.string().required("Required"),
-  deadline: Yup.date().required("Required").min(today, "End date can't be in the past"),
+  // summary: Yup.string().required("Required"),
+  // requirements: Yup.string().required("Required"),
+  // deadline: Yup.date().required("Required").min(today, "End date can't be in the past"),
 
 });
 
@@ -24,13 +24,14 @@ export const BasicInfo2 = ({ formData: initialValues, setFormData, prevStep }) =
 
   // methods
   const handleRequirements = requirements => setFormData({ ...initialValues, requirements });
-  const formik = useFormik({ onSubmit, initialValues, validationSchema, validateOnBlur: true, });
 
   const onSubmit = values => {
     setFormData(values); console.log(values);
     direction === "back" ? prevStep() : setShowPreview(true);
   };
 
+  const formik = useFormik({ onSubmit, initialValues, validationSchema, validateOnBlur: true, });
+  console.log(initialValues)
 
   useEffect(() => {
     formik.setFieldValue("requirements", initialValues?.requirements);

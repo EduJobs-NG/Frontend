@@ -9,8 +9,8 @@ const validationSchema = Yup.object({
   organization_name: Yup.string().required("Required"),
   location: Yup.string().required("Required"),
   job_type: Yup.string().required("Required"),
-  min_pay_range: Yup.string().required("Required"),
-  max_pay_range: Yup.string().required("Required"),
+//   min_pay_range: Yup.string().required("Required"),
+//   max_pay_range: Yup.string().required("Required"),
 });
 
 const jobTypeOptions = [

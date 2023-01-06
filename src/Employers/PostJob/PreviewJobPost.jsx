@@ -36,6 +36,7 @@ export const PreviewJobPost = ({ formData, setShowPreview }) => {
     data.append("min_pay_range", min_pay_range);
     data.append("max_pay_range", max_pay_range);
     data.append("location", location);
+    data.append('organization_name', organization_name);
     // data.append('job', job)
 
     const response = await api.post(`/employer/jobs/`, data).catch((err) => {

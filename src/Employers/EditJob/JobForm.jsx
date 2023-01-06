@@ -25,9 +25,13 @@ export const JobForm = () => {
 
   // methods
   const fetchData = async () => {
+    // 
+    // /employer/jobs/${id}/
     try {
-      const res = await api.get(`/employer/jobs/${id}/`);
+      const res = await api.get(`/admin/jobs-review/${id}/`);
       setFormData(() => res.data || initial);
+      console.log(res.data)
+      console.log(formData)
     }
     catch (err) {
       console.error(err);

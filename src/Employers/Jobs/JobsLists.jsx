@@ -41,41 +41,48 @@ export const Jobslists = ({ url = "/employer/jobs/open/", title = "" }) => {
         : error ?
           <div className="capitalize text-blue text-xl">there was an error fetching jobs</div>
           : result.length ? result.map(item => (
-            <div className="bg-white rounded-[1rem] mb-[2rem] px-[2rem] py-[1rem] grid lg:grid-cols-4 gap-[2rem]">
+            <div key={item?.id} className="bg-white rounded-[1rem] my-[2rem] px-[2rem] py-[1rem] grid lg:grid-cols-2 gap-[2rem]">
               <div>
                 <h2 className="text-blue font-bold">{item?.title}</h2>
                 <p>{item?.location}</p>
                 <p>{item?.created}</p>
               </div>
 
-              <div className="flex flex-row justify-between lg:flex-col">
-                <p className="text-blue">Job status</p>
-                <select
-                  name="status"
-                  className="border p-2.5   border-solid border-[#808080] rounded-lg outline-none"
-                >
-                  <option value={item?.open_status}>{item?.open_status}</option>
-                </select>
-              </div>
+              
 
               <div className="flex flex-row  justify-between md:justify-center items-center  gap-[1rem]">
 
-                {/* <div>
-                  <p className="text-blue cursor-pointer">Edit job</p>
-                </div> */}
+                <div>
+                <a className='text-blue' href={`/employer/dashboard/edit-job/${item?.id}`}>
+                  Edit Job
+                  </a>
+                </div>
              
                 <div>
                   <p onClick={() => handlePopup(item)} className="bg-blue cursor-pointer px-[1rem] py-[0.4rem] text-white rounded-[5px]">
                     View job details
                   </p>
                 </div>
+
+                <div className="flex flex-row justify-between lg:flex-col">
+                <p onClick={() => handlePopup(item)} className="bg-red-600 cursor-pointer px-[1rem] py-[0.4rem] text-white rounded-[5px]">
+                    Close job
+                  </p>
+                {/* <p className="text-blue">Job status</p>
+                <select
+                  name="status"
+                  className="border p-2.5   border-solid border-[#808080] rounded-lg outline-none"
+                >
+                  <option value={item?.open_status}>{item?.open_status}</option>
+                </select> */}
+              </div>
               </div>
             </div>
           )) : (
             <div className="flex flex-col items-center justify-center gap-2">
               <img src={img} alt="" />
               <p className="capitalize font-bold text-blue">
-                {title.length ? 'the search result was not fund' : `No ${url.includes('open') ? 'open' : 'closed'} jobs yet`}
+                {title.length ? 'No job matches your search' : `No ${url.includes('open') ? 'open' : 'closed'} jobs yet`}
               </p>
             </div>
           )

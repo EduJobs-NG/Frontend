@@ -25,9 +25,9 @@ const useAxios = () => {
   axiosInstance.interceptors.request.use(async function (config) {
     const user = jwtDecode(tokens?.access);
     const isExpired = dayjs.unix(user.exp).diff(dayjs()) < 1;
-    if (isExpired) {
+    if (!isExpired) {
       const response = await axios.post(
-        `${baseURL}/jobseeker/jwt/token/refresh/`,
+        `${baseURL}jobseeker/jwt/token/refresh/`,
         {
           refresh: tokens.refresh,
         }
