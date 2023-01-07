@@ -45,6 +45,7 @@ export const Recent = forwardRef(({ title = "", location = "", Title, Location }
       .then(res => {
         setError(() => null);
         setJobs(() => res.data);
+        console.log(jobs)
       })
       .catch(({ message }) => {
         setError(() => message);
