@@ -4,13 +4,15 @@ import { Markup } from "interweave";
 import { toast } from "react-toastify";
 import React, { useState } from "react";
 import { FaTimes } from "react-icons/fa";
-import api from '../../utils/AxiosInstance';
+import useAxios from '../../utils/useAxios';
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate, useParams } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
 import jobPosted from "../../assets/jobPosted.png";
+import { useNavigate, useParams } from "react-router-dom";
 
 export const PreviewJobPost = ({ formData: data, setShowPreview }) => {
+  // use api
+  const api = useAxios();
   // navigation hook
   const navigate = useNavigate();
 
