@@ -17,30 +17,31 @@ const validationSchema = Yup.object({
 });
 
 
-export const BasicInfo2 = ({ formData: initialValues, setFormData, prevStep }) => {
+
+export const BasicInfo2 = ({ formData, setFormData, prevStep }) => {
   //states
   const [direction, setDirection] = useState("back");
   const [showPreview, setShowPreview] = useState(false);
-
+  // console.log(formData.deadline)
   // methods
-  const handleRequirements = requirements => setFormData({ ...initialValues, requirements });
+  const handleRequirements = requirements => setFormData({ ...formData, requirements });
 
   const onSubmit = values => {
     setFormData(values); console.log(values);
     direction === "back" ? prevStep() : setShowPreview(true);
   };
 
-  const formik = useFormik({ onSubmit, initialValues, validationSchema, validateOnBlur: true, });
-  console.log(initialValues)
+  const formik = useFormik({ onSubmit, enableReinitialize:true, initialValues:formData, validationSchema, validateOnBlur: true, });
+  // console.log(formData)
 
   useEffect(() => {
-    formik.setFieldValue("requirements", initialValues?.requirements);
-  }, [initialValues?.requirements])
+    formik.setFieldValue("requirements", formData?.requirements);
+  }, [formData?.requirements])
 
   return (
     <section>
       {showPreview && (
-        <PreviewJobPostPopUp formData={initialValues} setShowPreview={setShowPreview} />
+        <PreviewJobPostPopUp formData={formData} setShowPreview={setShowPreview} />
       )}
       <Formik>
         <Form onSubmit={formik.handleSubmit}>
@@ -51,8 +52,9 @@ export const BasicInfo2 = ({ formData: initialValues, setFormData, prevStep }) =
               cols="100"
               name="summary"
               maxLength={300}
-              onChange={formik.handleChange}
-              value={formik?.values?.summary || ''}
+              // value={formik?.values?.summary || ''}
+              value={formData.summary || ''}
+              onChange={(e) => setFormData({...formData, summary:e.target.value})}
               placeholder="Write a summary of what this job entails in less than 300 characters"
               className="w-full border border-solid outline-none rounded-md resize-none border-[#808080]  p-2 "
             ></textarea>
@@ -65,7 +67,7 @@ export const BasicInfo2 = ({ formData: initialValues, setFormData, prevStep }) =
             <p>Job Requirements</p>
 
 
-            <ReactQuill theme="snow" value={initialValues?.requirements} onChange={(e) => handleRequirements(e)} />
+            <ReactQuill theme="snow" value={formData?.requirements || ''} onChange={(e) => handleRequirements(e)} />
             {formik.touched.requirements && formik.errors.requirements ? (
               <small className="text-red-600">{formik.errors.requirements}</small>
             ) : null}
@@ -77,16 +79,22 @@ export const BasicInfo2 = ({ formData: initialValues, setFormData, prevStep }) =
               <small className="text-red-600">{formik.errors.cover_letter} </small>
             ) : null}
           </div>
-
+          <div>
+           <p>Current deadline:  {formData.deadline}</p> 
+          </div>
           <div className="w-full mt-[1rem]">
-            <FormInputBox
+            <label htmlFor="">Edit deadline</label>
+            <input
               type="date"
               placeholder=""
               name="deadline"
               onBlur={formik.handleBlur}
               label="Application Deadline"
-              onChange={formik.handleChange}
-              value={formik?.values?.deadline || ''}
+              // value={formik?.values?.deadline || ''}
+              pattern="(?:19|20)\[0-9\]{2}-(?:(?:0\[1-9\]|1\[0-2\])/(?:0\[1-9\]|1\[0-9\]|2\[0-9\])|(?:(?!02)(?:0\[1-9\]|1\[0-2\])/(?:30))|(?:(?:0\[13578\]|1\[02\])-31))" 
+              value={formData.deadline || ''}
+              onChange={(e) => setFormData({...formData, deadline:e.target.value})}
+
               className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
             />
             {formik.touched.deadline && formik.errors.deadline ? (

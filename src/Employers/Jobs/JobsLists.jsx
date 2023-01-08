@@ -21,6 +21,9 @@ export const Jobslists = ({ url = "/employer/jobs/open/", title = "" }) => {
   useEffect(() => { setResult(() => data?.filter(item => title.length ? item?.title?.toLowerCase()?.includes(title.toLowerCase()) : true) || []); }, [data, title]);
 
   // methods
+  const closeJob = () => {
+console.log('hello')
+  }
   const handlePopup = (singleJob) => { setPop(() => true); setJob(() => singleJob) };
   const fetchData = async () => {
     setLoad(() => true);
@@ -29,6 +32,7 @@ export const Jobslists = ({ url = "/employer/jobs/open/", title = "" }) => {
       .catch(err => { setError(() => err) });
     setLoad(() => false);
   };
+  console.log(result)
 
   return <div className="">
     {pop ? <Popup job={job} setShowJobDetail={setPop} /> : null}

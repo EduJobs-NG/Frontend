@@ -19,16 +19,16 @@ const jobTypeOptions = [
   { option: "Part-time" }, { option: "Temporary" },
 ].map((item, id) => ({ ...item, id }));
 
-export const BasicInfo1 = ({ formData: initialValues, setFormData, nextStep }) => {
+export const BasicInfo1 = ({ formData, setFormData, nextStep }) => {
   // states
   const [activeOption, setActiveOption] = useState(null);
 
   // methods
   const handleClickedOption = index => setActiveOption(index);
-  const onSubmit = (values) => { setFormData(values); console.log(values); nextStep(); };
+  const onSubmit = (values) => { setFormData(values); console.log(values); nextStep() };
 
   // formik data
-  const formik = useFormik({ onSubmit, initialValues, validationSchema, validateOnBlur: true, });
+  const formik = useFormik({ onSubmit, enableReinitialize:true, initialValues:formData, validationSchema, validateOnBlur: true, });
 
   return (
     <section>
@@ -40,8 +40,10 @@ export const BasicInfo1 = ({ formData: initialValues, setFormData, nextStep }) =
               name="title"
               label="Job Title"
               onBlur={formik.handleBlur}
-              value={formik?.values?.title || ''}
-              onChange={formik.handleChange}
+              // value={formik?.values?.title || ''}
+              value={formData.title || ''}
+              // onChange={formik.handleChange}
+              onChange={(e) => setFormData({...formData, title:e.target.value})}
               placeholder="e.g., Chemistry Teacher"
               className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
             />
@@ -53,8 +55,8 @@ export const BasicInfo1 = ({ formData: initialValues, setFormData, nextStep }) =
               name="organization_name"
               label="Organization Name"
               onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
-              value={formik?.values?.organization_name || ''}
+              value={formData.organization_name || ''}
+              onChange={(e) => setFormData({...formData, organization_name:e.target.value})}
               placeholder="e.g., Amazing Grace High School"
               className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
             />
@@ -70,9 +72,9 @@ export const BasicInfo1 = ({ formData: initialValues, setFormData, nextStep }) =
               className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
               placeholder="e.g., Ibadan, Oyo State"
               name="location"
-              value={formik?.values?.location || ''}
+              value={formData.location || ''}
+              onChange={(e) => setFormData({...formData, location:e.target.value})}
               onBlur={formik.handleBlur}
-              onChange={formik.handleChange}
             />
             {formik.touched.location && formik.errors.location ? (
               <small className="text-red-600">{formik.errors.location}</small>
@@ -80,8 +82,12 @@ export const BasicInfo1 = ({ formData: initialValues, setFormData, nextStep }) =
           </div>
           <div className="mt-[1rem]">
             <p>Job Type</p>
-
+          <div className="my-[1rem]">
+          Current <b>{formData.job_type}</b>
+            </div> 
+           <h1 className="font-bold">Edit job type</h1>
             <div className="flex mt-[1rem] flex-wrap gap-4 flex-row">
+              
               {jobTypeOptions.map((item, index) => {
                 return (
                   <div key={item.id}>
@@ -116,6 +122,7 @@ export const BasicInfo1 = ({ formData: initialValues, setFormData, nextStep }) =
                   id={option}
                   type="radio"
                   label={option}
+                  value={formData.job_type}
                   name="job_type"
                   onChange={() => formik.setFieldValue("job_type", `${option}`)}
                 />
@@ -134,8 +141,9 @@ export const BasicInfo1 = ({ formData: initialValues, setFormData, nextStep }) =
                   name="min_pay_range"
                   onBlur={formik.handleBlur}
                   placeholder="Minimum Amount"
-                  onChange={formik.handleChange}
-                  value={formik?.values?.min_pay_range || ''}
+                  value={formData.min_pay_range || ''}
+                  onChange={(e) => setFormData({...formData, min_pay_range:e.target.value})}
+
                   className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
                 />
 
@@ -153,8 +161,8 @@ export const BasicInfo1 = ({ formData: initialValues, setFormData, nextStep }) =
                   name="max_pay_range"
                   placeholder="Maximum Amount"
                   onBlur={formik.handleBlur}
-                  onChange={formik.handleChange}
-                  value={formik?.values?.max_pay_range || ''}
+                  onChange={(e) => setFormData({...formData, max_pay_range:e.target.value})}
+                  value={formData.max_pay_range|| ''}
                   className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
                 />
                 {formik.touched.max_pay_range && formik.errors.max_pay_range ? (

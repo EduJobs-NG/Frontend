@@ -92,17 +92,20 @@ export const BasicInfo2 = ({ formData, value, setValue, setFormData, prevStep, n
               </small>
             ) : null}
           </div>
-
-          <div className="w-full mt-[1rem]">
-            <FormInputBox
+ <div className="w-full mt-[1rem]">
+            <label htmlFor="">Edit deadline</label>
+            <input
               type="date"
-              label="Application Deadline"
-              className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
               placeholder=""
               name="deadline"
-              onChange={formik.handleChange}
-              value={formik.values.deadline}
               onBlur={formik.handleBlur}
+              label="Application Deadline"
+              // value={formik?.values?.deadline || ''}
+              pattern="(?:19|20)\[0-9\]{2}-(?:(?:0\[1-9\]|1\[0-2\])/(?:0\[1-9\]|1\[0-9\]|2\[0-9\])|(?:(?!02)(?:0\[1-9\]|1\[0-2\])/(?:30))|(?:(?:0\[13578\]|1\[02\])-31))" 
+             value={formik.values.deadline}
+              onChange={formik.handleChange}
+
+              className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
             />
             {formik.touched.deadline && formik.errors.deadline ? (
               <small className="text-red-600">
@@ -110,6 +113,7 @@ export const BasicInfo2 = ({ formData, value, setValue, setFormData, prevStep, n
               </small>
             ) : null}
           </div>
+
           
 
           <div className="py-[3rem] font-[700] flex justify-between">

@@ -53,6 +53,8 @@ export const Recent = forwardRef(({ title = "", location = "", Title, Location }
       });
     setLoad(() => false);
   };
+        console.log(jobs)
+
 
   return <section className="bg-[#f5f5f5] flex flex-col items-center justify-center py-12" ref={ref}>
     <ToastContainer />
