@@ -6,9 +6,10 @@ import React, { useState } from "react";
 import { FaTimes } from "react-icons/fa";
 import useAxios from '../../utils/useAxios';
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate, useParams } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
 import jobPosted from "../../assets/jobPosted.png";
+import { useNavigate, useParams } from "react-router-dom";
+
 
 export const PreviewJobPost = ({ formData, setShowPreview }) => {
   // navigation hook
