@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import Moment from "moment";
 import { Markup } from "interweave";
 import { toast } from "react-toastify";
