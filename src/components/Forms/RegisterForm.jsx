@@ -6,8 +6,6 @@ import { FaUserPlus, FaUserCircle, FaEnvelope } from 'react-icons/fa';
 import { ThreeDots } from 'react-loader-spinner';
 import { Formik, Form } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
-import google from '../../assets/google.png'
-import linkedin from '../../assets/linkedin.png'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaTimes } from 'react-icons/fa';

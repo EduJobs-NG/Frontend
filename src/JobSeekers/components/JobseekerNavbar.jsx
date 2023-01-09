@@ -71,7 +71,7 @@ export const JobseekerNavbar = () => {
             <li>
               <div onClick={() => setDropDown(!dropDown)} className='flex relative cursor-pointer flex-row items-center '>
                 <div className='rounded-full overflow-hidden w-[40px] h-[40px]'>
-                  <img className='' src={user?.avatar} alt="" />
+                  <img className='' src={user?.avatar} alt="avatar" />
                 </div>
                 <FaCaretDown />
                 {dropDown &&
@@ -93,7 +93,7 @@ export const JobseekerNavbar = () => {
           <div className='xl:hidden flex flex-row items-center h-[35px] gap-[1rem]'>
             <div onClick={() => setDropDown(!dropDown)} className='flex relative cursor-pointer flex-row items-center '>
               <div className='overflow-hidden rounded-full w-[40px] h-[40px]'>
-                <img className='' src={user?.avatar} alt="" />
+                <img className='' src={user?.avatar} alt="avatar" />
               </div>
               <FaCaretDown className='text-white' />
               {dropDown &&

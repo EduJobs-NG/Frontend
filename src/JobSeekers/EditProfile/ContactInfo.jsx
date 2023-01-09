@@ -22,7 +22,7 @@ export const ContactInfo = ({  }) => {
   const [isLoading, setIsLoading] = useState(false);
   const api = useAxios();
   const { user, getUserMeHandler } = useContext(AuthContext);
-
+  console.log(user)
   const {
     contact_info: {
       next_kin_fname,
@@ -46,7 +46,7 @@ export const ContactInfo = ({  }) => {
     values.next_kin_phone = `+${values.next_kin_phone}`
     values.first_ref_phone = `+${values.first_ref_phone}`
     values.second_ref_phone = `+${values.second_ref_phone}`
-    const response = await api.put(`jobseeker/user-profile/me/contact_info/{id}/`, values)
+    const response = await api.put(`/jobseeker/user-profile/me/contact_info/${user.id}/`, values)
       .catch((err) => {
         console.log(err);
         toast.error(err.message);

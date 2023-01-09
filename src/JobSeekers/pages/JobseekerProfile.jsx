@@ -29,7 +29,7 @@ export const JobseekerProfile = () => {
 
                   {loading ? null :
                     <div className=' absolute top-0 cursor-pointer ' onClick={() => setShowPic(true)}>
-                      <img className=' ' src={user?.avatar} alt="" />
+                      <img className=' ' src={user?.avatar} alt="avatar" />
                     </div>
                   }
                 </div>

@@ -92,7 +92,7 @@ export const BasicInfo2 = ({ formData, setFormData, prevStep }) => {
               label="Application Deadline"
               // value={formik?.values?.deadline || ''}
               pattern="(?:19|20)\[0-9\]{2}-(?:(?:0\[1-9\]|1\[0-2\])/(?:0\[1-9\]|1\[0-9\]|2\[0-9\])|(?:(?!02)(?:0\[1-9\]|1\[0-2\])/(?:30))|(?:(?:0\[13578\]|1\[02\])-31))" 
-              value={formData.deadline || ''}
+              // value={formData.deadline || ''}
               onChange={(e) => setFormData({...formData, deadline:e.target.value})}
 
               className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"

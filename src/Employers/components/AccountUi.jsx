@@ -45,7 +45,7 @@ const Account = () => {
     <div className="w-full flex relative items-center justify-center p-14">
       <span className="absolute top-4 left-4 capitalize font-bold text-2xl">profile</span>
       <div className="flex flex-col items-center justify-center gap-2">
-        <img src={user?.avatar} alt="" className="rounded-full w-24 h-24 bg-gray-200 outline-none" />
+        <img src={user?.avatar}  className="rounded-full w-24 h-24 bg-gray-200 outline-none" alt="avatar" />
         <h2 className="font-bold capitalize">{`${user?.user?.first_name || ''} ${user?.middle_name || ''} ${user?.user?.last_name || ''}`}</h2>
       </div>
     </div>

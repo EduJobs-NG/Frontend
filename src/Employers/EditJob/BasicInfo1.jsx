@@ -41,9 +41,9 @@ export const BasicInfo1 = ({ formData, setFormData, nextStep }) => {
               label="Job Title"
               onBlur={formik.handleBlur}
               // value={formik?.values?.title || ''}
-              value={formData.title || ''}
-              // onChange={formik.handleChange}
-              onChange={(e) => setFormData({...formData, title:e.target.value})}
+              value={formik.values.title}
+              onChange={formik.handleChange}
+              // onChange={(e) => setFormData({...formData, title:e.target.value})}
               placeholder="e.g., Chemistry Teacher"
               className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
             />

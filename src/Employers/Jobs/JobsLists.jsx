@@ -6,10 +6,10 @@ import { useState, useEffect } from "react";
 import useAxios from "../../utils/useAxios";
 import { Circles } from "react-loader-spinner";
 import { JobDetailPopup as Popup } from "./JobDetailPopup";
-
+import { IsLoading } from "../../components/IsLoading";
 export const Jobslists = ({ url = "/employer/jobs/open/", title = "" }) => {
   // states
-  const [job, setJob] = useState(null);
+  const [job, setJob] = useState({});
   const [data, setData] = useState([]);
   const [pop, setPop] = useState(false);
   const [load, setLoad] = useState(false);
@@ -53,6 +53,8 @@ export const Jobslists = ({ url = "/employer/jobs/open/", title = "" }) => {
     setLoad(() => false);
   };
   const closeJob = async (item) => {
+    console.log(item)
+    setJob(item)
     setIsLoading(true)
     const data = new FormData();
 
@@ -67,15 +69,17 @@ export const Jobslists = ({ url = "/employer/jobs/open/", title = "" }) => {
     data.append("organization_name", item.organization_name);
 
     try {
-      await api.put(`/admin/jobs-review/${item.id}/`, data);
+      await api.put(`/admin/jobs-review/${item.id}/`, data)
       setIsLoading(() => false);
+      fetchData();
+    
     } catch (err) {
       console.error(err);
       setIsLoading(() => false);
       toast.error(err?.response?.detail || "Something went wrong");
     }
   };
-
+console.log(job)
   return (
     <div className="">
       {pop ? <Popup job={job} setShowJobDetail={setPop} /> : null}
@@ -95,13 +99,14 @@ export const Jobslists = ({ url = "/employer/jobs/open/", title = "" }) => {
             className="bg-white rounded-[1rem] my-[2rem] px-[2rem] py-[1rem] grid lg:grid-cols-2 gap-[2rem]"
           >
             <div>
+             <p className="mb-[0.5rem]">{item.status}</p> 
               <h2 className="text-blue font-bold">{item?.title}</h2>
               <p>{item?.location}</p>
               <p>{item?.created}</p>
             </div>
 
             <div className="flex flex-row  justify-between md:justify-center items-center  gap-[1rem]">
-              {item.open_status === "Closed" ? null : (
+              {item.open_status  === "Closed" && item.status === "Pending" ? null : (
                 <div>
                   <a
                     className="text-blue"
@@ -121,13 +126,14 @@ export const Jobslists = ({ url = "/employer/jobs/open/", title = "" }) => {
                 </p>
               </div>
 
-              {item.open_status === "Closed" ? null : (
+              {item.open_status === "Closed" && item.status === "Pending" ? null : (
                 <div className="flex flex-row justify-between lg:flex-col">
                   <p
                     onClick={() => closeJob(item)}
                     className="bg-red-600 cursor-pointer px-[1rem] py-[0.4rem] text-white rounded-[5px]"
                   >
-                  {isLoading ? 'closing job':'Close job'} 
+                    
+                  {isLoading && job.id === item.id ? "loading..." :"Close job"} 
                   </p>
                 </div>
               )}

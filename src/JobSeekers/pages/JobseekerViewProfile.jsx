@@ -26,7 +26,7 @@ export const Profile = () => {
                 <div className="flex flex-col item-start gap-2">
                     <h3 className='capitalize font-bold text-3xl'>welcome, {user?.user?.first_name}</h3>
                     <div className="flex items-center justify-start px-4 gap-4">
-                        <img src={user?.avatar} alt='profile' className="w-14" />
+                        <img src={user?.avatar} alt='profile pic' className="w-14" />
                         <div className="flex grow-[1] flex-col items-start">
                             <h4 className='font-bold text-xl'>{user?.user?.first_name} {user?.user?.last_name}</h4>
                             <span className="flex gap-2">
