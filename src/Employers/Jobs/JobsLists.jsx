@@ -64,7 +64,7 @@ console.log('hello')
              
                 <div>
                   <p onClick={() => handlePopup(item)} className="bg-blue cursor-pointer px-[1rem] py-[0.4rem] text-white rounded-[5px]">
-                    View job details
+                     job details
                   </p>
                 </div>
 
