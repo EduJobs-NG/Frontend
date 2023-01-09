@@ -48,6 +48,7 @@ export const PreviewJobPost = ({ formData, setShowPreview }) => {
     data.append("max_pay_range", max_pay_range);
     data.append("location", location);
     data.append('organization_name', organization_name);
+    
 
     try {
       await api.patch(`/admin/jobs-review/${id}/`, data);
@@ -60,6 +61,7 @@ export const PreviewJobPost = ({ formData, setShowPreview }) => {
       console.error(err);
       setIsLoading(() => false);
       toast.error(err?.response?.detail || 'Something went wrong');
+
     };
   };
 
