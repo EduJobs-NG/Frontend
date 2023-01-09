@@ -53,6 +53,7 @@ export const Jobslists = ({ url = "/employer/jobs/open/", title = "" }) => {
     setLoad(() => false);
   };
   const closeJob = async (item) => {
+    setIsLoading(true)
     const data = new FormData();
 
     data.append("title", item.title);
@@ -126,7 +127,7 @@ export const Jobslists = ({ url = "/employer/jobs/open/", title = "" }) => {
                     onClick={() => closeJob(item)}
                     className="bg-red-600 cursor-pointer px-[1rem] py-[0.4rem] text-white rounded-[5px]"
                   >
-                    Close job
+                  {isLoading ? 'closing job':'Close job'} 
                   </p>
                 </div>
               )}
