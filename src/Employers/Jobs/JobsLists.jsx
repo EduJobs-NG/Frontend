@@ -57,7 +57,7 @@ export const Jobslists = ({ url = "/employer/jobs/open/", title = "" }) => {
     setJob(item)
     setIsLoading(true)
     const data = new FormData();
-
+ 
     data.append("title", item.title);
     data.append("summary", item.summary);
     data.append("requirements", item.requirements);
@@ -105,7 +105,7 @@ export const Jobslists = ({ url = "/employer/jobs/open/", title = "" }) => {
             </div>
 
             <div className="flex flex-row  justify-between md:justify-center items-center  gap-[1rem]">
-              {item.open_status  === "Closed" && item.status === "Pending" ? null : (
+              {(item.open_status  === "Closed" || item.status === "Pending" ) ? null : (
                 <div>
                   <a
                     className="text-blue"
@@ -125,7 +125,7 @@ export const Jobslists = ({ url = "/employer/jobs/open/", title = "" }) => {
                 </p>
               </div>
 
-              {item.open_status === "Closed" && item.status === "Pending" ? null : (
+              {(item.open_status  === "Closed" || item.status === "Pending" ) ? null : (
                 <div className="flex flex-row justify-between lg:flex-col">
                   <p
                     onClick={() => closeJob(item)}
