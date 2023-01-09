@@ -22,14 +22,14 @@ export const ResetLink = () => {
       .catch(err => {
         toast.error(err.message)
         setIsLoading(false)
-        console.log(err)
+        // console.log(err)
       })
 
     if (response) {
       setIsLoading(false)
       toast.success('A reset link has been sent to the provided email address.')
 
-      console.log(response)
+      // console.log(response)
     }
 
   }

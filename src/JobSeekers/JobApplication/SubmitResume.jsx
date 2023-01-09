@@ -12,7 +12,7 @@ const validationSchema = Yup.object({
 export const SubmitResume = ({ formData, job, setFormData, nextStep}) => {
   const onSubmit = (values) =>{
     setFormData(values);
-    console.log(values)
+    // console.log(values)
     nextStep();
   }
   const formik = useFormik({

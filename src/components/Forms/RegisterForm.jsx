@@ -35,7 +35,7 @@ export const RegisterForm = ({ showModal, setShowRegister }) => {
 
                     }
                 }
-                console.log(err)
+                // console.log(err)
             });
 
         if (response && response.data) {

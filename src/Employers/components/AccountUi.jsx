@@ -32,7 +32,7 @@ const Account = () => {
   const { user } = useContext(Auth);
 
   useEffect(() => {
-    console.log(user);
+    // console.log(user);
   }, [])
 
   // methods

@@ -11,7 +11,7 @@ export const SearchJobs = () => {
   const handleSearch = ({ currentTarget: t }) => setTitle(() => t.value);
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(title);
+    // console.log(title);
   };
 
   return (

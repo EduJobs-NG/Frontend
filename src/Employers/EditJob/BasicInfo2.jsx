@@ -7,22 +7,24 @@ import { Formik, Form, useFormik } from "formik";
 import React, { useState, useEffect } from "react";
 import { PreviewJobPostPopUp } from "./PreviewJobPostPopUp";
 import { FormInputBox } from "../../components/Forms/FormInputBox";
+import Moment from "moment";
+
 
 const today = new Date();
 const validationSchema = Yup.object({
   // summary: Yup.string().required("Required"),
   // requirements: Yup.string().required("Required"),
-  // deadline: Yup.date().required("Required").min(today, "End date can't be in the past"),
+  deadline: Yup.date().required("Required").min(today, "End date can't be in the past"),
 
 });
 
 
 
 export const BasicInfo2 = ({ formData, setFormData, prevStep }) => {
+ 
   //states
   const [direction, setDirection] = useState("back");
   const [showPreview, setShowPreview] = useState(false);
-  // console.log(formData.deadline)
   // methods
   const handleRequirements = requirements => setFormData({ ...formData, requirements });
 
@@ -89,10 +91,8 @@ export const BasicInfo2 = ({ formData, setFormData, prevStep }) => {
               placeholder=""
               name="deadline"
               onBlur={formik.handleBlur}
-              label="Application Deadline"
-              // value={formik?.values?.deadline || ''}
+              value={formData.deadline}
               pattern="(?:19|20)\[0-9\]{2}-(?:(?:0\[1-9\]|1\[0-2\])/(?:0\[1-9\]|1\[0-9\]|2\[0-9\])|(?:(?!02)(?:0\[1-9\]|1\[0-2\])/(?:30))|(?:(?:0\[13578\]|1\[02\])-31))" 
-              // value={formData.deadline || ''}
               onChange={(e) => setFormData({...formData, deadline:e.target.value})}
 
               className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"

@@ -40,7 +40,7 @@ export const PreviewJobPost = ({ formData, setShowPreview }) => {
     // data.append('job', job)
 
     const response = await api.post(`/employer/jobs/`, data).catch((err) => {
-      console.log(err);
+      // console.log(err);
       toast.error(err.message);
       setIsLoading(false);
     });
@@ -48,7 +48,7 @@ export const PreviewJobPost = ({ formData, setShowPreview }) => {
     if (response) {
       setIsLoading(false);
       setJobSuccess(true);
-      console.log(response);
+      // console.log(response);
       setShowPreview(true);
       setTimeout(() => {
         navigate("/employer/dashboard/view-jobs");

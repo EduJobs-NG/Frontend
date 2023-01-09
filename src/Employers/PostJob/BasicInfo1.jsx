@@ -28,7 +28,7 @@ export const BasicInfo1 = ({ formData, setFormData, prevStep, nextStep }) => {
   };
   const onSubmit = (values) => {
     setFormData(values);
-    console.log(values);
+    // console.log(values);
 
     nextStep();
   };

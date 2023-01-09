@@ -21,7 +21,7 @@ export const ActivateAccount = () => {
     const response = await axios
       .post(`${process.env.REACT_APP_BASE_URL}jobseeker/user/email/activate/`, values)
       .catch(err => {
-        console.log(err)
+        // console.log(err)
         if (err && err.response) {
           if (err.response.status === 400) {
             setShow(false)
@@ -40,13 +40,13 @@ export const ActivateAccount = () => {
           else {
             toast.error(err.message + ' .Try again')
             setIsLoading(false)
-            console.log(err)
+            // console.log(err)
           }
 
         }
       });
     if (response) {
-      console.log(response)
+      // console.log(response)
        
 
 

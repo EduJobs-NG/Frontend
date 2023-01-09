@@ -28,7 +28,7 @@ export const NewEmail = () => {
       .catch(err => {
         toast.error(err.message)
         setIsLoading(false)
-        console.log(err)
+        // console.log(err)
       })
 
     if (response) {

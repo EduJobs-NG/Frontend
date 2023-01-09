@@ -33,7 +33,7 @@ export const CorporateRegistration = () => {
           } else {
             setIsLoading(false);
             toast.error("An error occured. Try again");
-            console.log(err);
+            // console.log(err);
           }
         }
       });

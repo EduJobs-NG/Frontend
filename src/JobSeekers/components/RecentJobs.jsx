@@ -45,7 +45,7 @@ export const Recent = forwardRef(({ title = "", location = "", Title, Location }
       .then(res => {
         setError(() => null);
         setJobs(() => res.data);
-        console.log(jobs)
+        // console.log(jobs)
       })
       .catch(({ message }) => {
         setError(() => message);
@@ -53,7 +53,7 @@ export const Recent = forwardRef(({ title = "", location = "", Title, Location }
       });
     setLoad(() => false);
   };
-        console.log(jobs)
+        // console.log(jobs)
 
 
   return <section className="bg-[#f5f5f5] flex flex-col items-center justify-center py-12" ref={ref}>

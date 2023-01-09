@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }) => {
     const response = await api.get(`/jobseeker/user-profile-update/`)
       .catch(err => {
         setIsError(true);
-        console.log(err);
+        // console.log(err);
         setLoading(false);
       });
 
@@ -53,7 +53,7 @@ export const AuthProvider = ({ children }) => {
     setIsError(false)
     const response = await api.get(`/employer/users/me/`)
       .catch(err => {
-        console.log(err)
+        // console.log(err)
         setIsError(true)
         setLoading(false)
       })

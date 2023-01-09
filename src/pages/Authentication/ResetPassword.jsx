@@ -38,13 +38,13 @@ export const ResetPassword = () => {
         toast.error("Something went wrong. Try again")
     
         setIsLoading(false)
-        console.log(err)
+        // console.log(err)
       })
 
     if (response && response.data) {
        
       setIsLoading(false)
-      console.log(response)
+      // console.log(response)
       toast.success('Password has been reset successfully.')
       const {is_jobseeker, is_employer} =  response.data
       if(is_jobseeker === true){

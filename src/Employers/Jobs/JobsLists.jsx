@@ -45,7 +45,7 @@ export const Jobslists = ({ url = "/employer/jobs/open/", title = "" }) => {
       .get(url)
       .then((res) => {
         setData(() => res?.data || []);
-        console.log(res);
+        // console.log(res);
       })
       .catch((err) => {
         setError(() => err);
@@ -53,7 +53,7 @@ export const Jobslists = ({ url = "/employer/jobs/open/", title = "" }) => {
     setLoad(() => false);
   };
   const closeJob = async (item) => {
-    console.log(item)
+    // console.log(item)
     setJob(item)
     setIsLoading(true)
     const data = new FormData();
@@ -79,7 +79,6 @@ export const Jobslists = ({ url = "/employer/jobs/open/", title = "" }) => {
       toast.error(err?.response?.detail || "Something went wrong");
     }
   };
-console.log(job)
   return (
     <div className="">
       {pop ? <Popup job={job} setShowJobDetail={setPop} /> : null}

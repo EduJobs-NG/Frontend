@@ -45,18 +45,18 @@ export const LoginForm = ({ setShowLogin, showModal }) => {
             setIsLoading(false);
           }
         }
-        console.log(err)
+        // console.log(err)
       });
 
       if (response && response.data) {
-        console.log(response.data)
+        // console.log(response.data)
         if(employerUser){
           localStorage.removeItem("authTokens", JSON.stringify(response.data));
           localStorage.removeItem('employer_user');
         }
         
         const userType = jwtDecode(response.data.access)
-        console.log(userType)
+        // console.log(userType)
         if (userType.is_jobseeker === true){
         localStorage.setItem("authTokens", JSON.stringify(response.data));
         navigate('/dashboard/find-jobs');

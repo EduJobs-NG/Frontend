@@ -9,7 +9,7 @@ import { useState, useMemo, useEffect } from 'react';
 const initial = {
   min_pay_range: '', max_pay_range: '', resume_submit: '',
   deadline: '', title: '', organization_name: '', location: '',
-  summary: '', requirements: '', job_type: '', open_status: '',
+  summary: '', requirements: '', job_type: '', open_status: ''
 };
 
 export const JobForm = () => {
@@ -30,8 +30,8 @@ export const JobForm = () => {
     try {
       const res = await api.get(`/admin/jobs-review/${id}/`);
       setFormData(() => res.data || initial);
-      console.log(res.data)
-      console.log(formData)
+      // console.log(res.data)
+      // console.log(formData)
     }
     catch (err) {
       console.error(err);

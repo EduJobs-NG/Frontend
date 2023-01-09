@@ -20,7 +20,7 @@ const Updater = ({ close, object: d }) => {
       for (let i of d?.inputs) {
         if (i.type?.includes('password')) obj[i.name] = false;
       };
-      console.log(obj);
+      // console.log(obj);
       return obj;
     })
   }, []);
@@ -28,7 +28,7 @@ const Updater = ({ close, object: d }) => {
   // methods
   const setInfo = ({ currentTarget: ele }) => void setData(prev => ({ ...prev, [ele.name]: ele.value || "" }));
   const toggleIcon = (name) => {
-    console.log(name);
+    // console.log(name);
     if (toggle[name] !== undefined) setToggler(prev => ({ ...prev, [name]: !toggle[name] }));
   };
   const handleSubmit = async (e) => {

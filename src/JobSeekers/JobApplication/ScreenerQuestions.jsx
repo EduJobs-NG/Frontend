@@ -17,7 +17,7 @@ export const ScreenerQuestions = ({
   const [direction, setDirection] = useState("back");
   const onSubmit = (values) => {
     setFormData(values);
-    console.log(values);
+    // console.log(values);
     direction === "back" ? prevStep() : nextStep();
   };
   const formik = useFormik({

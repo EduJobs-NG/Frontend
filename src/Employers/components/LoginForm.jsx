@@ -28,7 +28,7 @@ export const EmployersLoginForm = ({ setShowLogin, showModal }) => {
     const response = await axios
       .post(`${process.env.REACT_APP_BASE_URL}employer/jwt/token/`, values)
       .catch((err) => {
-        console.log(err)
+        // console.log(err)
         if (err) {
           if (err.response.status === 400) {
             toast.error("Password or email incorrect");
@@ -42,7 +42,7 @@ export const EmployersLoginForm = ({ setShowLogin, showModal }) => {
           }
            else {
             toast.error("Something went wrong");
-            console.log(err)
+            // console.log(err)
             setIsLoading(false);
           }
         }
