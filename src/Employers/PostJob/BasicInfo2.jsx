@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from "react";
 import { FormInputBox } from "../../components/Forms/FormInputBox";
 import { Formik, Form, useFormik } from "formik";
 import * as Yup from "yup";
-// import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { PreviewJobPostPopUp } from "./PreviewJobPostPopUp";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";

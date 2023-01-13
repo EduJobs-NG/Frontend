@@ -81,7 +81,8 @@ export const Navbar = () => {
           <div data-aos="fade-up" className='bg-white  transition duration-1000 ease-in-out h-screen flex flex-col align-items justify-center  text-center '>
             <FaTimes onClick={handleClick} className='text-blue text-[1.3rem] mt-3 cursor-pointer absolute right-5 top-5' />
             <ul className='py-[2rem] flex flex-col '>
-              <NavLink data-aos-delay="300" data-aos="fade-left" className="text-[1.2rem] font-[700] mb-[33px]" to="#">JOBS</NavLink>
+              <NavLink data-aos-delay="300" data-aos="fade-left" className="text-[1.2rem] font-[700] mb-[33px]" to="/">HOME</NavLink>
+              <NavLink data-aos-delay="300" data-aos="fade-left" className="text-[1.2rem] font-[700] mb-[33px]" to="/dashboard/find-jobs">JOBS</NavLink>
               <NavLink data-aos-delay="300" data-aos="fade-left" className="text-[1.2rem] font-[700] mb-[33px]" to="/about">ABOUT US</NavLink>
             </ul>
             <div className='container mx-auto'>
@@ -89,6 +90,7 @@ export const Navbar = () => {
             </div>
 
             <ul className='py-[2rem] flex flex-col'>
+              <NavLink data-aos-delay="300" data-aos="fade-left" className="text-blue text-[1.2rem] hover:underline transition-all uppercase mb-[45px] font-[700]" to="/">I'm a jobseeker</NavLink>
               <NavLink data-aos-delay="300" data-aos="fade-left" className="text-blue text-[1.2rem] hover:underline transition-all uppercase mb-[45px] font-[700]" to="/employer">I'm an employer</NavLink>
 
             </ul>

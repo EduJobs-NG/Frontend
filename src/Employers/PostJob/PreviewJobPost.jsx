@@ -8,6 +8,9 @@ import { ThreeDots } from "react-loader-spinner";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import jobPosted from "../../assets/jobPosted.png";
+import naira from '../../assets/naira.jpg'
+
+
 
 export const PreviewJobPost = ({ formData, setShowPreview }) => {
   const {
@@ -91,7 +94,7 @@ export const PreviewJobPost = ({ formData, setShowPreview }) => {
         <div className="mt-[1rem]">
           <p>Job type: {job_type}</p>
           <p>
-            Salary: #{min_pay_range} to #{max_pay_range}{" "}
+            Salary: <img className="w-[10px] inline-flex" src={naira} alt="" /> {min_pay_range} to <img className="inline-flex w-[10px]" src={naira} alt="" /> {max_pay_range}{" "}
           </p>
           <p>Application Deadline: {deadlineDate}</p>
         </div>

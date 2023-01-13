@@ -88,10 +88,9 @@ export const BasicInfo2 = ({ formData, setFormData, prevStep }) => {
             <label htmlFor="">Edit deadline</label>
             <input
               type="date"
-              placeholder=""
               name="deadline"
               onBlur={formik.handleBlur}
-              value={formData.deadline}
+              // value={formData.deadline}
               pattern="(?:19|20)\[0-9\]{2}-(?:(?:0\[1-9\]|1\[0-2\])/(?:0\[1-9\]|1\[0-9\]|2\[0-9\])|(?:(?!02)(?:0\[1-9\]|1\[0-2\])/(?:30))|(?:(?:0\[13578\]|1\[02\])-31))" 
               onChange={(e) => setFormData({...formData, deadline:e.target.value})}
 

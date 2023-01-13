@@ -31,7 +31,7 @@ export const Profile = () => {
                             <h4 className='font-bold text-xl'>{user?.user?.first_name} {user?.user?.last_name}</h4>
                             <span className="flex gap-2">
                                 <img src={marker} alt="" className='w-4' />
-                                <h5 className="capitalize">{user?.city}, <span className="">{user?.state}</span></h5>
+                                <h5 className="capitalize">{user?.city || "..." }, <span className="">{user?.state || "..." }</span></h5>
                             </span>
                         </div>
                     </div>

@@ -3,14 +3,14 @@ import { FormInputBox } from "../../components/Forms/FormInputBox";
 import { Formik, Field, ErrorMessage, Form, useFormik } from "formik";
 import * as Yup from "yup";
 import {  FaArrowRight, FaPlus, FaCheck } from "react-icons/fa";
-
+import naira from '../../assets/naira.jpg'
 const validationSchema = Yup.object({
   title: Yup.string().required("Required"),
   organization_name: Yup.string().required("Required"),
   location: Yup.string().required("Required"),
   job_type: Yup.string().required("Required"),
-//   min_pay_range: Yup.string().required("Required"),
-//   max_pay_range: Yup.string().required("Required"),
+  // min_pay_range: Yup.number().required("Required. Please input an integer").nullable(),
+  // max_pay_range: Yup.string().required("Required"),
 });
 
 const jobTypeOptions = [
@@ -44,6 +44,7 @@ export const BasicInfo1 = ({ formData, setFormData, prevStep, nextStep }) => {
    
       <Formik>
         <Form onSubmit={formik.handleSubmit}>
+       
           <div>
             <FormInputBox
               type="text"
@@ -146,11 +147,11 @@ export const BasicInfo1 = ({ formData, setFormData, prevStep, nextStep }) => {
 
             <div className="flex flex-col  md:gap-x-[100px] md:flex-row">
               <div className="flex flex-row mb-[1rem] items-baseline">
-               # <FormInputBox
+              <img className="w-[20px]" src={naira} alt="naira img" /> <FormInputBox
                   type="text"
                   label=""
                   className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
-                  placeholder="Minimum Amount"
+                  placeholder="e.g., 50,000"
                   name="min_pay_range"
                   value={formik.values.min_pay_range}
                   onBlur={formik.handleBlur}
@@ -165,11 +166,11 @@ export const BasicInfo1 = ({ formData, setFormData, prevStep, nextStep }) => {
               </div>
 
               <div className="flex flex-row items-baseline">
-                # <FormInputBox
+              <img className="w-[20px]" src={naira} alt="naira img" /> <FormInputBox
                   type="text"
                   label=""
                   className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
-                  placeholder="Maximum Amount"
+                  placeholder="e.g., 100,000"
                   name="max_pay_range"
                   value={formik.values.max_pay_range}
                   onBlur={formik.handleBlur}

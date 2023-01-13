@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Formik, Form, useFormik } from "formik";
 import { FaArrowRight, FaPlus, FaCheck } from "react-icons/fa";
 import { FormInputBox } from "../../components/Forms/FormInputBox";
+import naira from '../../assets/naira.jpg'
 
 const validationSchema = Yup.object({
   // title: Yup.string().required("Required"),
@@ -135,12 +136,12 @@ export const BasicInfo1 = ({ formData, setFormData, nextStep }) => {
 
             <div className="flex flex-col  md:gap-x-[100px] md:flex-row">
               <div className="flex flex-row mb-[1rem] items-baseline">
-                # <FormInputBox
+               <img src={naira} className="w-[20px]" alt="" />  <FormInputBox
                   label=""
                   type="text"
                   name="min_pay_range"
                   onBlur={formik.handleBlur}
-                  placeholder="Minimum Amount"
+                  placeholder="e.g., 10,000"
                   value={formData.min_pay_range || ''}
                   onChange={(e) => setFormData({...formData, min_pay_range:e.target.value})}
 
@@ -155,11 +156,11 @@ export const BasicInfo1 = ({ formData, setFormData, nextStep }) => {
               </div>
 
               <div className="flex flex-row items-baseline">
-                # <FormInputBox
+              <img src={naira} className="w-[20px]" alt="" /> <FormInputBox
                   label=""
                   type="text"
                   name="max_pay_range"
-                  placeholder="Maximum Amount"
+                  placeholder="e.g., 50,000"
                   onBlur={formik.handleBlur}
                   onChange={(e) => setFormData({...formData, max_pay_range:e.target.value})}
                   value={formData.max_pay_range|| ''}

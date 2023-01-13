@@ -8,7 +8,7 @@ export const Feature = () => {
   const [data] = useState([
     {
       id: 1, image: img1, title: '80% Faster Shortlising',
-      content: 'Utilize EduJobs to automatically rank candidates and get rid of the never-ending staks of CV'
+      content: 'Utilize EduJobs to automatically rank candidates and get rid of the never-ending stacks of CV'
     },
     {
       id: 2, image: img2, title: 'Validated Candidates',

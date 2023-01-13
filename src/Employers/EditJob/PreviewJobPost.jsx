@@ -24,7 +24,8 @@ export const PreviewJobPost = ({ formData, setShowPreview }) => {
     max_pay_range,
     location,
   } = formData;
-
+  const newDeadline = Moment(deadline).format('YYYY-MM-DD');
+  console.log("new deadline", newDeadline)
   // params hooks
   const { id } = useParams();
 
@@ -38,12 +39,13 @@ export const PreviewJobPost = ({ formData, setShowPreview }) => {
     setIsLoading(true);
     // const data = new FormData();
     // for (let key in data) data.append(key, data[key]);
+   
     const data = new FormData();
     data.append("title", title);
     data.append("summary", summary);
     data.append("requirements", requirements);
     data.append("job_type", job_type);
-    data.append("deadline", deadline);
+    data.append("deadline", newDeadline);
     data.append("min_pay_range", min_pay_range);
     data.append("max_pay_range", max_pay_range);
     data.append("location", location);

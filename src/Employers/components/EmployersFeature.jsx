@@ -15,7 +15,7 @@ export const EmployersFeature = () => {
           </h1>
           <p className="font-[600]">
             Utilize EduJobs to automatically rank Canddates and get rid of the
-            never-ending staks of CV
+            never-ending stacks of CV
           </p>
         </div>
 

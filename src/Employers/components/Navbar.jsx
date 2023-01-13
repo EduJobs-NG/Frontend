@@ -28,7 +28,7 @@ export const Navbar = () => {
 
       <div className="container mx-auto">
         <div className="flex e py-[1.5rem] items-center flex-row justify-between">
-          <ul className="flex uppercas gap-6 text-white flex-row">
+          <ul className="flex uppercase gap-6 text-white flex-row">
             <li className="title">
               <Link to="/employer">
                 <img src={logo} className="h-full" alt="" />
@@ -77,7 +77,8 @@ export const Navbar = () => {
           <div data-aos="fade-up" className='bg-white  transition duration-1000 ease-in-out h-screen flex flex-col align-items justify-center  text-center '>
             <FaTimes onClick={handleClick} className='text-blue text-[1.3rem] mt-3 cursor-pointer absolute right-5 top-5' />
             <ul className='py-[2rem] flex flex-col '>
-              <Link data-aos-delay="300" data-aos="fade-left" className=" font-[700] text-[1.2rem] mb-[33px]" to="/">JOBS</Link>
+              <Link data-aos-delay="300" data-aos="fade-left" className=" font-[700] text-[1.2rem] mb-[33px]" to="/employer">HOME</Link>
+              <Link data-aos-delay="300" data-aos="fade-left" className=" font-[700] text-[1.2rem] mb-[33px]" to="/employer/dashboard/post-job">POST JOBS</Link>
               <Link data-aos-delay="300" data-aos="fade-left" className=" font-[700] text-[1.2rem] mb-[33px]" to="/about">ABOUT US</Link>
             </ul>
             <div className='container mx-auto'>
@@ -86,6 +87,7 @@ export const Navbar = () => {
 
             <ul className='py-[2rem] flex flex-col'>
               <Link data-aos-delay="300" data-aos="fade-left" className="text-blue text-[1.2rem] uppercase mb-[45px] font-[700]" to="/">I'm a job seeker</Link>
+              <Link data-aos-delay="300" data-aos="fade-left" className="text-blue text-[1.2rem] uppercase mb-[45px] font-[700]" to="/employer">I'm an employer</Link>
             </ul>
             <div>
               <Link to="/employer/login" className="bg-blue rounded-sm px-[3rem] py-[0.5rem] text-white ">Login</Link>

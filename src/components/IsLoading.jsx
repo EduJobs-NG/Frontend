@@ -7,7 +7,7 @@ export const IsLoading = () => {
 
 <div className='flex justify-center'>
                                 <ThreeDots type="ThreeDots"
-                                    width={100} height={20} color="blue"
+                                    width={100} height={20} color="grey"
                                 />
                             </div>
   )

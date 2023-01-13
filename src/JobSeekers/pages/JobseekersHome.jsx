@@ -5,6 +5,7 @@ import { Footer } from '../../components/Footer';
 import { Navbar } from '../../components/Navbar';
 import { Features } from '../../components/Features';
 import { Helmet } from 'react-helmet';
+import { CTA } from '../../components/CTA';
 
 export const JobseekersHome = () => {
   // refs
@@ -26,7 +27,9 @@ export const JobseekersHome = () => {
 
     <Navbar />
     <Hero title={title} location={location} Title={setTitle} Location={setLocation} scrollJob={scrollToJobsView} />
+    <CTA />
     <Recent ref={ele} title={title} location={location} Title={setTitle} Location={setLocation} />
+   
     <Features />
     <Footer />
   </>;

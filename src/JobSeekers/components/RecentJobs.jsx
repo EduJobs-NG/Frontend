@@ -59,6 +59,13 @@ export const Recent = forwardRef(({ title = "", location = "", Title, Location }
   return <section className="bg-[#f5f5f5] flex flex-col items-center justify-center py-12" ref={ref}>
     <ToastContainer />
     <div className="container">
+   {/* <h1 className='text-blue text-[1.5rem] text-center'>
+   Secure your dream job and great offers just at your finger tip! 
+
+   </h1>
+   <h1 className='text-center text-blue'>Sign Up Now | Sign In</h1>
+   <h1 className='text-center text-blue'>I'm an Employer | I'm a Job Seeker</h1> */}
+
       <hr className="text-gray-200" />
       <div className="flex items-center justify-between">
         <h2 className="text-blue my-4 font-bold text-2xl capitalize">{(title || location) ? 'searched' : 'recent'} jobs</h2>
