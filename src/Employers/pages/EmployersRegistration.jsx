@@ -4,8 +4,8 @@ import { CorporateRegistration } from "../components/CorporateRegistration";
 import { FaUserPlus, FaTimes } from "react-icons/fa";
 
 export const EmployersRegistration = ({ setShowRegister, showModal }) => {
-  const typeOfRegistration = ["individual", "corporate"];
-  const [title, setTitle] = useState("individual");
+  const typeOfRegistration = ["individual(parent)", "corporate"];
+  const [title, setTitle] = useState("individual(parent)");
   const [active, setActive] = useState(0);
 
   const handleTitle = (e, index) => {
@@ -14,7 +14,7 @@ export const EmployersRegistration = ({ setShowRegister, showModal }) => {
   };
   const handleDisplay = () => {
     switch (title) {
-      case "individual":
+      case "individual(parent)":
         return <IndividualRegistration />;
       case "corporate":
         return <CorporateRegistration />;
