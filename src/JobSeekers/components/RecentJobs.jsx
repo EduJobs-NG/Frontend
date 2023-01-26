@@ -79,7 +79,7 @@ export const Recent = forwardRef(
     // console.log(jobs)
     const facebookURL = "https://web.facebook.com/edujobsofficial";
     const twitterURL = "https://twitter.com/edujobsofficial";
-    const linkedURL = "https:/linkedin.com/in/edujobsofficial";
+    const linkedURL = "https://www.linkedin.com/company/edujobsng/";
 
     return (
       <section
