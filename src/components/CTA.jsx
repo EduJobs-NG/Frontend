@@ -14,7 +14,7 @@ export const CTA = () => {
               </Link>
         </div>
         <div className="">
-        <Link to="/employer" className='py-[0.3em] px-[2.4em] cursor-pointer  border border-solid bg-blue text-white  hover:bg-white hover:text-blue text-[1.1rem] font-[800] border-blue rounded-[4px] uppercase'>
+        <Link to="/employer" className='py-[0.3em]  px-[2.4em] cursor-pointer  border border-solid bg-blue text-white  hover:bg-white hover:text-blue text-[1.1rem] font-[800] border-blue rounded-[4px] uppercase'>
                 I'm an employer
               </Link>
         </div>
