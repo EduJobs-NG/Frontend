@@ -121,7 +121,7 @@ export const Recent = forwardRef(
                 <p className="font-thinbold">
                   {item?.id === selected
                     ? item?.summary
-                    : `${item?.summary.substring(0, 250)}...`}
+                    : `${item?.summary.substring(0, 100)}...`}
                 </p>
                 {selected === item?.id && (
                   <div className="my-4">
