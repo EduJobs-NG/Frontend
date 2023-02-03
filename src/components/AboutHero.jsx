@@ -38,7 +38,7 @@ export const AboutHero = () => {
           As part of our commitment to assisting schools in connecting the
           best-verified talent available to the classrooms where they are most
           needed, helping parents onboard tutors, we connect you to job
-          descriptions that match your qualifications and experiences. <br />{" "}
+          descriptions that match your qualifications and experiences.
           Our solutions are tailored to meet the demands of today's tech-savvy
           world.
         </p>

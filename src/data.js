@@ -74,11 +74,11 @@ export const footer = {
             name: 'Sign up',
             href: '/employer/register'
         },
-        { name: 'Find candidate', href: '#' },
+        { name: 'Find candidate', href: '/#coming-soon' },
         { name: 'Post jobs', href: '/employer/dashboard/post-job' },
     ],
     company: [
-        { name: 'About us', href: '#' },
+        { name: 'About us', href: '/about' },
         { name: 'Careers', href: '#' },
         { name: 'Contact us', href: '/contact-us' },
     ],
