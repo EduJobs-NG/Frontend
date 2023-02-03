@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { FormInputBox } from "../../components/Forms/FormInputBox";
 import * as Yup from "yup";
 import { useFormik, Formik, Form } from "formik";
@@ -23,7 +23,7 @@ const validationSchema = Yup.object({
 });
 
 export const PersonalInfo = () => {
-  const [value, setValue] = useState("");
+  // const [value, setValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { user, getUserMeHandler } = useContext(AuthContext);
 

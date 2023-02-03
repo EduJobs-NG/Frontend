@@ -6,8 +6,7 @@ import "react-quill/dist/quill.snow.css";
 import { Formik, Form, useFormik } from "formik";
 import React, { useState, useEffect } from "react";
 import { PreviewJobPostPopUp } from "./PreviewJobPostPopUp";
-import { FormInputBox } from "../../components/Forms/FormInputBox";
-import Moment from "moment";
+
 
 
 const today = new Date();
