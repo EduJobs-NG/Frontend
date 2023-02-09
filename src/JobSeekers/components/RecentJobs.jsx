@@ -5,8 +5,8 @@ import {
   TwitterShareButton,
   TwitterIcon,
   FacebookIcon,
-  LinkedinIcon, LinkedinShareButton
-
+  LinkedinIcon,
+  LinkedinShareButton,
 } from "react-share";
 import { Markup } from "interweave";
 import { Link } from "react-router-dom";
@@ -26,11 +26,11 @@ export const Recent = forwardRef(
     const [result, setResult] = useState(null);
     const [selected, setSelected] = useState(null);
     const [url, setUrl] = useState("jobseeker/job-list");
+    const [prevURL, setPrevURL] = useState(null);
+    const [nextURL, setNextURL] = useState(null);
 
     // effects
-    useEffect(() => {
-      handleRequest();
-    }, [url]);
+    
     useEffect(() => {
       setResult(() =>
         jobs?.results?.filter(({ title: t, location: l }) => {
@@ -50,8 +50,7 @@ export const Recent = forwardRef(
     }, [title, location, jobs]);
 
     // methods
-    const nextUrl = () => setUrl((prev) => jobs?.next || prev);
-    const prevUrl = () => setUrl((prev) => jobs?.previous || prev);
+
     const clearSearch = () => {
       Title && Title(() => "");
       Location && Location(() => "");
@@ -61,13 +60,14 @@ export const Recent = forwardRef(
     const handleRequest = async () => {
       setLoad(() => true);
       await axios
-        .get(`${process.env.REACT_APP_BASE_URL}${url}`, null, {
+        .get(`${process.env.REACT_APP_BASE_URL}${url}`, {
           Headers: { Authorization: "" },
         })
         .then((res) => {
           setError(() => null);
-          setJobs(() => res.data);
-          // console.log(jobs)
+           setPrevURL(res.data.previous);
+          setNextURL(res.data.next);
+          setJobs(res.data);
         })
         .catch(({ message }) => {
           setError(() => message);
@@ -76,11 +76,36 @@ export const Recent = forwardRef(
         });
       setLoad(() => false);
     };
+
+    useEffect(() => {
+      handleRequest();
+    }, [url]);
+
+    
+    const paginationHandler = async (particularUrl) => {
+      
+      try {
+        await axios
+          .get(particularUrl, {
+            Headers: { Authorization: "" },
+          })
+          .then((res) => {
+            setError(() => null);
+            setPrevURL(res.data.previous);
+            setNextURL(res.data.next);
+            setJobs(res.data);
+            
+          });
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+
     // console.log(jobs)
     const facebookURL = "https://web.facebook.com/edujobsofficial";
     const twitterURL = "https://twitter.com/edujobsofficial";
     const linkedURL = "https://www.linkedin.com/company/edujobsng/";
-
     return (
       <section
         className="bg-[#f5f5f5] flex flex-col items-center justify-center py-12"
@@ -88,7 +113,6 @@ export const Recent = forwardRef(
       >
         <ToastContainer />
         <div className="container">
-          
           <hr className="text-gray-200" />
           <div className="flex items-center justify-between">
             <h2 className="text-blue my-4 font-bold text-2xl capitalize">
@@ -103,7 +127,7 @@ export const Recent = forwardRef(
           </div>
           {load ? (
             <div className="w-full flex items-center justify-center">
-              <Circles type="ThreeDots" width={100} color="blue" />
+              <Circles type="ThreeDots" width={50} color="blue" />
             </div>
           ) : error ? (
             <Error message={error} />
@@ -113,8 +137,6 @@ export const Recent = forwardRef(
                 key={item?.id || key}
                 className="relative mx-0 md:mx-4 my-8 py-6 px-[1rem] border bg-white border-gray-300 rounded-3xl "
               >
-               
-
                 <h2 className="font-bold text-xl">{item?.title}</h2>
                 <p className="font-thinbold">{item?.organization_name}</p>
                 <p className="font-thinbold">{item?.location}</p>
@@ -162,18 +184,16 @@ export const Recent = forwardRef(
                   </small>
 
                   <div className="flex gap-[0.5rem]">
-                  <FacebookShareButton  url={facebookURL}>
-                    <FacebookIcon round={true} size={30} />
-                  </FacebookShareButton>
-                  <TwitterShareButton url={twitterURL}>
-                    <TwitterIcon round={true} size={30}  />
-                  </TwitterShareButton>
-                  <LinkedinShareButton url={linkedURL}>
-                    <LinkedinIcon round={true} size={30}  />
-                  </LinkedinShareButton>
-
-
-                </div>
+                    <FacebookShareButton url={facebookURL}>
+                      <FacebookIcon round={true} size={30} />
+                    </FacebookShareButton>
+                    <TwitterShareButton url={twitterURL}>
+                      <TwitterIcon round={true} size={30} />
+                    </TwitterShareButton>
+                    <LinkedinShareButton url={linkedURL}>
+                      <LinkedinIcon round={true} size={30} />
+                    </LinkedinShareButton>
+                  </div>
 
                   <button
                     id={item?.id}
@@ -196,23 +216,38 @@ export const Recent = forwardRef(
             <div className="grid grid-cols-2 gap-4">
               {jobs?.previous ? (
                 <button
-                  onClick={prevUrl}
+                  onClick={() => paginationHandler(prevURL)}
                   className="bg-blue flex justify-center items-center text-white uppercase px-4 rounded-md py-1"
                 >
                   previous
                 </button>
-              ) : null}
+              ) : (
+                <button
+                  onClick={() => paginationHandler(prevURL)}
+                  className="bg-blue flex opacity-25 justify-center items-center text-white uppercase px-4 rounded-md py-1"
+                >
+                  previous
+                </button>
+              ) }
               {jobs?.next ? (
                 <button
-                  onClick={nextUrl}
+                  onClick={() => paginationHandler(nextURL)}
                   className="bg-blue flex justify-center items-center text-white uppercase px-4 rounded-md py-1"
                 >
                   next
                 </button>
-              ) : null}
+              ) : (
+                <button
+                  onClick={() => paginationHandler(nextURL)}
+                  className="bg-blue opacity-25 flex justify-center items-center text-white uppercase px-4 rounded-md py-1"
+                >
+                  next
+                </button>
+              )}
             </div>
           </div>
         </div>
+ 
       </section>
     );
   }
