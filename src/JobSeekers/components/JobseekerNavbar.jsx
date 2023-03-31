@@ -163,6 +163,16 @@ export const JobseekerNavbar = () => {
                   FIND JOBS
                 </NavLink>
               </li>
+              <li className=''>
+                <NavLink
+                  to='/dashboard/cv'
+                  className={({ isActive }) =>
+                    isActive ? activeLink : normalLink
+                  }
+                >
+                  Get a CV
+                </NavLink>
+              </li>
               <li className='mb-[33px]'>
                 {/* <NavLink to="/dashboard/saved-jobs" className={({ isActive }) => (isActive ? activeMobile : normalMobile)} >SAVED JOBS</NavLink> */}
               </li>
