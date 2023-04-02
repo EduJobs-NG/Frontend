@@ -1,12 +1,11 @@
 //@ts-check
 import React, { useContext, useState, useEffect } from 'react';
 import { usePaystackPayment } from 'react-paystack';
-import './App.css';
 import AuthContext from '../../context/AuthContext';
 import useAxios from '../../utils/useAxios';
 
 export const CvPayment = () => {
-  const { user, getUserMeHandler, loading } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const api = useAxios();
   const [price, setPrice] = useState(0);
   const [key, setKey] = useState('');
@@ -53,16 +52,14 @@ export const CvPayment = () => {
   };
 
   return (
-    <div>
-      <button
-        className=''
-        disabled={isLoading}
-        onClick={() => {
-          initializePayment(onSuccess, onClose);
-        }}
-      >
-        Pay Now
-      </button>
-    </div>
+    <button
+      className='bg-[#3c3c3c] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+      disabled={isLoading}
+      onClick={() => {
+        initializePayment(onSuccess, onClose);
+      }}
+    >
+      Pay Now
+    </button>
   );
 };
