@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import api from "../../utils/axios";
 import {
   FacebookShareButton,
   TwitterShareButton,
@@ -25,7 +24,7 @@ export const Recent = forwardRef(
     const [error, setError] = useState(null);
     const [result, setResult] = useState(null);
     const [selected, setSelected] = useState(null);
-    const [url, setUrl] = useState("jobseeker/job-list");
+    const [url] = useState("jobseeker/job-list");
     const [prevURL, setPrevURL] = useState(null);
     const [nextURL, setNextURL] = useState(null);
 

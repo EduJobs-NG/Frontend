@@ -1,7 +1,7 @@
-import api from '../../../utils/axios';
 import { createPortal } from 'react-dom';
-import { useState, useEffect } from 'react';
 import { IoMdClose } from 'react-icons/io';
+import { useState, useEffect } from 'react';
+import api from '../../../utils/AxiosInstance';
 import "react-toastify/dist/ReactToastify.css";
 import { ThreeDots } from 'react-loader-spinner';
 import { AiFillEyeInvisible } from 'react-icons/ai';
