@@ -12,7 +12,8 @@ const interceptor = instance.interceptors.request.use(async config => {
 
     if (dayjs.unix(user.exp).diff(dayjs()) < 1) { // request a refresh token if the current one expires
       try {
-        let { data } = await axios.post('https://api.edujobsng.com/api/v1/jobseeker/jwt/token/refresh/', { refresh: token.refresh });
+        console.log(token, 'token from refresh interceptors');
+        let { data } = await axios.post(config.baseURL.concat("/jobseeker/jwt/token/refresh/"), { refresh: token?.refresh });
         localStorage.setItem('authTokens', JSON.stringify(data)); // update localstorage with the new token
         console.log('refreshing token');
       } catch (error) {
@@ -23,7 +24,9 @@ const interceptor = instance.interceptors.request.use(async config => {
   }
   instance.interceptors.request.eject(interceptor); // remove the interceptor after first response
   return config; // return the configuration object
-}, console.error)
+}, err => {
+  console.error(err, 'error from token refresh interceptors')
+})
 
 // an interceptor to set token if present
 instance.interceptors.request.use(async config => {
@@ -33,6 +36,8 @@ instance.interceptors.request.use(async config => {
     if (!(dayjs.unix(user.exp).diff(dayjs()) < 1)) config.headers.Authorization = `Bearer ${token?.access}`;
   }
   return config;
-}, console.error);
+}, err => {
+  console.error(err,'error setting token');
+});
 
 export default instance;
