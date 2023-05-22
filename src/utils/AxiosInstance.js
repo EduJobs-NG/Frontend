@@ -12,10 +12,11 @@ const interceptor = instance.interceptors.request.use(async config => {
 
     if (dayjs.unix(user.exp).diff(dayjs()) < 1) { // request a refresh token if the current one expires
       try {
-        let { data } = await instance.post('/jobseeker/jwt/token/refresh/', { refresh: token.refresh });
+        let { data } = await axios.post('https://api.edujobsng.com/api/v1/jobseeker/jwt/token/refresh/', { refresh: token.refresh });
         localStorage.setItem('authTokens', JSON.stringify(data)); // update localstorage with the new token
+        console.log('refreshing token');
       } catch (error) {
-        console.error(error); // logging the error to the console
+        console.error(error, 'error refreshing token'); // logging the error to the console
         localStorage.removeItem('authTokens'); // removes the previous token, since refresh token request returns an error, it means it is also expired
       }
     }
