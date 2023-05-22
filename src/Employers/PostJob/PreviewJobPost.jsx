@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaTimes } from "react-icons/fa";
 import { Markup } from "interweave";
 import Moment from "moment";
-import useAxios from "../../utils/useAxios";
+import api from "../../utils/AxiosInstance";
 import { useNavigate } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
 import { ToastContainer, toast } from "react-toastify";
@@ -26,7 +26,6 @@ export const PreviewJobPost = ({ formData, setShowPreview }) => {
   } = formData;
   const [isLoading, setIsLoading] = useState(false);
   const [jobSucess, setJobSuccess] = useState(false);
-  const api = useAxios();
   const navigate = useNavigate();
   const handleSubmission = async () => {
     setIsLoading(true);

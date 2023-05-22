@@ -9,7 +9,7 @@ import CustomSelect from '../../components/Forms/CustomSelect';
 import AuthContext from '../../context/AuthContext';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import useAxios from '../../utils/useAxios';
+import api from '../../utils/AxiosInstance';
 
 const validationSchema = Yup.object({
   
@@ -18,7 +18,7 @@ export const EditEducation = ({setShowEdit, item}) => {
   const {authTokens, getUserMeHandler } = useContext(AuthContext);
   const {school_name, degree, grade, educational_level, start_of_education, study_summary, end_of_education} = item;
   const [isLoading, setIsLoading] = useState(false);
-  const api = useAxios();
+  
   const onSubmit = async (values) => {
     setIsLoading(true)
       const response = await api.put(`jobseeker/user-profile/me/professional_info/${item.id}/`, values)

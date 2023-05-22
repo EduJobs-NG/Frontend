@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import img from "../../assets/jobs-2.png";
-import useAxios from "../../utils/useAxios";
+import api from "../../utils/AxiosInstance";
 import { Circles } from "react-loader-spinner";
 import { JobDetailPopup } from './JobDetailPopup';
 import AuthContext from "../../context/AuthContext";
@@ -14,7 +14,6 @@ export const ClosedJobs = () => {
   const [openJobs, setOpenJobs] = useState([]);
   const [jobItem, setJobItem] = useState({});
   const [showJobDetail, setShowJobDetail] = useState(false)
-  const api = useAxios();
   const getOpenJobs = async () => {
     setIsLoading(true);
     const response = await api.get(`/employer/jobs/closed/`).catch((err) => {

@@ -58,7 +58,6 @@ export const JobseekerProfile = () => {
             </div>
             <div className='md:container mt-[3rem] pb-[4rem] rounded-[40px] md:mx-auto'>
               {loading ? <p>loading</p> : <EditProfile />}
-
             </div>
           </div>
 

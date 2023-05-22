@@ -7,7 +7,7 @@ import { ThreeDots } from "react-loader-spinner";
 import CustomSelect from "../../components/Forms/CustomSelect";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import useAxios from "../../utils/useAxios";
+import api from "../../utils/AxiosInstance";
 
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/bootstrap.css";
@@ -42,7 +42,7 @@ export const PersonalInfo = () => {
   } = user;
 
 
-  const api = useAxios();
+  
   const onSubmit = async (values) => {
     // console.log('values', values);
 

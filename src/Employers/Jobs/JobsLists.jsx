@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import img from "../../assets/jobs-2.png";
 import { useState, useEffect } from "react";
-import useAxios from "../../utils/useAxios";
+import api from "../../utils/AxiosInstance";
 import { Circles } from "react-loader-spinner";
 import { JobDetailPopup as Popup } from "./JobDetailPopup";
 import { IsLoading } from "../../components/IsLoading";
@@ -16,7 +16,6 @@ export const Jobslists = ({ url = "/employer/jobs/open/", title = "" }) => {
   const [result, setResult] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
-  const api = useAxios();
 
   // effects
   useEffect(() => {

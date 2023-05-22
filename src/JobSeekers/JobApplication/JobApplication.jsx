@@ -5,7 +5,7 @@ import { JobseekerNavbar } from "../components/JobseekerNavbar";
 import { UserForm } from "./UserForm";
 import { Markup } from 'interweave';
 import { Error } from "../../components/Error";
-import useAxios from "../../utils/useAxios";
+import api from "../../utils/AxiosInstance";
 
 
 
@@ -19,7 +19,6 @@ export const JobApplication = () => {
     setViewMore(!viewMore)
   }
   const [isLoading, setIsLoading] = useState(false)
-  const api = useAxios()
   const getJob = async () =>{
 
     setIsLoading(true)

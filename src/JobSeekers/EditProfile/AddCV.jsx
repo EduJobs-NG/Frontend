@@ -7,13 +7,12 @@ import { ThreeDots } from "react-loader-spinner";
 import {FaTimes } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import useAxios from "../../utils/useAxios";
+import api from "../../utils/AxiosInstance";
 
 const validationSchema = Yup.object({
   file: Yup.string().required("Required"),
 });
 export const AddCV = ({ setShowAddCV}) => {
-  const api = useAxios()
   const { getUserMeHandler } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const onSubmit = async (values) => {

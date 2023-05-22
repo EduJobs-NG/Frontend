@@ -3,7 +3,7 @@ import { Markup } from "interweave";
 import { toast } from "react-toastify";
 import React, { useState } from "react";
 import { FaTimes } from "react-icons/fa";
-import useAxios from '../../utils/useAxios';
+import api from '../../utils/AxiosInstance';
 import "react-toastify/dist/ReactToastify.css";
 import { ThreeDots } from "react-loader-spinner";
 import jobPosted from "../../assets/jobPosted.png";
@@ -29,7 +29,6 @@ export const PreviewJobPost = ({ formData, setShowPreview }) => {
   // params hooks
   const { id } = useParams();
 
-  const api = useAxios();
   // states
   const [isLoading, setIsLoading] = useState(false);
   const [jobSucess, setJobSuccess] = useState(false);

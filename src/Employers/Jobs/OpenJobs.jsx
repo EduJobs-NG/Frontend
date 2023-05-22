@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import img from "../../assets/jobs-2.png";
-import useAxios from "../../utils/useAxios";
+import api from "../../utils/AxiosInstance";
 import { Circles } from "react-loader-spinner";
 import {JobDetailPopup} from './JobDetailPopup'
 import { SearchJobs } from "./SearchJobs";
@@ -16,7 +16,6 @@ export const OpenJobs = () => {
   const [openJobs, setOpenJobs] = useState([]);
   const [jobItem, setJobItem] = useState({});
   const [showJobDetail, setShowJobDetail] = useState(false)
-  const api = useAxios();
   
   const accessToken = localStorage.getItem('authTokens');
   const tokens = JSON.parse(accessToken);

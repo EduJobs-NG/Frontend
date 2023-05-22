@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getStoredUser, storeUser, getStoredEmployerUser, storeEmployerUser } from "../storage/localStorage";
-import useAxios from "../utils/useAxios";
+import api from "../utils/AxiosInstance";
 const AuthContext = createContext({
   authTokens: localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null,
   setAuthTokens: (_) => { },
@@ -16,62 +16,36 @@ export default AuthContext;
 
 
 export const AuthProvider = ({ children }) => {
-  const api = useAxios();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false)
+  const [_isError, setIsError] = useState(false)
   const [user, setUser] = useState(getStoredUser())
   const [employerUser, setEmployerUser] = useState(getStoredEmployerUser())
-  const [loading, setLoading] = useState(false)
-  const [isError, setIsError] = useState(false)
   const [authTokens, setAuthTokens] = useState(localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null)
-  // console.log(authTokens);
 
-  
+  useEffect(() => { getEmployer(); }, []);
+  useEffect(() => { getJobseeker(); }, []);
 
-  const getUserMeHandler = async () => {
-    setLoading(true);
-    setIsError(false);
-    const response = await api.get(`/jobseeker/user-profile-update/`)
-      .catch(err => {
-        setIsError(true);
-        // console.log(err);
-        setLoading(false);
-      });
-
-    if (response?.data) {
-      setUser(response.data)
-      storeUser(response.data)
-      setLoading(false);
-      setIsError(false)
-      // console.log(response.data)
-
-    }
-  }
-
-
-  const getEmployerUser = async () => {
-    setLoading(true)
-    setIsError(false)
-    const response = await api.get(`/employer/users/me/`)
-      .catch(err => {
-        // console.log(err)
-        setIsError(true)
-        setLoading(false)
+  const getJobseeker = () => {
+    setLoading(() => true);
+    api.get('/jobseeker/user-profile-update/')
+      .then(res => {
+        setUser(prev => res?.data || prev)
       })
+      .catch(() => setIsError(() => true))
+      .finally(() => setLoading(() => false));
+  };
 
-    if (response && response.data) {
-      // console.log(response.data)
-      setEmployerUser(response.data)
-      storeEmployerUser(response.data)
-      setLoading(false);
-      setIsError(false)
-
-    }
-  }
-
-  useEffect(() => {
-    getUserMeHandler();
-    getEmployerUser();
-  }, [])
+  const getEmployer = () => {
+    setLoading(() => true);
+    api.get('/employer/users/me/')
+      .then(res => {
+        setEmployerUser(prev => res?.data || prev);
+        storeEmployerUser(prev => res?.data || prev);
+      })
+      .catch(() => setIsError(() => true))
+      .finally(() => setLoading(() => false));
+  };
 
 
   const logOutUser = () => {
@@ -87,8 +61,6 @@ export const AuthProvider = ({ children }) => {
   }
 
 
-
-
   let contextData = {
     user,
     setUser,
@@ -99,10 +71,10 @@ export const AuthProvider = ({ children }) => {
     employerUser,
     setAuthTokens,
     setEmployerUser,
-    getEmployerUser,
-    getUserMeHandler,
     storeEmployerUser,
     logOutEmployerUser,
+    getEmployerUser: getEmployer,
+    getUserMeHandler: getJobseeker,
 
 
   }
@@ -112,8 +84,4 @@ export const AuthProvider = ({ children }) => {
       {children}
     </AuthContext.Provider>
   )
-
-
 }
-
-

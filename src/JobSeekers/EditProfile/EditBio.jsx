@@ -4,14 +4,13 @@ import { ThreeDots } from "react-loader-spinner";
 import { FaBars, FaTimes } from "react-icons/fa";
 import AuthContext from "../../context/AuthContext";
 import axios from "axios";
-import useAxios from "../../utils/useAxios";
+import api from "../../utils/AxiosInstance";
 
 export const EditBio = ({ setShowBio }) => {
   const { user, authTokens, getUserMeHandler } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
 
   const { bio } = user;
-  const api = useAxios();
 
   const onSubmit = async (values) => {
     setIsLoading(true);
