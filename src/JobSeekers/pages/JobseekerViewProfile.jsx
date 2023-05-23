@@ -1,23 +1,35 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from 'react';
+import axios from "axios";
+import React from 'react';
+import Moment from "moment";
 import { Link } from 'react-router-dom';
-import React, { useContext } from 'react';
 import { AiFillEdit } from 'react-icons/ai';
 import marker from '../../assets/Marker.png';
 import { Footer } from '../../components/Footer';
 import photo from '../../assets/asideprofile.svg';
 import AuthContext from '../../context/AuthContext';
 import { JobseekerNavbar as Navbar } from '../components/JobseekerNavbar';
-import Moment from "moment";
 
 
 export const Profile = () => {
     // hooks
-    const { user } = useContext(AuthContext);
+    const { user } = React.useContext(AuthContext);
 
-    // useEffect(() => {
-    //     console.table(user);
-    // },[]);
+    // methods
+    const downloadCertificate = (ev) => {
+        ev.preventDefault();
+    
+        let [url, ext] = [ev.currentTarget.href, ev.currentTarget.href.slice(ev.currentTarget.href.lastIndexOf('.'))];
+        axios.get(url, { responseType: 'blob' }).then(res => {
+            let blob = new Blob([res.data]);
+            let link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.download = `document${ext}`;
+            link.click();
+            window.URL.revokeObjectURL(link.href);
+            link = undefined;
+        }).catch(console.error);
+    };
 
     return <>
         <Navbar user={user} />
@@ -31,7 +43,7 @@ export const Profile = () => {
                             <h4 className='font-bold text-xl'>{user?.user?.first_name} {user?.user?.last_name}</h4>
                             <span className="flex gap-2">
                                 <img src={marker} alt="" className='w-4' />
-                                <h5 className="capitalize">{user?.city || "..." }, <span className="">{user?.state || "..." }</span></h5>
+                                <h5 className="capitalize">{user?.city || "..."}, <span className="">{user?.state || "..."}</span></h5>
                             </span>
                         </div>
                     </div>
@@ -86,14 +98,14 @@ export const Profile = () => {
                         <Link to='/dashboard/profile/edit?tab=1'><AiFillEdit className='w-8' /></Link>
                     </header>
                     {user?.professional_info?.map(item => (
-                    <div key={item?.id} className="grow-1 w-full flex flex-col items-start my-2">
-                    <h3 className="font-thin text-sm leading-[1em]">{item?.degree}</h3>
-                    <span className="font-thin text-sm leading-[1em]">{item?.school_name}</span>
-                    <span className="font-thin text-sm leading-[1em]">{Moment(item?.start_of_education).format("MMM DD YYYY")} - {Moment(item?.end_of_education).format("MMM DD YYYY")}</span>
-                    <span className="font-thin text-sm leading-[1em]">{item?.grade}</span>
-                    <p className="leading-[1em] text-md">
-                        {item?.study_summary}
-                    </p>
+                        <div key={item?.id} className="grow-1 w-full flex flex-col items-start my-2">
+                            <h3 className="font-thin text-sm leading-[1em]">{item?.degree}</h3>
+                            <span className="font-thin text-sm leading-[1em]">{item?.school_name}</span>
+                            <span className="font-thin text-sm leading-[1em]">{Moment(item?.start_of_education).format("MMM DD YYYY")} - {Moment(item?.end_of_education).format("MMM DD YYYY")}</span>
+                            <span className="font-thin text-sm leading-[1em]">{item?.grade}</span>
+                            <p className="leading-[1em] text-md">
+                                {item?.study_summary}
+                            </p>
                         </div>
                     ))}
                 </div>
@@ -107,8 +119,8 @@ export const Profile = () => {
                             <div className="w-12 h-14 flex-none bg-gray-400"></div>
                             <div className="flex flex-col items-start justify-center">
                                 <a className="text-blue underline" href={user?.cv?.file}>
-                {user?.cv?.name}
-              </a>
+                                    {user?.cv?.name}
+                                </a>
                                 {/* <span className="capitalize leading-[1em] text-sm">added 7/4/2022</span> */}
                             </div>
                         </div>
@@ -151,7 +163,7 @@ export const Profile = () => {
                         <div className="flex flex-col basis-52 mr-auto">
                             <label htmlFor="first_name" className="font-thinbold capitalize text-grey" children='cv' />
                             <span className="mx-1 shrink">
-                                <a href={user?.professional_cert?.certificate} download="name.png" className='bg-blue px-4 py-1 text-white uppercase text-sm rounded'>download</a>
+                                {user?.professional_cert?.certificate ? <a onClick={downloadCertificate} href={user?.professional_cert?.certificate} className='bg-blue px-6 py-2 text-white uppercase text-sm rounded' dis>download</a> : null}
                             </span>
                         </div>
                     </div>
