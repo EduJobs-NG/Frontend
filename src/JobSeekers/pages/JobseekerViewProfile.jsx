@@ -151,7 +151,7 @@ export const Profile = () => {
                         <div className="flex flex-col basis-52 mr-auto">
                             <label htmlFor="first_name" className="font-thinbold capitalize text-grey" children='cv' />
                             <span className="mx-1 shrink">
-                                <button className='bg-blue px-4 py-1 text-white uppercase text-sm rounded'>download</button>
+                                <a href={user?.professional_cert?.certificate} download="name.png" className='bg-blue px-4 py-1 text-white uppercase text-sm rounded'>download</a>
                             </span>
                         </div>
                     </div>
