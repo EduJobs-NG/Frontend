@@ -3,12 +3,11 @@ import { ThreeDots } from "react-loader-spinner";
 import AuthContext from "../../context/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import useAxios from "../../utils/useAxios";
+import api from "../../utils/AxiosInstance";
 
 export const DeleteCredential = ({ setShowDelete, credentials, item }) => {
   const [isLoading, setIsLoading] = useState(false);
   const { getUserMeHandler } = useContext(AuthContext);
-  const api = useAxios();
  
   
   

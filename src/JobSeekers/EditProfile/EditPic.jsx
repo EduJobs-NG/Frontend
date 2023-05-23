@@ -6,14 +6,14 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import AuthContext from "../../context/AuthContext";
 import { FormInputBox } from '../../components/Forms/FormInputBox';
 import * as Yup from 'yup';
-import useAxios from "../../utils/useAxios";
+import api from "../../utils/AxiosInstance";
 
 const validationSchema = Yup.object({
   avatar: Yup.string().required('Required')
 });
 
 export const EditPic = ({ setShowPic }) => {
-  const api = useAxios();
+  
   const [pop, setPop] = useState(null);
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);

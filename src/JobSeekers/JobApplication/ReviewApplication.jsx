@@ -2,13 +2,12 @@ import React, {useState, useContext} from "react";
 import { FormInputBox } from "../../components/Forms/FormInputBox";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { SuccessfulApplication } from "./SuccessfulApplication";
-import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AuthContext from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
-import useAxios from "../../utils/useAxios";
+import api from "../../utils/AxiosInstance";
 import { Link } from "react-router-dom";
 
 
@@ -19,7 +18,7 @@ export const ReviewApplication = ({ formData, prevStep, setStep }) => {
   const [isLoading, setIsLoading] = useState(false);
   const { authTokens } = useContext(AuthContext);
   const navigate = useNavigate()
-  const api = useAxios();
+  
   const handleSubmission = async () => {
     setIsLoading(true);
     const data = new FormData();

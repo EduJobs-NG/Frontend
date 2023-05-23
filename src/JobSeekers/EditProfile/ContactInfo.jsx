@@ -6,7 +6,7 @@ import AuthContext from "../../context/AuthContext";
 import { ThreeDots } from "react-loader-spinner";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import useAxios from "../../utils/useAxios";
+import api from "../../utils/AxiosInstance";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/bootstrap.css";
 
@@ -20,7 +20,6 @@ const validationSchema = Yup.object({
 });
 export const ContactInfo = ({  }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const api = useAxios();
   const { user, getUserMeHandler } = useContext(AuthContext);
   console.log(user)
   const {

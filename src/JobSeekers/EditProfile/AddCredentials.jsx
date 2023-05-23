@@ -8,14 +8,13 @@ import {FaTimes } from "react-icons/fa";
 import CustomSelect from "../../components/Forms/CustomSelect";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import useAxios from "../../utils/useAxios";
+import api from "../../utils/AxiosInstance";
 
 const validationSchema = Yup.object({
   credential_type: Yup.string().required("Required"),
   file: Yup.string().required("Required"),
 });
 export const AddCredentials = ({ setShowAddCredentials, credentials }) => {
-  const api = useAxios()
   
   const { updateUser, getUserMeHandler } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);

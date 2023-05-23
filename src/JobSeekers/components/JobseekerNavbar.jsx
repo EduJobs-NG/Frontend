@@ -15,7 +15,7 @@ export const JobseekerNavbar = () => {
     Aos.init();
     Aos.refresh();
     getUserMeHandler();
-  });
+  },[]);
   const [menu, setMenu] = useState(false);
   const [active, setActive] = useState(false);
   const [dropDown, setDropDown] = useState(false);

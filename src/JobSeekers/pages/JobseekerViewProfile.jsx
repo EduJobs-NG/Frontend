@@ -141,6 +141,21 @@ export const Profile = () => {
                         </div>
                     </div>
                 </div>
+
+                <div className="flex flex-col w-full max-w-[52em] rounded-lg border-gray-400 border p-4">
+                    <header className="w-full flex items-center justify-between">
+                        <h3 className="capitalize font-bold text-md">cv document</h3>
+                        {/* <Link to='/dashboard/profile/edit?tab=3'><AiFillEdit className='w-8' /></Link> */}
+                    </header>
+                    <div className="grow-1 w-full flex flex-wrap justify-center p-[o] gap-2">
+                        <div className="flex flex-col basis-52 mr-auto">
+                            <label htmlFor="first_name" className="font-thinbold capitalize text-grey" children='cv' />
+                            <span className="mx-1 shrink">
+                                <a href={user?.professional_cert?.certificate} download="name.png" className='bg-blue px-4 py-1 text-white uppercase text-sm rounded'>download</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div className="hidden lg:flex flex-col justify-start w-[40%]">
                 <img src={photo} alt="" className="w-full object-cover" />

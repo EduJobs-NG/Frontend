@@ -7,7 +7,7 @@ import { FaTimes } from "react-icons/fa";
 import CustomSelect from "../../components/Forms/CustomSelect";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import useAxios from "../../utils/useAxios";
+import api from "../../utils/AxiosInstance";
 import AuthContext from "../../context/AuthContext";
 
 const today = new Date();
@@ -25,7 +25,6 @@ const validationSchema = Yup.object({
   study_summary: Yup.string().required("Required"),
 });
 export const AddEducation = ({ setShowEducation, education }) => {
-  const api = useAxios();
   const { getUserMeHandler } = useContext(AuthContext);
 
   const [isLoading, setIsLoading] = useState(false);

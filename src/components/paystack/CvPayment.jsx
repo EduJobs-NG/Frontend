@@ -2,11 +2,10 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { usePaystackPayment } from 'react-paystack';
 import AuthContext from '../../context/AuthContext';
-import useAxios from '../../utils/useAxios';
+import api from '../../utils/AxiosInstance';
 
 export const CvPayment = () => {
   const { user } = useContext(AuthContext);
-  const api = useAxios();
   const [price, setPrice] = useState(0);
   const [key, setKey] = useState('');
   const [error, setError] = useState(false);
