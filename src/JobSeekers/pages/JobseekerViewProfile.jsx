@@ -18,7 +18,7 @@ export const Profile = () => {
     // methods
     const downloadCertificate = (ev) => {
         ev.preventDefault();
-    
+
         let [url, ext] = [ev.currentTarget.href, ev.currentTarget.href.slice(ev.currentTarget.href.lastIndexOf('.'))];
         axios.get(url, { responseType: 'blob' }).then(res => {
             let blob = new Blob([res.data]);
@@ -160,10 +160,13 @@ export const Profile = () => {
                         {/* <Link to='/dashboard/profile/edit?tab=3'><AiFillEdit className='w-8' /></Link> */}
                     </header>
                     <div className="grow-1 w-full flex flex-wrap justify-center p-[o] gap-2">
-                        <div className="flex flex-col basis-52 mr-auto">
+                        <div className="flex flex-col mr-auto gap-2">
                             <label htmlFor="first_name" className="font-thinbold capitalize text-grey" children='cv' />
                             <span className="mx-1 shrink">
-                                {user?.professional_cert?.certificate ? <a onClick={downloadCertificate} href={user?.professional_cert?.certificate} className='bg-blue px-6 py-2 text-white uppercase text-sm rounded' dis>download</a> : null}
+                                {user?.professional_cert?.certificate ?
+                                    <a onClick={downloadCertificate} href={user?.professional_cert?.certificate} className='bg-blue px-6 py-2 text-white uppercase text-sm rounded' dis>download</a> :
+                                    <Link to="/dashboard/cv" className='bg-blue px-6 py-2 text-white uppercase text-sm rounded'>get a professional cv</Link>
+                                }
                             </span>
                         </div>
                     </div>
