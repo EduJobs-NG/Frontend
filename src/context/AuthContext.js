@@ -2,11 +2,9 @@ import { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   getStoredUser,
-  storeUser,
   getStoredEmployerUser,
   storeEmployerUser,
 } from "../storage/localStorage";
-// import instance from "../utils/AxiosInstance";
 import axios from "axios";
 import dayjs from "dayjs";
 import jwt from "jwt-decode";
@@ -21,10 +19,10 @@ const AuthContext = createContext({
     : null,
   setAuthTokens: (_) => {},
 
-  user: "",
+  user: null,
   setUser: (_) => {},
   logOutUser: (_) => {},
-  loading: "",
+  loading: false,
   setLoading: (_) => {},
   updateUser: (_) => {},
   getUserMeHandler: (_) => {},
@@ -35,8 +33,8 @@ export default AuthContext;
 export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState(null);
   const [_isError, setIsError] = useState(false);
-  const [user, setUser] = useState(getStoredUser());
   const [employerUser, setEmployerUser] = useState(getStoredEmployerUser());
   const [authTokens, setAuthTokens] = useState(
     localStorage.getItem("authTokens")
@@ -47,29 +45,28 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     // Create an interceptor to check and update token, it runs only for a single time
     const interceptor = instance.interceptors.request.use(
-      (config) => {
-        let token = JSON.parse(localStorage.getItem("authTokens") || ""); // returns an object if present else an empty string
-        if (token) {
-          // if token is an object
-          let user = jwt(token?.access); // decode the token
-          let [tokenExpiration, currentTime] = [dayjs.unix(user?.exp), dayjs()];
+      async (config) => {
+        try {
+          let token = JSON.parse(localStorage.getItem("authTokens") || "");
+          if (token) {
+            let user = jwt(token?.access);
+            let [tokenExpiration, currentTime] = [
+              dayjs.unix(user?.exp),
+              dayjs(),
+            ];
 
-          // attempt refreshing the token if it expires
-          if (tokenExpiration.diff(currentTime, "second") < 1) {
-            return axios
-              .post(config.baseURL.concat("/jobseeker/jwt/token/refresh/"), {
-                refresh: token?.refresh,
-              })
-              .then((res) => {
-                localStorage.setItem("authTokens", JSON.stringify(res.data)); // update authtoken localstorage
-                config.headers.Authorization = `Bearer ${res.data.access}`; // Update the Authorization header with the new token
-                return config;
-              })
-              .catch((error) => {
-                console.error("Token refresh failed:", error);
-                return Promise.reject(error);
-              });
+            if (tokenExpiration.diff(currentTime, "second") < 1) {
+              const refreshResponse = await axios.post(
+                config.baseURL.concat("/jobseeker/jwt/token/refresh/"),
+                { refresh: token?.refresh }
+              );
+              const newTokens = refreshResponse.data;
+              localStorage.setItem("authTokens", JSON.stringify(newTokens));
+              config.headers.Authorization = `Bearer ${newTokens.access}`;
+            }
           }
+        } catch (error) {
+          console.error("Token refresh failed:", error);
         }
         return config;
       },
@@ -97,7 +94,10 @@ export const AuthProvider = ({ children }) => {
       .then((res) => {
         setUser(res?.data || null);
       })
-      .catch(() => setIsError(true))
+      .catch((error) => {
+        console.error("Error fetching jobseeker data:", error);
+        setIsError(true);
+      })
       .finally(() => setLoading(false));
   };
 
