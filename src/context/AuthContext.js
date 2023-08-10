@@ -1,127 +1,152 @@
 import { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import jwtDecode from "jwt-decode";
+import api from "../utils/api";
+
 import {
-  getStoredUser,
   getStoredEmployerUser,
   storeEmployerUser,
 } from "../storage/localStorage";
-import axios from "axios";
-import dayjs from "dayjs";
-import jwt from "jwt-decode";
 
-const instance = axios.create({
-  baseURL: "https://api.edujobsng.com/api/v1",
-});
-
-const AuthContext = createContext({
-  authTokens: localStorage.getItem("authTokens")
-    ? JSON.parse(localStorage.getItem("authTokens"))
-    : null,
-  setAuthTokens: (_) => {},
-
-  user: null,
-  setUser: (_) => {},
-  logOutUser: (_) => {},
-  loading: false,
-  setLoading: (_) => {},
-  updateUser: (_) => {},
-  getUserMeHandler: (_) => {},
-});
+const AuthContext = createContext();
 
 export default AuthContext;
 
 export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [_isError, setIsError] = useState(false);
   const [employerUser, setEmployerUser] = useState(getStoredEmployerUser());
-  const [authTokens, setAuthTokens] = useState(
-    localStorage.getItem("authTokens")
-      ? JSON.parse(localStorage.getItem("authTokens"))
-      : null
-  );
+  const [authTokens, setAuthTokens] = useState(null);
+  const [accessToken, setAccessToken] = useState(null);
+  const [expired, setExpired] = useState(false);
 
   useEffect(() => {
-    // Create an interceptor to check and update token, it runs only for a single time
-    const interceptor = instance.interceptors.request.use(
-      async (config) => {
-        try {
-          let token = JSON.parse(localStorage.getItem("authTokens") || "");
-          if (token) {
-            let user = jwt(token?.access);
-            let [tokenExpiration, currentTime] = [
-              dayjs.unix(user?.exp),
-              dayjs(),
-            ];
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) {
+      const decoded = jwtDecode(accessToken);
+      setUser(decoded);
+    }
+  }, []);
 
-            if (tokenExpiration.diff(currentTime, "second") < 1) {
-              const refreshResponse = await axios.post(
-                config.baseURL.concat("/jobseeker/jwt/token/refresh/"),
-                { refresh: token?.refresh }
-              );
-              const newTokens = refreshResponse.data;
-              localStorage.setItem("authTokens", JSON.stringify(newTokens));
-              config.headers.Authorization = `Bearer ${newTokens.access}`;
-            }
-          }
-        } catch (error) {
-          console.error("Token refresh failed:", error);
-        }
-        return config;
-      },
-      (error) => {
-        console.error("Error from token refresh interceptor:", error);
-        return Promise.reject(error);
+  useEffect(() => {
+    // Get access token
+    const token = getAccessToken();
+    if (token) {
+      setAccessToken(token);
+      setAuthTokens(token);
+      setExpired(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    // Intercept requests
+    const interceptor = api.interceptors.request.use(async (config) => {
+      // Check expired state
+      if (expired) {
+        const newAccessToken = await refreshAccessToken();
+        setAccessToken(newAccessToken);
+        setAuthTokens(newAccessToken);
+        setExpired(false);
+
+        // Set authorization header with the new access token
+        config.headers.Authorization = `Bearer ${newAccessToken}`;
+      } else if (accessToken) {
+        // Check if accessToken is defined
+        // Set authorization header with the current access token
+        config.headers.Authorization = `Bearer ${accessToken}`;
       }
-    );
 
-    // Clean up the interceptor on component unmount
+      return config;
+    });
+
+    // Cleanup
     return () => {
-      instance.interceptors.request.eject(interceptor);
+      api.interceptors.request.eject(interceptor);
     };
-  }, []);
+  }, [expired, accessToken]);
 
   useEffect(() => {
-    getEmployer();
-    getJobseeker();
-  }, []);
+    if (accessToken) {
+      // Call your API to get user data
+      getJobseeker();
+      // Call your API to get employer user data
+      getEmployer();
+    }
+  }, [accessToken]);
 
-  const getJobseeker = () => {
-    setLoading(true);
-    instance
-      .get("/jobseeker/user-profile-update/")
-      .then((res) => {
-        setUser(res?.data || null);
-      })
-      .catch((error) => {
-        console.error("Error fetching jobseeker data:", error);
-        setIsError(true);
-      })
-      .finally(() => setLoading(false));
+  const getAccessToken = () => {
+    const accessToken = localStorage.getItem("accessToken");
+
+    if (!accessToken) return null;
+
+    const { exp } = jwtDecode(accessToken);
+
+    // Check expiration
+    if (Date.now() >= exp * 1000) {
+      setExpired(true);
+      return null;
+    }
+
+    setExpired(false);
+
+    return accessToken;
   };
 
-  const getEmployer = () => {
+  const refreshAccessToken = async () => {
+    const refreshToken = localStorage.getItem("refreshToken");
+    const response = await api.post("/jobseeker/jwt/token/refresh/", {
+      refreshToken,
+    });
+
+    const { access, refresh } = response.data;
+    localStorage.setItem("accessToken", JSON.stringify(access));
+    localStorage.setItem("refreshToken", JSON.stringify(refresh));
+
+    console.log(access, refresh);
+
+    return access;
+  };
+
+  const getJobseeker = async () => {
     setLoading(true);
-    instance
-      .get("/employer/users/me/")
-      .then((res) => {
-        setEmployerUser(res?.data || null);
-        storeEmployerUser(res?.data || null);
-      })
-      .catch(() => setIsError(true))
-      .finally(() => setLoading(false));
+    try {
+      const response = await api.get("/jobseeker/user-profile-update/");
+      if (response.status === 200) {
+        console.log(response.data);
+        setUser(response.data || null);
+      }
+    } catch (e) {
+      console.log(e);
+      setIsError(true);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getEmployer = async () => {
+    setLoading(true);
+    try {
+      const res = await api.get("/employer/users/me/");
+      setEmployerUser(res?.data || null);
+      storeEmployerUser(res?.data || null);
+    } catch (error) {
+      setIsError(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const logOutUser = () => {
-    localStorage.removeItem("authTokens");
+    localStorage.removeItem("accessToken");
     localStorage.removeItem("user");
     setUser(null); // Clear the user data from state
     navigate("/jobseeker/login");
   };
 
   const logOutEmployerUser = () => {
-    localStorage.removeItem("authTokens");
+    localStorage.removeItem("accessToken");
     localStorage.removeItem("employer_user");
     setEmployerUser(null); // Clear the employer user data from state
     navigate("/employer/login");
@@ -133,6 +158,7 @@ export const AuthProvider = ({ children }) => {
     loading,
     authTokens,
     setLoading,
+    setIsError,
     logOutUser,
     employerUser,
     setAuthTokens,

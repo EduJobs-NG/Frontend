@@ -13,39 +13,38 @@ import "react-phone-input-2/lib/bootstrap.css";
 const validationSchema = Yup.object({
   next_kin_email: Yup.string().email("Invalid email address").nullable(),
   // phone_number: Yup.number().required('Required'),
-  next_kin_phone: Yup.string().required('Required').nullable(),
-  first_ref_phone: Yup.string().required('Required').nullable(),
-  second_ref_phone: Yup.string().required('Required').nullable(),
-
+  next_kin_phone: Yup.string().required("Required").nullable(),
+  first_ref_phone: Yup.string().required("Required").nullable(),
+  second_ref_phone: Yup.string().required("Required").nullable(),
 });
-export const ContactInfo = ({  }) => {
+export const ContactInfo = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { user, getUserMeHandler } = useContext(AuthContext);
-  console.log(user)
   const {
     contact_info: {
-      next_kin_fname,
-      next_kin_address,
-      next_kin_email,
-      next_kin_phone,
-      first_ref_fname,
-      first_ref_phone,
-      first_ref_lname,
-      first_ref_jtitle,
-      second_ref_jtitle,
-      next_kin_lname,
-      second_ref_fname,
-      second_ref_lname,
-      second_ref_phone,
-    },
+      next_kin_fname = "",
+      next_kin_address = "",
+      next_kin_email = "",
+      next_kin_phone = "",
+      first_ref_fname = "",
+      first_ref_phone = "",
+      first_ref_lname = "",
+      first_ref_jtitle = "",
+      second_ref_jtitle = "",
+      next_kin_lname = "",
+      second_ref_fname = "",
+      second_ref_lname = "",
+      second_ref_phone = "",
+    } = {},
   } = user;
 
   const onSubmit = async (values) => {
     setIsLoading(true);
-    values.next_kin_phone = `+${values.next_kin_phone}`
-    values.first_ref_phone = `+${values.first_ref_phone}`
-    values.second_ref_phone = `+${values.second_ref_phone}`
-    const response = await api.put(`/jobseeker/user-profile/me/contact_info/${user.id}/`, values)
+    values.next_kin_phone = `+${values.next_kin_phone}`;
+    values.first_ref_phone = `+${values.first_ref_phone}`;
+    values.second_ref_phone = `+${values.second_ref_phone}`;
+    const response = await api
+      .put(`/jobseeker/user-profile/me/contact_info/${user.id}/`, values)
       .catch((err) => {
         console.log(err);
         toast.error(err.message);
@@ -122,33 +121,30 @@ export const ContactInfo = ({  }) => {
 
               <div className="grid md:grid-cols-2 md:gap-3 mt-[1rem]">
                 <div className="w-full max-w-lg">
-        
-
-                <div className=" ">
-              <div className=" w-full max-w-lg ">
-                <label htmlFor="phone_number">Phone Number</label>
-                <PhoneInput
-                  inputProps={{
-                    name: "next_kin_phone",
-                    // required: true,
-                    // autoFocus: true,
-                  }}
-                  // containerClass="phone_number_style"
-                  country={"ng"}
-                  value={formik.values.next_kin_phone}
-                  onChange={(event) => {
-                    formik.setFieldValue("next_kin_phone", event);
-                  }}
-                />
-                {formik.touched.next_kin_phone && formik.errors.next_kin_phone ? (
-                  <small className="text-red-600">
-                    {formik.errors.next_kin_phone}
-                  </small>
-                ) : null}
-              </div>
-            </div>
-
-                 
+                  <div className=" ">
+                    <div className=" w-full max-w-lg ">
+                      <label htmlFor="phone_number">Phone Number</label>
+                      <PhoneInput
+                        inputProps={{
+                          name: "next_kin_phone",
+                          // required: true,
+                          // autoFocus: true,
+                        }}
+                        // containerClass="phone_number_style"
+                        country={"ng"}
+                        value={formik.values.next_kin_phone}
+                        onChange={(event) => {
+                          formik.setFieldValue("next_kin_phone", event);
+                        }}
+                      />
+                      {formik.touched.next_kin_phone &&
+                      formik.errors.next_kin_phone ? (
+                        <small className="text-red-600">
+                          {formik.errors.next_kin_phone}
+                        </small>
+                      ) : null}
+                    </div>
+                  </div>
                 </div>
                 <div className="w-full md:mt-0 mt-[1rem]  max-w-lg">
                   <FormInputBox
@@ -218,20 +214,20 @@ export const ContactInfo = ({  }) => {
                   />
                 </div>
                 <div className="w-full  mt-[1rem]  max-w-lg">
-                <label htmlFor="phone_number">Phone Number</label>
-                <PhoneInput
-                  inputProps={{
-                    name: "first_ref_phone",
-                    // required: true,
-                    // autoFocus: true,
-                  }}
-                  // containerClass="phone_number_style"
-                  country={"ng"}
-                  value={formik.values.first_ref_phone}
-                  onChange={(event) => {
-                    formik.setFieldValue("first_ref_phone", event);
-                  }}
-                />
+                  <label htmlFor="phone_number">Phone Number</label>
+                  <PhoneInput
+                    inputProps={{
+                      name: "first_ref_phone",
+                      // required: true,
+                      // autoFocus: true,
+                    }}
+                    // containerClass="phone_number_style"
+                    country={"ng"}
+                    value={formik.values.first_ref_phone}
+                    onChange={(event) => {
+                      formik.setFieldValue("first_ref_phone", event);
+                    }}
+                  />
                   {formik.touched.first_ref_phone &&
                   formik.errors.first_ref_phone ? (
                     <small className="text-red-600">
@@ -286,23 +282,22 @@ export const ContactInfo = ({  }) => {
                   />
                 </div>
                 <div className="w-full  mt-[1rem]  max-w-lg">
-                <div className="w-full  mt-[1rem]  max-w-lg">
-                <label htmlFor="phone_number">Phone Number</label>
-                <PhoneInput
-                  inputProps={{
-                    name: "second_ref_phone",
-                    // required: true,
-                    // autoFocus: true,
-                  }}
-                  // containerClass="phone_number_style"
-                  country={"ng"}
-                  value={formik.values.second_ref_phone}
-                  onChange={(event) => {
-                    formik.setFieldValue("second_ref_phone", event);
-                  }}
-                />
-               
-                </div>
+                  <div className="w-full  mt-[1rem]  max-w-lg">
+                    <label htmlFor="phone_number">Phone Number</label>
+                    <PhoneInput
+                      inputProps={{
+                        name: "second_ref_phone",
+                        // required: true,
+                        // autoFocus: true,
+                      }}
+                      // containerClass="phone_number_style"
+                      country={"ng"}
+                      value={formik.values.second_ref_phone}
+                      onChange={(event) => {
+                        formik.setFieldValue("second_ref_phone", event);
+                      }}
+                    />
+                  </div>
                   {formik.touched.second_ref_phone &&
                   formik.errors.second_ref_phone ? (
                     <small className="text-red-600">

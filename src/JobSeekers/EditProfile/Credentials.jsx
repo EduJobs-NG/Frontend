@@ -96,8 +96,7 @@ export const Credentials = () => {
       <div className="mt-[4rem]">
         <h1 className="text-[1.2rem] font-[700]">Certificates</h1>
         <p>Add maximum of 3 of your necessary certificate.</p>
-        {/* {credentials && <p className="mt-[2rem] font-[700]">Certificates</p>} */}
-        {credentials &&
+        {credentials && credentials.length > 0 ? (
           credentials.map((item) => {
             return (
               <div key={item.id} className="">
@@ -116,16 +115,26 @@ export const Credentials = () => {
                 </div>
               </div>
             );
-          })}
+          })
+        ) : (
+          <div className="bg-[#f0f0f0] px-2 mt-[2rem] flex items-end justify-center text-center  rounded-md pb-[1rem] pt-[5rem]">
+            <p>
+              Please click on “Add Certificate” to record your certificates.
+            </p>
+          </div>
+        )}
 
         <div
           className={
-            credentials.length === 3
+            credentials && credentials.length === 3
               ? "hidden"
               : "mt-[3rem] items-baseline gap-3 text-center flex flex-row justify-center"
           }
         >
-          <div className="cursor-pointer" onClick={() => addCredentialsHandler()}>
+          <div
+            className="cursor-pointer"
+            onClick={() => addCredentialsHandler()}
+          >
             <img src={AddIcon} alt="" />
           </div>
           <span
@@ -136,14 +145,11 @@ export const Credentials = () => {
           </span>
         </div>
 
-        {credentials.length === 0 && (
+        {/* {credentials.length === 0 && (
           <div className="bg-[#f0f0f0] px-2 mt-[2rem] flex items-end justify-center text-center  rounded-md pb-[1rem] pt-[5rem]">
-            <p>
-              Please click on “Add Certificate” to record your certificate
-              
-            </p>
+            <p>Please click on “Add Certificate” to record your certificate</p>
           </div>
-        )}
+        )} */}
       </div>
     </section>
   );

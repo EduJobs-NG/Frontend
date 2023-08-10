@@ -1,12 +1,12 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-import AuthContext from '../../context/AuthContext';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import React, { useContext, useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import AuthContext from "../../context/AuthContext";
+import { FaBars, FaTimes } from "react-icons/fa";
 // import chat from '../../assets/chat.png';
 // import notification from '../../assets/notification.png';
-import Aos from 'aos';
-import { navigation } from '../../data';
-import { FaCaretDown } from 'react-icons/fa';
+import Aos from "aos";
+import { navigation } from "../../data";
+import { FaCaretDown } from "react-icons/fa";
 
 export const JobseekerNavbar = () => {
   const { user, logOutUser, getUserMeHandler } = useContext(AuthContext);
@@ -15,7 +15,8 @@ export const JobseekerNavbar = () => {
     Aos.init();
     Aos.refresh();
     getUserMeHandler();
-  },[]);
+  }, [getUserMeHandler]);
+
   const [menu, setMenu] = useState(false);
   const [active, setActive] = useState(false);
   const [dropDown, setDropDown] = useState(false);
@@ -24,25 +25,25 @@ export const JobseekerNavbar = () => {
     setActive(!active);
   };
 
-  const normalLink = 'border-none font-[700]';
-  const normalMobile = 'text-[1.3rem] font-[700]';
-  const activeLink = 'border-b border-b-white';
-  const activeMobile = 'text-blue text-[1.3rem] font-[700]';
+  const normalLink = "border-none font-[700]";
+  const normalMobile = "text-[1.3rem] font-[700]";
+  const activeLink = "border-b border-b-white";
+  const activeMobile = "text-blue text-[1.3rem] font-[700]";
 
   return (
-    <nav className='bg-[#02378B] z-[999] sticky top-0'>
-      <div className='container mx-auto'>
-        <div className='flex  py-[1rem] items-center flex-row justify-between'>
-          <ul className='flex gap-x-[3rem] text-white flex-row'>
-            <li className=''>
-              <a href='/dashboard/find-jobs'>
-                <img src={logo} className='w-[150px]' alt='' />
+    <nav className="bg-[#02378B] z-[999] sticky top-0">
+      <div className="container mx-auto">
+        <div className="flex  py-[1rem] items-center flex-row justify-between">
+          <ul className="flex gap-x-[3rem] text-white flex-row">
+            <li className="">
+              <a href="/dashboard/find-jobs">
+                <img src={logo} className="w-[150px]" alt="" />
               </a>
             </li>
-            <div className='hidden uppercase xl:flex gap-x-[3rem]'>
-              <li className=''>
+            <div className="hidden uppercase xl:flex gap-x-[3rem]">
+              <li className="">
                 <NavLink
-                  to='/dashboard/find-jobs'
+                  to="/dashboard/find-jobs"
                   className={({ isActive }) =>
                     isActive ? activeLink : normalLink
                   }
@@ -50,9 +51,9 @@ export const JobseekerNavbar = () => {
                   FIND JOBS
                 </NavLink>
               </li>
-              <li className=''>
+              <li className="">
                 <NavLink
-                  to='/dashboard/cv'
+                  to="/dashboard/cv"
                   className={({ isActive }) =>
                     isActive ? activeLink : normalLink
                   }
@@ -60,17 +61,18 @@ export const JobseekerNavbar = () => {
                   Get a CV
                 </NavLink>
               </li>
-              <li className=''>
+              <li className="">
                 {/* <NavLink to="/dashboard/saved-jobs" className={({ isActive }) => (isActive ? activeLink : normalLink)} >SAVED JOBS</NavLink> */}
               </li>
-              <li className=''>
+              <li className="">
                 {/* <NavLink to="/pricing" className={({ isActive }) => (isActive ? activeLink : normalLink)} >PRICING</NavLink> */}
               </li>
             </div>
           </ul>
 
-          <ul className='hidden xl:flex flex-row items-center text-white gap-x-[2rem]'>
-            <li className=''>Hello, {user?.user.first_name}</li>
+          <ul className="hidden xl:flex flex-row items-center text-white gap-x-[2rem]">
+            <li className="">Hello, </li>
+            {/* {user?.user.first_name} */}
             {/* <li>
               <img src={chat} alt="" />
             </li>
@@ -83,21 +85,21 @@ export const JobseekerNavbar = () => {
             <li>
               <div
                 onClick={() => setDropDown(!dropDown)}
-                className='flex relative cursor-pointer flex-row items-center '
+                className="flex relative cursor-pointer flex-row items-center "
               >
-                <div className='rounded-full overflow-hidden w-[40px] h-[40px]'>
-                  <img className='' src={user?.avatar} alt='avatar' />
+                <div className="rounded-full overflow-hidden w-[40px] h-[40px]">
+                  <img className="" src={user?.avatar} alt="avatar" />
                 </div>
                 <FaCaretDown />
                 {dropDown && (
-                  <div className='absolute z-[9999] rounded-b-[15px] bg-[#f1f1f1] right-[0.2rem] top-[3.5rem]'>
-                    <ul className='text-black w-[150px] '>
-                      <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>
-                        <a href='/dashboard/profile'>View Profile</a>
+                  <div className="absolute z-[9999] rounded-b-[15px] bg-[#f1f1f1] right-[0.2rem] top-[3.5rem]">
+                    <ul className="text-black w-[150px] ">
+                      <li className="pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all">
+                        <a href="/dashboard/profile/">View Profile</a>
                       </li>
                       <li
                         onClick={logOutUser}
-                        className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'
+                        className="pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all"
                       >
                         Log out
                       </li>
@@ -107,24 +109,24 @@ export const JobseekerNavbar = () => {
               </div>
             </li>
           </ul>
-          <div className='xl:hidden flex flex-row items-center h-[35px] gap-[1rem]'>
+          <div className="xl:hidden flex flex-row items-center h-[35px] gap-[1rem]">
             <div
               onClick={() => setDropDown(!dropDown)}
-              className='flex relative cursor-pointer flex-row items-center '
+              className="flex relative cursor-pointer flex-row items-center "
             >
-              <div className='overflow-hidden rounded-full w-[40px] h-[40px]'>
-                <img className='' src={user?.avatar} alt='avatar' />
+              <div className="overflow-hidden rounded-full w-[40px] h-[40px]">
+                <img className="" src={user?.avatar} alt="avatar" />
               </div>
-              <FaCaretDown className='text-white' />
+              <FaCaretDown className="text-white" />
               {dropDown && (
-                <div className='absolute z-[9999] rounded-b-[15px] bg-[#f1f1f1] right-[0.2rem] top-[3.5rem]'>
-                  <ul className='text-black w-[150px] '>
-                    <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>
-                      <a href='/dashboard/profile'>View Profile</a>
+                <div className="absolute z-[9999] rounded-b-[15px] bg-[#f1f1f1] right-[0.2rem] top-[3.5rem]">
+                  <ul className="text-black w-[150px] ">
+                    <li className="pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all">
+                      <a href="/dashboard/profile">View Profile</a>
                     </li>
                     <li
                       onClick={logOutUser}
-                      className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'
+                      className="pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all"
                     >
                       Log out
                     </li>
@@ -133,8 +135,8 @@ export const JobseekerNavbar = () => {
               )}
             </div>
 
-            <div onClick={handleClick} className='ml-[0.4rem]'>
-              <FaBars className='text-white text-[1.5rem] cursor-pointer' />
+            <div onClick={handleClick} className="ml-[0.4rem]">
+              <FaBars className="text-white text-[1.5rem] cursor-pointer" />
             </div>
             <div></div>
           </div>
@@ -143,19 +145,19 @@ export const JobseekerNavbar = () => {
 
       {/* Mobile Menu */}
       {active && (
-        <div className='absolute top-0 w-full z-[9999] xl:hidden'>
+        <div className="absolute top-0 w-full z-[9999] xl:hidden">
           <div
-            data-aos='fade-up'
-            className='bg-white  transition duration-1000 ease-in-out h-screen flex flex-col align-items justify-center  text-center '
+            data-aos="fade-up"
+            className="bg-white  transition duration-1000 ease-in-out h-screen flex flex-col align-items justify-center  text-center "
           >
             <FaTimes
               onClick={handleClick}
-              className='text-blue text-[1.3rem] mt-3 cursor-pointer absolute right-5 top-5'
+              className="text-blue text-[1.3rem] mt-3 cursor-pointer absolute right-5 top-5"
             />
-            <ul className='py-[2rem] flex flex-col '>
-              <li className='mb-[33px]'>
+            <ul className="py-[2rem] flex flex-col ">
+              <li className="mb-[33px]">
                 <NavLink
-                  to='/dashboard/find-jobs'
+                  to="/dashboard/find-jobs"
                   className={({ isActive }) =>
                     isActive ? activeMobile : normalMobile
                   }
@@ -163,9 +165,9 @@ export const JobseekerNavbar = () => {
                   FIND JOBS
                 </NavLink>
               </li>
-              <li className=''>
+              <li className="">
                 <NavLink
-                  to='/dashboard/cv'
+                  to="/dashboard/cv"
                   className={({ isActive }) =>
                     isActive ? activeLink : normalLink
                   }
@@ -173,16 +175,16 @@ export const JobseekerNavbar = () => {
                   Get a CV
                 </NavLink>
               </li>
-              <li className='mb-[33px]'>
+              <li className="mb-[33px]">
                 {/* <NavLink to="/dashboard/saved-jobs" className={({ isActive }) => (isActive ? activeMobile : normalMobile)} >SAVED JOBS</NavLink> */}
               </li>
-              <li className='mb-[33px]'>
+              <li className="mb-[33px]">
                 {/* <NavLink to="/pricing" className={({ isActive }) => (isActive ? activeMobile : normalMobile)}>PRICING</NavLink> */}
               </li>
-              <li className='mb-[33px]'>
+              <li className="mb-[33px]">
                 {/* <NavLink to="/messages" className={({ isActive }) => (isActive ? activeMobile : normalMobile)}>MESSAGES</NavLink> */}
               </li>
-              <li className='mb-[33px]'>
+              <li className="mb-[33px]">
                 {/* <NavLink to="/notification" className={({ isActive }) => (isActive ? activeMobile : normalMobile)}>NOTIFICATION</NavLink> */}
               </li>
             </ul>

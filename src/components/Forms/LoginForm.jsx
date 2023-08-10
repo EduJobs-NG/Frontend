@@ -1,16 +1,9 @@
-
-
-import React, {useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { FormInputBox } from "./FormInputBox";
-import {
-  FaSignInAlt,
-  FaEnvelope,
-  FaTimes,
-} from "react-icons/fa";
+import { FaSignInAlt, FaEnvelope, FaTimes } from "react-icons/fa";
 import { useFormik, Formik, Form } from "formik";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
-import axios from "axios";
 import { ThreeDots } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
 import google from "../../assets/google.png";
@@ -20,17 +13,17 @@ import jwtDecode from "jwt-decode";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import api from "../../utils/api";
 
-
-// 
+//
 export const LoginForm = ({ setShowLogin, showModal }) => {
   const { setAuthTokens, employerUser } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const onSubmit = async (values) => {
     setIsLoading(true);
-    const response = await axios
-      .post(`${process.env.REACT_APP_BASE_URL}jobseeker/jwt/token/`, values)
+    const response = await api
+      .post("/jobseeker/jwt/token/", values)
       .catch((err) => {
         if (err) {
           //   console.log(err)
@@ -48,26 +41,27 @@ export const LoginForm = ({ setShowLogin, showModal }) => {
         // console.log(err)
       });
 
-      if (response && response.data) {
-        // console.log(response.data)
-        if(employerUser){
-          localStorage.removeItem("authTokens", JSON.stringify(response.data));
-          localStorage.removeItem('employer_user');
-        }
-        
-        const userType = jwtDecode(response.data.access)
-        // console.log(userType)
-        if (userType.is_jobseeker === true){
-        localStorage.setItem("authTokens", JSON.stringify(response.data));
-        navigate('/dashboard/find-jobs');
-        setAuthTokens(response.data.access);
-
-        }
-        else {
-          toast.error('You are not registered as a job seeker')
-        }
-        setIsLoading(false);
+    if (response && response.data) {
+      // console.log(response.data)
+      if (employerUser) {
+        localStorage.removeItem("accessToken", JSON.stringify(response.data));
+        localStorage.removeItem("employer_user");
       }
+
+      const userType = jwtDecode(response.data.access);
+      // console.log(userType)
+      if (userType.is_jobseeker === true) {
+        localStorage.setItem(
+          "accessToken",
+          JSON.stringify(response.data.access)
+        );
+        navigate("/dashboard/find-jobs");
+        setAuthTokens(response.data.access);
+      } else {
+        toast.error("You are not registered as a job seeker");
+      }
+      setIsLoading(false);
+    }
   };
 
   const formik = useFormik({
@@ -163,7 +157,10 @@ export const LoginForm = ({ setShowLogin, showModal }) => {
                 </small>
                 <small>
                   Don't have an account?
-                  <Link className="text-blue underline" to="/jobseeker/register">
+                  <Link
+                    className="text-blue underline"
+                    to="/jobseeker/register"
+                  >
                     {" "}
                     Sign up
                   </Link>
@@ -171,10 +168,10 @@ export const LoginForm = ({ setShowLogin, showModal }) => {
               </div>
 
               <small>
-                  <Link to="/employer/login" className="text-blue underline">
-                    Employer Login
-                  </Link>
-                </small>
+                <Link to="/employer/login" className="text-blue underline">
+                  Employer Login
+                </Link>
+              </small>
 
               {/* <div className="flex justify-between gap-x-5 items-baseline">
                 <hr className="bg-blue border-[0.1px] w-[35%] " />
@@ -194,8 +191,6 @@ export const LoginForm = ({ setShowLogin, showModal }) => {
                   alt=""
                 />
               </div> */}
-
-              
             </Form>
           )}
         </Formik>

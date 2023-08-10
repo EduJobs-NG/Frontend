@@ -7,7 +7,7 @@ import axios from "axios";
 import api from "../../utils/AxiosInstance";
 
 export const EditBio = ({ setShowBio }) => {
-  const { user, authTokens, getUserMeHandler } = useContext(AuthContext);
+  const { user, accessToken, getUserMeHandler } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
 
   const { bio } = user;

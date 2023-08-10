@@ -14,12 +14,11 @@ import "react-phone-input-2/lib/bootstrap.css";
 
 const validationSchema = Yup.object({
   email: Yup.string().email("Invalid email address"),
-  phone_number: Yup.string().required('Required'),
-  facebook_url: Yup.string().url('URL must begin with https://'),
-  linkedin_url: Yup.string().url('URL must begin with https://'),
-  twitter_url: Yup.string().url('URL must begin with https://'),
-  instagram_url: Yup.string().url('URL must begin with https://'),
-  
+  phone_number: Yup.string().required("Required"),
+  facebook_url: Yup.string().url("URL must begin with https://"),
+  linkedin_url: Yup.string().url("URL must begin with https://"),
+  twitter_url: Yup.string().url("URL must begin with https://"),
+  instagram_url: Yup.string().url("URL must begin with https://"),
 });
 
 export const PersonalInfo = () => {
@@ -41,8 +40,6 @@ export const PersonalInfo = () => {
     instagram_url,
   } = user;
 
-
-  
   const onSubmit = async (values) => {
     // console.log('values', values);
 
@@ -50,21 +47,17 @@ export const PersonalInfo = () => {
     values.phone_number = `+${values.phone_number}`;
 
     const response = await api
-  
+
       .put(`/jobseeker/user-profile-update/`, values)
       .catch((err) => {
         console.log(err);
-        if(err.response.status === 400){
-          toast.error('The phone number is invalid')
+        if (err.response.status === 400) {
+          toast.error("The phone number is invalid");
           setIsLoading(false);
-
-        }
-        else{
+        } else {
           toast.error("An error occured. Try again");
           setIsLoading(false);
         }
-     
-      
       });
 
     if (response) {
@@ -101,12 +94,9 @@ export const PersonalInfo = () => {
 
       <Formik>
         <Form onSubmit={formik.handleSubmit}>
-      
-
           <div className="grid md:grid-cols-2 md:gap-3">
             <div className="w-full  max-w-lg">
               <FormInputBox
-                disabled
                 type="text"
                 label="First Name"
                 className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
@@ -136,7 +126,6 @@ export const PersonalInfo = () => {
           <div className="grid md:grid-cols-2 md:gap-3 mt-[1rem]">
             <div className="w-full max-w-lg">
               <FormInputBox
-                disabled
                 type="text"
                 label="Last Name"
                 className="border p-2.5 block w-full   border-solid border-[#808080] rounded-lg outline-none"
@@ -152,12 +141,13 @@ export const PersonalInfo = () => {
               <CustomSelect
                 label="Gender"
                 name="gender"
-                
                 placeholder="Please select a job"
                 className="border p-2.5 block w-full  border-solid border-[#808080] rounded-lg outline-none"
                 onChange={formik.handleChange}
               >
-                <option value="DEFAULT" disabled>Choose a gender</option>
+                <option value="DEFAULT" disabled>
+                  Choose a gender
+                </option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
               </CustomSelect>
@@ -272,7 +262,9 @@ export const PersonalInfo = () => {
                 onBlur={formik.handleBlur}
               />
               {formik.touched.facebook_url && formik.errors.facebook_url ? (
-                <small className="text-red-600">{formik.errors.facebook_url}</small>
+                <small className="text-red-600">
+                  {formik.errors.facebook_url}
+                </small>
               ) : null}
             </div>
             <div className="w-full md:mt-0 mt-[1rem]  max-w-lg">
@@ -287,8 +279,10 @@ export const PersonalInfo = () => {
                 value={formik.values.linkedin_url}
                 onBlur={formik.handleBlur}
               />
-               {formik.touched.linkedin_url && formik.errors.linkedin_url ? (
-                <small className="text-red-600">{formik.errors.linkedin_url}</small>
+              {formik.touched.linkedin_url && formik.errors.linkedin_url ? (
+                <small className="text-red-600">
+                  {formik.errors.linkedin_url}
+                </small>
               ) : null}
             </div>
           </div>
@@ -306,8 +300,10 @@ export const PersonalInfo = () => {
                 value={formik.values.twitter_url}
                 onBlur={formik.handleBlur}
               />
-               {formik.touched.twitter_url && formik.errors.twitter_url ? (
-                <small className="text-red-600">{formik.errors.twitter_url}</small>
+              {formik.touched.twitter_url && formik.errors.twitter_url ? (
+                <small className="text-red-600">
+                  {formik.errors.twitter_url}
+                </small>
               ) : null}
             </div>
             <div className="w-full md:mt-0 mt-[1rem]  max-w-lg">
@@ -322,8 +318,10 @@ export const PersonalInfo = () => {
                 value={formik.values.instagram_url}
                 onBlur={formik.handleBlur}
               />
-               {formik.touched.instagram_url && formik.errors.instagram_url ? (
-                <small className="text-red-600">{formik.errors.instagram_url}</small>
+              {formik.touched.instagram_url && formik.errors.instagram_url ? (
+                <small className="text-red-600">
+                  {formik.errors.instagram_url}
+                </small>
               ) : null}
             </div>
           </div>

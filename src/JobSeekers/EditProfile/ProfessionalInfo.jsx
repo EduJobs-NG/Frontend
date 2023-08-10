@@ -52,7 +52,7 @@ export const ProfessionalInfo = () => {
         All Education is valuable, ensure to list all schools attended below.
       </p>
 
-      {education &&
+      {education && education.length > 0 ? (
         education.map((item) => {
           const {
             id,
@@ -70,19 +70,18 @@ export const ProfessionalInfo = () => {
               className="relative  border mt-[1rem] px-[0.5rem] md:px-[2rem] py-[1rem] rounded-lg border-[#808080]"
             >
               {/* absolute right-5 */}
-             
-              <div className="flex flex-row justify-between">
 
-              <div>
-                <h1 className="text-xl font-[700]">{degree}</h1>
-                <p className="text-[1rem] font-[500]">{school_name}</p>
-                <p className="text-[1rem] font-[500]">
-                  {start_education} - {end_education}
-                </p>
-                <p className="text-[1rem] font-[500]">{grade}</p>
-                <p>{item.study_summary}</p>
-              </div>
-              <div className="flex flex-row justify-end gap-6 ">
+              <div className="flex flex-row justify-between">
+                <div>
+                  <h1 className="text-xl font-[700]">{degree}</h1>
+                  <p className="text-[1rem] font-[500]">{school_name}</p>
+                  <p className="text-[1rem] font-[500]">
+                    {start_education} - {end_education}
+                  </p>
+                  <p className="text-[1rem] font-[500]">{grade}</p>
+                  <p>{item.study_summary}</p>
+                </div>
+                <div className="flex flex-row justify-end gap-6 ">
                   <FaPencilAlt
                     className="text-blue cursor-pointer"
                     onClick={() => editSelectedItem(item)}
@@ -91,15 +90,20 @@ export const ProfessionalInfo = () => {
                     className="cursor-pointer text-blue ml-2 md:ml-0"
                     onClick={() => deleteSelectedItem(item)}
                   />
-                
+                </div>
               </div>
             </div>
-            </div>
-
 
             // </>
           );
-        })}
+        })
+      ) : (
+        <div className="bg-[#f0f0f0] px-2 mt-[2rem] flex items-end justify-center text-center  rounded-md pb-[1rem] pt-[5rem]">
+          <p>
+            Please click on “Add Education” to record your schools and degrees.
+          </p>
+        </div>
+      )}
 
       <div className="mt-[3rem] items-baseline gap-3 text-center flex flex-row justify-center">
         <div className="cursor-pointer" onClick={() => setShowEducation(true)}>
@@ -112,14 +116,6 @@ export const ProfessionalInfo = () => {
           Add Education
         </span>
       </div>
-
-      {education.length === 0 && (
-        <div className="bg-[#f0f0f0] px-2 mt-[2rem] flex items-end justify-center text-center  rounded-md pb-[1rem] pt-[5rem]">
-          <p>
-            Please click on “Add Education” to record your schools and degrees.
-          </p>
-        </div>
-      )}
     </section>
   );
 };
