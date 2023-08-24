@@ -1,11 +1,12 @@
-import axios from "axios";
+// import axios from "axios";
+import api from '../../utils/api';
 import { useFormik } from "formik";
 import { Formik, Form } from "formik";
+import { toast } from "react-toastify";
 import React, { useState } from "react";
-import "react-toastify/dist/ReactToastify.css";
 import { ThreeDots } from "react-loader-spinner";
+import { useAuth } from '../../context/auth.context';
 import { Link, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
 import { FaUserCircle, FaEnvelope } from "react-icons/fa";
 import { FormInputBox } from "../../components/Forms/FormInputBox";
 import CustomCheckbox from '../../components/Forms/CustomCheckbox';
@@ -14,29 +15,21 @@ import { RegistrationSchema as validationSchema } from "../../components/Forms/s
 
 
 export const IndividualRegistration = () => {
-  // hooks
   const navigate = useNavigate();
-
-  // states hooks
-  const [isLoading, setIsLoading] = useState(false);
+  const { register, loading } = useAuth();
 
   const onSubmit = async (values) => {
-    setIsLoading(true);
-    const response = await axios
-      .post(`${process.env.REACT_APP_BASE_URL}employer/account/individual-employer/`, values)
-      .catch(err => {
-        if (err?.message === 'Request failed with status code 400') toast.error('User with this email already exists');
-        else toast.error('An error occured, try again');
-        console.error(err);
-        setIsLoading(false);
-      });
-
-      if (response && response.data) {
+    await register(
+      async () => await api.post('/employer/account/individual-employer/', values),
+      () => {
         toast.success("Account created successfully.");
-        setTimeout(() => {
-          navigate("/verify");
-        }, 3000);
+        setTimeout(() => { navigate("/verify"); }, 3000);
+      },
+      error => {
+        if (error.message === "Request failed with status code 400") toast.error("User with this email already exists");
+        else toast.error("An error occured. Try again");
       }
+    );
   };
 
   const formik = useFormik({
@@ -54,8 +47,6 @@ export const IndividualRegistration = () => {
 
   return (
     <div className=" bg-white ">
-      <ToastContainer />
-
       <Formik>
         {() => (
           <Form onSubmit={formik?.handleSubmit}>
@@ -158,7 +149,7 @@ export const IndividualRegistration = () => {
               </div>
 
             </div>
-            {!isLoading && (
+            {!loading && (
               <button
                 disabled={!formik?.isValid}
                 className={
@@ -171,7 +162,7 @@ export const IndividualRegistration = () => {
                 SIGN UP
               </button>
             )}
-            {isLoading && (
+            {loading && (
               <div className="flex justify-center">
                 <ThreeDots
                   width={100}

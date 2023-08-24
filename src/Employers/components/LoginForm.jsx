@@ -1,94 +1,139 @@
-import React, { useContext, useState } from "react";
-import jwtDecode from "jwt-decode";
-import { FormInputBox } from "../../components/Forms/FormInputBox";
-import {
-  FaSignInAlt,
-  FaEnvelope,
-  FaTimes,
-} from "react-icons/fa";
-import { useFormik, Formik, Form } from "formik";
+import React from "react";
+import api from '../../utils/api';
+import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
-import AuthContext from "../../context/AuthContext";
-import axios from "axios";
-import { ThreeDots } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
-import { LoginSchema } from "../../components/Forms/schema";
+import { useFormik, Formik, Form } from "formik";
+import { ThreeDots } from "react-loader-spinner";
+import { useAuth } from '../../context/auth.context';
+import { FaSignInAlt, FaEnvelope, FaTimes } from "react-icons/fa";
+import { FormInputBox } from "../../components/Forms/FormInputBox";
+import { LoginSchema as validationSchema } from "../../components/Forms/schema";
 
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 
 
 export const EmployersLoginForm = ({ setShowLogin, showModal }) => {
-  const { setAuthTokens, user } = useContext(AuthContext);
-  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const onSubmit = async (values) => {
-    setIsLoading(true);
-    const response = await axios
-      .post(`${process.env.REACT_APP_BASE_URL}employer/jwt/token/`, values)
-      .catch((err) => {
-        // console.log(err)
-        if (err) {
-          if (err.response.status === 400) {
-            toast.error("Password or email incorrect");
-            setIsLoading(false);
-          } else if (err.response.status === 401) {
-            toast.error("No active account found");
-            setIsLoading(false);
-          } else if(err.message === 'Network Error') {
-            toast.error(err.message);
-            setIsLoading(false);
-          }
-           else {
-            toast.error("Something went wrong");
-            // console.log(err)
-            setIsLoading(false);
-          }
-        }
-      });
+  const { login, loading } = useAuth();
 
-    if (response && response.data) {
-      if(user){
-        localStorage.removeItem("authTokens");
-        localStorage.removeItem('user')
-      }
-      const userType = jwtDecode(response.data.access)
-     
-      if (userType.is_employee === true){
-      localStorage.setItem("authTokens", JSON.stringify(response.data));
-      setAuthTokens(response.data.access);
-      navigate('/employer/dashboard/view-jobs');
-      }
-      else {
-        toast.error('You are not registered as an employer')
-      }
-      setIsLoading(false);
-    }
+  const onSubmit = async (values) => {
+
+    await login(
+      async () => await api.post('/employer/jwt/token/', values),
+      () => navigate('/employer/dashboard/view-jobs'),
+      error => {
+        if (error?.response?.status === 400) toast.error("Password or email incorrect");
+        else if (error?.response?.status === 401) toast.error("No active account found");
+        else if (error.message === 'Network Error') toast.error(error.message);
+        else toast.error("Something went wrong");
+      },
+    );
+
+    // setIsLoading(true);
+    // const response = await axios
+    //   .post(`${process.env.REACT_APP_BASE_URL}employer/jwt/token/`, values)
+    //   .catch((err) => {
+    //     // console.log(err)
+    //     if (err) {
+    //       if (err.response.status === 400) {
+    //         toast.error("Password or email incorrect");
+    //         setIsLoading(false);
+    //       } else if (err.response.status === 401) {
+    //         toast.error("No active account found");
+    //         setIsLoading(false);
+    //       } else if (err.message === 'Network Error') {
+    //         toast.error(err.message);
+    //         setIsLoading(false);
+    //       }
+    //       else {
+    //         toast.error("Something went wrong");
+    //         // console.log(err)
+    //         setIsLoading(false);
+    //       }
+    //     }
+    //   });
+
+    // if (response && response.data) {
+    //   if (user) {
+    //     localStorage.removeItem("authTokens");
+    //     localStorage.removeItem('user')
+    //   }
+    //   const userType = jwtDecode(response.data.access)
+
+    //   if (userType.is_employee === true) {
+    //     localStorage.setItem("authTokens", JSON.stringify(response.data));
+    //     setAuthTokens(response.data.access);
+    //     navigate('/employer/dashboard/view-jobs');
+    //   }
+    //   else {
+    //     toast.error('You are not registered as an employer')
+    //   }
+    //   setIsLoading(false);
+    // }
   };
+  // const onSubmit = async (values) => {
+  //   setIsLoading(true);
+  //   const response = await axios
+  //     .post(`${process.env.REACT_APP_BASE_URL}employer/jwt/token/`, values)
+  //     .catch((err) => {
+  //       // console.log(err)
+  //       if (err) {
+  //         if (err.response.status === 400) {
+  //           toast.error("Password or email incorrect");
+  //           setIsLoading(false);
+  //         } else if (err.response.status === 401) {
+  //           toast.error("No active account found");
+  //           setIsLoading(false);
+  //         } else if (err.message === 'Network Error') {
+  //           toast.error(err.message);
+  //           setIsLoading(false);
+  //         }
+  //         else {
+  //           toast.error("Something went wrong");
+  //           // console.log(err)
+  //           setIsLoading(false);
+  //         }
+  //       }
+  //     });
+
+  //   if (response && response.data) {
+  //     if (user) {
+  //       localStorage.removeItem("authTokens");
+  //       localStorage.removeItem('user')
+  //     }
+  //     const userType = jwtDecode(response.data.access)
+
+  //     if (userType.is_employee === true) {
+  //       localStorage.setItem("authTokens", JSON.stringify(response.data));
+  //       setAuthTokens(response.data.access);
+  //       navigate('/employer/dashboard/view-jobs');
+  //     }
+  //     else {
+  //       toast.error('You are not registered as an employer')
+  //     }
+  //     setIsLoading(false);
+  //   }
+  // };
 
   const formik = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-    },
-    validateOnBlur: true,
     onSubmit,
-    validationSchema: LoginSchema,
+    validationSchema,
+    validateOnBlur: true,
+    initialValues: { email: "", password: "" },
   });
 
   return (
     <section>
-      <ToastContainer />
       <div className="border relative bg-white p-2 py-[2rem] px-[20px] mx-[1.5rem] md:px-[42px] rounded-[30px]  lg:w-[500px]">
-      <div className="flex my-4 gap-x-[0.2rem] justify-center items-center ">
+        <div className="flex my-4 gap-x-[0.2rem] justify-center items-center ">
           <FaSignInAlt className="text-[2rem] text-blue" />
           <div className="h-[2.5rem] w-[3px] mr-[0.5rem] ml-[0.5rem] bg-black"></div>
           <h2 className="title text-blue  text-[1.5rem] font-[800]">LOG IN</h2>
-          
+
         </div>
         <div>
-        {showModal ? (
+          {showModal ? (
             <FaTimes
               onClick={() => setShowLogin(false)}
               className="text-blue z-[99999] text-[1.3rem] absolute top-[1rem] right-[1rem]  cursor-pointer"
@@ -129,7 +174,7 @@ export const EmployersLoginForm = ({ setShowLogin, showModal }) => {
               ) : null}
 
               <div className="mt-[1.6rem]">
-                {!isLoading && (
+                {!loading && (
                   <button
                     disabled={!formik.isValid}
                     className={
@@ -142,7 +187,7 @@ export const EmployersLoginForm = ({ setShowLogin, showModal }) => {
                     LOGIN
                   </button>
                 )}
-                {isLoading && (
+                {loading && (
                   <div className="flex justify-center">
                     <ThreeDots
                       type="ThreeDots"
@@ -170,12 +215,12 @@ export const EmployersLoginForm = ({ setShowLogin, showModal }) => {
               </div>
 
               <small>
-                  <Link to="/jobseeker/login" className="text-blue underline">
-                    Jobseeker Login
-                  </Link>
-                </small>
+                <Link to="/jobseeker/login" className="text-blue underline">
+                  Jobseeker Login
+                </Link>
+              </small>
 
-             
+
             </Form>
           )}
         </Formik>

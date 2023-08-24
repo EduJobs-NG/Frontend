@@ -1,27 +1,23 @@
-import React, { useState } from "react";
-import { IndividualRegistration } from "../components/IndividualRegistration";
-import { CorporateRegistration } from "../components/CorporateRegistration";
+import React, { useState, useCallback } from "react";
 import { FaUserPlus, FaTimes } from "react-icons/fa";
+import { CorporateRegistration } from "../components/CorporateRegistration";
+import { IndividualRegistration } from "../components/IndividualRegistration";
 
 export const EmployersRegistration = ({ setShowRegister, showModal }) => {
-  const typeOfRegistration = ["individual(parent)", "corporate"];
-  const [title, setTitle] = useState("individual(parent)");
   const [active, setActive] = useState(0);
+  const [title, setTitle] = useState("individual(parent)");
+  const typeOfRegistration = ["individual(parent)", "corporate"];
 
   const handleTitle = (e, index) => {
-    setTitle(() => e.target.textContent.toLowerCase());
-    setActive(index);
+    setActive(index); setTitle(() => e.target.textContent.toLowerCase());
   };
-  const handleDisplay = () => {
+
+  const handleDisplay = useCallback(() => {
     switch (title) {
-      case "individual(parent)":
-        return <IndividualRegistration />;
-      case "corporate":
-        return <CorporateRegistration />;
-      default:
-        <IndividualRegistration />;
+      case "corporate": return <CorporateRegistration />;
+      default: return <IndividualRegistration />;
     }
-  };
+  }, [title]);
 
   return (
     <>
@@ -43,11 +39,10 @@ export const EmployersRegistration = ({ setShowRegister, showModal }) => {
             {typeOfRegistration.map((title, index) => {
               return (
                 <li
-                  className={`${
-                    active === index
-                      ? "text-blue border-b-[0.2rem] border-b-blue"
-                      : "text-black"
-                  } font-[700] cursor-pointer capitalize`}
+                  className={`${active === index
+                    ? "text-blue border-b-[0.2rem] border-b-blue"
+                    : "text-black"
+                    } font-[700] cursor-pointer capitalize`}
                   key={index}
                   onClick={(e) => handleTitle(e, index)}
                 >
@@ -82,11 +77,10 @@ export const EmployersRegistration = ({ setShowRegister, showModal }) => {
                 {typeOfRegistration.map((title, index) => {
                   return (
                     <li
-                      className={`${
-                        active === index
-                          ? "text-blue  border-b-blue border-b-[0.2rem]"
-                          : "text-black"
-                      } font-[700] cursor-pointer capitalize`}
+                      className={`${active === index
+                        ? "text-blue  border-b-blue border-b-[0.2rem]"
+                        : "text-black"
+                        } font-[700] cursor-pointer capitalize`}
                       key={index}
                       onClick={(e) => handleTitle(e, index)}
                     >

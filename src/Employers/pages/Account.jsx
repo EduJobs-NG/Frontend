@@ -1,9 +1,9 @@
 import AccountUI from '../components/AccountUi';
 import { EmployersNavbar } from '../LoggedInComponents/EmployersNavbar'
 
-export const Account = () => {
-  return <>
+export const Account = () => (
+  <>
     <EmployersNavbar />
     <AccountUI />
-  </>;
-};
+  </>
+);

@@ -1,8 +1,8 @@
 import React from "react";
-import { EmployersNavbar } from "../LoggedInComponents/EmployersNavbar";
-import img from "../../assets/post-job.png";
 import { JobForm } from "./JobForm";
-import {Footer} from '../../components/Footer'
+import img from "../../assets/post-job.png";
+import { Footer } from '../../components/Footer';
+import { EmployersNavbar } from "../LoggedInComponents/EmployersNavbar";
 
 export const EmployerPostJob = () => {
   return (
@@ -25,7 +25,7 @@ export const EmployerPostJob = () => {
               </p>
             </div>
             <div className="container mx-auto md:mx-0">
-            <JobForm />
+              <JobForm />
 
             </div>
           </div>

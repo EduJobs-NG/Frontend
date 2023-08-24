@@ -1,82 +1,42 @@
-import React, { useContext, useState } from "react";
-import { FormInputBox } from "./FormInputBox";
-import { FaSignInAlt, FaEnvelope, FaTimes } from "react-icons/fa";
-import { useFormik, Formik, Form } from "formik";
+import React from "react";
+import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
-import AuthContext from "../../context/AuthContext";
-import { ThreeDots } from "react-loader-spinner";
+import { FormInputBox } from "./FormInputBox";
 import { useNavigate } from "react-router-dom";
-import google from "../../assets/google.png";
-import linkedin from "../../assets/linkedin.png";
-import { LoginSchema } from "./schema";
-import jwtDecode from "jwt-decode";
+import { useFormik, Formik, Form } from "formik";
+import { ThreeDots } from "react-loader-spinner";
+import { useAuth } from '../../context/auth.context';
+import { LoginSchema as validationSchema } from "./schema";
+import { FaSignInAlt, FaEnvelope, FaTimes } from "react-icons/fa";
 
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import api from "../../utils/api";
 
 //
 export const LoginForm = ({ setShowLogin, showModal }) => {
-  const { setAuthTokens, employerUser } = useContext(AuthContext);
-  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { login, loading } = useAuth();
+
   const onSubmit = async (values) => {
-    setIsLoading(true);
-    const response = await api
-      .post("/jobseeker/jwt/token/", values)
-      .catch((err) => {
-        if (err) {
-          //   console.log(err)
-          if (err.response.status === 400) {
-            toast.error("Password or email incorrect");
-            setIsLoading(false);
-          } else if (err.response.status === 401) {
-            toast.error("No active account found");
-            setIsLoading(false);
-          } else {
-            toast.error("Something went wrong");
-            setIsLoading(false);
-          }
-        }
-        // console.log(err)
-      });
+    await login(
+      async api => await api.post('/jobseeker/jwt/token/', values),
+      () => navigate("/dashboard/find-jobs"),
 
-    if (response && response.data) {
-      // console.log(response.data)
-      if (employerUser) {
-        localStorage.removeItem("accessToken", JSON.stringify(response.data));
-        localStorage.removeItem("employer_user");
-      }
-
-      const userType = jwtDecode(response.data.access);
-      // console.log(userType)
-      if (userType.is_jobseeker === true) {
-        localStorage.setItem(
-          "accessToken",
-          JSON.stringify(response.data.access)
-        );
-        navigate("/dashboard/find-jobs");
-        setAuthTokens(response.data.access);
-      } else {
-        toast.error("You are not registered as a job seeker");
-      }
-      setIsLoading(false);
-    }
+      ({ response }) => {
+        if (response?.status == 400) toast.error("Password or email incorrect");
+        else if (response?.status == 401) toast.error("No active account found");
+        else toast.error('Something went wrong.');
+      },
+    );
   };
 
   const formik = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-    },
-    validateOnBlur: true,
     onSubmit,
-    validationSchema: LoginSchema,
+    validationSchema,
+    validateOnBlur: true,
+    initialValues: { email: "", password: "" },
   });
 
   return (
     <section>
-      <ToastContainer />
       <div className="border relative bg-white p-2 py-[2rem] px-[20px] mx-[1.5rem] md:px-[42px]  rounded-[30px]  lg:w-[500px]">
         <div className="flex my-4 gap-x-[0.2rem] justify-center items-center ">
           <FaSignInAlt className="text-[2rem] text-blue" />
@@ -124,7 +84,7 @@ export const LoginForm = ({ setShowLogin, showModal }) => {
               ) : null}
 
               <div className="mt-[1.6rem]">
-                {!isLoading && (
+                {!loading && (
                   <button
                     disabled={!formik.isValid}
                     className={
@@ -137,13 +97,13 @@ export const LoginForm = ({ setShowLogin, showModal }) => {
                     LOGIN
                   </button>
                 )}
-                {isLoading && (
+                {loading && (
                   <div className="flex justify-center">
                     <ThreeDots
-                      type="ThreeDots"
                       width={100}
                       height={20}
                       color="blue"
+                      type="ThreeDots"
                     />
                   </div>
                 )}

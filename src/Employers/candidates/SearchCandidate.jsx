@@ -1,6 +1,7 @@
 import React from 'react'
-import { FormInputBox } from '../../components/Forms/FormInputBox';
 import { FaSearch } from 'react-icons/fa';
+import { FormInputBox } from '../../components/Forms/FormInputBox';
+
 export const SearchCandidate = () => {
   return (
     <section>

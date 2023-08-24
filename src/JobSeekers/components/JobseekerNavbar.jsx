@@ -1,33 +1,26 @@
-import React, { useContext, useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
-import AuthContext from "../../context/AuthContext";
-import { FaBars, FaTimes } from "react-icons/fa";
-// import chat from '../../assets/chat.png';
-// import notification from '../../assets/notification.png';
 import Aos from "aos";
 import { navigation } from "../../data";
+import { NavLink } from "react-router-dom";
 import { FaCaretDown } from "react-icons/fa";
+import { FaBars, FaTimes } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import { useAuth } from '../../context/auth.context';
 
 export const JobseekerNavbar = () => {
-  const { user, logOutUser, getUserMeHandler } = useContext(AuthContext);
   const { logo } = navigation;
-  useEffect(() => {
-    Aos.init();
-    Aos.refresh();
-    getUserMeHandler();
-  }, [getUserMeHandler]);
+  const { user, logout } = useAuth();
 
   const [menu, setMenu] = useState(false);
   const [active, setActive] = useState(false);
   const [dropDown, setDropDown] = useState(false);
-  const handleClick = () => {
-    setMenu(!menu);
-    setActive(!active);
-  };
+
+  const handleClick = () => { setMenu(!menu); setActive(!active); };
+
+  useEffect(() => { Aos.init(); Aos.refresh(); }, []);
 
   const normalLink = "border-none font-[700]";
-  const normalMobile = "text-[1.3rem] font-[700]";
   const activeLink = "border-b border-b-white";
+  const normalMobile = "text-[1.3rem] font-[700]";
   const activeMobile = "text-blue text-[1.3rem] font-[700]";
 
   return (
@@ -98,7 +91,7 @@ export const JobseekerNavbar = () => {
                         <a href="/dashboard/profile/">View Profile</a>
                       </li>
                       <li
-                        onClick={logOutUser}
+                        onClick={logout}
                         className="pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all"
                       >
                         Log out
@@ -125,7 +118,7 @@ export const JobseekerNavbar = () => {
                       <a href="/dashboard/profile">View Profile</a>
                     </li>
                     <li
-                      onClick={logOutUser}
+                      onClick={logout}
                       className="pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all"
                     >
                       Log out

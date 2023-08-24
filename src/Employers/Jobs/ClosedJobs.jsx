@@ -1,18 +1,15 @@
-import React, { useState, useContext, useEffect } from "react";
+import { toast } from "react-toastify";
 import img from "../../assets/jobs-2.png";
 import api from "../../utils/AxiosInstance";
 import { Circles } from "react-loader-spinner";
 import { JobDetailPopup } from './JobDetailPopup';
-import AuthContext from "../../context/AuthContext";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React, { useState, useEffect } from "react";
 
 
 export const ClosedJobs = () => {
-  const { employerUser } = useContext(AuthContext)
-  const [isLoading, setIsLoading] = useState(false);
-  const [openJobs, setOpenJobs] = useState([]);
   const [jobItem, setJobItem] = useState({});
+  const [openJobs, setOpenJobs] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [showJobDetail, setShowJobDetail] = useState(false)
   const getOpenJobs = async () => {
     setIsLoading(true);
@@ -28,17 +25,15 @@ export const ClosedJobs = () => {
 
     }
   };
+  
   const handleJobDetail = (job) => {
     setShowJobDetail(true);
     setJobItem(job)
   }
-  useEffect(() => {
-    getOpenJobs();
-  }, []);
+  useEffect(() => { getOpenJobs(); }, []);
+
   return (
     <section className="container pt-[4rem] mx-auto">
-      <ToastContainer />
-
       {isLoading && (
         <div className="flex justify-center">
           <Circles type="ThreeDots" width={100} height={20} color="blue" />

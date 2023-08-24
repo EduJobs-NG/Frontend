@@ -41,8 +41,8 @@ export const JobseekerDashboard = () => {
         <Recent
           ref={ele}
           title={title}
-          location={location}
           Title={setTitle}
+          location={location}
           Location={setLocation}
         />
       </section>

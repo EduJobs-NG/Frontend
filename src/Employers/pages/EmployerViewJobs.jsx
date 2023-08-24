@@ -1,8 +1,8 @@
-import React,{useState} from 'react';
+import { Jobs } from '../Jobs/Jobs';
+import React, { useState } from 'react';
+import { Footer } from '../../components/Footer';
 import { EmployerHeader } from '../LoggedInComponents/EmployerHeader';
 import { EmployersNavbar } from '../LoggedInComponents/EmployersNavbar';
-import { Jobs } from '../Jobs/Jobs';
-import {Footer} from '../../components/Footer'
 
 export const EmployerViewJobs = () => {
   // states

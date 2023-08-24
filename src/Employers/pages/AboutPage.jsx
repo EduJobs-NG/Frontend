@@ -1,7 +1,7 @@
 import React from 'react'
-import { AboutHero } from '../../components/AboutHero';
 import { Navbar } from '../../components/Navbar';
 import { Footer } from '../../components/Footer';
+import { AboutHero } from '../../components/AboutHero';
 
 export const AboutPage = () => {
   return (
@@ -9,7 +9,6 @@ export const AboutPage = () => {
       <Navbar />
       <AboutHero />
       <Footer />
-      
     </section>
   )
-}
+};

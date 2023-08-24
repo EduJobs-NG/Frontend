@@ -1,13 +1,10 @@
 import React from 'react'
-import { EmployersNavbar } from '../LoggedInComponents/EmployersNavbar'
-import { EmployerHeader } from '../LoggedInComponents/EmployerHeader'
-export const EmployersDashboard = () => {
+import { EmployerHeader } from '../LoggedInComponents/EmployerHeader';
+import { EmployersNavbar } from '../LoggedInComponents/EmployersNavbar';
 
-  return (
-    <section className='bg-[#f5f5f5]'>
-      <EmployersNavbar />
-      
-      <EmployerHeader />
-    </section>
-  )
-}
+export const EmployersDashboard = () => (
+  <section className='bg-[#f5f5f5]'>
+    <EmployersNavbar />
+    <EmployerHeader />
+  </section>
+);
