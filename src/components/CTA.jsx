@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const CTA = () => {
   return (
@@ -9,19 +9,19 @@ export const CTA = () => {
       </h1>
       <div className="flex flex-col md:flex-row justify-center items-center gap-[1.5rem] my-[1.5rem]">
         <div className="">
-        <Link to="/jobseeker/register" className='py-[0.3em] px-[2.4em] cursor-pointer  border border-solid bg-blue text-white  hover:bg-white hover:text-blue text-[1.1rem] font-[800] border-blue rounded-[4px] uppercase'>
-                I'm a job seeker
-              </Link>
+          <Link to="/jobseeker/register" className='py-[0.3em] px-[2.4em] cursor-pointer  border border-solid bg-blue text-white  hover:bg-white hover:text-blue text-[1.1rem] font-[800] border-blue rounded-[4px] uppercase'>
+            I'm a job seeker
+          </Link>
         </div>
         <div className="">
-        <Link to="/employer" className='py-[0.3em]  px-[2.4em] cursor-pointer  border border-solid bg-blue text-white  hover:bg-white hover:text-blue text-[1.1rem] font-[800] border-blue rounded-[4px] uppercase'>
-                I'm an employer
-              </Link>
+          <Link to="/employer" className='py-[0.3em]  px-[2.4em] cursor-pointer  border border-solid bg-blue text-white  hover:bg-white hover:text-blue text-[1.1rem] font-[800] border-blue rounded-[4px] uppercase'>
+            I'm an employer
+          </Link>
         </div>
         <div className="">
-        <Link to="/employer/register" className='py-[0.3em] px-[2.4em] cursor-pointer  border border-solid bg-blue text-white  hover:bg-white hover:text-blue text-[1.1rem] font-[800] border-blue rounded-[4px] uppercase'>
-                I'm a parent
-              </Link>
+          <Link to="/employer/register" className='py-[0.3em] px-[2.4em] cursor-pointer  border border-solid bg-blue text-white  hover:bg-white hover:text-blue text-[1.1rem] font-[800] border-blue rounded-[4px] uppercase'>
+            I'm a parent
+          </Link>
         </div>
       </div>
     </section>

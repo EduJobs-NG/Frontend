@@ -3,45 +3,35 @@ import dayjs from "dayjs";
 import jwt from "jwt-decode";
 import { token } from './storage';
 
-const instance = axios.create({ baseURL: 'https://api.edujobsng.com/api/v1' });
+// Enable CORS for cross-origin requests
+// axios.defaults.withCredentials = true;
 
-// Interceptor to refresh token if it's about to expire
-const refreshTokenInterceptor = instance.interceptors.request.use(async (config) => {
-  const authTokens = token.object;
-  
-  if (authTokens) {
-    const user = jwt(authTokens.access), tokenExpiration = dayjs.unix(user.exp), currentTime = dayjs();
+export const baseURL = "https://api.edujobsng.com/api/v1", api = axios.create({ baseURL });
 
-    if (tokenExpiration.diff(currentTime) < 1) {
-      try {
-        const response = await axios.post(`${config.baseURL}/jobseeker/jwt/token/refresh/`, { refresh: authTokens.refresh });
-        token.key = response.data;
-      }
-      catch (error) { console.error(error); };
-    }
-  }
+const renewToken = async () => {
+  try {
+    const res = await axios.post(baseURL + "/jobseeker/jwt/token/refresh/", { refresh: token.object.refresh });
+    token.key = res.data; return res.data.access;
+  } catch (error) {
+    console.error('Error renewing token!', error); throw error;
+  };
+};
 
-  instance.interceptors.request.eject(refreshTokenInterceptor);
+api.interceptors.request.use(async config => {
+  const key = token.object;
+
+  if (key) {
+    const user = jwt(key.access), exp = dayjs.unix(user.exp), curr = dayjs();
+
+    if (exp.diff(curr) < 1) {
+      const newAccessToken = await renewToken();
+      config.headers.Authorization = `Bearer ${newAccessToken}`;
+    } else {
+      config.headers.Authorization = `Bearer ${key.access}`;
+    };
+  };
+
   return config;
-}, (error) => {
-  console.error(error, 'error from token refresh interceptor');
-});
+}, error => { console.error(error); return Promise.reject(error); });
 
-// Interceptor to set the token in the request headers
-instance.interceptors.request.use(async (config) => {
-  const authTokens = JSON.parse(localStorage.getItem('authTokens') || "{}");
-  if (authTokens) {
-    const user = jwt(authTokens.access);
-    const tokenExpiration = dayjs.unix(user.exp);
-    const currentTime = dayjs();
-
-    if (tokenExpiration.diff(currentTime) > 0) {
-      config.headers.Authorization = `Bearer ${authTokens.access}`;
-    }
-  }
-  return config;
-}, (error) => {
-  console.error(error, 'error setting token');
-});
-
-export default instance;
+export default api;

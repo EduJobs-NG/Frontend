@@ -21,21 +21,6 @@ export const ContactUs = () => {
       toast.error("There was an error. Try again.");
     }
     setIsLoading(false);
-
-    // setIsLoading(true);
-
-    // const response = await axios.post(`${process.env.REACT_APP_BASE_URL}contact/`, values)
-    //   .catch((err) => {
-    //     console.log(err);
-    //     toast.error("There was an error. Try again.");
-    //     setIsLoading(false);
-    //   });
-
-    // if (response && response.data) {
-    //   setIsLoading(false);
-    //   toast.success("We've received your message and would be in touch with you shortly.");
-    //   console.log(response.data);
-    // }
   };
 
   return (

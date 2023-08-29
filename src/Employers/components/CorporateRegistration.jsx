@@ -17,16 +17,16 @@ export const CorporateRegistration = () => {
   const { register, loading } = useAuth();
 
   const onSubmit = async (values) => {
-    await register(
-      async () => await api.post('/employer/account/cooperate-employer/', values),
-      () => {
-        toast.success("Account created successfully.");
-        setTimeout(() => { navigate("/verify"); }, 3000);
-      },
-      error => {
-        if (error.message === "Request failed with status code 400") toast.error("User with this email already exists");
-        else toast.error("An error occured. Try again");
-      },
+    await register('/employer/account/cooperate-employer/', values,
+      // async () => await api.post('/employer/account/cooperate-employer/', values),
+      // () => {
+      //   toast.success("Account created successfully.");
+      //   setTimeout(() => { navigate("/verify"); }, 3000);
+      // },
+      // error => {
+      //   if (error.message === "Request failed with status code 400") toast.error("User with this email already exists");
+      //   else toast.error("An error occured. Try again");
+      // },
     );
   };
 

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import Card from './Faq';
 import { Error } from '../Error';
-import api from '../../utils/AxiosInstance';
+import api from '../../utils/api';
 import { useEffect, useState } from 'react';
 import { Circles } from "react-loader-spinner";
 

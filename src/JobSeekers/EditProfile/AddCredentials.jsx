@@ -1,58 +1,46 @@
-import React, { useContext, useEffect, useState } from "react";
-import { FormInputBox } from "../../components/Forms/FormInputBox";
 import * as Yup from "yup";
+import api from "../../utils/api";
+import { toast } from "react-toastify";
+import React, { useState } from "react";
+import { FaTimes } from "react-icons/fa";
 import { useFormik, Formik, Form } from "formik";
-import AuthContext from "../../context/AuthContext";
 import { ThreeDots } from "react-loader-spinner";
-import {FaTimes } from "react-icons/fa";
+import { useAuth } from "../../context/auth.context";
 import CustomSelect from "../../components/Forms/CustomSelect";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import api from "../../utils/AxiosInstance";
+import { FormInputBox } from "../../components/Forms/FormInputBox";
 
 const validationSchema = Yup.object({
-  credential_type: Yup.string().required("Required"),
   file: Yup.string().required("Required"),
+  credential_type: Yup.string().required("Required"),
 });
-export const AddCredentials = ({ setShowAddCredentials, credentials }) => {
-  
-  const { updateUser, getUserMeHandler } = useContext(AuthContext);
+
+export const AddCredentials = ({ setShowAddCredentials }) => {
+  const { getUser } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
+
   const onSubmit = async (values) => {
     const data = new FormData();
     data.append("file", values.file);
-    data.append("credential_type", values.credential_type);
     data.append("name", values.file.name);
+    data.append("credential_type", values.credential_type);
     setIsLoading(true);
-    const response = await api.post(`/jobseeker/user-profile/me/credentials/`,data)
-      .catch((err) => {
-        console.log(err);
-        toast.error(err);
-        setIsLoading(false);
-      });
 
-    if (response && response.data) {
-      setIsLoading(false);
-      setShowAddCredentials(false);
-      toast.success("Your changes have been successfully saved");
-      getUserMeHandler()
-      
+    try {
+      await api.post(`/jobseeker/user-profile/me/credentials/`, data);
+      toast.success("Your changes have been successfully saved"); getUser();
     }
+    catch (error) { toast.error(error.message); };
+    setIsLoading(false);
   };
+
   const formik = useFormik({
-    initialValues: {
-      credential_type: "",
-      file: "",
-      name: "",
-    },
-    validateOnBlur: true,
     onSubmit,
-    validationSchema: validationSchema,
+    validationSchema,
+    validateOnBlur: true,
+    initialValues: { file: "", name: "", credential_type: "" },
   });
   return (
     <>
-      <ToastContainer />
-
       <div className="justify-center items-center  flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
         <div className="relative w-full  md:mt-0 my-6 mx-3 max-w-2xl">
           {/*content*/}
@@ -91,7 +79,7 @@ export const AddCredentials = ({ setShowAddCredentials, credentials }) => {
                       </CustomSelect>
 
                       {formik.touched.credential_type &&
-                      formik.errors.credential_type ? (
+                        formik.errors.credential_type ? (
                         <small className="text-red-600">
                           {formik.errors.credential_type}
                         </small>

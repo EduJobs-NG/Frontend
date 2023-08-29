@@ -25,17 +25,11 @@ export const RegisterForm = ({ showModal, setShowRegister }) => {
             .post(`${process.env.REACT_APP_BASE_URL}jobseeker/users/`, values)
             .catch(err => {
                 if (err && err.response) {
-                    if (err.message === 'Request failed with status code 400') {
-                        setIsLoading(false)
-                        toast.error("User with this email already exists")
+                    if (err.message === 'Request failed with status code 400') toast.error("User with this email already exists");
+                    else toast.error("An error occured. Try again");
 
-                    } else {
-                        setIsLoading(false)
-                        toast.error("An error occured. Try again")
-
-                    }
-                }
-                // console.log(err)
+                    setIsLoading(false);
+                };
             });
 
         if (response && response.data) {

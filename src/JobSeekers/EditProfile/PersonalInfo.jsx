@@ -1,20 +1,19 @@
-import React, { useContext, useState } from "react";
-import { FormInputBox } from "../../components/Forms/FormInputBox";
 import * as Yup from "yup";
-import { useFormik, Formik, Form } from "formik";
-import AuthContext from "../../context/AuthContext";
-import { ThreeDots } from "react-loader-spinner";
-import CustomSelect from "../../components/Forms/CustomSelect";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import api from "../../utils/AxiosInstance";
-
+import api from "../../utils/api";
+import { toast } from "react-toastify";
+import React, { useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/bootstrap.css";
+import { ThreeDots } from "react-loader-spinner";
+import { useFormik, Formik, Form } from "formik";
+import { useAuth } from "../../context/auth.context";
+import CustomSelect from "../../components/Forms/CustomSelect";
+import { FormInputBox } from "../../components/Forms/FormInputBox";
+
 
 const validationSchema = Yup.object({
-  email: Yup.string().email("Invalid email address"),
   phone_number: Yup.string().required("Required"),
+  email: Yup.string().email("Invalid email address"),
   facebook_url: Yup.string().url("URL must begin with https://"),
   linkedin_url: Yup.string().url("URL must begin with https://"),
   twitter_url: Yup.string().url("URL must begin with https://"),
@@ -22,22 +21,25 @@ const validationSchema = Yup.object({
 });
 
 export const PersonalInfo = () => {
-  // const [value, setValue] = useState("");
+  const { user, getUser } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
-  const { user, getUserMeHandler } = useContext(AuthContext);
 
   const {
-    user: { first_name, last_name, email },
-    middle_name,
-    home_address,
-    phone_number,
-    city,
-    state,
-    gender,
-    facebook_url,
-    linkedin_url,
-    twitter_url,
-    instagram_url,
+    city = '',
+    state = '',
+    gender = '',
+    middle_name = '',
+    home_address = '',
+    phone_number = '',
+    facebook_url = '',
+    linkedin_url = '',
+    twitter_url = '',
+    instagram_url = '',
+    user: {
+      email = '',
+      last_name = '',
+      first_name = '',
+    },
   } = user;
 
   const onSubmit = async (values) => {
@@ -64,34 +66,32 @@ export const PersonalInfo = () => {
       setIsLoading(false);
       toast.success("Your changes have been successfully saved");
       console.log(response);
-      getUserMeHandler();
+      getUser();
     }
   };
   const formik = useFormik({
     initialValues: {
-      first_name: first_name || "",
-      middle_name: middle_name || "",
-      last_name: last_name || "",
-      phone_number: phone_number || "",
-      email: email || "",
-      gender: gender || "",
-      home_address: home_address || "",
-      city: city || "",
-      state: state || "",
-      facebook_url: facebook_url || "",
-      instagram_url: instagram_url || "",
-      twitter_url: twitter_url || "",
-      linkedin_url: linkedin_url || "",
+      city,
+      state,
+      email,
+      gender,
+      last_name,
+      first_name,
+      middle_name,
+      twitter_url,
+      phone_number,
+      linkedin_url,
+      home_address,
+      facebook_url,
+      instagram_url,
     },
-    validateOnBlur: true,
     onSubmit,
-    validationSchema: validationSchema,
+    validationSchema,
+    validateOnBlur: true,
   });
 
   return (
     <section className="bg-white   rounded-[40px]">
-      <ToastContainer />
-
       <Formik>
         <Form onSubmit={formik.handleSubmit}>
           <div className="grid md:grid-cols-2 md:gap-3">
@@ -103,9 +103,9 @@ export const PersonalInfo = () => {
                 placeholder="First Name"
                 id="first_name"
                 name="first_name"
+                onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
                 value={formik.values.first_name}
-                onBlur={formik.handleBlur}
               />
             </div>
             <div className="w-full md:mt-0 mt-[1rem] max-w-lg">
@@ -116,9 +116,9 @@ export const PersonalInfo = () => {
                 placeholder="Middle Name"
                 id="middle_name"
                 name="middle_name"
+                onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
                 value={formik.values.middle_name}
-                onBlur={formik.handleBlur}
               />
             </div>
           </div>
@@ -132,9 +132,9 @@ export const PersonalInfo = () => {
                 placeholder="Last Name"
                 id="last_name"
                 name="last_name"
+                onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
                 value={formik.values.last_name}
-                onBlur={formik.handleBlur}
               />
             </div>
             <div className="w-full md:mt-0 mt-[1rem]  max-w-lg">

@@ -28,8 +28,8 @@ export const Navbar = () => {
 
       <div className="container mx-auto">
         <div className="flex e py-[1.5rem] items-center flex-row justify-between">
-          <ul className="flex uppercase gap-6 text-white flex-row">
-            <li className="title">
+          <ul className="flex uppercase gap-6 text-white flex-row items-center justify-center">
+            <li className="flex items-center flex-row">
               <Link to="/employer">
                 <img src={logo} className="h-full" alt="" />
               </Link>
@@ -54,7 +54,7 @@ export const Navbar = () => {
                 I'm a jobseeker
               </Link>
             </li>
-            
+
 
             <li>
               <Link to="#" onClick={() => setShowLogin(true)} className='py-[0.3em] px-[2.4em] cursor-pointer  border border-solid bg-white text-blue hover:text-white hover:bg-blue text-[1.1rem] font-[800] border-white rounded-[4px]'>

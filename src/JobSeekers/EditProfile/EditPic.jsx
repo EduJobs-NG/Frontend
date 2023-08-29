@@ -1,23 +1,20 @@
+import * as Yup from 'yup';
 import { Crop } from './Crop';
-import React, { useState, useContext } from "react";
+import api from "../../utils/api";
+import React, { useState } from "react";
+import { FaTimes } from "react-icons/fa";
 import { useFormik, Formik, Form } from "formik";
 import { ThreeDots } from "react-loader-spinner";
-import { FaBars, FaTimes } from "react-icons/fa";
-import AuthContext from "../../context/AuthContext";
+import { useAuth } from '../../context/auth.context';
 import { FormInputBox } from '../../components/Forms/FormInputBox';
-import * as Yup from 'yup';
-import api from "../../utils/AxiosInstance";
 
-const validationSchema = Yup.object({
-  avatar: Yup.string().required('Required')
-});
+const validationSchema = Yup.object({ avatar: Yup.string().required('Required') });
 
 export const EditPic = ({ setShowPic }) => {
-  
+  const { getUser } = useAuth()
   const [pop, setPop] = useState(null);
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const { getUserMeHandler } = useContext(AuthContext);
 
   const onSubmit = async (values) => {
     console.log(values)
@@ -35,7 +32,7 @@ export const EditPic = ({ setShowPic }) => {
     if (response) {
       setIsLoading(false);
       setShowPic(false);
-      getUserMeHandler();
+      getUser();
       console.log(response);
     }
   };

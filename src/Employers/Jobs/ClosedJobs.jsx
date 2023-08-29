@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 import img from "../../assets/jobs-2.png";
-import api from "../../utils/AxiosInstance";
+import api from "../../utils/api";
 import { Circles } from "react-loader-spinner";
 import { JobDetailPopup } from './JobDetailPopup';
 import React, { useState, useEffect } from "react";

@@ -19,102 +19,18 @@ export const EmployersLoginForm = ({ setShowLogin, showModal }) => {
 
   const onSubmit = async (values) => {
 
-    await login(
-      async () => await api.post('/employer/jwt/token/', values),
-      () => navigate('/employer/dashboard/view-jobs'),
-      error => {
-        if (error?.response?.status === 400) toast.error("Password or email incorrect");
-        else if (error?.response?.status === 401) toast.error("No active account found");
-        else if (error.message === 'Network Error') toast.error(error.message);
-        else toast.error("Something went wrong");
+    await login('/employer/jwt/token/', values,
+      async (user, setToken) => {
+        if (user.is_employee) { await setToken(); navigate('/employer/dashboard/view-jobs'); }
+        else toast.error('You are not registered as an employer');
       },
+      ({ response, message }) => toast.error(
+        response?.status === 400 ? 'Password or email incorrect'
+          : response.status === 401 ? 'No active account found'
+            : message === 'Network Error' ? message : 'Something went wrong!'
+      )
     );
-
-    // setIsLoading(true);
-    // const response = await axios
-    //   .post(`${process.env.REACT_APP_BASE_URL}employer/jwt/token/`, values)
-    //   .catch((err) => {
-    //     // console.log(err)
-    //     if (err) {
-    //       if (err.response.status === 400) {
-    //         toast.error("Password or email incorrect");
-    //         setIsLoading(false);
-    //       } else if (err.response.status === 401) {
-    //         toast.error("No active account found");
-    //         setIsLoading(false);
-    //       } else if (err.message === 'Network Error') {
-    //         toast.error(err.message);
-    //         setIsLoading(false);
-    //       }
-    //       else {
-    //         toast.error("Something went wrong");
-    //         // console.log(err)
-    //         setIsLoading(false);
-    //       }
-    //     }
-    //   });
-
-    // if (response && response.data) {
-    //   if (user) {
-    //     localStorage.removeItem("authTokens");
-    //     localStorage.removeItem('user')
-    //   }
-    //   const userType = jwtDecode(response.data.access)
-
-    //   if (userType.is_employee === true) {
-    //     localStorage.setItem("authTokens", JSON.stringify(response.data));
-    //     setAuthTokens(response.data.access);
-    //     navigate('/employer/dashboard/view-jobs');
-    //   }
-    //   else {
-    //     toast.error('You are not registered as an employer')
-    //   }
-    //   setIsLoading(false);
-    // }
   };
-  // const onSubmit = async (values) => {
-  //   setIsLoading(true);
-  //   const response = await axios
-  //     .post(`${process.env.REACT_APP_BASE_URL}employer/jwt/token/`, values)
-  //     .catch((err) => {
-  //       // console.log(err)
-  //       if (err) {
-  //         if (err.response.status === 400) {
-  //           toast.error("Password or email incorrect");
-  //           setIsLoading(false);
-  //         } else if (err.response.status === 401) {
-  //           toast.error("No active account found");
-  //           setIsLoading(false);
-  //         } else if (err.message === 'Network Error') {
-  //           toast.error(err.message);
-  //           setIsLoading(false);
-  //         }
-  //         else {
-  //           toast.error("Something went wrong");
-  //           // console.log(err)
-  //           setIsLoading(false);
-  //         }
-  //       }
-  //     });
-
-  //   if (response && response.data) {
-  //     if (user) {
-  //       localStorage.removeItem("authTokens");
-  //       localStorage.removeItem('user')
-  //     }
-  //     const userType = jwtDecode(response.data.access)
-
-  //     if (userType.is_employee === true) {
-  //       localStorage.setItem("authTokens", JSON.stringify(response.data));
-  //       setAuthTokens(response.data.access);
-  //       navigate('/employer/dashboard/view-jobs');
-  //     }
-  //     else {
-  //       toast.error('You are not registered as an employer')
-  //     }
-  //     setIsLoading(false);
-  //   }
-  // };
 
   const formik = useFormik({
     onSubmit,

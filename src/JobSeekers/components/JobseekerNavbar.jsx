@@ -1,5 +1,6 @@
 import Aos from "aos";
 import { navigation } from "../../data";
+import { Link, useNavigate } from 'react-router-dom';
 import { NavLink } from "react-router-dom";
 import { FaCaretDown } from "react-icons/fa";
 import { FaBars, FaTimes } from "react-icons/fa";
@@ -8,6 +9,7 @@ import { useAuth } from '../../context/auth.context';
 
 export const JobseekerNavbar = () => {
   const { logo } = navigation;
+  const navigate = useNavigate();
   const { user, logout } = useAuth();
 
   const [menu, setMenu] = useState(false);
@@ -29,9 +31,9 @@ export const JobseekerNavbar = () => {
         <div className="flex  py-[1rem] items-center flex-row justify-between">
           <ul className="flex gap-x-[3rem] text-white flex-row">
             <li className="">
-              <a href="/dashboard/find-jobs">
+              <Link to="/dashboard/find-jobs">
                 <img src={logo} className="w-[150px]" alt="" />
-              </a>
+              </Link>
             </li>
             <div className="hidden uppercase xl:flex gap-x-[3rem]">
               <li className="">
@@ -88,10 +90,10 @@ export const JobseekerNavbar = () => {
                   <div className="absolute z-[9999] rounded-b-[15px] bg-[#f1f1f1] right-[0.2rem] top-[3.5rem]">
                     <ul className="text-black w-[150px] ">
                       <li className="pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all">
-                        <a href="/dashboard/profile/">View Profile</a>
+                        <Link to="/dashboard/profile/">View Profile</Link>
                       </li>
                       <li
-                        onClick={logout}
+                        onClick={() => logout(() => navigate('/jobseeker/login', { replace: true }))}
                         className="pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all"
                       >
                         Log out
@@ -115,10 +117,10 @@ export const JobseekerNavbar = () => {
                 <div className="absolute z-[9999] rounded-b-[15px] bg-[#f1f1f1] right-[0.2rem] top-[3.5rem]">
                   <ul className="text-black w-[150px] ">
                     <li className="pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all">
-                      <a href="/dashboard/profile">View Profile</a>
+                      <Link to="/dashboard/profile">View Profile</Link>
                     </li>
                     <li
-                      onClick={logout}
+                      onClick={() => logout(() => navigate('/jobseeker/login', { replace: true }))}
                       className="pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all"
                     >
                       Log out

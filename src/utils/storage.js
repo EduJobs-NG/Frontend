@@ -32,7 +32,6 @@ export const token = {
 
     get key() {
         const tokenValue = getItem(this.tokenName);
-        console.log('Token requested');
         return tokenValue ? `Bearer ${tokenValue?.access}` : '';
     },
 

@@ -16,15 +16,16 @@ export const LoginForm = ({ setShowLogin, showModal }) => {
   const { login, loading } = useAuth();
 
   const onSubmit = async (values) => {
-    await login(
-      async api => await api.post('/jobseeker/jwt/token/', values),
-      () => navigate("/dashboard/find-jobs"),
-
-      ({ response }) => {
-        if (response?.status == 400) toast.error("Password or email incorrect");
-        else if (response?.status == 401) toast.error("No active account found");
-        else toast.error('Something went wrong.');
+    await login('/jobseeker/jwt/token/', values,
+      async (user, setToken) => {
+        if (user.is_jobseeker) { await setToken(); navigate('/dashboard/find-jobs'); }
+        else toast.error('You are not registered as a jobseeker');
       },
+      ({ response }) => toast.error(
+        response?.status === 400 ? 'Password or email incorrect'
+          : response?.status === 401 ? 'No active account found'
+            : 'Something went wrong!'
+      )
     );
   };
 

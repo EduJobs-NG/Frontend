@@ -1,8 +1,8 @@
 import api from '../utils/api';
 import decode from "jwt-decode";
-import { token } from '../utils/storage';
 import { useNavigate } from 'react-router-dom';
-import { createContext, useContext, useState } from 'react';
+import { token, getItem, setItem, removeItem } from '../utils/storage';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 const AuthContext = createContext();
 
@@ -20,47 +20,55 @@ export default function AuthProvider({ children }) {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
 
+    useEffect(() => {
+        if (!user) getUser((user) => navigate(user?.org_name !== undefined ? '/employer' : '/dashboard/find-jobs', { replace: true }));
+    }, []);
+
     const getUser = async (callback, fallback) => {
-        setLoading(true);
+        const url = getItem('user-url');
+        if (!url) return;
 
+        setLoading(true); setError(false);
         try {
-            const responses = await Promise.race([api.get('/employer/users/me/'), api.get('/jobseeker/user-profile-update/')]);
-            setUser(responses.data); callback?.();
+            const res = await api.get(url);
+            setUser(res.data);
+            await callback?.(res.data); setItem('user', res.data);
         } catch (error) {
-            // Handle errors if needed
-            console.error(error);
-            fallback?.();
-        }
-
-        setLoading(false);
+            setError(error); fallback?.();
+        }; setLoading(false);
     };
 
 
-    const login = async (func, callback, fallback) => {
+    const login = async (url, data, callback, fallback) => {
         setLoading(true); setError(false);
         try {
-            const res = await func(api);
-            token.key = res.data.access;
-            
-            const userObject = decode(res.data.access);
-            setUser(userObject); callback?.(res.data);
+            const res = await api.post(url, data);
+            const decoded = decode(res.data.access);
+            callback?.(decoded, async () => {
+                token.key = res.data;
+                setItem('user-url', decoded?.is_jobseeker ? '/jobseeker/user-profile-update/' : '/employer/users/me/');
+                await getUser();
+            });
         }
         catch (error) {
             setError('Failed to login user', error.message);
+            console.error(error.message, error);
             fallback?.(error);
         };
         setLoading(false);
     };
 
-    const logout = async (url, callback) => {
+    const logout = async (callback) => {
+        removeItem('user-url');
+        removeItem('user');
         token.key = null;
         callback?.();
     };
 
-    const register = async (func, callback, fallback) => {
+    const register = async (url, data, callback, fallback) => {
         setLoading(true); setError(false);
         try {
-            const res = await func(api);
+            const res = await api.post(url, data);
             callback?.();
         }
         catch (error) {
@@ -70,5 +78,5 @@ export default function AuthProvider({ children }) {
         setLoading(false);
     };
 
-    return <AuthContext.Provider children={children} value={{ user, error, loading, login, logout, register }} />;
+    return <AuthContext.Provider children={children} value={{ user, error, loading, login, logout, register, getUser }} />;
 };

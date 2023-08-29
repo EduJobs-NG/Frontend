@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaTimes } from "react-icons/fa";
 import { Markup } from "interweave";
 import Moment from "moment";
-import api from "../../utils/AxiosInstance";
+import api from "../../utils/api";
 import { useNavigate } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
 import { ToastContainer, toast } from "react-toastify";

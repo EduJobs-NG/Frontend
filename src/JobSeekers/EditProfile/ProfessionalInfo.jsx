@@ -1,27 +1,23 @@
-import React, { useContext, useState } from "react";
-import AuthContext from "../../context/AuthContext";
+import Moment from "moment";
+import React, { useState } from "react";
 import { AddEducation } from "./AddEducation";
 import AddIcon from "../../assets/AddIcon.png";
+import { EditEducation } from "./EditEducation";
+import { useAuth } from "../../context/auth.context";
 import { FaTrash, FaPencilAlt } from "react-icons/fa";
 import { DeleteEducation } from "../DeleteProfile/DeleteEducation";
-import { EditEducation } from "./EditEducation";
-import Moment from "moment";
 
 export const ProfessionalInfo = () => {
-  const [showEducation, setShowEducation] = useState(false);
-  const [showDelete, setShowDelete] = useState(false);
-  const [showEdit, setShowEdit] = useState(false);
-  const { user, getUserMeHandler } = useContext(AuthContext);
+  const { user, getUser } = useAuth();
   const education = user?.professional_info;
+
+  const [showEdit, setShowEdit] = useState(false);
+  const [showDelete, setShowDelete] = useState(false);
   const [selectedItem, setSelectedItem] = useState({});
-  const deleteSelectedItem = (item) => {
-    setSelectedItem(item);
-    setShowDelete(true);
-  };
-  const editSelectedItem = (item) => {
-    setSelectedItem(item);
-    setShowEdit(true);
-  };
+  const [showEducation, setShowEducation] = useState(false);
+
+  const editSelectedItem = (item) => { setSelectedItem(item); setShowEdit(true); };
+  const deleteSelectedItem = (item) => { setSelectedItem(item); setShowDelete(true); };
 
   return (
     <section>
@@ -35,14 +31,14 @@ export const ProfessionalInfo = () => {
       {showDelete && (
         <DeleteEducation
           setShowDelete={setShowDelete}
-          getUserMeHandler={getUserMeHandler}
+          getUserMeHandler={getUser}
           item={selectedItem}
         />
       )}
       {showEdit && (
         <EditEducation
           setShowEdit={setShowEdit}
-          getUserMeHandler={getUserMeHandler}
+          getUserMeHandler={getUser}
           item={selectedItem}
         />
       )}

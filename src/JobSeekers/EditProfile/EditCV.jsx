@@ -1,27 +1,26 @@
-import React, { useContext, useState } from "react";
-import { FormInputBox } from "../../components/Forms/FormInputBox";
 import * as Yup from "yup";
+import api from "../../utils/api";
+import { toast } from "react-toastify";
+import React, { useState } from "react";
+import { FaTimes } from "react-icons/fa";
 import { useFormik, Formik, Form } from "formik";
-import AuthContext from "../../context/AuthContext";
 import { ThreeDots } from "react-loader-spinner";
-import {FaTimes } from "react-icons/fa";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import api from "../../utils/AxiosInstance";
+import { useAuth } from "../../context/auth.context";
+import { FormInputBox } from "../../components/Forms/FormInputBox";
 
-const validationSchema = Yup.object({
-  file: Yup.string().required("Required"),
-});
-export const EditCV = ({ setShowEditCV, cv}) => {
-  const { updateUse, getUserMeHandler } = useContext(AuthContext);
+const validationSchema = Yup.object({ file: Yup.string().required("Required") });
+
+export const EditCV = ({ setShowEditCV, cv }) => {
+  const { getUser } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
+
   const onSubmit = async (values) => {
     setIsLoading(true);
 
     const data = new FormData();
     data.append("file", values.file);
     data.append("name", values.file.name);
-    const response = await api.put(`/jobseeker/user-profile/me/cv/${cv.id}/`,data)
+    const response = await api.put(`/jobseeker/user-profile/me/cv/${cv.id}/`, data)
       .catch((err) => {
         console.log(err);
         toast.error(err);
@@ -29,26 +28,19 @@ export const EditCV = ({ setShowEditCV, cv}) => {
       });
 
     if (response && response.data) {
-      setIsLoading(false);
-      setShowEditCV(false);
+      setIsLoading(false); setShowEditCV(false);
       toast.success("Your changes have been successfully saved");
-     getUserMeHandler()
+      getUser()
     }
   };
   const formik = useFormik({
-    initialValues: {
-      file: "",
-      name:''
-      
-    },
-    validateOnBlur: true,
     onSubmit,
-    validationSchema: validationSchema,
+    validationSchema,
+    validateOnBlur: true,
+    initialValues: { file: "", name: '' },
   });
   return (
     <>
-      <ToastContainer />
-
       <div className="justify-center items-center  flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
         <div className="relative w-full  md:mt-0 my-6 mx-3 max-w-2xl">
           {/*content*/}
@@ -72,7 +64,7 @@ export const EditCV = ({ setShowEditCV, cv}) => {
               <Formik>
                 <Form onSubmit={formik.handleSubmit}>
                   <div className="grid ">
-                   
+
                     <div className="w-full  max-w-lg">
                       <FormInputBox
                         name="file"

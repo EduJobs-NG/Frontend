@@ -15,12 +15,10 @@ export const CvPayment = () => {
   const getPrice = async () => {
     const response = await api.get(`/cv-creation/price/`).catch((err) => {
       setError(true);
-      console.log(err);
       setIsLoading(false);
     });
 
     if (response && response.data) {
-      console.log(response.data);
       setKey(response.data.results[0].public_Key);
       setPrice(response.data.results[0].price);
     }
