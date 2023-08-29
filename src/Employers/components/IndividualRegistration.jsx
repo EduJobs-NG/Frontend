@@ -1,9 +1,7 @@
-// import axios from "axios";
-import api from '../../utils/api';
+import React from "react";
 import { useFormik } from "formik";
 import { Formik, Form } from "formik";
 import { toast } from "react-toastify";
-import React, { useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import { useAuth } from '../../context/auth.context';
 import { Link, useNavigate } from "react-router-dom";
@@ -19,8 +17,7 @@ export const IndividualRegistration = () => {
   const { register, loading } = useAuth();
 
   const onSubmit = async (values) => {
-    await register(
-      async () => await api.post('/employer/account/individual-employer/', values),
+    await register('/employer/account/individual-employer/', values,
       () => {
         toast.success("Account created successfully.");
         setTimeout(() => { navigate("/verify"); }, 3000);

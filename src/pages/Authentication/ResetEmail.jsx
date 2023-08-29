@@ -1,4 +1,3 @@
-// import axios from "axios";
 import * as Yup from "yup";
 import api from '../../utils/api';
 import { toast } from "react-toastify";
@@ -21,28 +20,8 @@ export const ResetEmail = () => {
     try {
       await api.post('/jobseeker/users/reset_email/', values);
       toast.success("A reset link has been sent to the provided email address.");
-    } catch (error) {
-      toast.error(error.message);
-    };
+    } catch (error) { toast.error(error.message); };
     setIsLoading(false);
-
-    // setIsLoading(true);
-    // const response = await axios
-    //   .post(
-    //     `${process.env.REACT_APP_BASE_URL}jobseeker/users/reset_email/`,
-    //     values
-    //   )
-    //   .catch((err) => {
-    //     toast.error(err.message);
-    //     setIsLoading(false);
-    //   });
-
-    // if (response) {
-    //   setIsLoading(false);
-    //   toast.success(
-    //     "A reset link has been sent to the provided email address."
-    //   );
-    // }
   };
 
   const formik = useFormik({

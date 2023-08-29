@@ -1,46 +1,35 @@
-import React, { useState } from 'react';
-import { FormInputBox } from './FormInputBox';
-import { useFormik } from 'formik';
-import axios from 'axios';
-import { FaUserPlus, FaUserCircle, FaEnvelope } from 'react-icons/fa';
-import { ThreeDots } from 'react-loader-spinner';
+import React from 'react';
 import { Formik, Form } from 'formik';
-import { Link, useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 import { FaTimes } from 'react-icons/fa';
+import { useFormik } from 'formik';
+import { FormInputBox } from './FormInputBox';
 import CustomCheckbox from './CustomCheckbox';
 import { RegistrationSchema } from './schema';
+import { ThreeDots } from 'react-loader-spinner';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/auth.context';
+import { FaUserPlus, FaUserCircle, FaEnvelope } from 'react-icons/fa';
 
 
 
 export const RegisterForm = ({ showModal, setShowRegister }) => {
-
-    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
+    const { register, loading } = useAuth();
 
     const onSubmit = async (values) => {
-        setIsLoading(true)
-        const response = await axios
-            .post(`${process.env.REACT_APP_BASE_URL}jobseeker/users/`, values)
-            .catch(err => {
-                if (err && err.response) {
-                    if (err.message === 'Request failed with status code 400') toast.error("User with this email already exists");
-                    else toast.error("An error occured. Try again");
+        await register("/jobseeker/users/", values,
+            async () => {
+                toast.success("Account created successfully.")
+                setTimeout(() => { navigate('/verify'); }, 3000)
+            },
+            error => {
+                if (error.message === 'Request failed with status code 400') toast.error("User with this email already exists");
+                else toast.error("An error occured. Try again");
+            }
+        );
+    };
 
-                    setIsLoading(false);
-                };
-            });
-
-        if (response && response.data) {
-            toast.success("Account created successfully.")
-            setTimeout(() => {
-                navigate('/verify');
-            }, 3000)
-        }
-
-
-    }
 
     const formik = useFormik({
         initialValues: {
@@ -60,7 +49,6 @@ export const RegisterForm = ({ showModal, setShowRegister }) => {
 
     return (
         <div className=' border relative bg-white p-2 py-[2rem] px-[20px] mx-[1.5rem] md:px-[42px] rounded-[40px] max-w-[500px]'>
-            <ToastContainer />
 
             <div className=' flex my-4 gap-x-[0.2rem] justify-center items-center '>
                 <FaUserPlus className='text-[2rem] text-blue' />
@@ -122,8 +110,8 @@ export const RegisterForm = ({ showModal, setShowRegister }) => {
 
                         </div>
 
-                        {!isLoading && <button disabled={!formik.isValid} className={!formik.isValid ? 'bg-blue block w-full text-white opacity-25 font-[700] rounded-[6px] p-2' : 'bg-blue opacity-100 block w-full text-white font-[700] rounded-[6px] p-2'} type="submit">SIGN UP</button>}
-                        {isLoading && (
+                        {!loading && <button disabled={!formik.isValid} className={!formik.isValid ? 'bg-blue block w-full text-white opacity-25 font-[700] rounded-[6px] p-2' : 'bg-blue opacity-100 block w-full text-white font-[700] rounded-[6px] p-2'} type="submit">SIGN UP</button>}
+                        {loading && (
                             <div className='flex justify-center'>
                                 <ThreeDots type="ThreeDots"
                                     width={100} height={20} color="blue"

@@ -1,9 +1,7 @@
-// import axios from "axios";
-import api from '../../utils/api';
+import React from "react";
 import { useFormik } from "formik";
 import { Formik, Form } from "formik";
 import { toast } from "react-toastify";
-import React, { useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import { useAuth } from '../../context/auth.context';
 import { Link, useNavigate } from "react-router-dom";
@@ -18,45 +16,16 @@ export const CorporateRegistration = () => {
 
   const onSubmit = async (values) => {
     await register('/employer/account/cooperate-employer/', values,
-      // async () => await api.post('/employer/account/cooperate-employer/', values),
-      // () => {
-      //   toast.success("Account created successfully.");
-      //   setTimeout(() => { navigate("/verify"); }, 3000);
-      // },
-      // error => {
-      //   if (error.message === "Request failed with status code 400") toast.error("User with this email already exists");
-      //   else toast.error("An error occured. Try again");
-      // },
+      () => {
+        toast.success("Account created successfully.");
+        setTimeout(() => { navigate("/verify"); }, 3000);
+      },
+      error => {
+        if (error.message === "Request failed with status code 400") toast.error("User with this email already exists");
+        else toast.error("An error occured. Try again");
+      },
     );
   };
-
-  // const onSubmit = async (values) => {
-  //   setIsLoading(true);
-  //   const response = await axios
-  //     .post(
-  //       `${process.env.REACT_APP_BASE_URL}employer/account/cooperate-employer/`,
-  //       values
-  //     )
-  //     .catch((err) => {
-  //       if (err && err.response) {
-  //         if (err.message === "Request failed with status code 400") {
-  //           setIsLoading(false);
-  //           toast.error("User with this email already exists");
-  //         } else {
-  //           setIsLoading(false);
-  //           toast.error("An error occured. Try again");
-  //           // console.log(err);
-  //         }
-  //       }
-  //     });
-
-  //   if (response && response.data) {
-  //     toast.success("Account created successfully.");
-  //     setTimeout(() => {
-  //       navigate("/verify");
-  //     }, 3000);
-  //   }
-  // };
 
   const formik = useFormik({
     onSubmit,

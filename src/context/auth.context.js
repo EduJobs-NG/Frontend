@@ -18,7 +18,7 @@ export default function AuthProvider({ children }) {
 
     const [user, setUser] = useState(null);
     const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         if (!user) getUser((user) => navigate(user?.org_name !== undefined ? '/employer' : '/dashboard/find-jobs', { replace: true }));
@@ -26,7 +26,7 @@ export default function AuthProvider({ children }) {
 
     const getUser = async (callback, fallback) => {
         const url = getItem('user-url');
-        if (!url) return;
+        if (!url) return setLoading(false);;
 
         setLoading(true); setError(false);
         try {
@@ -68,8 +68,7 @@ export default function AuthProvider({ children }) {
     const register = async (url, data, callback, fallback) => {
         setLoading(true); setError(false);
         try {
-            const res = await api.post(url, data);
-            callback?.();
+            await api.post(url, data); callback?.();
         }
         catch (error) {
             setError('Failed to register user', error.message);

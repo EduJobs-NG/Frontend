@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { IndividualRegistration } from "../components/IndividualRegistration";
-import { CorporateRegistration } from "../components/CorporateRegistration";
 import { FaUserPlus, FaTimes } from "react-icons/fa";
+import { CorporateRegistration } from "../components/CorporateRegistration";
+import { IndividualRegistration } from "../components/IndividualRegistration";
 
 export const EmployersRegistration = ({ setShowRegister, showModal }) => {
   const typeOfRegistration = ["individual", "corporate"];
