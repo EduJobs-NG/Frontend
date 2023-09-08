@@ -14,54 +14,90 @@ import jwtDecode from "jwt-decode";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import api from "../../utils/api";
+import { useSignIn } from "react-auth-kit";
+import { AxiosError } from "axios";
 
 //
 export const LoginForm = ({ setShowLogin, showModal }) => {
-  const { setAuthTokens, employerUser } = useContext(AuthContext);
+  // const { setAuthTokens, employerUser } = useContext(AuthContext);
+  const [error, setError] = useState("");
+  const signIn = useSignIn();
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const onSubmit = async (values) => {
     setIsLoading(true);
-    const response = await api
-      .post("/jobseeker/jwt/token/", values)
-      .catch((err) => {
-        if (err) {
-          //   console.log(err)
-          if (err.response.status === 400) {
-            toast.error("Password or email incorrect");
-            setIsLoading(false);
-          } else if (err.response.status === 401) {
-            toast.error("No active account found");
-            setIsLoading(false);
-          } else {
-            toast.error("Something went wrong");
-            setIsLoading(false);
-          }
-        }
-        // console.log(err)
+    setError("");
+    try {
+      const response = await api.post("/jobseeker/jwt/token/", values);
+      console.log(response);
+      signIn({
+        token: response.data.access,
+        expiresIn: jwtDecode(response.data.access),
+        tokenType: "Bearer",
+        authState: response.data,
+        refreshToken: response.data.refresh, // Only if you are using refreshToken feature
+        // refreshTokenExpireIn: response.data.refreshTokenExpireIn     // Only if you are using refreshToken feature
       });
-
-    if (response && response.data) {
-      // console.log(response.data)
-      if (employerUser) {
-        localStorage.removeItem("accessToken", JSON.stringify(response.data));
-        localStorage.removeItem("employer_user");
-      }
-
-      const userType = jwtDecode(response.data.access);
-      // console.log(userType)
-      if (userType.is_jobseeker === true) {
-        localStorage.setItem(
-          "accessToken",
-          JSON.stringify(response.data.access)
-        );
-        navigate("/dashboard/find-jobs");
-        setAuthTokens(response.data.access);
+    } catch (err) {
+      //   console.log(err)
+      if (err.response.status === 400) {
+        toast.error("Password or email incorrect");
+        setIsLoading(false);
+      } else if (err.response.status === 401) {
+        toast.error("No active account found");
+        setIsLoading(false);
+      } else if (err && err instanceof AxiosError) {
+        toast.error(err.response?.data.message);
+        setIsLoading(false);
+      } else if (err && err instanceof Error) {
+        toast.error(err.message);
+        setIsLoading(false);
       } else {
-        toast.error("You are not registered as a job seeker");
+        toast.error("Somethis is wrong");
+        setIsLoading(false);
       }
-      setIsLoading(false);
     }
+    // const response = await api
+    //   .post("/jobseeker/jwt/token/", values)
+    //   .catch((err) => {
+    //     if (err) {
+    //       //   console.log(err)
+    //       if (err.response.status === 400) {
+    //         toast.error("Password or email incorrect");
+    //         setIsLoading(false);
+    //       } else if (err.response.status === 401) {
+    //         toast.error("No active account found");
+    //         setIsLoading(false);
+    //       } else {
+    //         toast.error("Something went wrong");
+    //         setIsLoading(false);
+    //       }
+    //     }
+    //     // console.log(err)
+    //   });
+
+    // if (response && response.data) {
+    //   // console.log(response.data)
+    //   if (employerUser) {
+    //     localStorage.removeItem("accessToken");
+    //     localStorage.removeItem("employer_user");
+    //   }
+
+    //   const userType = jwtDecode(response.data.access);
+    //   // console.log(userType)
+    //   if (userType.is_jobseeker === true) {
+    //     localStorage.setItem(
+    //       "accessToken",
+    //       JSON.stringify(response.data.access)
+    //     );
+    //     console.log(response.data.access);
+    //     setAuthTokens(response.data.access);
+    //     navigate("/dashboard/find-jobs");
+    //   } else {
+    //     toast.error("You are not registered as a job seeker");
+    //   }
+    //   setIsLoading(false);
+    // }
   };
 
   const formik = useFormik({
