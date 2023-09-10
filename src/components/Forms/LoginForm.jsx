@@ -9,10 +9,6 @@ import { useAuth } from "../../context/auth.context";
 import { LoginSchema as validationSchema } from "./schema";
 import { FaSignInAlt, FaEnvelope, FaTimes } from "react-icons/fa";
 //
-
-import "react-toastify/dist/ReactToastify.css";
-
-//
 export const LoginForm = ({ setShowLogin, showModal }) => {
   const navigate = useNavigate();
   const { login, loading } = useAuth();
@@ -37,7 +33,6 @@ export const LoginForm = ({ setShowLogin, showModal }) => {
         )
     );
   };
-
   const formik = useFormik({
     onSubmit,
     validationSchema,

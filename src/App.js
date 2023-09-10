@@ -7,6 +7,7 @@ import { Pricing } from "./pages/Pricing";
 import AuthProvider from "./context/auth.context";
 import JobseekerRoute from "./utils/JobseekerRoute";
 import { PageNotFound } from "./pages/PageNotFound";
+
 import { NewEmail } from "./pages/Authentication/NewEmail";
 import { ResetEmail } from "./pages/Authentication/ResetEmail";
 import { TermsAndConditions } from "./pages/TermsAndConditions";
