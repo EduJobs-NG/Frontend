@@ -4,7 +4,6 @@ import { ToastContainer } from "react-toastify";
 
 import { Faq } from "./pages/Faq";
 import { Pricing } from "./pages/Pricing";
-
 import AuthProvider from "./context/auth.context";
 import JobseekerRoute from "./utils/JobseekerRoute";
 import { PageNotFound } from "./pages/PageNotFound";
@@ -45,13 +44,11 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { EmployersDashboard } from "./Employers/pages/EmployersDashboard";
 import { EmployersRegistration } from "./Employers/pages/EmployersRegistration";
 
-
 function App() {
   return (
     <Router>
       <div className="w-full mx-auto">
         <AuthProvider>
-
           <Routes>
             <Route path="/" exact element={<JobseekersHome />} />
             <Route element={<JobseekerRoute />}>
