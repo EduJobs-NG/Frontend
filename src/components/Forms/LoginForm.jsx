@@ -5,10 +5,12 @@ import { FormInputBox } from "./FormInputBox";
 import { useNavigate } from "react-router-dom";
 import { useFormik, Formik, Form } from "formik";
 import { ThreeDots } from "react-loader-spinner";
-import { useAuth } from '../../context/auth.context';
+import { useAuth } from "../../context/auth.context";
 import { LoginSchema as validationSchema } from "./schema";
 import { FaSignInAlt, FaEnvelope, FaTimes } from "react-icons/fa";
+//
 
+import "react-toastify/dist/ReactToastify.css";
 
 //
 export const LoginForm = ({ setShowLogin, showModal }) => {
@@ -16,16 +18,23 @@ export const LoginForm = ({ setShowLogin, showModal }) => {
   const { login, loading } = useAuth();
 
   const onSubmit = async (values) => {
-    await login('/jobseeker/jwt/token/', values,
+    await login(
+      "/jobseeker/jwt/token/",
+      values,
       async (user, setToken) => {
-        if (user.is_jobseeker) { await setToken(); navigate('/dashboard/find-jobs'); }
-        else toast.error('You are not registered as a jobseeker');
+        if (user.is_jobseeker) {
+          await setToken();
+          navigate("/dashboard/find-jobs");
+        } else toast.error("You are not registered as a jobseeker");
       },
-      ({ response }) => toast.error(
-        response?.status === 400 ? 'Password or email incorrect'
-          : response?.status === 401 ? 'No active account found'
-            : 'Something went wrong!'
-      )
+      ({ response }) =>
+        toast.error(
+          response?.status === 400
+            ? "Password or email incorrect"
+            : response?.status === 401
+            ? "No active account found"
+            : "Something went wrong!"
+        )
     );
   };
 
