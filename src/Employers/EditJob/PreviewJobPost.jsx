@@ -3,7 +3,7 @@ import { Markup } from "interweave";
 import { toast } from "react-toastify";
 import React, { useState } from "react";
 import { FaTimes } from "react-icons/fa";
-import api from '../../utils/AxiosInstance';
+import api from '../../utils/api';
 import "react-toastify/dist/ReactToastify.css";
 import { ThreeDots } from "react-loader-spinner";
 import jobPosted from "../../assets/jobPosted.png";

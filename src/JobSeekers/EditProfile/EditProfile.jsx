@@ -1,9 +1,8 @@
-import React, { useState, useContext, useEffect } from "react";
-import { PersonalInfo } from "./PersonalInfo";
-import { ProfessionalInfo } from "./ProfessionalInfo";
 import { ContactInfo } from "./ContactInfo";
 import { Credentials } from "./Credentials";
-import AuthContext from "../../context/AuthContext";
+import { PersonalInfo } from "./PersonalInfo";
+import React, { useState, useEffect } from "react";
+import { ProfessionalInfo } from "./ProfessionalInfo";
 import { Link, useSearchParams } from "react-router-dom";
 
 export const EditProfile = () => {
@@ -11,18 +10,11 @@ export const EditProfile = () => {
   const [active, setActive] = useState(0);
   const [searchParams] = useSearchParams();
   const tabIndex = searchParams.get("tab");
-  const { user, getUserMeHandler } = useContext(AuthContext);
 
-  const titles = [
-    "personal information",
-    "education",
-    "credentials",
-    "contact information",
-  ];
+  const titles = ["personal information", "education", "credentials", "contact information"];
+
   const handleTitle = (e, index, tabIndex) => {
-    // setTitle(() => e.target.textContent.toLowerCase());
-    setTitle(tabIndex);
-    setActive(index);
+    setTitle(tabIndex); setActive(index);
   };
   const handleDisplay = () => {
     switch (title) {
@@ -52,11 +44,10 @@ export const EditProfile = () => {
             return (
               <Link key={index} to={`?tab=${index}`}>
                 <li
-                  className={`${
-                    active === index.toString()
-                      ? "text-blue text-[1.2rem]  border-b-[0.2rem] border-b-blue"
-                      : "text-black"
-                  } cursor-pointer capitalize mr-[3rem] text-[1.1rem] font-[700] `}
+                  className={`${active === index.toString()
+                    ? "text-blue text-[1.2rem]  border-b-[0.2rem] border-b-blue"
+                    : "text-black"
+                    } cursor-pointer capitalize mr-[3rem] text-[1.1rem] font-[700] `}
                   onClick={(e) => handleTitle(e, index, tabIndex)}
                 >
                   {title}

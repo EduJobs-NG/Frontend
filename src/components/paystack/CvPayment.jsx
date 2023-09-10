@@ -1,33 +1,30 @@
 //@ts-check
-import React, { useContext, useState, useEffect } from 'react';
+import api from '../../utils/api';
+import React, { useState, useEffect } from 'react';
 import { usePaystackPayment } from 'react-paystack';
-import AuthContext from '../../context/AuthContext';
-import api from '../../utils/AxiosInstance';
+import { useAuth } from '../../context/auth.context';
 
 export const CvPayment = () => {
-  const { user } = useContext(AuthContext);
-  const [price, setPrice] = useState(0);
+  const { user } = useAuth();
+
   const [key, setKey] = useState('');
-  const [error, setError] = useState(false);
+  const [price, setPrice] = useState(0);
+  const [_, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   const getPrice = async () => {
     const response = await api.get(`/cv-creation/price/`).catch((err) => {
       setError(true);
-      console.log(err);
       setIsLoading(false);
     });
 
     if (response && response.data) {
-      console.log(response.data);
       setKey(response.data.results[0].public_Key);
       setPrice(response.data.results[0].price);
     }
   };
 
-  useEffect(() => {
-    getPrice();
-  });
+  useEffect(() => { getPrice(); }, []);
 
   const config = {
     reference: user.user.email + user.user.first_name,

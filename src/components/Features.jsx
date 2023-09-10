@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
 import { features } from '../data.js';
+import React, { useState } from 'react';
 import { JoinNowModal } from './JoinNowModal.jsx';
 
 

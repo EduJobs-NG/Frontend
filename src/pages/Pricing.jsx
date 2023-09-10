@@ -1,11 +1,7 @@
 import React from 'react';
 
-
-export const Pricing = () => {
-  return (
-    <section>
+export const Pricing = () => (
+  <section>
     <div>Pricing</div>
-
-    </section>
-  )
-}
+  </section>
+);

@@ -4,9 +4,11 @@ import { ToastContainer } from "react-toastify";
 
 import { Faq } from "./pages/Faq";
 import { Pricing } from "./pages/Pricing";
+
+import AuthProvider from "./context/auth.context";
 import JobseekerRoute from "./utils/JobseekerRoute";
 import { PageNotFound } from "./pages/PageNotFound";
-// import { AuthProvider } from "./context/AuthContext";
+
 import { NewEmail } from "./pages/Authentication/NewEmail";
 import { ResetEmail } from "./pages/Authentication/ResetEmail";
 import { TermsAndConditions } from "./pages/TermsAndConditions";
@@ -31,6 +33,10 @@ import { EmployersLoginFormUI } from "./Employers/pages/EmployersLoginFormUI";
 import EmployerRoute from "./utils/EmployerRoute";
 import { ContactUs } from "./components/ContactUs";
 import { Account } from "./Employers/pages/Account";
+
+import { AboutPage } from "./Employers/pages/AboutPage";
+import { JobseekerCv } from "./JobSeekers/pages/JobseekerCv";
+
 import { ResetLink } from "./pages/Authentication/ResendLink";
 import { EmployerEditJob } from "./Employers/EditJob/EmployerEditJob";
 import { EmployerPostJob } from "./Employers/PostJob/EmployerPostJob";
@@ -38,23 +44,14 @@ import { EmployerViewJobs } from "./Employers/pages/EmployerViewJobs";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { EmployersDashboard } from "./Employers/pages/EmployersDashboard";
 import { EmployersRegistration } from "./Employers/pages/EmployersRegistration";
-import { AboutPage } from "./Employers/pages/AboutPage";
-import { JobseekerCv } from "./JobSeekers/pages/JobseekerCv";
 
-import { AuthProvider } from "react-auth-kit";
-import refreshApi from "./utils/refreshApi";
 
 function App() {
   return (
     <Router>
       <div className="w-full mx-auto">
-        <AuthProvider
-          authType={"cookie"}
-          authName={"_auth"}
-          cookieDomain={window.location.hostname}
-          cookieSecure={window.location.protocol === "https:"}
-          refresh={refreshApi}
-        >
+        <AuthProvider>
+
           <Routes>
             <Route path="/" exact element={<JobseekersHome />} />
             <Route element={<JobseekerRoute />}>

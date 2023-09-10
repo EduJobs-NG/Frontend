@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import img from "../../assets/jobs-2.png";
 import { useState, useEffect } from "react";
-import api from "../../utils/AxiosInstance";
+import api from "../../utils/api";
 import { Circles } from "react-loader-spinner";
 import { JobDetailPopup as Popup } from "./JobDetailPopup";
 import { IsLoading } from "../../components/IsLoading";

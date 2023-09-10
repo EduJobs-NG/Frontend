@@ -1,70 +1,49 @@
-import React, { useState } from "react";
-import { FormInputBox } from "../../components/Forms/FormInputBox";
+import React from "react";
 import { useFormik } from "formik";
-import axios from "axios";
-import { FaUserCircle, FaEnvelope } from "react-icons/fa";
-import { ThreeDots } from "react-loader-spinner";
 import { Formik, Form } from "formik";
+import { toast } from "react-toastify";
+import { ThreeDots } from "react-loader-spinner";
+import { useAuth } from '../../context/auth.context';
 import { Link, useNavigate } from "react-router-dom";
-import google from "../../assets/google.png";
-import linkedin from "../../assets/linkedin.png";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { FaUserCircle, FaEnvelope } from "react-icons/fa";
 import CustomCheckbox from "../../components/Forms/CustomCheckbox";
-import { CorporateSchema } from "../../components/Forms/schema";
+import { FormInputBox } from "../../components/Forms/FormInputBox";
+import { CorporateSchema as validationSchema } from "../../components/Forms/schema";
 
 export const CorporateRegistration = () => {
-  const [isLoading, setIsLoading] = useState(false);
-
   const navigate = useNavigate();
+  const { register, loading } = useAuth();
 
   const onSubmit = async (values) => {
-    setIsLoading(true);
-    const response = await axios
-      .post(
-        `${process.env.REACT_APP_BASE_URL}employer/account/cooperate-employer/`,
-        values
-      )
-      .catch((err) => {
-        if (err && err.response) {
-          if (err.message === "Request failed with status code 400") {
-            setIsLoading(false);
-            toast.error("User with this email already exists");
-          } else {
-            setIsLoading(false);
-            toast.error("An error occured. Try again");
-            // console.log(err);
-          }
-        }
-      });
-
-    if (response && response.data) {
-      toast.success("Account created successfully.");
-      setTimeout(() => {
-        navigate("/verify");
-      }, 3000);
-    }
+    await register('/employer/account/cooperate-employer/', values,
+      () => {
+        toast.success("Account created successfully.");
+        setTimeout(() => { navigate("/verify"); }, 3000);
+      },
+      error => {
+        if (error.message === "Request failed with status code 400") toast.error("User with this email already exists");
+        else toast.error("An error occured. Try again");
+      },
+    );
   };
 
   const formik = useFormik({
+    onSubmit,
+    validationSchema,
+    validateOnBlur: true,
     initialValues: {
-      org_name: "",
       email: "",
+      org_name: "",
       password: "",
       re_password: "",
       acceptedTos: false,
     },
-    validateOnBlur: true,
-    onSubmit,
-    validationSchema: CorporateSchema,
   });
 
   return (
     <div className=" bg-white  ">
-      <ToastContainer />
-
       <Formik>
-        {({}) => (
+        {({ }) => (
           <Form onSubmit={formik.handleSubmit}>
             <FormInputBox
               type="text"
@@ -79,7 +58,7 @@ export const CorporateRegistration = () => {
             />
 
             {formik.touched.organization_name &&
-            formik.errors.organization_name ? (
+              formik.errors.organization_name ? (
               <small className="text-red-600">
                 {formik.errors.organization_name}
               </small>
@@ -146,7 +125,7 @@ export const CorporateRegistration = () => {
                 By signing up on this platform, you agree to EduJobs
               </label>{" "}
               <a className="text-blue underline" href="/terms">
-                
+
                 Terms & Conditions.
               </a>
               <div>
@@ -158,7 +137,16 @@ export const CorporateRegistration = () => {
               </div>
             </div>
 
-            {!isLoading && (
+            {loading ? (
+              <div className="flex justify-center">
+                <ThreeDots
+                  type="ThreeDots"
+                  width={100}
+                  height={20}
+                  color="blue"
+                />
+              </div>
+            ) : (
               <button
                 disabled={!formik.isValid}
                 className={
@@ -170,16 +158,6 @@ export const CorporateRegistration = () => {
               >
                 SIGN UP
               </button>
-            )}
-            {isLoading && (
-              <div className="flex justify-center">
-                <ThreeDots
-                  type="ThreeDots"
-                  width={100}
-                  height={20}
-                  color="blue"
-                />
-              </div>
             )}
           </Form>
         )}

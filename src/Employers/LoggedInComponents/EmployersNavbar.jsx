@@ -1,33 +1,27 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext, useState, useEffect } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import AuthContext from '../../context/AuthContext';
-import { FaBars, FaTimes } from 'react-icons/fa';
-import chat from '../../assets/chat.png'
-import notification from '../../assets/notification.png'
 import Aos from 'aos'
 import { navigation } from '../../data';
 import { FaCaretDown } from 'react-icons/fa';
+import { FaBars, FaTimes } from 'react-icons/fa';
+import React, { useState, useEffect } from 'react';
+import { useAuth } from '../../context/auth.context';
+import { useNavigation, Link, NavLink } from 'react-router-dom';
 
 export const EmployersNavbar = () => {
-  const { employerUser, user, logOutEmployerUser, getEmployerUser } = useContext(AuthContext)
   const { logo } = navigation;
-  useEffect(() => {
-    Aos.init();
-    Aos.refresh();
-    getEmployerUser();
-  }, []);
+  const navigate = useNavigation();
+  const { user, logout } = useAuth();
+
   const [menu, setMenu] = useState(false);
   const [active, setActive] = useState(false);
-  const [dropDown, setDropDown] = useState(false)
-  const handleClick = () => {
-    setMenu(!menu);
-    setActive(!active);
+  const [dropDown, setDropDown] = useState(false);
 
-  }
+  useEffect(() => {
+    Aos.init(); Aos.refresh();
+  }, []);
 
-
+  const handleClick = () => { setMenu(!menu); setActive(!active); };
 
   const normalMobile = 'text-[1.3rem]';
   const activeMobile = 'text-blue text-[1.3rem] font-[700]'
@@ -49,7 +43,7 @@ export const EmployersNavbar = () => {
 
 
           <ul className='hidden xl:flex flex-row items-center text-white gap-x-[2rem]'>
-            <li className='text-whie'>Hello, {employerUser?.first_name || employerUser?.org_name}</li>
+            <li className='text-whie'>Hello, {user?.first_name || user?.org_name}</li>
             <a href='/employer/dashboard/post-job'>
               <li className='p-1 cursor-pointer px-4 font-[700] border border-solid bg-white text-blue hover:bg-blue hover:text-white border-white rounded'>
                 POST JOB
@@ -80,7 +74,7 @@ export const EmployersNavbar = () => {
                       <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>
                         <Link to='/employer/settings'>Settings</Link>
                       </li>
-                      <li onClick={logOutEmployerUser} className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Log out</li>
+                      <li onClick={() => logout(() => navigate('/employer/login'))} className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Log out</li>
                     </ul>
                   </div>
                 }
@@ -105,7 +99,7 @@ export const EmployersNavbar = () => {
                     <li className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>
                       <Link to='/employer/settings'>Settings</Link>
                     </li>
-                    <li onClick={logOutEmployerUser} className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Log out</li>
+                    <li onClick={() => logout(() => navigate('/employer/login'))} className='pb-[0.2rem] py-[0.5rem] px-[1rem] hover:bg-[#ffffff] transition-all'>Log out</li>
                   </ul>
                 </div>
               }

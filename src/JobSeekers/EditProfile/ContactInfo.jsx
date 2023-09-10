@@ -1,14 +1,13 @@
-import React, { useContext, useEffect, useState } from "react";
-import { FormInputBox } from "../../components/Forms/FormInputBox";
 import * as Yup from "yup";
-import { useFormik, Formik, Form } from "formik";
-import AuthContext from "../../context/AuthContext";
-import { ThreeDots } from "react-loader-spinner";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import api from "../../utils/AxiosInstance";
+import api from "../../utils/api";
+import { toast } from "react-toastify";
+import React, { useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/bootstrap.css";
+import { useFormik, Formik, Form } from "formik";
+import { ThreeDots } from "react-loader-spinner";
+import { useAuth } from "../../context/auth.context";
+import { FormInputBox } from "../../components/Forms/FormInputBox";
 
 const validationSchema = Yup.object({
   next_kin_email: Yup.string().email("Invalid email address").nullable(),
@@ -17,9 +16,10 @@ const validationSchema = Yup.object({
   first_ref_phone: Yup.string().required("Required").nullable(),
   second_ref_phone: Yup.string().required("Required").nullable(),
 });
+
 export const ContactInfo = () => {
+  const { user, getUser } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
-  const { user, getUserMeHandler } = useContext(AuthContext);
   const {
     contact_info: {
       next_kin_fname = "",
@@ -53,7 +53,7 @@ export const ContactInfo = () => {
 
     if (response) {
       setIsLoading(false);
-      getUserMeHandler();
+      getUser();
       toast.success("Your changes have been successfully saved.");
     }
   };
@@ -81,8 +81,6 @@ export const ContactInfo = () => {
 
   return (
     <>
-      <ToastContainer />
-
       <section className="bg-white rounded-[40px]">
         <Formik>
           <Form onSubmit={formik.handleSubmit}>
@@ -138,7 +136,7 @@ export const ContactInfo = () => {
                         }}
                       />
                       {formik.touched.next_kin_phone &&
-                      formik.errors.next_kin_phone ? (
+                        formik.errors.next_kin_phone ? (
                         <small className="text-red-600">
                           {formik.errors.next_kin_phone}
                         </small>
@@ -159,7 +157,7 @@ export const ContactInfo = () => {
                     onBlur={formik.handleBlur}
                   />
                   {formik.touched.next_kin_email &&
-                  formik.errors.next_kin_email ? (
+                    formik.errors.next_kin_email ? (
                     <small className="text-red-600">
                       {formik.errors.next_kin_email}
                     </small>
@@ -229,7 +227,7 @@ export const ContactInfo = () => {
                     }}
                   />
                   {formik.touched.first_ref_phone &&
-                  formik.errors.first_ref_phone ? (
+                    formik.errors.first_ref_phone ? (
                     <small className="text-red-600">
                       {formik.errors.first_ref_phone}
                     </small>
@@ -299,7 +297,7 @@ export const ContactInfo = () => {
                     />
                   </div>
                   {formik.touched.second_ref_phone &&
-                  formik.errors.second_ref_phone ? (
+                    formik.errors.second_ref_phone ? (
                     <small className="text-red-600">
                       {formik.errors.second_ref_phone}
                     </small>

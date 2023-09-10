@@ -1,27 +1,9 @@
 import React, { useState } from "react";
 import { JobseekerNavbar } from "../components/JobseekerNavbar";
-import { CvPayment } from "../../components/paystack/CvPayment";
 
 export const JobseekerCv = () => {
-  const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [country, setCountry] = useState("");
-  const [state, setState] = useState("");
-  const [zipCode, setZipCode] = useState("");
-  const [summary, setSummary] = useState("");
-  const [education, setEducation] = useState("");
-  const [experience, setExperience] = useState("");
-  const [skills, setSkills] = useState("");
-  const [competence, setCompetence] = useState("");
-  // const [loading, setLoading] = useState('');
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    console.log("Handled");
-  };
+  const [firstName, setFirstName] = useState("");
 
   return (
     <div>

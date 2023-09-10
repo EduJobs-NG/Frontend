@@ -1,7 +1,6 @@
 import Update from './updater';
-import { useEffect } from 'react';
-import { useContext, useState } from 'react';
-import Auth from '../../context/AuthContext';
+import { useState } from 'react';
+import { useAuth } from '../../context/auth.context';
 import { AiFillMail, AiFillEye } from 'react-icons/ai';
 
 const modelInput = {
@@ -25,27 +24,21 @@ const modelInput = {
 };
 
 const Account = () => {
-  // state
+  const { user } = useAuth();
+
   const [show, setShow] = useState(false);
 
-  // user store
-  const { user } = useContext(Auth);
-
-  useEffect(() => {
-    // console.log(user);
-  }, [])
 
   // methods
-  const getShow = ({ currentTarget: target }) => {
-    setShow(() => modelInput[target.name]);
-  }
+  const getShow = ({ currentTarget: target }) => setShow(() => modelInput[target.name]);
+
 
   return <section className="w-screen flex flex-col my-8">
     {show && <Update close={setShow} object={show} />}
     <div className="w-full flex relative items-center justify-center p-14">
       <span className="absolute top-4 left-4 capitalize font-bold text-2xl">profile</span>
       <div className="flex flex-col items-center justify-center gap-2">
-        <img src={user?.avatar}  className="rounded-full w-24 h-24 bg-gray-200 outline-none" alt="avatar" />
+        <img src={user?.avatar} className="rounded-full w-24 h-24 bg-gray-200 outline-none" alt="avatar" />
         <h2 className="font-bold capitalize">{`${user?.user?.first_name || ''} ${user?.middle_name || ''} ${user?.user?.last_name || ''}`}</h2>
       </div>
     </div>

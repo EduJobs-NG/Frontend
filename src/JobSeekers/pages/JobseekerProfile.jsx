@@ -1,17 +1,16 @@
-import React, { useContext, useState, useEffect } from "react";
-import { JobseekerNavbar } from "../components/JobseekerNavbar";
-import AuthContext from "../../context/AuthContext";
+import React, { useState } from "react";
 import marker from "../../assets/Marker.png";
 import EditIcon from "../../assets/EditIcon.png";
-import { EditProfile } from "../EditProfile/EditProfile";
 import { EditBio } from "../EditProfile/EditBio";
 import { EditPic } from "../EditProfile/EditPic";
-import { FaEdit, FaMapMarker } from "react-icons/fa";
+import { useAuth } from "../../context/auth.context";
+import { EditProfile } from "../EditProfile/EditProfile";
+import { JobseekerNavbar } from "../components/JobseekerNavbar";
 
 export const JobseekerProfile = () => {
+  const { user, loading } = useAuth();
   const [showBio, setShowBio] = useState(false);
   const [showPic, setShowPic] = useState(false);
-  const { user, loading } = useContext(AuthContext);
 
   return (
     <>

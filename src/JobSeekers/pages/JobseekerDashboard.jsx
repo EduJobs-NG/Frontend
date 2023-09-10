@@ -3,6 +3,7 @@ import { Footer } from "../../components/Footer";
 import { Recent } from "../components/RecentJobs";
 import SearchJobs from "../components/SearchJobs";
 import { JobseekerNavbar } from "../components/JobseekerNavbar";
+import ProfileCard from "../components/ProfileCard";
 
 export const JobseekerDashboard = () => {
   // refs
@@ -38,11 +39,15 @@ export const JobseekerDashboard = () => {
       </section>
 
       <section>
+        <ProfileCard />
+      </section>
+
+      <section>
         <Recent
           ref={ele}
           title={title}
-          location={location}
           Title={setTitle}
+          location={location}
           Location={setLocation}
         />
       </section>

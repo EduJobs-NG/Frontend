@@ -1,45 +1,25 @@
-import React, { useState, useContext } from "react";
+import api from "../../utils/api";
+import { toast } from "react-toastify";
 import { ThreeDots } from "react-loader-spinner";
-import AuthContext from "../../context/AuthContext";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import api from "../../utils/AxiosInstance";
+import React, { useState } from "react";
+import { useAuth } from '../../context/auth.context';
 
-export const DeleteCredential = ({ setShowDelete, credentials, item }) => {
+export const DeleteCredential = ({ setShowDelete, item }) => {
+  const { getUser } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
-  const { getUserMeHandler } = useContext(AuthContext);
- 
-  
-  
+
   const handleDelete = async () => {
     setIsLoading(true);
-  
-      const response = await api.delete(`/jobseeker/user-profile/me/credentials/${item.id}`)
-      .catch((err) => {
-        // console.log(err);
-        toast.error("An error occured. Try again or refresh.");
-        setIsLoading(false);
-      });
-
-    if (response) {
-      setIsLoading(false);
-      setShowDelete(false);
-     getUserMeHandler()
-      // console.log(response);
-    }
+    try {
+      await api.delete(`/jobseeker/user-profile/me/credentials/${item.id}`);
+      await getUser();
+    } catch (error) {
+      toast.error("An error occured. Try again or refresh.");
+    }; setIsLoading(false);
   };
-
-  // const updatedCredential =  
-
-  // credentials.filter(credential => {
-  //   return credential.id !== item.id
-  // })
-
-  // console.log(updatedCredential)
 
   return (
     <>
-      <ToastContainer />
       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
         <div className="relative w-auto my-6 mx-3 max-w-3xl">
           {/*content*/}

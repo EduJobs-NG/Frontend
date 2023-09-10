@@ -19,7 +19,7 @@ const interceptor = instance.interceptors.request.use(config => {
   instance.interceptors.request.eject(interceptor); // remove the interceptor after first response
   return config; // return the configuration object
 }, err => {
-  console.error(err, 'error from token refresh interceptors')
+  console.error(err, 'error from token refresh interceptors', err);
 });
 
 // an interceptor to set token if present

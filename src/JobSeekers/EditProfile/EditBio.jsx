@@ -1,13 +1,12 @@
-import React, { useState, useContext } from "react";
+import api from "../../utils/api";
+import React, { useState } from "react";
+import { FaTimes } from "react-icons/fa";
 import { useFormik, Formik, Form } from "formik";
 import { ThreeDots } from "react-loader-spinner";
-import { FaBars, FaTimes } from "react-icons/fa";
-import AuthContext from "../../context/AuthContext";
-import axios from "axios";
-import api from "../../utils/AxiosInstance";
+import { useAuth } from "../../context/auth.context";
 
 export const EditBio = ({ setShowBio }) => {
-  const { user, accessToken, getUserMeHandler } = useContext(AuthContext);
+  const { user, getUser } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
 
   const { bio } = user;
@@ -25,18 +24,13 @@ export const EditBio = ({ setShowBio }) => {
     if (response) {
       setIsLoading(false);
       setShowBio(false);
-      getUserMeHandler();
+      getUser();
       console.log(response);
     }
   };
 
-  const formik = useFormik({
-    initialValues: {
-      bio,
-    },
+  const formik = useFormik({ onSubmit, initialValues: { bio } });
 
-    onSubmit,
-  });
   return (
     <>
       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">

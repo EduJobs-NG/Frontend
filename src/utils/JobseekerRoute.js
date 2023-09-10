@@ -1,11 +1,15 @@
-import { Outlet, Navigate } from "react-router-dom";
-import { useContext } from "react";
-import AuthContext from "../context/AuthContext";
+import { useEffect } from 'react';
+import { useAuth } from '../context/auth.context';
+import { Outlet, useNavigate } from 'react-router-dom';
 
-const JobseekerRoute = () => {
-  const { authTokens } = useContext(AuthContext);
+export default function JobseekerRoute() {
+  const navigate = useNavigate();
+  const { user, loading } = useAuth();
 
-  return authTokens ? <Outlet /> : <Navigate to="/jobseeker/login" />;
+  useEffect(() => {
+    if (!loading && !user) navigate('/jobseeker/login', { replace: true });
+  }, [user, loading]);
+
+  if (loading) return null;
+  return user ? <Outlet /> : null;
 };
-
-export default JobseekerRoute;

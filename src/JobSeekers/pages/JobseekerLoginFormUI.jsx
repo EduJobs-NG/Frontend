@@ -3,24 +3,12 @@ import { LoginForm } from '../../components/Forms/LoginForm';
 
 
 
-export const JobseekerLoginFormUI = () => {
-
-  return (
-    <>
+export const JobseekerLoginFormUI = () => (
+  <>
     <section className='flex bg-blue h-screen justify-center items-center'>
       <div className='w-full max-w-[500px]'>
-      <LoginForm />
-
+        <LoginForm />
       </div>
     </section>
-
-   
-
-    
-
-</>
-
-  )
-}
-
-
+  </>
+);

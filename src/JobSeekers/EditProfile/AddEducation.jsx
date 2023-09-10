@@ -1,14 +1,13 @@
-import React, { useContext, useEffect, useState } from "react";
-import { FormInputBox } from "../../components/Forms/FormInputBox";
 import * as Yup from "yup";
+import api from "../../utils/api";
+import { toast } from "react-toastify";
+import React, { useState } from "react";
+import { FaTimes } from "react-icons/fa";
 import { useFormik, Formik, Form } from "formik";
 import { ThreeDots } from "react-loader-spinner";
-import { FaTimes } from "react-icons/fa";
+import { useAuth } from "../../context/auth.context";
 import CustomSelect from "../../components/Forms/CustomSelect";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import api from "../../utils/AxiosInstance";
-import AuthContext from "../../context/AuthContext";
+import { FormInputBox } from "../../components/Forms/FormInputBox";
 
 const today = new Date();
 const validationSchema = Yup.object({
@@ -18,14 +17,15 @@ const validationSchema = Yup.object({
   grade: Yup.string().required("Required"),
   start_of_education: Yup.date()
     .required("Required"),
-    // .max(today, "Start date can't be in the fututre"),
+  // .max(today, "Start date can't be in the fututre"),
   end_of_education: Yup.date()
     .required("Required"),
-    // .min(today, "End date can't be in the past"),
+  // .min(today, "End date can't be in the past"),
   study_summary: Yup.string().required("Required"),
 });
-export const AddEducation = ({ setShowEducation, education }) => {
-  const { getUserMeHandler } = useContext(AuthContext);
+
+export const AddEducation = ({ setShowEducation }) => {
+  const { getUser } = useAuth();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -43,7 +43,7 @@ export const AddEducation = ({ setShowEducation, education }) => {
       setIsLoading(false);
       setShowEducation(false);
       toast.success("Your changes have been successfully saved");
-      getUserMeHandler();
+      getUser();
 
       console.log(response);
     }
@@ -65,7 +65,6 @@ export const AddEducation = ({ setShowEducation, education }) => {
   return (
     <>
       <div className="justify-center items-center  flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-        <ToastContainer />
         <div className="relative w-full mt-[20rem] md:mt-[8rem] my-6 mx-3 max-w-5xl">
           {/*content*/}
           <div className="border-0  rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
@@ -100,7 +99,7 @@ export const AddEducation = ({ setShowEducation, education }) => {
                         onBlur={formik.handleBlur}
                       />
                       {formik.touched.school_name &&
-                      formik.errors.school_name ? (
+                        formik.errors.school_name ? (
                         <small className="text-red-600">
                           {formik.errors.school_name}
                         </small>
@@ -154,7 +153,7 @@ export const AddEducation = ({ setShowEducation, education }) => {
                       </CustomSelect>
 
                       {formik.touched.educational_level &&
-                      formik.errors.educational_level ? (
+                        formik.errors.educational_level ? (
                         <small className="text-red-600">
                           {formik.errors.educational_level}
                         </small>
@@ -194,7 +193,7 @@ export const AddEducation = ({ setShowEducation, education }) => {
                         onBlur={formik.handleBlur}
                       />
                       {formik.touched.start_of_education &&
-                      formik.errors.start_of_education ? (
+                        formik.errors.start_of_education ? (
                         <small className="text-red-600">
                           {formik.errors.start_of_education}
                         </small>
@@ -213,7 +212,7 @@ export const AddEducation = ({ setShowEducation, education }) => {
                         onBlur={formik.handleBlur}
                       />
                       {formik.touched.end_of_education &&
-                      formik.errors.end_of_education ? (
+                        formik.errors.end_of_education ? (
                         <small className="text-red-600">
                           {formik.errors.end_of_education}
                         </small>
@@ -234,7 +233,7 @@ export const AddEducation = ({ setShowEducation, education }) => {
                       rows="4"
                     ></textarea>
                     {formik.touched.study_summary &&
-                    formik.errors.study_summary ? (
+                      formik.errors.study_summary ? (
                       <small className="text-red-600">
                         {formik.errors.study_summary}
                       </small>

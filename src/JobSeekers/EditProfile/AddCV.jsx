@@ -1,54 +1,41 @@
-import React, { useContext, useState } from "react";
-import { FormInputBox } from "../../components/Forms/FormInputBox";
 import * as Yup from "yup";
+import api from "../../utils/api";
+import { toast } from "react-toastify";
+import React, { useState } from "react";
+import { FaTimes } from "react-icons/fa";
 import { useFormik, Formik, Form } from "formik";
-import AuthContext from "../../context/AuthContext";
 import { ThreeDots } from "react-loader-spinner";
-import {FaTimes } from "react-icons/fa";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import api from "../../utils/AxiosInstance";
+import { useAuth } from "../../context/auth.context";
+import { FormInputBox } from "../../components/Forms/FormInputBox";
 
-const validationSchema = Yup.object({
-  file: Yup.string().required("Required"),
-});
-export const AddCV = ({ setShowAddCV}) => {
-  const { getUserMeHandler } = useContext(AuthContext);
+const validationSchema = Yup.object({ file: Yup.string().required("Required") });
+
+export const AddCV = ({ setShowAddCV }) => {
+  const { getUser } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
-  const onSubmit = async (values) => {
-    setIsLoading(true);
 
+  const onSubmit = async (values) => {
     const data = new FormData();
     data.append("file", values.file);
     data.append("name", values.file.name);
-    const response = await api.post(`/jobseeker/user-profile/me/cv/`,data)
-      .catch((err) => {
-        console.log(err);
-        toast.error(err);
-        setIsLoading(false);
-      });
-
-    if (response && response.data) {
-      setIsLoading(false);
-      setShowAddCV(false);
-      toast.success("Your changes have been successfully saved");
-      getUserMeHandler()
-      console.log(response.data);
-    }
-  };
-  const formik = useFormik({
-    initialValues: {
-      file: "",
-      name: "",
       
-    },
-    validateOnBlur: true,
+    setIsLoading(true);
+    try {
+      await api.post(`/jobseeker/user-profile/me/cv/`, data);
+      toast.success("Your changes have been successfully saved"); getUser();
+    }
+    catch (error) { toast.error(error.message); };
+    setIsLoading(false);
+  };
+
+  const formik = useFormik({
     onSubmit,
-    validationSchema: validationSchema,
+    validationSchema,
+    validateOnBlur: true,
+    initialValues: { file: "", name: "" },
   });
   return (
     <>
-      <ToastContainer />
 
       <div className="justify-center items-center  flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
         <div className="relative w-full  md:mt-0 my-6 mx-3 max-w-2xl">
@@ -73,7 +60,7 @@ export const AddCV = ({ setShowAddCV}) => {
               <Formik>
                 <Form onSubmit={formik.handleSubmit}>
                   <div className="grid ">
-                   
+
                     <div className="w-full  max-w-lg">
                       <FormInputBox
                         name="file"

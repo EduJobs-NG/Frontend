@@ -29,12 +29,12 @@ export const Navbar = () => {
       <div className="container mx-auto">
         <div className="flex  py-[1.5rem] items-center flex-row justify-between">
           <ul className="flex uppercas gap-6 text-white flex-row">
-            <li className="title">
+            <li className="">
               <Link to="/">
                 <img src={logo} className="h-full" alt="" />
               </Link>
             </li>
-            <div className="hidden xl:flex flex-row text-white gap-10 text-sm items-center">
+            <div className="xl:flex flex-row text-white gap-10 text-sm items-center">
               <li>
                 <Link to="/about" className="uppercase font-bold hover:underline cursor-pointer">
                   about us
@@ -48,7 +48,7 @@ export const Navbar = () => {
             </div>
           </ul>
 
-          <ul className='hidden xl:flex flex-row text-white gap-8 items-center'>
+          <ul className='xl:flex flex-row text-white gap-8 items-center'>
             <li>
               <Link to="/employer" className='hover:underline cursor-pointer uppercase font-bold'>
                 I'm an employer

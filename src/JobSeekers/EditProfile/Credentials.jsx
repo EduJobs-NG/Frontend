@@ -1,34 +1,24 @@
-import React, { useContext, useState } from "react";
-import AuthContext from "../../context/AuthContext";
+import React, { useState } from "react";
 import AddIcon from "../../assets/AddIcon.png";
 import { AddCredentials } from "./AddCredentials";
 import { DeleteCredential } from "../DeleteProfile/DeleteCredential";
 import { AddCV } from "./AddCV";
-import { FaTrash, FaPencilAlt } from "react-icons/fa";
 import { EditCV } from "./EditCV";
+import { useAuth } from "../../context/auth.context";
 
 export const Credentials = () => {
-  const { user, getUserMeHandler } = useContext(AuthContext);
-  const credentials = user?.credentials;
-  const cv = user?.cv;
+  const { user, getUser } = useAuth(), cv = user?.cv, credentials = user?.credentials;
 
-  const [selectedItem, setSelectedItem] = useState({});
-  const [showDelete, setShowDelete] = useState(false);
-  const [showAddCredentials, setShowAddCredentials] = useState(false);
   const [showAddCV, setShowAddCV] = useState(false);
+  const [showDelete, setShowDelete] = useState(false);
   const [showEditCV, setShowEditCV] = useState(false);
+  const [selectedItem, setSelectedItem] = useState({});
+  const [showAddCredentials, setShowAddCredentials] = useState(false);
 
-  const addCredentialsHandler = () => {
-    setShowAddCredentials(true);
-  };
-  const deleteSelectedItem = (item) => {
-    setSelectedItem(item);
-    setShowDelete(true);
-  };
-  const editCVHandler = () => {
-    setShowEditCV(true);
-    setSelectedItem(cv);
-  };
+  const addCredentialsHandler = () => {setShowAddCredentials(true);};
+  const editCVHandler = () => {setShowEditCV(true);setSelectedItem(cv);};
+  const deleteSelectedItem = (item) => {setSelectedItem(item);setShowDelete(true);};
+
   return (
     <section>
       {showAddCredentials && (
@@ -42,7 +32,7 @@ export const Credentials = () => {
         <DeleteCredential
           credentials={credentials}
           setShowDelete={setShowDelete}
-          getUserMeHandler={getUserMeHandler}
+          getUserMeHandler={getUser}
           item={selectedItem}
         />
       )}

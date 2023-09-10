@@ -2,7 +2,7 @@
 import { toast } from 'react-toastify';
 import { BasicInfo1 } from './BasicInfo1';
 import { BasicInfo2 } from './BasicInfo2';
-import api from '../../utils/AxiosInstance';
+import api from '../../utils/api';
 import { useParams } from 'react-router-dom';
 import { useState, useMemo, useEffect } from 'react';
 
