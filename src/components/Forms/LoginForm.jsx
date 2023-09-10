@@ -27,8 +27,8 @@ export const LoginForm = ({ setShowLogin, showModal }) => {
             : 'Something went wrong!'
       )
     );
-
-
+  }
+  
   const formik = useFormik({
     onSubmit,
     validationSchema,
