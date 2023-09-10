@@ -33,6 +33,7 @@ export const LoginForm = ({ setShowLogin, showModal }) => {
         )
     );
   };
+
   const formik = useFormik({
     onSubmit,
     validationSchema,
