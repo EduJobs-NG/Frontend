@@ -3,6 +3,7 @@ import { Footer } from "../../components/Footer";
 import { Recent } from "../components/RecentJobs";
 import SearchJobs from "../components/SearchJobs";
 import { JobseekerNavbar } from "../components/JobseekerNavbar";
+import ProfileCard from "../components/ProfileCard";
 
 export const JobseekerDashboard = () => {
   // refs
@@ -35,6 +36,10 @@ export const JobseekerDashboard = () => {
         </div>
 
         <div className="absolute top-0 left-0 right-0 bottom-0 bg-[#02378B] opacity-60"></div>
+      </section>
+
+      <section>
+        <ProfileCard />
       </section>
 
       <section>
